@@ -1,0 +1,832 @@
+/* screen - edit-lable-fragile */
+
+.edit-lable-fragile {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.edit-lable-fragile .gb-k445fn {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.2vw;
+  position: fixed;
+  top: -0.05vw;
+  width: 116.2vw;
+}
+
+.edit-lable-fragile .bg-style-0cBnXz {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .path-42-Urr9Fn {
+  background-color: transparent;
+  height: calc(100.00% + 0.47vw);
+  left: 15.99vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 13.49vw);
+}
+
+.edit-lable-fragile .path-43-Urr9Fn {
+  background-color: transparent;
+  height: calc(100.00% + 0.31vw);
+  left: calc(18.69% - 6.3vw);
+  object-fit: cover;
+  position: absolute;
+  top: -0.26vw;
+  width: 33.8vw;
+}
+
+.edit-lable-fragile .person-Urr9Fn {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.edit-lable-fragile .arrow-Urr9Fn {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.56% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.edit-lable-fragile .main-header-Urr9Fn {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.15vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.edit-lable-fragile .logo-Urr9Fn {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.75% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.edit-lable-fragile .logo-6VasEF {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .m-qk4jLx {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.edit-lable-fragile .path-49-Qix2ax {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .v-qk4jLx {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.edit-lable-fragile .path-50-JxJOVR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .e-qk4jLx {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.edit-lable-fragile .path-51-O3l57y {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .group-29-qk4jLx {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.edit-lable-fragile .rectangle-6-94iUIY {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .group-30-qk4jLx {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.edit-lable-fragile .path-52-aE8xxD {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.edit-lable-fragile .path-53-aE8xxD {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.24% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.edit-lable-fragile .path-54-aE8xxD {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.edit-lable-fragile .pin-qk4jLx {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.47% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.edit-lable-fragile .path-55-xQabLJ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .ellipse-4-xQabLJ {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.edit-lable-fragile .box-qk4jLx {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.edit-lable-fragile .rectangle-7-QgNR3z {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .new-lable-button-k445fn {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.edit-lable-fragile .group-375-JrxX1y {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.edit-lable-fragile .group-375-JrxX1y:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .green-button-new-lable-mvM4oO {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .x-mvM4oO {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.edit-lable-fragile .x-mvM4oO:hover {
+  transform: rotate(15deg);
+}
+
+.edit-lable-fragile .path-464-x8hYLz {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .path-465-x8hYLz {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.edit-lable-fragile .title-mvM4oO {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.edit-lable-fragile .main-shape-k445fn {
+  background-color: transparent;
+  height: 36.15vw;
+  left: 33.85vw;
+  position: fixed;
+  top: 16.35vw;
+  width: 60.36vw;
+}
+
+.edit-lable-fragile .main-shape-X6gxx9 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .main-shape-Y8GSjx {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .rectangle-68-atMYjd {
+  background-color: var(--white);
+  border-radius: 1.5vw 1.5vw 1.5vw 1.51vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .path-377-atMYjd {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .fragile-icon-atMYjd {
+  background-color: transparent;
+  height: 7.4vw;
+  left: 2.86vw;
+  position: absolute;
+  top: calc(28.48% - 2.08vw);
+  width: 3.54vw;
+}
+
+.edit-lable-fragile .path-16-CSrkPj {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: 0.16vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 0.26vw);
+}
+
+.edit-lable-fragile .group-10-CSrkPj {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .path-17-9KdbgM {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .path-18-9KdbgM {
+  background-color: transparent;
+  height: 0.47vw;
+  left: 0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: calc(16.18% - 0.05vw);
+  width: 0.31vw;
+}
+
+.edit-lable-fragile .rectangle-70-atMYjd {
+  background-color: var(--salmon-pearl);
+  border-radius: 0.94vw;
+  bottom: calc(46.02% - 8.28vw);
+  height: 18.02vw;
+  position: absolute;
+  right: calc(49.84% - 18.33vw);
+  width: 36.82vw;
+}
+
+.edit-lable-fragile .elements-placeholder-X6gxx9 {
+  background-color: transparent;
+  bottom: calc(46.39% - 7.45vw);
+  height: 15.99vw;
+  position: absolute;
+  right: calc(49.38% - 16.67vw);
+  width: 33.7vw;
+}
+
+.edit-lable-fragile .box-field-HECUgY {
+  background-color: var(--black);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .upload-button-X6gxx9 {
+  background-color: transparent;
+  bottom: 2.5vw;
+  cursor: pointer;
+  height: 4.58vw;
+  pointer-events: auto;
+  position: absolute;
+  right: calc(40.13% - 1.88vw);
+  transition: all 0.2s ease;
+  width: 4.58vw;
+}
+
+.edit-lable-fragile .upload-button-X6gxx9:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .rectangle-75-Dw0r2l {
+  background-color: var(--salmon-pearl);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .upload-icon-Dw0r2l {
+  background-color: transparent;
+  bottom: calc(50.00% - 1.15vw);
+  height: 2.24vw;
+  left: 1.15vw;
+  position: absolute;
+  width: 2.34vw;
+}
+
+.edit-lable-fragile .path-423-0BJ7Ik {
+  background-color: transparent;
+  bottom: 0.05vw;
+  height: 0.94vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.edit-lable-fragile .path-424-0BJ7Ik {
+  background-color: transparent;
+  height: 1.61vw;
+  left: 0.47vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 0.94vw);
+}
+
+.edit-lable-fragile .record-button-X6gxx9 {
+  background-color: transparent;
+  bottom: 2.45vw;
+  cursor: pointer;
+  height: 4.58vw;
+  left: calc(49.12% - 2.24vw);
+  pointer-events: auto;
+  position: absolute;
+  transition: all 0.2s ease;
+  width: 4.58vw;
+}
+
+.edit-lable-fragile .record-button-X6gxx9:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .rectangle-76-xxkXxw {
+  background-color: var(--salmon-pearl);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .icon-xxkXxw {
+  height: 3.02vw;
+  left: 1.15vw;
+  top: calc(50.00% - 1.51vw);
+  width: 2.24vw;
+}
+
+.edit-lable-fragile .text-button-X6gxx9 {
+  background-color: transparent;
+  bottom: 2.45vw;
+  cursor: pointer;
+  height: 4.58vw;
+  left: calc(38.37% - 1.77vw);
+  pointer-events: auto;
+  position: absolute;
+  transition: all 0.2s ease;
+  width: 4.58vw;
+}
+
+.edit-lable-fragile .text-button-X6gxx9:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .rectangle-77-cDYX0T {
+  background-color: var(--salmon-pearl);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .icon-cDYX0T {
+  bottom: calc(50.00% - 1.35vw);
+  height: 2.76vw;
+  left: 0.94vw;
+  width: 2.76vw;
+}
+
+.edit-lable-fragile .titel-X6gxx9 {
+  background-color: transparent;
+  height: 6.35vw;
+  left: 3.07vw;
+  position: absolute;
+  top: 0.99vw;
+  width: calc(100.00% - 6.09vw);
+}
+
+.edit-lable-fragile .rectangle-69-PWxU59 {
+  background-color: var(--black);
+  border-radius: 0.98vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .titel-PWxU59 {
+  background-color: transparent;
+  border: 0;
+  height: 5.1vw;
+  left: 1.72vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 0.68vw;
+  width: 50.99vw;
+}
+
+.edit-lable-fragile .titel-PWxU59::placeholder {
+  color: #ffffff99;
+}
+
+.edit-lable-fragile .sign-out-k445fn {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.edit-lable-fragile .sign-out-k445fn:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .group-377-0nGfnv {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .sign-out-e6pCXU {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.edit-lable-fragile .path-466-e6pCXU {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.edit-lable-fragile .path-466-e6pCXU:hover {
+  transform: translate(-5px, 0);
+}
+
+.edit-lable-fragile .group-373-e6pCXU {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.edit-lable-fragile .path-467-83cDTx {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.edit-lable-fragile .path-468-83cDTx {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.edit-lable-fragile .search-bar-k445fn {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.edit-lable-fragile .search-bar-k445fn:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .search-box-3cnHY4 {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .search-icon-3cnHY4 {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.edit-lable-fragile .search-icon-3cnHY4:hover {
+  transform: rotate(15deg);
+}
+
+.edit-lable-fragile .seach-for-a-specific-lable-3cnHY4 {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.edit-lable-fragile .seach-for-a-specific-lable-3cnHY4::placeholder {
+  color: #ffffff99;
+}
+
+.edit-lable-fragile .done-k445fn {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 87.19vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.edit-lable-fragile .done-k445fn:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .done-w8pAqZ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.edit-lable-fragile .cancel-k445fn {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 81.3vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.edit-lable-fragile .cancel-k445fn:hover {
+  transform: scale(1.1);
+}
+
+.edit-lable-fragile .cancel-DnYJ8T {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}

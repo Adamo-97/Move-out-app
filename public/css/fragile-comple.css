@@ -1,0 +1,770 @@
+/* screen - fragile-comple */
+
+.fragile-comple {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.fragile-comple .gb-k5IpBb {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.2vw;
+  position: fixed;
+  top: -0.05vw;
+  width: 116.2vw;
+}
+
+.fragile-comple .bg-style-lhxBVZ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .path-42-XOKGHh {
+  background-color: transparent;
+  height: calc(100.00% + 0.47vw);
+  left: 15.99vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 13.49vw);
+}
+
+.fragile-comple .path-43-XOKGHh {
+  background-color: transparent;
+  height: calc(100.00% + 0.31vw);
+  left: calc(18.69% - 6.3vw);
+  object-fit: cover;
+  position: absolute;
+  top: -0.26vw;
+  width: 33.8vw;
+}
+
+.fragile-comple .person-XOKGHh {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.fragile-comple .arrow-XOKGHh {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.56% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.fragile-comple .main-header-XOKGHh {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.15vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.fragile-comple .logo-XOKGHh {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.75% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.fragile-comple .logo-SISBie {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .m-Fl7wep {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.fragile-comple .path-49-T9Y6Xb {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .v-Fl7wep {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.fragile-comple .path-50-cAN22K {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .e-Fl7wep {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.fragile-comple .path-51-V6LvE6 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .group-29-Fl7wep {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.fragile-comple .rectangle-6-MDgnPa {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .group-30-Fl7wep {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.fragile-comple .path-52-UfXbst {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.fragile-comple .path-53-UfXbst {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.24% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.fragile-comple .path-54-UfXbst {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.fragile-comple .pin-Fl7wep {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.47% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.fragile-comple .path-55-XseqrQ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .ellipse-4-XseqrQ {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.fragile-comple .box-Fl7wep {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.fragile-comple .rectangle-7-PgcmaQ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.fragile-comple .new-lable-button-k5IpBb {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.fragile-comple .group-375-Th2xTY {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.fragile-comple .group-375-Th2xTY:hover {
+  transform: scale(1.1);
+}
+
+.fragile-comple .green-button-new-lable-8dNihi {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .x-8dNihi {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.fragile-comple .x-8dNihi:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-comple .path-464-1Vufjf {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.fragile-comple .path-465-1Vufjf {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.fragile-comple .new-lable-8dNihi {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.fragile-comple .main-shape-k5IpBb {
+  background-color: transparent;
+  height: 10.42vw;
+  left: 33.49vw;
+  position: absolute;
+  top: 16.67vw;
+  width: 14.84vw;
+}
+
+.fragile-comple .main-shape-j0WkFk {
+  background-color: var(--white);
+  border-radius: 1.5vw;
+  box-shadow: 0.36vw 0.36vw 0.52vw #00000033;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .path-56-j0WkFk {
+  background-color: transparent;
+  height: calc(100.00% - 2.86vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .fragile-icon-j0WkFk {
+  background-color: transparent;
+  bottom: calc(40.97% - 1.2vw);
+  height: 2.92vw;
+  left: 1.09vw;
+  position: absolute;
+  width: 1.41vw;
+}
+
+.fragile-comple .fragile-icon-byOiao {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .path-16-x3XeFN {
+  background-color: transparent;
+  height: calc(100.00% - 0.1vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 0.1vw);
+}
+
+.fragile-comple .group-10-x3XeFN {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .path-17-qzEG3V {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .path-18-qzEG3V {
+  background-color: transparent;
+  height: 0.16vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: calc(16.18% - 0.05vw);
+  width: 0.1vw;
+}
+
+.fragile-comple .qr-placeholder-k5IpBb {
+  background-color: transparent;
+  height: 5.57vw;
+  left: 39.43vw;
+  position: absolute;
+  top: 21.25vw;
+  width: 5.57vw;
+}
+
+.fragile-comple .titel-placeholder-k5IpBb {
+  background-color: transparent;
+  height: 3.59vw;
+  left: 34.06vw;
+  position: absolute;
+  top: 17.08vw;
+  width: 13.7vw;
+}
+
+.fragile-comple .titel-placeholder-FsKoEO {
+  background-color: var(--black);
+  border-radius: 0.88vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .titel-text-FsKoEO {
+  background-color: transparent;
+  height: 3.23vw;
+  left: 0.36vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  position: absolute;
+  text-align: left;
+  top: 0.99vw;
+  width: 12.97vw;
+}
+
+.fragile-comple .sign-out-k5IpBb {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.fragile-comple .sign-out-k5IpBb:hover {
+  transform: scale(1.1);
+}
+
+.fragile-comple .group-377-xQq3R3 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .sign-out-o6qxZV {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.fragile-comple .path-466-o6qxZV {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.fragile-comple .path-466-o6qxZV:hover {
+  transform: translate(-5px, 0);
+}
+
+.fragile-comple .group-373-o6qxZV {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.fragile-comple .path-467-hIP3me {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.fragile-comple .path-468-hIP3me {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.fragile-comple .search-bar-k5IpBb {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.fragile-comple .search-bar-k5IpBb:hover {
+  transform: scale(1.1);
+}
+
+.fragile-comple .search-box-C6LsYH {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .search-icon-C6LsYH {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.fragile-comple .search-icon-C6LsYH:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-comple .seach-for-a-specific-lable-C6LsYH {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.fragile-comple .seach-for-a-specific-lable-C6LsYH::placeholder {
+  color: #ffffff99;
+}
+
+.fragile-comple .remove-button-k5IpBb {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 44.64vw;
+  position: absolute;
+  top: 27.6vw;
+  width: 3.54vw;
+}
+
+.fragile-comple .remove-WPSRvX {
+  background-color: var(--salmon-pearl);
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .remove-icon-WPSRvX {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.78vw);
+  left: 0.78vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.36vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 1.51vw);
+}
+
+.fragile-comple .remove-icon-WPSRvX:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-comple .edit-button-k5IpBb {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 40.99vw;
+  position: absolute;
+  top: 27.6vw;
+  width: 3.54vw;
+}
+
+.fragile-comple .edit-SpHtT8 {
+  background-color: var(--salmon-pearl);
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .edit-4DXmtt {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.83vw);
+  left: calc(48.45% - 0.78vw);
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.36vw;
+  transition: all 0.2s ease;
+  width: 1.67vw;
+}
+
+.fragile-comple .edit-4DXmtt:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-comple .print-button-k5IpBb {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 37.29vw;
+  position: absolute;
+  top: 27.6vw;
+  width: 3.54vw;
+}
+
+.fragile-comple .print-NN0mpQ {
+  background-color: var(--salmon-pearl);
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .path-73-NN0mpQ {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 1.04vw);
+  left: 0.36vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.52vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 0.68vw);
+}
+
+.fragile-comple .path-73-NN0mpQ:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-comple .prev-button-k5IpBb {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 33.65vw;
+  position: absolute;
+  top: 27.6vw;
+  width: 3.54vw;
+}
+
+.fragile-comple .prev-cnW3mu {
+  background-color: var(--salmon-pearl);
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-comple .path-72-cnW3mu {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 1.67vw);
+  left: 0.21vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.83vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 0.42vw);
+}
+
+.fragile-comple .path-72-cnW3mu:hover {
+  transform: rotate(15deg);
+}

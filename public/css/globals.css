@@ -1,0 +1,80 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:900italic,400,400italic,900|Montserrat:400|Roboto:400|Roboto+Slab:700");
+/* The following line is used to measure usage of this code. You can remove it if you want. */
+@import url("https://px.animaapp.com/66ef5a8eae06a204fbe36725.66ef5a8eae06a204fbe36728.ndUH6OW.hcp.png");
+
+@font-face {
+  font-family: "ComicSansMS-BoldItalic";
+  font-style: italic;
+  font-weight: 400;
+  src: url("../fonts/comic-sans-bold-italic.ttf") format("truetype");
+}
+
+
+.screen textarea:focus,
+.screen input:focus {
+  outline: none;
+}
+
+.screen * {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+.screen div {
+  -webkit-text-size-adjust: none;
+}
+
+.screen a {
+  display: contents;
+  text-decoration: none;
+}
+
+.container-center-horizontal {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  pointer-events: none;
+  width: 100%;
+}
+
+.container-center-horizontal > * {
+  flex-shrink: 0;
+  pointer-events: auto;
+}
+
+input:focus {
+  outline: none;
+}
+
+.smart-layers-pointers,
+.smart-layers-pointers * {
+  pointer-events: auto;
+  visibility: visible;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.icon {
+  background-color: transparent;
+  object-fit: cover;
+  position: absolute;
+}
+
+.title {
+  background-color: transparent;
+  position: absolute;
+}
+
+.box-field {
+  background-color: var(--black);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}

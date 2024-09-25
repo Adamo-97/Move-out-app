@@ -1,0 +1,868 @@
+/* screen - hazard-lable */
+
+.hazard-lable {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.hazard-lable .bg-xQPpwm {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.15vw;
+  position: fixed;
+  top: -0.05vw;
+  width: 116.2vw;
+}
+
+.hazard-lable .bg-style-M8abyx {
+  background-color: transparent;
+  height: calc(100.00% - 2.19vw);
+  left: 16.15vw;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.hazard-lable .path-175-MFc7nS {
+  background-color: transparent;
+  height: calc(100.00% + 2.66vw);
+  left: -0.16vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% + 2.66vw);
+}
+
+.hazard-lable .path-176-MFc7nS {
+  background-color: transparent;
+  height: calc(100.00% + 2.5vw);
+  left: -0.73vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.42vw;
+  width: 33.8vw;
+}
+
+.hazard-lable .person-M8abyx {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.hazard-lable .arrow-M8abyx {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.58% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.hazard-lable .main-header-M8abyx {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.09vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.hazard-lable .logo-M8abyx {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.76% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.hazard-lable .m-40bxQ4 {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.hazard-lable .path-182-x4VRtn {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .v-40bxQ4 {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.hazard-lable .path-183-5DiuzY {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .e-40bxQ4 {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.hazard-lable .path-184-RV5EUm {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .group-97-40bxQ4 {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.hazard-lable .rectangle-28-CSsqMK {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .group-98-40bxQ4 {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.hazard-lable .path-185-r7uxXx {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.hazard-lable .path-186-r7uxXx {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.hazard-lable .path-187-r7uxXx {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.hazard-lable .pin-40bxQ4 {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.47% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.hazard-lable .path-188-fWkQvq {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .ellipse-12-fWkQvq {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.hazard-lable .box-40bxQ4 {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.hazard-lable .rectangle-29-jbdWZH {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.hazard-lable .sign-out-xQPpwm {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.hazard-lable .sign-out-xQPpwm:hover {
+  transform: scale(1.1);
+}
+
+.hazard-lable .group-377-fGGDfo {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .sign-out-u0EnwY {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.hazard-lable .path-466-u0EnwY {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.hazard-lable .path-466-u0EnwY:hover {
+  transform: translate(-5px, 0);
+}
+
+.hazard-lable .group-373-u0EnwY {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.hazard-lable .path-467-Geuhwo {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.hazard-lable .path-468-Geuhwo {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.hazard-lable .search-bar-xQPpwm {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.hazard-lable .search-bar-xQPpwm:hover {
+  transform: scale(1.1);
+}
+
+.hazard-lable .search-box-a9Ugne {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .search-icon-a9Ugne {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.hazard-lable .search-icon-a9Ugne:hover {
+  transform: rotate(15deg);
+}
+
+.hazard-lable .seach-for-a-specific-lable-a9Ugne {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.hazard-lable .seach-for-a-specific-lable-a9Ugne::placeholder {
+  color: #ffffff99;
+}
+
+.hazard-lable .new-lable-button-xQPpwm {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.hazard-lable .group-375-NbktcY {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.hazard-lable .group-375-NbktcY:hover {
+  transform: scale(1.1);
+}
+
+.hazard-lable .green-button-new-lable-nKqvxP {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .x-nKqvxP {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.hazard-lable .x-nKqvxP:hover {
+  transform: rotate(15deg);
+}
+
+.hazard-lable .path-464-Xv5siO {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.hazard-lable .path-465-Xv5siO {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.hazard-lable .new-lable-nKqvxP {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.hazard-lable .main-shape-xQPpwm {
+  height: 36.15vw;
+  left: 33.8vw;
+  top: 16.35vw;
+  width: 60.36vw;
+}
+
+.hazard-lable .main-shape-mvyLgi {
+  height: 100%;
+  left: 0.0vw;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .rectangle-30-LfxWBb {
+  background-color: var(--white);
+  border-radius: 1.55vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .path-189-LfxWBb {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .hazard-icon-LfxWBb {
+  background-color: transparent;
+  height: 6.98vw;
+  left: 0.83vw;
+  position: absolute;
+  top: calc(29.39% - 2.03vw);
+  width: 7.81vw;
+}
+
+.hazard-lable .path-190-7hXBpS {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: 0.16vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 0.31vw);
+}
+
+.hazard-lable .group-99-7hXBpS {
+  background-color: transparent;
+  bottom: 0.99vw;
+  height: 3.85vw;
+  position: absolute;
+  right: calc(50.00% - 0.42vw);
+  width: 0.78vw;
+}
+
+.hazard-lable .rectangle-31-7AHxmi {
+  background-color: var(--seashell-peach);
+  border-radius: 0.14vw 0.14vw 0.14vw 0.14vw;
+  height: 2.45vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .ellipse-13-7AHxmi {
+  background-color: var(--seashell-peach);
+  border-radius: 0.4vw;
+  bottom: 0.05vw;
+  height: 0.78vw;
+  left: 0.0vw;
+  position: absolute;
+  width: 100%;
+}
+
+.hazard-lable .group-100-7hXBpS {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .path-191-Ww42vB {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .path-192-Ww42vB {
+  background-color: transparent;
+  height: 0.42vw;
+  left: calc(23.38% - 0.1vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(41.60% - 0.16vw);
+  width: 0.36vw;
+}
+
+.hazard-lable .path-193-Ww42vB {
+  background-color: transparent;
+  height: 2.76vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(50.00% - 0.57vw);
+  top: calc(47.01% - 1.3vw);
+  width: 1.09vw;
+}
+
+.hazard-lable .path-194-Ww42vB {
+  background-color: transparent;
+  bottom: 0.89vw;
+  height: 1.09vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(50.00% - 0.57vw);
+  width: 1.09vw;
+}
+
+.hazard-lable .title-LfxWBb {
+  height: 5.16vw;
+  left: 2.14vw;
+  letter-spacing: 0.0vw;
+  line-height: 5.07vw;
+  text-align: left;
+  top: 1.46vw;
+  white-space: nowrap;
+  width: 10.26vw;
+}
+
+.hazard-lable .whats-inside-the-box-LfxWBb {
+  background-color: transparent;
+  height: 2.66vw;
+  left: calc(25.41% - 5.36vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.51vw;
+  position: absolute;
+  text-align: left;
+  top: calc(27.39% - 0.73vw);
+  white-space: nowrap;
+  width: 21.2vw;
+}
+
+.hazard-lable .cancel-mvyLgi {
+  background-color: transparent;
+  bottom: 1.82vw;
+  cursor: pointer;
+  height: 4.84vw;
+  pointer-events: auto;
+  position: absolute;
+  right: 1.72vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.hazard-lable .cancel-mvyLgi:hover {
+  transform: scale(1.1);
+}
+
+.hazard-lable .cancel-lLSxWR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .upload-button-mvyLgi {
+  background-color: transparent;
+  bottom: calc(26.42% - 1.2vw);
+  cursor: pointer;
+  height: 4.58vw;
+  pointer-events: auto;
+  position: absolute;
+  right: calc(42.19% - 12.86vw);
+  transition: all 0.2s ease;
+  width: 30.47vw;
+}
+
+.hazard-lable .upload-button-mvyLgi:hover {
+  transform: scale(1.1);
+}
+
+.hazard-lable .rectangle-75-NlgBxV {
+  background-color: var(--tulip-tree);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .upload-icon-NlgBxV {
+  background-color: transparent;
+  height: 2.14vw;
+  left: 1.35vw;
+  position: absolute;
+  top: calc(50.00% - 1.04vw);
+  width: 2.19vw;
+}
+
+.hazard-lable .path-423-onh8VB {
+  background-color: transparent;
+  bottom: 0.05vw;
+  height: 0.94vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.hazard-lable .path-424-onh8VB {
+  background-color: transparent;
+  height: 1.61vw;
+  left: 0.47vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 0.94vw);
+}
+
+.hazard-lable .upload-a-picture-NlgBxV {
+  background-color: transparent;
+  bottom: calc(49.86% - 1.35vw);
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.9vw;
+  position: absolute;
+  right: calc(49.65% - 7.71vw);
+  text-align: left;
+  white-space: nowrap;
+  width: 15.57vw;
+}
+
+.hazard-lable .record-button-mvyLgi {
+  background-color: transparent;
+  bottom: calc(42.77% - 1.98vw);
+  cursor: pointer;
+  height: 4.58vw;
+  pointer-events: auto;
+  position: absolute;
+  right: calc(42.19% - 12.86vw);
+  transition: all 0.2s ease;
+  width: 30.47vw;
+}
+
+.hazard-lable .record-button-mvyLgi:hover {
+  transform: scale(1.1);
+}
+
+.hazard-lable .rectangle-76-eXcIUJ {
+  background-color: var(--tulip-tree);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .icon-eXcIUJ {
+  bottom: calc(50.00% - 1.41vw);
+  height: 2.81vw;
+  left: 1.46vw;
+  width: 2.14vw;
+}
+
+.hazard-lable .record-a-voice-memo-eXcIUJ {
+  background-color: transparent;
+  bottom: calc(41.63% - 1.15vw);
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.9vw;
+  position: absolute;
+  right: calc(49.52% - 9.69vw);
+  text-align: left;
+  white-space: nowrap;
+  width: 19.58vw;
+}
+
+.hazard-lable .text-button-mvyLgi {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.58vw;
+  pointer-events: auto;
+  position: absolute;
+  right: calc(42.19% - 12.86vw);
+  top: calc(40.88% - 1.88vw);
+  transition: all 0.2s ease;
+  width: 30.47vw;
+}
+
+.hazard-lable .text-button-mvyLgi:hover {
+  transform: scale(1.1);
+}
+
+.hazard-lable .rectangle-77-89lHMD {
+  background-color: var(--tulip-tree);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .icon-89lHMD {
+  bottom: calc(48.69% - 1.09vw);
+  height: 2.24vw;
+  left: 1.3vw;
+  width: 2.24vw;
+}
+
+.hazard-lable .write-a-description-89lHMD {
+  background-color: transparent;
+  bottom: calc(48.00% - 1.3vw);
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.66vw;
+  position: absolute;
+  right: calc(49.66% - 8.91vw);
+  text-align: left;
+  white-space: nowrap;
+  width: 17.92vw;
+}
+
+.hazard-lable .title-mvyLgi {
+  height: 6.04vw;
+  right: 1.77vw;
+  top: 1.25vw;
+  width: 45.52vw;
+}
+
+.hazard-lable .rectangle-194-GWhWeL {
+  background-color: var(--black-2);
+  border-radius: 0.73vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-lable .titel-GWhWeL {
+  background-color: transparent;
+  border: 0;
+  height: 3.54vw;
+  left: 2.97%;
+  letter-spacing: 0.0vw;
+  line-height: 2.86vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 21.55%;
+  width: 93.94%;
+}
+
+.hazard-lable .titel-GWhWeL::placeholder {
+  color: #ffffff99;
+}
+
+.hazard-lable .main-shape {
+  background-color: transparent;
+  position: absolute;
+}

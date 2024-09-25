@@ -1,0 +1,715 @@
+/* screen - preview-lable-hazard */
+
+.preview-lable-hazard {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.preview-lable-hazard .gb-ZovgHX {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.2vw;
+  position: fixed;
+  top: -0.05vw;
+  width: 116.2vw;
+}
+
+.preview-lable-hazard .bg-style-15wVBZ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .path-42-xABdPx {
+  background-color: transparent;
+  height: calc(100.00% + 0.47vw);
+  left: 15.99vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 13.49vw);
+}
+
+.preview-lable-hazard .path-43-xABdPx {
+  background-color: transparent;
+  height: calc(100.00% + 0.31vw);
+  left: calc(18.69% - 6.3vw);
+  object-fit: cover;
+  position: absolute;
+  top: -0.26vw;
+  width: 33.8vw;
+}
+
+.preview-lable-hazard .person-xABdPx {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.preview-lable-hazard .arrow-xABdPx {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.56% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.preview-lable-hazard .main-header-xABdPx {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.15vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.preview-lable-hazard .logo-xABdPx {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.75% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.preview-lable-hazard .logo-cxZYde {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .m-Anye4D {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.preview-lable-hazard .path-49-uKcWZn {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .v-Anye4D {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.preview-lable-hazard .path-50-xUPOIe {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .e-Anye4D {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.preview-lable-hazard .path-51-oOKrUp {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .group-29-Anye4D {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.preview-lable-hazard .rectangle-6-HzCoPg {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .group-30-Anye4D {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.preview-lable-hazard .path-52-N2Ygbx {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.preview-lable-hazard .path-53-N2Ygbx {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.preview-lable-hazard .path-54-N2Ygbx {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.preview-lable-hazard .pin-Anye4D {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.47% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.preview-lable-hazard .path-55-Ycw3tq {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .ellipse-4-Ycw3tq {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.preview-lable-hazard .box-Anye4D {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.preview-lable-hazard .rectangle-7-exhKJR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .new-lable-button-ZovgHX {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.preview-lable-hazard .group-375-m8K1Y1 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.preview-lable-hazard .group-375-m8K1Y1:hover {
+  transform: scale(1.1);
+}
+
+.preview-lable-hazard .green-button-new-lable-vXA8vj {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .x-vXA8vj {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.preview-lable-hazard .x-vXA8vj:hover {
+  transform: rotate(15deg);
+}
+
+.preview-lable-hazard .path-464-l7tuxF {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .path-465-l7tuxF {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.preview-lable-hazard .title-vXA8vj {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.preview-lable-hazard .main-shape-ZovgHX {
+  background-color: transparent;
+  height: 36.15vw;
+  left: 33.85vw;
+  position: fixed;
+  top: 16.35vw;
+  width: 60.36vw;
+}
+
+.preview-lable-hazard .main-shape-tMfr7A {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .main-shape-jx51CX {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .rectangle-68-xnUhIG {
+  background-color: var(--white);
+  border-radius: 1.5vw 1.5vw 1.5vw 1.51vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .path-377-xnUhIG {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .hazard-icon-xnUhIG {
+  background-color: transparent;
+  height: 6.67vw;
+  left: 0.89vw;
+  position: absolute;
+  top: calc(28.61% - 1.93vw);
+  width: 7.5vw;
+}
+
+.preview-lable-hazard .path-35-tazCkk {
+  background-color: transparent;
+  height: calc(100.00% - 0.21vw);
+  left: 0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.1vw;
+  width: calc(100.00% - 0.26vw);
+}
+
+.preview-lable-hazard .group-20-tazCkk {
+  background-color: transparent;
+  bottom: 0.99vw;
+  height: 3.7vw;
+  position: absolute;
+  right: calc(50.00% - 0.36vw);
+  width: 0.78vw;
+}
+
+.preview-lable-hazard .rectangle-5-dkX89A {
+  background-color: var(--seashell-peach);
+  border-radius: 0.14vw 0.14vw 0.14vw 0.14vw;
+  height: 2.34vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .ellipse-3-dkX89A {
+  background-color: var(--seashell-peach);
+  border-radius: 0.39vw;
+  bottom: 0.05vw;
+  height: 0.78vw;
+  left: 0.0vw;
+  position: absolute;
+  width: 100%;
+}
+
+.preview-lable-hazard .group-21-tazCkk {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .path-36-KHTHau {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .path-37-KHTHau {
+  background-color: transparent;
+  height: 0.42vw;
+  left: calc(23.38% - 0.1vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(41.60% - 0.16vw);
+  width: 0.36vw;
+}
+
+.preview-lable-hazard .path-38-KHTHau {
+  background-color: transparent;
+  height: 2.66vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(50.00% - 0.52vw);
+  top: calc(47.01% - 1.25vw);
+  width: 1.04vw;
+}
+
+.preview-lable-hazard .path-39-KHTHau {
+  background-color: transparent;
+  bottom: 0.83vw;
+  height: 1.04vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(50.00% - 0.52vw);
+  width: 1.04vw;
+}
+
+.preview-lable-hazard .rectangle-70-xnUhIG {
+  background-color: var(--tulip-tree);
+  border-radius: 0.94vw;
+  bottom: 5.16vw;
+  height: 21.2vw;
+  position: absolute;
+  right: 5.26vw;
+  width: 43.28vw;
+}
+
+.preview-lable-hazard .elements-placeholder-tMfr7A {
+  background-color: transparent;
+  bottom: calc(36.54% - 6.98vw);
+  height: 19.11vw;
+  position: absolute;
+  right: 6.61vw;
+  width: 40.26vw;
+}
+
+.preview-lable-hazard .box-field-FrsFsR {
+  background-color: var(--black);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .titel-tMfr7A {
+  background-color: transparent;
+  height: 6.35vw;
+  left: 3.07vw;
+  position: absolute;
+  top: 0.99vw;
+  width: calc(100.00% - 6.09vw);
+}
+
+.preview-lable-hazard .rectangle-69-b5QhPN {
+  background-color: var(--black);
+  border-radius: 0.98vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .sign-out-ZovgHX {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.preview-lable-hazard .sign-out-ZovgHX:hover {
+  transform: scale(1.1);
+}
+
+.preview-lable-hazard .group-377-u3oSfW {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .sign-out-VJTlh9 {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.preview-lable-hazard .path-466-VJTlh9 {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.preview-lable-hazard .path-466-VJTlh9:hover {
+  transform: translate(-5px, 0);
+}
+
+.preview-lable-hazard .group-373-VJTlh9 {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.preview-lable-hazard .path-467-g8NGF5 {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.preview-lable-hazard .path-468-g8NGF5 {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.preview-lable-hazard .search-bar-ZovgHX {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.preview-lable-hazard .search-bar-ZovgHX:hover {
+  transform: scale(1.1);
+}
+
+.preview-lable-hazard .search-box-jAbX1i {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.preview-lable-hazard .search-icon-jAbX1i {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.preview-lable-hazard .search-icon-jAbX1i:hover {
+  transform: rotate(15deg);
+}
+
+.preview-lable-hazard .seach-for-a-specific-lable-jAbX1i {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.preview-lable-hazard .seach-for-a-specific-lable-jAbX1i::placeholder {
+  color: #ffffff99;
+}
+
+.preview-lable-hazard .cancel-ZovgHX {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 88.54vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 47.24vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.preview-lable-hazard .cancel-ZovgHX:hover {
+  transform: scale(1.1);
+}
+
+.preview-lable-hazard .cancel-Uy7h9y {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}

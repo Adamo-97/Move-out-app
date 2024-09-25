@@ -1,0 +1,896 @@
+/* screen - fragile-voice */
+
+.fragile-voice {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.fragile-voice .bg-style-AmHt9d {
+  background-color: transparent;
+  height: 56.25vw;
+  left: 0.0vw;
+  position: fixed;
+  top: 0.16vw;
+  width: 100.05vw;
+}
+
+.fragile-voice .path-225-UuZh8K {
+  background-color: transparent;
+  height: calc(100.00% + 2.66vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% + 2.66vw);
+}
+
+.fragile-voice .path-226-UuZh8K {
+  background-color: transparent;
+  height: calc(100.00% + 2.5vw);
+  left: -0.73vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.42vw;
+  width: 33.8vw;
+}
+
+.fragile-voice .person-AmHt9d {
+  background-color: transparent;
+  height: 53.7vw;
+  left: -16.09vw;
+  object-fit: cover;
+  position: fixed;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.fragile-voice .arrow-AmHt9d {
+  background-color: transparent;
+  height: 6.2vw;
+  left: 19.58vw;
+  object-fit: cover;
+  position: fixed;
+  top: 12.03vw;
+  width: 9.79vw;
+}
+
+.fragile-voice .main-header-AmHt9d {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 0.0vw;
+  position: fixed;
+  top: -0.05vw;
+  width: 100.05vw;
+}
+
+.fragile-voice .new-lable-button-AmHt9d {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.fragile-voice .group-375-mkeEp5 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.fragile-voice .group-375-mkeEp5:hover {
+  transform: scale(1.1);
+}
+
+.fragile-voice .green-button-new-lable-sawkUk {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .x-sawkUk {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.fragile-voice .x-sawkUk:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-voice .path-464-OysoeM {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.fragile-voice .path-465-OysoeM {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.fragile-voice .new-lable-sawkUk {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.fragile-voice .logo-AmHt9d {
+  background-color: transparent;
+  height: 5.73vw;
+  left: 3.8vw;
+  position: fixed;
+  top: 1.98vw;
+  width: 10.1vw;
+}
+
+.fragile-voice .m-AFE9Ap {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.fragile-voice .path-232-8o0YdD {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .v-AFE9Ap {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.fragile-voice .path-233-IoWlBw {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .e-AFE9Ap {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.fragile-voice .path-234-hGEghs {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .group-121-AFE9Ap {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.fragile-voice .rectangle-40-Cuml7r {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .group-122-AFE9Ap {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.fragile-voice .path-235-zibxH1 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.fragile-voice .path-236-zibxH1 {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.fragile-voice .path-237-zibxH1 {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.fragile-voice .pin-AFE9Ap {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.46% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.fragile-voice .path-238-cMBkRW {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .ellipse-15-cMBkRW {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.fragile-voice .box-AFE9Ap {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.fragile-voice .rectangle-41-KqIG1J {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.fragile-voice .main-shape-AmHt9d {
+  background-color: transparent;
+  height: 36.15vw;
+  left: 33.85vw;
+  position: fixed;
+  top: 16.35vw;
+  width: 60.36vw;
+}
+
+.fragile-voice .rectangle-42-FrsCtf {
+  background-color: var(--white);
+  border-radius: 1.5vw 1.5vw 1.5vw 1.52vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .path-239-FrsCtf {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .fragile-icon-FrsCtf {
+  background-color: transparent;
+  height: 7.34vw;
+  left: 2.92vw;
+  position: absolute;
+  top: calc(28.59% - 2.08vw);
+  width: 3.54vw;
+}
+
+.fragile-voice .path-240-BkfJHH {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: 0.16vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 0.26vw);
+}
+
+.fragile-voice .group-123-BkfJHH {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .path-241-mjUDoN {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .path-242-mjUDoN {
+  background-color: transparent;
+  height: 0.47vw;
+  left: 0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: calc(16.18% - 0.05vw);
+  width: 0.31vw;
+}
+
+.fragile-voice .title-FrsCtf {
+  height: 5.16vw;
+  left: 2.14vw;
+  letter-spacing: 0.0vw;
+  line-height: 5.07vw;
+  text-align: left;
+  top: 1.46vw;
+  white-space: nowrap;
+  width: 10.26vw;
+}
+
+.fragile-voice .whats-inside-the-box-FrsCtf {
+  background-color: transparent;
+  height: 2.66vw;
+  left: calc(25.41% - 5.36vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.51vw;
+  position: absolute;
+  text-align: left;
+  top: calc(27.39% - 0.73vw);
+  white-space: nowrap;
+  width: 21.2vw;
+}
+
+.fragile-voice .rectangle-44-FrsCtf {
+  background-color: var(--salmon-pearl);
+  border-radius: 0.94vw;
+  bottom: calc(39.26% - 5.83vw);
+  height: 14.9vw;
+  position: absolute;
+  right: calc(42.19% - 12.86vw);
+  width: 30.47vw;
+}
+
+.fragile-voice .play-button-AmHt9d {
+  background-color: transparent;
+  height: 3.07vw;
+  left: 54.11vw;
+  position: fixed;
+  top: 39.11vw;
+  width: 11.25vw;
+}
+
+.fragile-voice .start-recording-fAh568 {
+  background-color: transparent;
+  height: 1.56vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.47vw;
+  position: absolute;
+  right: 0.62vw;
+  text-align: left;
+  top: calc(48.29% - 0.73vw);
+  white-space: nowrap;
+  width: 7.97vw;
+}
+
+.fragile-voice .play-button-fAh568 {
+  background-color: transparent;
+  bottom: calc(49.60% - 0.89vw);
+  height: 1.82vw;
+  left: 0.52vw;
+  position: absolute;
+  width: 1.82vw;
+}
+
+.fragile-voice .group-188-9cXnl1 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .path-357-Gy9xr9 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .group-189-9cXnl1 {
+  background-color: transparent;
+  height: 0.99vw;
+  position: absolute;
+  right: calc(43.82% - 0.36vw);
+  top: calc(50.00% - 0.52vw);
+  width: 0.83vw;
+}
+
+.fragile-voice .path-358-PP5MxS {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .play-button-BOvdug {
+  background-color: transparent;
+  bottom: calc(44.91% - 0.89vw);
+  height: 1.93vw;
+  left: 0.73vw;
+  object-fit: cover;
+  position: absolute;
+  width: 1.61vw;
+}
+
+.fragile-voice .stop-button-AmHt9d {
+  background-color: transparent;
+  height: 3.07vw;
+  left: 67.29vw;
+  position: fixed;
+  top: 39.17vw;
+  width: 11.25vw;
+}
+
+.fragile-voice .stop-recording-vrCpU0 {
+  background-color: transparent;
+  height: 1.61vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.54vw;
+  position: absolute;
+  right: 0.52vw;
+  text-align: left;
+  top: calc(47.04% - 0.78vw);
+  white-space: nowrap;
+  width: 8.07vw;
+}
+
+.fragile-voice .stop-button-vrCpU0 {
+  background-color: transparent;
+  bottom: calc(47.92% - 0.89vw);
+  height: 1.82vw;
+  left: 0.52vw;
+  position: absolute;
+  width: 1.82vw;
+}
+
+.fragile-voice .group-190-sQWPtl {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .path-359-v9HdiI {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .group-191-sQWPtl {
+  background-color: transparent;
+  height: 0.83vw;
+  left: calc(50.00% - 0.42vw);
+  position: absolute;
+  top: calc(50.00% - 0.42vw);
+  width: 0.83vw;
+}
+
+.fragile-voice .path-360-IYZNGf {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .timeline-AmHt9d {
+  background-color: transparent;
+  height: 0.42vw;
+  left: 56.2vw;
+  position: fixed;
+  top: 34.79vw;
+  width: 19.74vw;
+}
+
+.fragile-voice .timeline-shape-VZnbhB {
+  background-color: var(--white);
+  border-radius: 0.21vw 0.21vw 0.21vw 0.21vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.5;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.fragile-voice .timeline-progress-VZnbhB {
+  background-color: var(--white);
+  border-radius: 0.21vw 0.21vw 0.21vw 0.21vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.7;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.42vw;
+}
+
+.fragile-voice .timer-AmHt9d {
+  background-color: transparent;
+  height: 1.46vw;
+  left: 76.41vw;
+  position: fixed;
+  top: 34.22vw;
+  width: 3.12vw;
+}
+
+.fragile-voice .x0000-3aCixq {
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  left: 0.0vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.22vw;
+  position: absolute;
+  text-align: left;
+  top: 0.1vw;
+  white-space: nowrap;
+  width: calc(100.00% + 0.1vw);
+}
+
+.fragile-voice .mic-icon-AmHt9d {
+  background-color: transparent;
+  height: 2.92vw;
+  left: 53.18vw;
+  position: fixed;
+  top: 33.33vw;
+  width: 2.19vw;
+}
+
+.fragile-voice .mic-icon-xUoYOp {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .sign-out-AmHt9d {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.fragile-voice .sign-out-AmHt9d:hover {
+  transform: scale(1.1);
+}
+
+.fragile-voice .group-377-SLEHVc {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .sign-out-6GWxwR {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.fragile-voice .path-466-6GWxwR {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.fragile-voice .path-466-6GWxwR:hover {
+  transform: translate(-5px, 0);
+}
+
+.fragile-voice .group-373-6GWxwR {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.fragile-voice .path-467-CQxLfv {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.fragile-voice .path-468-CQxLfv {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.fragile-voice .search-bar-AmHt9d {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.fragile-voice .search-bar-AmHt9d:hover {
+  transform: scale(1.1);
+}
+
+.fragile-voice .search-box-KUMZTh {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .search-icon-KUMZTh {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.fragile-voice .search-icon-KUMZTh:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-voice .seach-for-a-specific-lable-KUMZTh {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.fragile-voice .seach-for-a-specific-lable-KUMZTh::placeholder {
+  color: #ffffff99;
+}
+
+.fragile-voice .cancel-AmHt9d {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 81.3vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.fragile-voice .cancel-AmHt9d:hover {
+  transform: scale(1.1);
+}
+
+.fragile-voice .cancel-UNWmnJ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .done-AmHt9d {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 87.19vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.fragile-voice .done-AmHt9d:hover {
+  transform: scale(1.1);
+}
+
+.fragile-voice .done-cE2zze {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .title-AmHt9d {
+  height: 6.04vw;
+  left: 46.88vw;
+  top: 17.6vw;
+  width: 45.52vw;
+}
+
+.fragile-voice .rectangle-194-6WGwfy {
+  background-color: var(--black-2);
+  border-radius: 0.73vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-voice .titel-6WGwfy {
+  background-color: transparent;
+  border: 0;
+  height: 3.54vw;
+  left: 2.97%;
+  letter-spacing: 0.0vw;
+  line-height: 2.86vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 21.55%;
+  width: 93.94%;
+}
+
+.fragile-voice .titel-6WGwfy::placeholder {
+  color: #ffffff99;
+}

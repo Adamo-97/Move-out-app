@@ -1,0 +1,1087 @@
+/* screen - new-lable-clicked */
+
+.new-lable-clicked {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.new-lable-clicked .bg-RMVKx3 {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.15vw;
+  position: absolute;
+  top: -0.05vw;
+  width: 116.2vw;
+}
+
+.new-lable-clicked .bg-shape-wRFfj6 {
+  background-color: transparent;
+  height: calc(100.00% - 2.19vw);
+  left: 16.15vw;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.new-lable-clicked .path-425-HbAk5Z {
+  background-color: transparent;
+  height: calc(100.00% + 2.66vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% + 2.66vw);
+}
+
+.new-lable-clicked .path-426-HbAk5Z {
+  background-color: transparent;
+  height: calc(100.00% + 2.5vw);
+  left: -0.73vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.42vw;
+  width: 33.8vw;
+}
+
+.new-lable-clicked .person-wRFfj6 {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.new-lable-clicked .arrow-wRFfj6 {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.58% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.new-lable-clicked .header-wRFfj6 {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.15vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.2vw);
+}
+
+.new-lable-clicked .logo-wRFfj6 {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.76% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.new-lable-clicked .group-252-AKXx7v {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.new-lable-clicked .path-455-TTjuu4 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-253-AKXx7v {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.new-lable-clicked .path-456-4ATkmO {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-254-AKXx7v {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.new-lable-clicked .path-457-sjQRuW {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-255-AKXx7v {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.new-lable-clicked .rectangle-79-cU6whD {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-256-AKXx7v {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.new-lable-clicked .path-458-p3AYHx {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.new-lable-clicked .path-459-p3AYHx {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.new-lable-clicked .path-460-p3AYHx {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.new-lable-clicked .pin-AKXx7v {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.47% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.new-lable-clicked .path-461-xXvfqF {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .ellipse-23-xXvfqF {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.new-lable-clicked .box-AKXx7v {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.new-lable-clicked .rectangle-80-9yJ4Y3 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.new-lable-clicked .new-lable-button-RMVKx3 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: absolute;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.new-lable-clicked .group-375-ArBPaq {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.new-lable-clicked .group-375-ArBPaq:hover {
+  transform: scale(1.1);
+}
+
+.new-lable-clicked .green-button-new-lable-HWiFg0 {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .x-HWiFg0 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.new-lable-clicked .x-HWiFg0:hover {
+  transform: rotate(15deg);
+}
+
+.new-lable-clicked .path-464-kd600B {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-465-kd600B {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.new-lable-clicked .new-lable-HWiFg0 {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.new-lable-clicked .general-box-RMVKx3 {
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 4.01vw;
+  left: 44.38vw;
+  opacity: 0;
+  pointer-events: auto;
+  position: absolute;
+  top: 8.33vw;
+  transform: translate(-1.3vw, 0);
+  transition: all 0.2s ease;
+  width: 12.5vw;
+}
+
+.new-lable-clicked .general-box-RMVKx3.animate-enter {
+  animation: animate-enter-frames 0.40s ease 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+  transform: translate(-1.3vw, 0);
+}
+
+@keyframes animate-enter-frames {
+  from{opacity: 0;
+transform: translate(-25px, 0);
+}
+to{opacity: 1;
+transform: translate(0,0);
+}
+}
+
+.new-lable-clicked .general-box-RMVKx3:hover {
+  transform: scale(1.1);
+}
+
+.new-lable-clicked .gcircle-XBrqx5 {
+  background-color: var(--picton-blue);
+}
+
+.new-lable-clicked .title-XBrqx5 {
+  background-color: transparent;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  position: absolute;
+  right: 0.94vw;
+  text-align: left;
+  top: 0.52vw;
+  white-space: nowrap;
+  width: 7.4vw;
+}
+
+.new-lable-clicked .box-icon-XBrqx5 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.66vw;
+  left: 0.47vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 1.3vw);
+  transition: all 0.2s ease;
+  width: 3.07vw;
+}
+
+.new-lable-clicked .box-icon-XBrqx5:hover {
+  transform: rotate(15deg);
+}
+
+.new-lable-clicked .group-234-4IpfF8 {
+  background-color: transparent;
+  bottom: 0.05vw;
+  height: 1.51vw;
+  left: 0.42vw;
+  position: absolute;
+  width: 1.15vw;
+}
+
+.new-lable-clicked .path-429-dXe9Wx {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-235-4IpfF8 {
+  background-color: transparent;
+  height: 1.04vw;
+  position: absolute;
+  right: 0.05vw;
+  top: 0.05vw;
+  width: 1.51vw;
+}
+
+.new-lable-clicked .path-430-nETCo6 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-236-4IpfF8 {
+  background-color: transparent;
+  bottom: calc(34.74% - 0.36vw);
+  height: 1.04vw;
+  left: 0.05vw;
+  position: absolute;
+  width: 1.51vw;
+}
+
+.new-lable-clicked .path-431-4qAdN9 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-237-4IpfF8 {
+  background-color: transparent;
+  bottom: 0.05vw;
+  height: 1.51vw;
+  position: absolute;
+  right: 0.42vw;
+  width: 1.09vw;
+}
+
+.new-lable-clicked .path-432-aONxUo {
+  background-color: transparent;
+  height: calc(100.00% - 0.47vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.47vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-433-aONxUo {
+  background-color: transparent;
+  height: 0.47vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-434-aONxUo {
+  background-color: transparent;
+  height: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.0vw;
+  width: 0.05vw;
+}
+
+.new-lable-clicked .group-238-4IpfF8 {
+  background-color: transparent;
+  height: 0.99vw;
+  left: 0.1vw;
+  position: absolute;
+  top: 0.05vw;
+  width: 1.41vw;
+}
+
+.new-lable-clicked .path-435-NYwozz {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-239-4IpfF8 {
+  background-color: transparent;
+  bottom: calc(35.07% - 0.36vw);
+  height: 0.99vw;
+  position: absolute;
+  right: 0.1vw;
+  width: 1.41vw;
+}
+
+.new-lable-clicked .path-436-RxUuEm {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-437-RxUuEm {
+  background-color: transparent;
+  bottom: 49.90%;
+  height: 0.05vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  width: 0.05vw;
+}
+
+.new-lable-clicked .group-240-4IpfF8 {
+  background-color: transparent;
+  height: 0.99vw;
+  left: 0.42vw;
+  position: absolute;
+  top: calc(34.49% - 0.36vw);
+  width: calc(100.00% - 0.89vw);
+}
+
+.new-lable-clicked .path-438-pZC7LR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .group-241-4IpfF8 {
+  background-color: transparent;
+  height: 0.0vw;
+  left: 0.62vw;
+  position: absolute;
+  top: 38.29%;
+  width: 0.0vw;
+}
+
+.new-lable-clicked .path-439-xcYBxY {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-440-4IpfF8 {
+  background-color: transparent;
+  height: 0.99vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.42vw;
+  top: calc(34.49% - 0.36vw);
+  width: 1.15vw;
+}
+
+.new-lable-clicked .group-242-4IpfF8 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-441-wTO7GB {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-442-wTO7GB {
+  background-color: transparent;
+  height: 0.16vw;
+  left: calc(16.53% - 0.05vw);
+  object-fit: cover;
+  position: absolute;
+  top: 0.31vw;
+  width: 0.16vw;
+}
+
+.new-lable-clicked .group-243-4IpfF8 {
+  background-color: transparent;
+  height: 0.0vw;
+  left: 0.62vw;
+  position: absolute;
+  top: 38.29%;
+  width: 0.0vw;
+}
+
+.new-lable-clicked .path-443-x6ofhh {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .fragile-box-RMVKx3 {
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 4.01vw;
+  left: 57.86vw;
+  opacity: 0;
+  pointer-events: auto;
+  position: absolute;
+  top: 8.33vw;
+  transform: translate(-1.3vw, 0);
+  transition: all 0.2s ease;
+  width: 12.5vw;
+}
+
+.new-lable-clicked .fragile-box-RMVKx3.animate-enter1 {
+  animation: animate-enter1-frames 0.40s ease 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+  transform: translate(-1.3vw, 0);
+}
+
+@keyframes animate-enter1-frames {
+  from{opacity: 0;
+transform: translate(-25px, 0);
+}
+to{opacity: 1;
+transform: translate(0,0);
+}
+}
+
+.new-lable-clicked .fragile-box-RMVKx3:hover {
+  transform: scale(1.1);
+}
+
+.new-lable-clicked .gcircle-EKEozL {
+  background-color: var(--salmon-pearl);
+}
+
+.new-lable-clicked .fragile-icon-EKEozL {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.99vw);
+  left: 1.3vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.52vw;
+  transition: all 0.2s ease;
+  width: 1.46vw;
+}
+
+.new-lable-clicked .fragile-icon-EKEozL:hover {
+  transform: rotate(15deg);
+}
+
+.new-lable-clicked .path-444-lD2q1W {
+  background-color: transparent;
+  height: calc(100.00% - 0.1vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 0.1vw);
+}
+
+.new-lable-clicked .group-244-lD2q1W {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-445-NQzC3Q {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-446-NQzC3Q {
+  background-color: transparent;
+  height: 0.21vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: calc(16.18% - 0.05vw);
+  width: 0.1vw;
+}
+
+.new-lable-clicked .fragile-EKEozL {
+  background-color: transparent;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  position: absolute;
+  right: calc(30.59% - 1.98vw);
+  text-align: left;
+  top: 0.52vw;
+  white-space: nowrap;
+  width: 6.41vw;
+}
+
+.new-lable-clicked .hazard-box-RMVKx3 {
+  background-color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 4.01vw;
+  left: 71.35vw;
+  opacity: 0;
+  pointer-events: auto;
+  position: absolute;
+  top: 8.33vw;
+  transform: translate(-1.3vw, 0);
+  transition: all 0.2s ease;
+  width: 12.5vw;
+}
+
+.new-lable-clicked .hazard-box-RMVKx3.animate-enter2 {
+  animation: animate-enter2-frames 0.40s ease 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+  transform: translate(-1.3vw, 0);
+}
+
+@keyframes animate-enter2-frames {
+  from{opacity: 0;
+transform: translate(-25px, 0);
+}
+to{opacity: 1;
+transform: translate(0,0);
+}
+}
+
+.new-lable-clicked .hazard-box-RMVKx3:hover {
+  transform: scale(1.1);
+}
+
+.new-lable-clicked .gcircle-zKE9YF {
+  background-color: var(--tulip-tree);
+}
+
+.new-lable-clicked .hcircle-zKE9YF {
+  background-color: var(--black);
+  border-radius: 1.99vw;
+  height: 100%;
+  left: 0.05vw;
+  opacity: 0.19;
+  position: absolute;
+  top: 0.0vw;
+  width: 4.01vw;
+}
+
+.new-lable-clicked .hazard-icon-zKE9YF {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.55vw;
+  left: 0.57vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.62vw;
+  transition: all 0.2s ease;
+  width: 2.86vw;
+}
+
+.new-lable-clicked .hazard-icon-zKE9YF:hover {
+  transform: rotate(15deg);
+}
+
+.new-lable-clicked .path-447-ECi3HR {
+  background-color: transparent;
+  height: calc(100.00% - 0.1vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 0.1vw);
+}
+
+.new-lable-clicked .group-245-ECi3HR {
+  background-color: transparent;
+  bottom: 0.36vw;
+  height: 1.41vw;
+  left: calc(50.00% - 0.16vw);
+  position: absolute;
+  width: 0.31vw;
+}
+
+.new-lable-clicked .rectangle-78-pu7Z9o {
+  background-color: var(--seashell-peach);
+  border-radius: 0.14vw 0.14vw 0.14vw 0.14vw;
+  height: 0.89vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .ellipse-22-pu7Z9o {
+  background-color: var(--seashell-peach);
+  border-radius: 0.15vw;
+  bottom: 0.05vw;
+  height: 0.31vw;
+  left: 0.0vw;
+  position: absolute;
+  width: 100%;
+}
+
+.new-lable-clicked .group-246-ECi3HR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-448-mh5IbX {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .path-449-mh5IbX {
+  background-color: transparent;
+  height: 0.16vw;
+  left: calc(23.37% - 0.05vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(41.60% - 0.05vw);
+  width: 0.16vw;
+}
+
+.new-lable-clicked .path-450-mh5IbX {
+  background-color: transparent;
+  height: 0.99vw;
+  left: calc(50.00% - 0.21vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(47.01% - 0.47vw);
+  width: 0.42vw;
+}
+
+.new-lable-clicked .path-451-mh5IbX {
+  background-color: transparent;
+  bottom: 0.31vw;
+  height: 0.42vw;
+  left: calc(50.00% - 0.21vw);
+  object-fit: cover;
+  position: absolute;
+  width: 0.42vw;
+}
+
+.new-lable-clicked .hazard-zKE9YF {
+  background-color: transparent;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  position: absolute;
+  right: 1.46vw;
+  text-align: left;
+  top: 0.52vw;
+  white-space: nowrap;
+  width: 6.88vw;
+}
+
+.new-lable-clicked .sign-out-RMVKx3 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.new-lable-clicked .sign-out-RMVKx3:hover {
+  transform: scale(1.1);
+}
+
+.new-lable-clicked .group-377-4n5xxo {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .sign-out-wxwc4M {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.new-lable-clicked .path-466-wxwc4M {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.new-lable-clicked .path-466-wxwc4M:hover {
+  transform: translate(-5px, 0);
+}
+
+.new-lable-clicked .group-373-wxwc4M {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.new-lable-clicked .path-467-mKAzTJ {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.new-lable-clicked .path-468-mKAzTJ {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.new-lable-clicked .search-bar-RMVKx3 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.new-lable-clicked .search-bar-RMVKx3:hover {
+  transform: scale(1.1);
+}
+
+.new-lable-clicked .search-box-mLEEJP {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.new-lable-clicked .search-icon-mLEEJP {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.new-lable-clicked .search-icon-mLEEJP:hover {
+  transform: rotate(15deg);
+}
+
+.new-lable-clicked .seach-for-a-specific-lable-mLEEJP {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.new-lable-clicked .seach-for-a-specific-lable-mLEEJP::placeholder {
+  color: #ffffff99;
+}
+
+.new-lable-clicked .fcircle {
+  background-color: var(--black);
+  border-radius: 2.01vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: absolute;
+  top: 0.0vw;
+  width: 4.01vw;
+}
+
+.new-lable-clicked .gcircle {
+  border-radius: 2.01vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}

@@ -1,0 +1,791 @@
+/* screen - hazard-text */
+
+.hazard-text {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.hazard-text .bg-LcoiHj {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.09vw;
+  position: fixed;
+  top: -0.05vw;
+  width: 116.2vw;
+}
+
+.hazard-text .bg-style-BJbod8 {
+  background-color: transparent;
+  height: calc(100.00% - 2.19vw);
+  left: 16.15vw;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.hazard-text .path-155-J7bbYv {
+  background-color: transparent;
+  height: calc(100.00% + 2.66vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% + 2.66vw);
+}
+
+.hazard-text .path-156-J7bbYv {
+  background-color: transparent;
+  height: calc(100.00% + 2.5vw);
+  left: -0.73vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.42vw;
+  width: 33.8vw;
+}
+
+.hazard-text .person-BJbod8 {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.hazard-text .arrow-BJbod8 {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.58% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.hazard-text .main-header-BJbod8 {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.09vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.hazard-text .logo-BJbod8 {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.76% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.hazard-text .m-HebzeJ {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.hazard-text .path-162-lxXVEr {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .v-HebzeJ {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.hazard-text .path-163-UeD1zE {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .e-HebzeJ {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.hazard-text .path-164-kmVHIF {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .group-86-HebzeJ {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.hazard-text .rectangle-22-1FWvdd {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .group-87-HebzeJ {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.hazard-text .path-165-frnXXk {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.hazard-text .path-166-frnXXk {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.24% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.hazard-text .path-167-frnXXk {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.hazard-text .pin-HebzeJ {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.46% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.hazard-text .path-168-ZzgoIl {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .ellipse-10-ZzgoIl {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.hazard-text .box-HebzeJ {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.hazard-text .rectangle-23-EBYsd3 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.hazard-text .new-lable-button-LcoiHj {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.hazard-text .group-375-bZ5RYC {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.hazard-text .group-375-bZ5RYC:hover {
+  transform: scale(1.1);
+}
+
+.hazard-text .green-button-new-lable-iYr1DB {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .x-iYr1DB {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.hazard-text .x-iYr1DB:hover {
+  transform: rotate(15deg);
+}
+
+.hazard-text .path-464-iF7OeH {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.hazard-text .path-465-iF7OeH {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.hazard-text .new-lable-iYr1DB {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.hazard-text .create-hazard-lable-LcoiHj {
+  background-color: transparent;
+  height: 36.15vw;
+  left: 33.85vw;
+  position: fixed;
+  top: 16.35vw;
+  width: 60.36vw;
+}
+
+.hazard-text .main-shape-x5Wvnx {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .rectangle-24-lhjVzx {
+  background-color: var(--white);
+  border-radius: 1.5vw 1.5vw 1.5vw 1.51vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .path-169-lhjVzx {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .hazard-icon-lhjVzx {
+  background-color: transparent;
+  height: 6.98vw;
+  left: 0.83vw;
+  position: absolute;
+  top: calc(29.39% - 2.03vw);
+  width: 7.81vw;
+}
+
+.hazard-text .path-170-ZdNlBR {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: 0.16vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 0.31vw);
+}
+
+.hazard-text .group-88-ZdNlBR {
+  background-color: transparent;
+  bottom: 0.99vw;
+  height: 3.85vw;
+  left: calc(50.00% - 0.42vw);
+  position: absolute;
+  width: 0.78vw;
+}
+
+.hazard-text .rectangle-25-T3p08B {
+  background-color: var(--seashell-peach);
+  border-radius: 0.14vw 0.14vw 0.14vw 0.14vw;
+  height: 2.45vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .ellipse-11-T3p08B {
+  background-color: var(--seashell-peach);
+  border-radius: 0.4vw;
+  bottom: 0.05vw;
+  height: 0.78vw;
+  left: 0.0vw;
+  position: absolute;
+  width: 100%;
+}
+
+.hazard-text .group-89-ZdNlBR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .path-171-JDt7xT {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .path-172-JDt7xT {
+  background-color: transparent;
+  height: 0.42vw;
+  left: calc(23.38% - 0.1vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(41.60% - 0.16vw);
+  width: 0.36vw;
+}
+
+.hazard-text .path-173-JDt7xT {
+  background-color: transparent;
+  height: 2.76vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(50.00% - 0.57vw);
+  top: calc(47.01% - 1.3vw);
+  width: 1.09vw;
+}
+
+.hazard-text .path-174-JDt7xT {
+  background-color: transparent;
+  bottom: 0.89vw;
+  height: 1.09vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(50.00% - 0.57vw);
+  width: 1.09vw;
+}
+
+.hazard-text .title-lhjVzx {
+  height: 5.16vw;
+  left: 2.14vw;
+  letter-spacing: 0.0vw;
+  line-height: 5.07vw;
+  text-align: left;
+  top: 1.46vw;
+  white-space: nowrap;
+  width: 10.26vw;
+}
+
+.hazard-text .whats-inside-the-box-lhjVzx {
+  background-color: transparent;
+  height: 2.66vw;
+  left: calc(25.41% - 5.36vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.51vw;
+  position: absolute;
+  text-align: left;
+  top: calc(27.39% - 0.73vw);
+  white-space: nowrap;
+  width: 21.2vw;
+}
+
+.hazard-text .text-type-x5Wvnx {
+  background-color: transparent;
+  bottom: calc(39.26% - 5.83vw);
+  height: 14.9vw;
+  position: absolute;
+  right: calc(42.19% - 12.86vw);
+  width: 30.47vw;
+}
+
+.hazard-text .rectangle-27-CzpGLF {
+  background-color: var(--tulip-tree);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .type-field-LcoiHj {
+  background-color: transparent;
+  height: 13.23vw;
+  left: 52.55vw;
+  position: fixed;
+  top: 30.1vw;
+  width: 27.86vw;
+}
+
+.hazard-text .box-field-Tuc59L {
+  background-color: var(--black);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .start-typing-here-Tuc59L {
+  background-color: transparent;
+  border: 0;
+  height: 11.82vw;
+  left: 0.94vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 0.62vw;
+  width: 26.15vw;
+}
+
+.hazard-text .start-typing-here-Tuc59L::placeholder {
+  color: #ffffff99;
+}
+
+.hazard-text .sign-out-LcoiHj {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.hazard-text .sign-out-LcoiHj:hover {
+  transform: scale(1.1);
+}
+
+.hazard-text .group-377-thf5Mb {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .sign-out-MBdE5x {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.hazard-text .path-466-MBdE5x {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.hazard-text .path-466-MBdE5x:hover {
+  transform: translate(-5px, 0);
+}
+
+.hazard-text .group-373-MBdE5x {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.hazard-text .path-467-h1E5fy {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.hazard-text .path-468-h1E5fy {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.hazard-text .search-bar-LcoiHj {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.hazard-text .search-bar-LcoiHj:hover {
+  transform: scale(1.1);
+}
+
+.hazard-text .search-box-spMNxd {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .search-icon-spMNxd {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.hazard-text .search-icon-spMNxd:hover {
+  transform: rotate(15deg);
+}
+
+.hazard-text .seach-for-a-specific-lable-spMNxd {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.hazard-text .seach-for-a-specific-lable-spMNxd::placeholder {
+  color: #ffffff99;
+}
+
+.hazard-text .cancel-LcoiHj {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 81.3vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.hazard-text .cancel-LcoiHj:hover {
+  transform: scale(1.1);
+}
+
+.hazard-text .cancel-c7na8P {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .done-LcoiHj {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 87.19vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.hazard-text .done-LcoiHj:hover {
+  transform: scale(1.1);
+}
+
+.hazard-text .done-uGpYAk {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .title-LcoiHj {
+  height: 6.04vw;
+  left: 46.88vw;
+  top: 17.6vw;
+  width: 45.52vw;
+}
+
+.hazard-text .rectangle-194-7C052F {
+  background-color: var(--black-2);
+  border-radius: 0.73vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.hazard-text .titel-7C052F {
+  background-color: transparent;
+  border: 0;
+  height: 3.54vw;
+  left: 2.97%;
+  letter-spacing: 0.0vw;
+  line-height: 2.86vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 21.55%;
+  width: 93.94%;
+}
+
+.hazard-text .titel-7C052F::placeholder {
+  color: #ffffff99;
+}

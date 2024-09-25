@@ -1,0 +1,761 @@
+/* screen - fragile-image */
+
+.fragile-image {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.fragile-image .bg-993Wkr {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.15vw;
+  position: fixed;
+  top: -0.1vw;
+  width: 116.2vw;
+}
+
+.fragile-image .path-197-U74oHc {
+  background-color: transparent;
+  height: calc(100.00% + 0.47vw);
+  left: 15.99vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 13.49vw);
+}
+
+.fragile-image .path-198-U74oHc {
+  background-color: transparent;
+  height: calc(100.00% + 0.31vw);
+  left: calc(18.70% - 6.3vw);
+  object-fit: cover;
+  position: absolute;
+  top: -0.26vw;
+  width: 33.8vw;
+}
+
+.fragile-image .person-U74oHc {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.fragile-image .arrow-U74oHc {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.58% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.fragile-image .main-header-U74oHc {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.09vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.fragile-image .logo-U74oHc {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.76% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.fragile-image .group-108-secm45 {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.fragile-image .path-204-sqNb4A {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .group-109-secm45 {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.fragile-image .path-205-4qWDbR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .group-110-secm45 {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.fragile-image .path-206-OAXmKF {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .group-111-secm45 {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.fragile-image .rectangle-36-hAw0zG {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .group-112-secm45 {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.fragile-image .path-207-SaLxKm {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.fragile-image .path-208-SaLxKm {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.fragile-image .path-209-SaLxKm {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.fragile-image .pin-secm45 {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.46% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.fragile-image .path-210-KAPYB5 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .ellipse-14-KAPYB5 {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.fragile-image .box-secm45 {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.fragile-image .rectangle-37-c78IM7 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.fragile-image .new-lable-button-993Wkr {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.52vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.fragile-image .group-375-Mv8Ldc {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.fragile-image .group-375-Mv8Ldc:hover {
+  transform: scale(1.1);
+}
+
+.fragile-image .green-button-new-lable-CohV4n {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .x-CohV4n {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.fragile-image .x-CohV4n:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-image .path-464-RW2heR {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.fragile-image .path-465-RW2heR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.fragile-image .new-lable-CohV4n {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.fragile-image .main-shape-993Wkr {
+  background-color: transparent;
+  height: 36.15vw;
+  left: 33.85vw;
+  position: fixed;
+  top: 16.3vw;
+  width: 60.36vw;
+}
+
+.fragile-image .rectangle-38-yj4gXw {
+  background-color: var(--white);
+  border-radius: 1.5vw 1.5vw 1.5vw 1.52vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .path-211-yj4gXw {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .fragile-icon-yj4gXw {
+  background-color: transparent;
+  height: 7.34vw;
+  left: 2.86vw;
+  position: absolute;
+  top: calc(28.59% - 2.08vw);
+  width: 3.54vw;
+}
+
+.fragile-image .path-212-URGMx2 {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: 0.16vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 0.26vw);
+}
+
+.fragile-image .group-113-URGMx2 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .path-213-xzXxxa {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .path-214-xzXxxa {
+  background-color: transparent;
+  height: 0.47vw;
+  left: 0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: calc(16.18% - 0.05vw);
+  width: 0.31vw;
+}
+
+.fragile-image .title-yj4gXw {
+  height: 5.16vw;
+  left: 2.14vw;
+  letter-spacing: 0.0vw;
+  line-height: 5.07vw;
+  text-align: left;
+  top: 1.46vw;
+  white-space: nowrap;
+  width: 10.26vw;
+}
+
+.fragile-image .whats-inside-the-box-yj4gXw {
+  background-color: transparent;
+  height: 2.66vw;
+  left: calc(25.41% - 5.36vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.51vw;
+  position: absolute;
+  text-align: left;
+  top: calc(27.39% - 0.73vw);
+  white-space: nowrap;
+  width: 21.2vw;
+}
+
+.fragile-image .main-box-yj4gXw {
+  background-color: var(--salmon-pearl);
+  border-radius: 0.94vw;
+  bottom: calc(39.26% - 5.83vw);
+  height: 14.9vw;
+  position: absolute;
+  right: calc(42.19% - 12.86vw);
+  width: 30.47vw;
+}
+
+.fragile-image .main-box-993Wkr {
+  background-color: transparent;
+  height: 13.44vw;
+  left: 52.5vw;
+  position: fixed;
+  top: 29.9vw;
+  width: 27.45vw;
+}
+
+.fragile-image .main-box-8OyykA {
+  background-color: var(--black);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .text-993Wkr {
+  background-color: transparent;
+  height: 5.57vw;
+  left: 52.34vw;
+  position: fixed;
+  top: 33.54vw;
+  width: 24.48vw;
+}
+
+.fragile-image .image-icon-shadow-WxQdCA {
+  background-color: transparent;
+  bottom: 0.0vw;
+  height: 4.69vw;
+  left: 2.81vw;
+  object-fit: cover;
+  position: absolute;
+  width: 5.47vw;
+}
+
+.fragile-image .image-icon-WxQdCA {
+  background-color: transparent;
+  height: calc(100.00% - 0.89vw);
+  left: 3.07vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.68vw;
+  width: 5.47vw;
+}
+
+.fragile-image .drag-an-image-WxQdCA {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.46vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: left;
+  top: 0.0vw;
+  white-space: nowrap;
+  width: 12.81vw;
+}
+
+.fragile-image .or-WxQdCA {
+  background-color: transparent;
+  bottom: calc(31.25% - 0.78vw);
+  height: 2.55vw;
+  left: 0.0vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.46vw;
+  position: absolute;
+  text-align: left;
+  white-space: nowrap;
+  width: 18.75vw;
+}
+
+.fragile-image .upload-a-file-993Wkr {
+  background-color: transparent;
+  height: 2.24vw;
+  left: 64.69vw;
+  object-fit: cover;
+  position: fixed;
+  top: 38.39vw;
+  width: 10.62vw;
+}
+
+.fragile-image .sign-out-993Wkr {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.fragile-image .sign-out-993Wkr:hover {
+  transform: scale(1.1);
+}
+
+.fragile-image .group-377-RHW1l5 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .sign-out-ttJuOw {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.fragile-image .path-466-ttJuOw {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.fragile-image .path-466-ttJuOw:hover {
+  transform: translate(-5px, 0);
+}
+
+.fragile-image .group-373-ttJuOw {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.fragile-image .path-467-e8Np0s {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.fragile-image .path-468-e8Np0s {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.fragile-image .search-bar-993Wkr {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.fragile-image .search-bar-993Wkr:hover {
+  transform: scale(1.1);
+}
+
+.fragile-image .search-box-9SacsC {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .search-icon-9SacsC {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.fragile-image .search-icon-9SacsC:hover {
+  transform: rotate(15deg);
+}
+
+.fragile-image .seach-for-a-specific-lable-9SacsC {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.fragile-image .seach-for-a-specific-lable-9SacsC::placeholder {
+  color: #ffffff99;
+}
+
+.fragile-image .cancel-993Wkr {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 81.35vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.fragile-image .cancel-993Wkr:hover {
+  transform: scale(1.1);
+}
+
+.fragile-image .cancel-xXAUKa {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .done-993Wkr {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 87.24vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.fragile-image .done-993Wkr:hover {
+  transform: scale(1.1);
+}
+
+.fragile-image .done-IN8pQV {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .title-993Wkr {
+  height: 6.04vw;
+  left: 46.88vw;
+  top: 17.6vw;
+  width: 45.52vw;
+}
+
+.fragile-image .rectangle-194-mpm7n9 {
+  background-color: var(--black-2);
+  border-radius: 0.73vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.fragile-image .titel-mpm7n9 {
+  background-color: transparent;
+  border: 0;
+  height: 3.54vw;
+  left: 2.97%;
+  letter-spacing: 0.0vw;
+  line-height: 2.86vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 21.55%;
+  width: 93.94%;
+}
+
+.fragile-image .titel-mpm7n9::placeholder {
+  color: #ffffff99;
+}

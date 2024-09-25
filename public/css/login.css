@@ -1,0 +1,2128 @@
+/* screen - login */
+
+.login {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.login .bg-b8DrbD {
+  display: block;
+  height: 56.3vw;
+  left: -0.05vw;
+  opacity: 0;
+  transform: translate(-1.3vw, 0);
+  width: 100.1vw;
+}
+
+.login .bg-b8DrbD.animate-enter19 {
+  animation: animate-enter19-frames 0.60s ease-in-out 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+  transform: translate(-1.3vw, 0);
+}
+
+@keyframes animate-enter19-frames {
+  from{opacity: 0;
+transform: translate(-25px, 0);
+}
+to{opacity: 1;
+transform: translate(0,0);
+}
+}
+
+.login .bg-Eaz0aa {
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  width: 100%;
+}
+
+.login .person-Eaz0aa {
+  background-color: transparent;
+  bottom: calc(49.23% - 17.71vw);
+  display: block;
+  height: 35.94vw;
+  left: 5.36vw;
+  opacity: 0;
+  position: absolute;
+  transform: translate(-1.3vw, 0);
+  width: 53.07vw;
+}
+
+.login .person-Eaz0aa.animate-enter17 {
+  animation: animate-enter17-frames 0.40s ease-in-out 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+  transform: translate(-1.3vw, 0);
+}
+
+@keyframes animate-enter17-frames {
+  from{opacity: 0;
+transform: translate(-25px, 0);
+}
+to{opacity: 1;
+transform: translate(0,0);
+}
+}
+
+.login .leaf-Hh9xau {
+  bottom: 0.16vw;
+  height: 11.09vw;
+  left: 0.57vw;
+  width: 14.74vw;
+}
+
+.login .path-623-f7xv1a {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: -0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .line-29-f7xv1a {
+  background-color: transparent;
+  bottom: 0.21vw;
+  height: 8.7vw;
+  left: 2.14vw;
+  object-fit: cover;
+  position: absolute;
+  width: calc(100.00% - 3.12vw);
+}
+
+.login .line-30-f7xv1a {
+  background-color: transparent;
+  height: 1.41vw;
+  left: calc(23.15% - 0.1vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(19.60% - 0.26vw);
+  width: 0.42vw;
+}
+
+.login .line-31-f7xv1a {
+  background-color: transparent;
+  bottom: calc(48.20% - 0.1vw);
+  height: 0.21vw;
+  left: calc(36.38% - 0.78vw);
+  object-fit: cover;
+  position: absolute;
+  width: 2.14vw;
+}
+
+.login .line-32-f7xv1a {
+  background-color: transparent;
+  bottom: calc(30.91% - 0.73vw);
+  height: 2.29vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(31.24% - 0.26vw);
+  width: 0.78vw;
+}
+
+.login .line-33-f7xv1a {
+  background-color: transparent;
+  bottom: 0.99vw;
+  height: 0.31vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(18.51% - 0.31vw);
+  width: 1.56vw;
+}
+
+.login .leaf-2GZCn9 {
+  bottom: 0.0vw;
+  height: 19.53vw;
+  left: 6.15vw;
+  width: 10.52vw;
+}
+
+.login .path-624-At7PYr {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.05vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .line-34-At7PYr {
+  background-color: transparent;
+  height: calc(100.00% - 2.71vw);
+  object-fit: cover;
+  position: absolute;
+  right: 1.25vw;
+  top: 2.5vw;
+  width: 6.88vw;
+}
+
+.login .line-35-At7PYr {
+  background-color: transparent;
+  height: 0.89vw;
+  left: calc(18.79% - 0.26vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(20.19% - 0.16vw);
+  width: 1.51vw;
+}
+
+.login .line-36-At7PYr {
+  background-color: transparent;
+  height: 2.34vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(49.44% - 0.42vw);
+  top: calc(36.80% - 0.89vw);
+  width: 0.89vw;
+}
+
+.login .line-37-At7PYr {
+  background-color: transparent;
+  bottom: calc(33.36% - 0.52vw);
+  height: 1.51vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(44.62% - 1.04vw);
+  width: 2.34vw;
+}
+
+.login .line-38-At7PYr {
+  background-color: transparent;
+  bottom: calc(19.19% - 0.31vw);
+  height: 1.67vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(18.78% - 0.16vw);
+  width: 0.83vw;
+}
+
+.login .leaf-qAevGp {
+  bottom: 0.21vw;
+  height: 14.79vw;
+  right: calc(30.46% - 3.59vw);
+  width: 11.77vw;
+}
+
+.login .path-625-hgmrdx {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.05vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .line-39-hgmrdx {
+  background-color: transparent;
+  bottom: 0.05vw;
+  height: 12.4vw;
+  left: 1.35vw;
+  object-fit: cover;
+  position: absolute;
+  width: 8.33vw;
+}
+
+.login .line-40-hgmrdx {
+  background-color: transparent;
+  height: 1.51vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(27.78% - 0.05vw);
+  top: calc(18.75% - 0.26vw);
+  width: 0.16vw;
+}
+
+.login .line-41-hgmrdx {
+  background-color: transparent;
+  height: 0.62vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(33.59% - 0.73vw);
+  top: calc(47.31% - 0.31vw);
+  width: 2.19vw;
+}
+
+.login .line-42-hgmrdx {
+  background-color: transparent;
+  bottom: calc(29.42% - 0.73vw);
+  height: 2.45vw;
+  left: calc(31.76% - 0.05vw);
+  object-fit: cover;
+  position: absolute;
+  width: 0.1vw;
+}
+
+.login .line-43-hgmrdx {
+  background-color: transparent;
+  bottom: 1.51vw;
+  height: 0.31vw;
+  left: calc(23.59% - 0.36vw);
+  object-fit: cover;
+  position: absolute;
+  width: 1.61vw;
+}
+
+.login .leaf-3uh5Eb {
+  bottom: 0.16vw;
+  height: 9.06vw;
+  right: 6.51vw;
+  width: 16.61vw;
+}
+
+.login .path-626-JGdrZc {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: -0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .line-44-JGdrZc {
+  background-color: transparent;
+  bottom: 0.42vw;
+  height: 6.51vw;
+  left: 0.94vw;
+  object-fit: cover;
+  position: absolute;
+  width: calc(100.00% - 3.18vw);
+}
+
+.login .line-45-JGdrZc {
+  background-color: transparent;
+  height: 1.41vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(21.27% - 0.16vw);
+  top: calc(21.12% - 0.31vw);
+  width: 0.68vw;
+}
+
+.login .line-46-JGdrZc {
+  background-color: transparent;
+  bottom: calc(43.65% - 0.31vw);
+  height: 0.68vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(37.60% - 0.83vw);
+  width: 2.14vw;
+}
+
+.login .line-47-JGdrZc {
+  background-color: transparent;
+  bottom: calc(32.94% - 0.73vw);
+  height: 2.19vw;
+  left: calc(31.28% - 0.36vw);
+  object-fit: cover;
+  position: absolute;
+  width: 1.25vw;
+}
+
+.login .line-48-JGdrZc {
+  background-color: transparent;
+  bottom: 0.57vw;
+  height: 0.62vw;
+  left: calc(17.04% - 0.26vw);
+  object-fit: cover;
+  position: absolute;
+  width: 1.56vw;
+}
+
+.login .leaf-jJ2txW {
+  bottom: 0.16vw;
+  height: 22.4vw;
+  right: calc(38.64% - 3.44vw);
+  width: 8.85vw;
+}
+
+.login .path-627-638rA4 {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: -0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.05vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .line-49-638rA4 {
+  background-color: transparent;
+  height: calc(100.00% - 2.86vw);
+  left: calc(41.67% - 1.67vw);
+  object-fit: cover;
+  position: absolute;
+  top: 2.86vw;
+  width: 3.96vw;
+}
+
+.login .line-50-638rA4 {
+  background-color: transparent;
+  height: 1.25vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(25.14% - 0.36vw);
+  top: calc(19.07% - 0.26vw);
+  width: 1.46vw;
+}
+
+.login .line-51-638rA4 {
+  background-color: transparent;
+  height: 2.4vw;
+  left: calc(42.25% - 0.62vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(38.02% - 0.89vw);
+  width: 1.41vw;
+}
+
+.login .line-52-638rA4 {
+  background-color: transparent;
+  bottom: calc(33.43% - 0.73vw);
+  height: 2.14vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(48.63% - 1.09vw);
+  width: 2.24vw;
+}
+
+.login .line-53-638rA4 {
+  background-color: transparent;
+  bottom: calc(18.18% - 0.31vw);
+  height: 1.67vw;
+  left: calc(21.38% - 0.26vw);
+  object-fit: cover;
+  position: absolute;
+  width: 1.2vw;
+}
+
+.login .box-Hh9xau {
+  bottom: calc(22.85% - 1.09vw);
+  height: 4.79vw;
+  right: calc(20.56% - 1.51vw);
+  width: 7.29vw;
+}
+
+.login .rectangle-166-ve2VkB {
+  background-color: var(--sunshade);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 0.94vw);
+}
+
+.login .rectangle-167-ve2VkB {
+  background-color: var(--koromiko);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 2.14vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 2.14vw);
+}
+
+.login .rectangle-168-ve2VkB {
+  background-color: var(--link-water);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(29.65% - 0.26vw);
+  top: 0.0vw;
+  width: 0.89vw;
+}
+
+.login .rectangle-169-ve2VkB {
+  background-color: var(--link-water);
+  height: 0.99vw;
+  left: 0.78vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.62vw;
+}
+
+.login .line-54-ve2VkB {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.24vw;
+}
+
+.login .line-55-ve2VkB {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.24vw;
+}
+
+.login .box-2GZCn9 {
+  bottom: 0.05vw;
+  height: 7.14vw;
+  right: calc(25.17% - 2.55vw);
+  width: 10.1vw;
+}
+
+.login .rectangle-170-otyncR {
+  background-color: var(--sunshade);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.35vw);
+}
+
+.login .rectangle-171-otyncR {
+  background-color: var(--koromiko);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 2.97vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 2.97vw);
+}
+
+.login .rectangle-172-otyncR {
+  background-color: var(--link-water);
+  height: 1.15vw;
+  position: absolute;
+  right: calc(30.98% - 0.47vw);
+  top: 0.05vw;
+  width: 1.46vw;
+}
+
+.login .rectangle-173-otyncR {
+  background-color: var(--link-water);
+  height: 1.15vw;
+  left: 0.94vw;
+  position: absolute;
+  top: 0.05vw;
+  width: 1.04vw;
+}
+
+.login .line-56-otyncR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 3.07vw;
+}
+
+.login .line-57-otyncR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 3.07vw;
+}
+
+.login .box-qAevGp {
+  bottom: 0.05vw;
+  height: 7.14vw;
+  right: 5.42vw;
+  width: 5.42vw;
+}
+
+.login .rectangle-174-cJ3iXD {
+  background-color: var(--sunshade);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 0.68vw);
+}
+
+.login .rectangle-175-cJ3iXD {
+  background-color: var(--koromiko);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 1.56vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.56vw);
+}
+
+.login .rectangle-176-cJ3iXD {
+  background-color: var(--link-water);
+  height: 1.15vw;
+  position: absolute;
+  right: calc(30.98% - 0.26vw);
+  top: 0.05vw;
+  width: 0.78vw;
+}
+
+.login .rectangle-177-cJ3iXD {
+  background-color: var(--link-water);
+  height: 1.15vw;
+  left: 0.47vw;
+  position: absolute;
+  top: 0.05vw;
+  width: 0.57vw;
+}
+
+.login .line-58-cJ3iXD {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 1.67vw;
+}
+
+.login .line-59-cJ3iXD {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 1.67vw;
+}
+
+.login .box-3uh5Eb {
+  bottom: calc(25.14% - 0.83vw);
+  height: 3.39vw;
+  left: 4.69vw;
+  width: 5.1vw;
+}
+
+.login .rectangle-178-6TPxjJ {
+  background-color: var(--sunshade);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 0.62vw);
+}
+
+.login .rectangle-179-6TPxjJ {
+  background-color: var(--koromiko);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 1.51vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.46vw);
+}
+
+.login .rectangle-180-6TPxjJ {
+  background-color: var(--link-water);
+  height: 0.68vw;
+  position: absolute;
+  right: calc(29.65% - 0.16vw);
+  top: 0.0vw;
+  width: 0.62vw;
+}
+
+.login .rectangle-181-6TPxjJ {
+  background-color: var(--link-water);
+  height: 0.68vw;
+  left: 0.52vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.47vw;
+}
+
+.login .line-60-6TPxjJ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 1.56vw;
+}
+
+.login .line-61-6TPxjJ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 1.56vw;
+}
+
+.login .box-jJ2txW {
+  bottom: 0.26vw;
+  height: 7.97vw;
+  left: 2.24vw;
+  width: 11.2vw;
+}
+
+.login .rectangle-182-cl67A8 {
+  background-color: var(--sunshade);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 1.51vw;
+  position: absolute;
+  top: 0.0vw;
+  transform: rotate(180deg);
+  width: calc(100.00% - 1.46vw);
+}
+
+.login .rectangle-183-cl67A8 {
+  background-color: var(--koromiko);
+  border: 0.05vw solid;
+  border-color: var(--black);
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  transform: rotate(180deg);
+  width: calc(100.00% - 3.28vw);
+}
+
+.login .rectangle-184-cl67A8 {
+  background-color: var(--link-water);
+  height: 1.3vw;
+  left: calc(30.98% - 0.52vw);
+  position: absolute;
+  top: 0.05vw;
+  transform: rotate(180deg);
+  width: 1.61vw;
+}
+
+.login .rectangle-185-cl67A8 {
+  background-color: var(--link-water);
+  height: 1.3vw;
+  position: absolute;
+  right: 1.04vw;
+  top: 0.05vw;
+  transform: rotate(180deg);
+  width: 1.15vw;
+}
+
+.login .line-62-cl67A8 {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.0vw;
+  width: 3.39vw;
+}
+
+.login .line-63-cl67A8 {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.0vw;
+  width: 3.39vw;
+}
+
+.login .body-no-fing-Hh9xau {
+  background-color: transparent;
+  height: calc(100.00% - 0.05vw);
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-341-E3nG3D {
+  background-color: transparent;
+  height: 15.1vw;
+  left: calc(37.77% - 4.27vw);
+  position: absolute;
+  top: 2.4vw;
+  width: 11.35vw;
+}
+
+.login .path-628-x5Zzne {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-342-E3nG3D {
+  background-color: transparent;
+  height: 5.62vw;
+  left: calc(40.18% - 1.46vw);
+  position: absolute;
+  top: calc(22.81% - 1.3vw);
+  width: 3.59vw;
+}
+
+.login .path-629-8Yz2Ie {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-630-8Yz2Ie {
+  background-color: transparent;
+  height: 3.39vw;
+  left: 0.26vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.1vw;
+  width: calc(100.00% - 0.26vw);
+}
+
+.login .group-343-E3nG3D {
+  background-color: transparent;
+  height: 7.86vw;
+  left: calc(41.86% - 2.45vw);
+  position: absolute;
+  top: 1.77vw;
+  width: 5.78vw;
+}
+
+.login .path-631-guxxvY {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-344-E3nG3D {
+  background-color: transparent;
+  height: 0.83vw;
+  left: calc(44.82% - 0.31vw);
+  position: absolute;
+  top: 5.99vw;
+  width: 0.68vw;
+}
+
+.login .path-632-3ubxn7 {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .group-345-E3nG3D {
+  background-color: transparent;
+  height: 0.94vw;
+  left: calc(42.41% - 0.31vw);
+  position: absolute;
+  top: 4.69vw;
+  width: 0.73vw;
+}
+
+.login .path-633-l9rGaJ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-634-l9rGaJ {
+  background-color: transparent;
+  bottom: 0.1vw;
+  height: 0.57vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  width: 0.42vw;
+}
+
+.login .group-346-E3nG3D {
+  background-color: transparent;
+  height: 0.78vw;
+  left: calc(41.60% - 0.52vw);
+  position: absolute;
+  top: 3.7vw;
+  width: 1.25vw;
+}
+
+.login .path-635-daXLKJ {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-347-E3nG3D {
+  background-color: transparent;
+  height: 0.73vw;
+  left: calc(46.24% - 0.57vw);
+  position: absolute;
+  top: 3.65vw;
+  width: 1.3vw;
+}
+
+.login .path-636-o1Jivg {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-348-E3nG3D {
+  background-color: transparent;
+  height: 0.94vw;
+  left: calc(46.11% - 0.31vw);
+  position: absolute;
+  top: 4.64vw;
+  width: 0.73vw;
+}
+
+.login .path-637-m6nXxV {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-638-m6nXxV {
+  background-color: transparent;
+  bottom: 0.1vw;
+  height: 0.57vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  width: 0.42vw;
+}
+
+.login .group-349-E3nG3D {
+  background-color: transparent;
+  height: 6.15vw;
+  left: calc(38.83% - 3.18vw);
+  position: absolute;
+  top: 0.0vw;
+  width: 8.23vw;
+}
+
+.login .path-639-Azr2uk {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-350-E3nG3D {
+  background-color: transparent;
+  height: 1.98vw;
+  left: calc(36.24% - 0.57vw);
+  position: absolute;
+  top: 5.36vw;
+  width: 1.56vw;
+}
+
+.login .path-640-QYRtwI {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-641-QYRtwI {
+  background-color: transparent;
+  height: 0.57vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(48.29% - 0.36vw);
+  top: calc(49.12% - 0.31vw);
+  width: 0.78vw;
+}
+
+.login .group-351-E3nG3D {
+  background-color: transparent;
+  height: 0.78vw;
+  left: calc(43.82% - 0.62vw);
+  position: absolute;
+  top: calc(21.28% - 0.16vw);
+  width: 1.41vw;
+}
+
+.login .path-642-FKWCpf {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-352-E3nG3D {
+  background-color: transparent;
+  height: 5.94vw;
+  position: absolute;
+  right: calc(27.46% - 1.56vw);
+  top: calc(35.88% - 2.14vw);
+  width: 5.78vw;
+}
+
+.login .path-643-vxi0xy {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: -0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.05vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .path-644-vxi0xy {
+  background-color: transparent;
+  height: 1.09vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(29.53% - 0.42vw);
+  top: calc(41.82% - 0.47vw);
+  width: 1.3vw;
+}
+
+.login .group-353-E3nG3D {
+  background-color: transparent;
+  bottom: 0.52vw;
+  height: 9.17vw;
+  left: calc(46.40% - 4.11vw);
+  position: absolute;
+  width: 8.85vw;
+}
+
+.login .path-645-dDJnv1 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-354-E3nG3D {
+  background-color: transparent;
+  bottom: 0.05vw;
+  height: 9.69vw;
+  left: calc(35.52% - 2.55vw);
+  position: absolute;
+  width: 7.14vw;
+}
+
+.login .path-646-ge3G9A {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-355-E3nG3D {
+  background-color: transparent;
+  height: 12.03vw;
+  position: absolute;
+  right: calc(49.41% - 4.11vw);
+  top: calc(45.10% - 5.42vw);
+  width: 8.33vw;
+}
+
+.login .path-647-W6etx8 {
+  background-color: transparent;
+  height: calc(100.00% - 0.21vw);
+  left: 0.21vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.21vw;
+  width: calc(100.00% - 0.21vw);
+}
+
+.login .line-64-W6etx8 {
+  background-color: transparent;
+  height: 4.95vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(23.90% - 0.57vw);
+  top: calc(30.33% - 1.51vw);
+  width: 2.4vw;
+}
+
+.login .path-648-W6etx8 {
+  background-color: transparent;
+  height: 7.4vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 5.73vw;
+}
+
+.login .path-649-W6etx8 {
+  background-color: transparent;
+  height: 5.52vw;
+  left: calc(45.25% - 1.67vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(29.35% - 1.61vw);
+  width: 3.65vw;
+}
+
+.login .group-356-E3nG3D {
+  background-color: transparent;
+  bottom: 0.05vw;
+  height: 10.57vw;
+  left: calc(38.89% - 6.09vw);
+  position: absolute;
+  width: 15.68vw;
+}
+
+.login .path-650-H7dqFW {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-357-E3nG3D {
+  background-color: transparent;
+  bottom: calc(45.22% - 7.71vw);
+  height: 17.03vw;
+  left: calc(38.29% - 4.74vw);
+  position: absolute;
+  width: 12.34vw;
+}
+
+.login .path-651-KC0OEy {
+  background-color: transparent;
+  height: calc(100.00% - 0.47vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-652-KC0OEy {
+  background-color: transparent;
+  height: calc(100.00% - 2.6vw);
+  object-fit: cover;
+  position: absolute;
+  right: calc(42.64% - 0.52vw);
+  top: 2.24vw;
+  width: 1.15vw;
+}
+
+.login .path-653-KC0OEy {
+  background-color: transparent;
+  height: 1.93vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(47.54% - 1.61vw);
+  top: 1.3vw;
+  width: 3.44vw;
+}
+
+.login .path-654-KC0OEy {
+  background-color: transparent;
+  height: calc(100.00% - 2.76vw);
+  object-fit: cover;
+  position: absolute;
+  right: -0.05vw;
+  top: 1.3vw;
+  width: 2.08vw;
+}
+
+.login .path-655-KC0OEy {
+  background-color: transparent;
+  bottom: -0.05vw;
+  height: 3.07vw;
+  left: 0.26vw;
+  object-fit: cover;
+  position: absolute;
+  width: calc(100.00% - 0.94vw);
+}
+
+.login .group-358-E3nG3D {
+  background-color: transparent;
+  bottom: calc(46.98% - 3.85vw);
+  height: 8.18vw;
+  position: absolute;
+  right: calc(38.27% - 3.8vw);
+  width: 9.95vw;
+}
+
+.login .path-656-kbLVTg {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-359-E3nG3D {
+  background-color: transparent;
+  height: 11.46vw;
+  left: calc(29.64% - 1.93vw);
+  position: absolute;
+  top: calc(46.81% - 5.36vw);
+  width: 6.41vw;
+}
+
+.login .path-657-L19qs9 {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: 0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.1vw);
+}
+
+.login .line-65-L19qs9 {
+  background-color: transparent;
+  height: 5.26vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.52vw;
+  top: calc(42.89% - 2.24vw);
+  width: 1.51vw;
+}
+
+.login .path-658-L19qs9 {
+  background-color: transparent;
+  height: 6.25vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 0.94vw);
+}
+
+.login .path-659-L19qs9 {
+  background-color: transparent;
+  height: 6.3vw;
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.05vw;
+  width: calc(100.00% - 1.77vw);
+}
+
+.login .group-363-E3nG3D {
+  background-color: transparent;
+  bottom: calc(45.20% - 3.23vw);
+  height: 7.14vw;
+  left: calc(37.35% - 3.85vw);
+  position: absolute;
+  width: 10.26vw;
+}
+
+.login .path-682-UZNwx1 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-683-UZNwx1 {
+  background-color: transparent;
+  height: 2.92vw;
+  object-fit: cover;
+  position: absolute;
+  right: calc(47.00% - 3.18vw);
+  top: 0.1vw;
+  width: 6.77vw;
+}
+
+.login .path-684-UZNwx1 {
+  background-color: transparent;
+  bottom: 0.78vw;
+  height: 3.85vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.99vw;
+  width: 5.21vw;
+}
+
+.login .group-364-E3nG3D {
+  background-color: transparent;
+  height: 2.5vw;
+  position: absolute;
+  right: calc(48.41% - 1.2vw);
+  top: calc(37.33% - 0.94vw);
+  width: 2.55vw;
+}
+
+.login .path-685-6Vlxz6 {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: -0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% + 0.05vw);
+}
+
+.login .group-365-E3nG3D {
+  background-color: transparent;
+  height: 5.52vw;
+  position: absolute;
+  right: calc(46.78% - 3.12vw);
+  top: calc(40.24% - 2.24vw);
+  width: 6.72vw;
+}
+
+.login .path-686-efvR6V {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.login .path-687-efvR6V {
+  background-color: transparent;
+  height: calc(100.00% - 0.21vw);
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: -0.05vw;
+  width: 4.84vw;
+}
+
+.login .line-66-efvR6V {
+  background-color: transparent;
+  bottom: calc(46.79% - 0.52vw);
+  height: 1.09vw;
+  left: 0.31vw;
+  object-fit: cover;
+  position: absolute;
+  width: 1.09vw;
+}
+
+.login .group-369-E3nG3D {
+  background-color: transparent;
+  bottom: 0.0vw;
+  height: 0.0vw;
+  left: 0.0vw;
+  position: absolute;
+  width: 100%;
+}
+
+.login .line-67-bqeCPl {
+  background-color: transparent;
+  height: calc(100.00% + 0.42vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.21vw;
+  width: 100%;
+}
+
+.login .phone-Hh9xau {
+  background-color: transparent;
+  height: 6.67vw;
+  position: absolute;
+  right: calc(26.95% - 1.09vw);
+  top: calc(33.38% - 2.24vw);
+  width: 4.01vw;
+}
+
+.login .group-361-ykwjO0 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-660-KNofEv {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: 0.31vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 0.31vw);
+}
+
+.login .path-661-KNofEv {
+  background-color: transparent;
+  height: calc(100.00% + 0.05vw);
+  left: -0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.05vw;
+  width: calc(100.00% - 0.31vw);
+}
+
+.login .path-662-KNofEv {
+  background-color: transparent;
+  height: calc(100.00% - 1.04vw);
+  left: 0.21vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.21vw;
+  width: 3.18vw;
+}
+
+.login .path-663-KNofEv {
+  background-color: transparent;
+  bottom: 0.16vw;
+  height: 0.57vw;
+  left: calc(45.85% - 0.26vw);
+  object-fit: cover;
+  position: absolute;
+  width: 0.57vw;
+}
+
+.login .rectangle-186-KNofEv {
+  background-color: #77c4f7;
+  border: 0.05vw solid;
+  border-color: var(--black);
+  border-radius: 0.03vw 0.03vw 0.03vw 0.03vw;
+  height: 1.98vw;
+  position: absolute;
+  right: 0.21vw;
+  top: 0.68vw;
+  transform: rotate(178.41deg);
+  width: 0.16vw;
+}
+
+.login .rectangle-187-KNofEv {
+  background-color: #77c4f7;
+  border: 0.05vw solid;
+  border-color: var(--black);
+  border-radius: 0.03vw 0.03vw 0.03vw 0.03vw;
+  height: 0.52vw;
+  position: absolute;
+  right: 0.16vw;
+  top: calc(44.55% - 0.21vw);
+  transform: rotate(178.42deg);
+  width: 0.16vw;
+}
+
+.login .group-360-KNofEv {
+  background-color: transparent;
+  height: 2.66vw;
+  left: 0.42vw;
+  object-fit: cover;
+  position: absolute;
+  top: calc(41.17% - 1.09vw);
+  width: 2.66vw;
+}
+
+.login .finger-Hh9xau {
+  background-color: transparent;
+  height: 2.45vw;
+  position: absolute;
+  right: calc(31.93% - 0.73vw);
+  top: calc(37.25% - 0.89vw);
+  width: 2.19vw;
+}
+
+.login .group-367-W3yGbz {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-366-MMte3J {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-688-iwYNbw {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-689-iwYNbw {
+  background-color: transparent;
+  height: calc(100.00% - 0.31vw);
+  object-fit: cover;
+  position: absolute;
+  right: -0.05vw;
+  top: 0.1vw;
+  width: 1.41vw;
+}
+
+.login .text-Eaz0aa {
+  height: 5.68vw;
+  left: calc(45.54% - 8.33vw);
+  object-fit: cover;
+  top: calc(23.46% - 1.35vw);
+  width: 18.23vw;
+}
+
+.login .logo-Eaz0aa {
+  background-color: transparent;
+  display: block;
+  height: 7.03vw;
+  left: 2.4vw;
+  opacity: 0;
+  position: absolute;
+  top: 2.34vw;
+  transform: translate(1.3vw, 0);
+  width: 12.92vw;
+}
+
+.login .logo-Eaz0aa.animate-enter18 {
+  animation: animate-enter18-frames 0.40s ease 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+  transform: translate(1.3vw, 0);
+}
+
+@keyframes animate-enter18-frames {
+  from{opacity: 0;
+transform: translate(25px, 0);
+}
+to{opacity: 1;
+transform: translate(0,0);
+}
+}
+
+.login .m-10RvJQ {
+  background-color: transparent;
+  height: 3.39vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 3.49vw;
+}
+
+.login .path-720-KIxeP5 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .v-10RvJQ {
+  background-color: transparent;
+  height: 2.81vw;
+  position: absolute;
+  right: calc(43.48% - 1.2vw);
+  top: 0.52vw;
+  width: 2.81vw;
+}
+
+.login .path-721-iaoQKX {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .e-10RvJQ {
+  background-color: transparent;
+  height: 2.81vw;
+  position: absolute;
+  right: 1.93vw;
+  top: 0.52vw;
+  width: 2.76vw;
+}
+
+.login .path-722-A1lMH8 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .placeholder-10RvJQ {
+  background-color: transparent;
+  bottom: 0.0vw;
+  height: 5.47vw;
+  position: absolute;
+  right: 0.0vw;
+  width: 10.05vw;
+}
+
+.login .rectangle-192-xT2OWz {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .text-10RvJQ {
+  bottom: calc(36.13% - 0.47vw);
+  height: 1.35vw;
+  right: calc(31.58% - 1.25vw);
+  width: 4.01vw;
+}
+
+.login .path-723-9Rxxbs {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 1.35vw;
+}
+
+.login .path-724-9Rxxbs {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.52vw);
+  top: 0.05vw;
+  width: 1.2vw;
+}
+
+.login .path-725-9Rxxbs {
+  background-color: transparent;
+  height: calc(100.00% - 0.05vw);
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 1.2vw;
+}
+
+.login .pin-10RvJQ {
+  background-color: transparent;
+  height: 4.58vw;
+  left: calc(32.52% - 1.04vw);
+  position: absolute;
+  top: 0.52vw;
+  width: 3.18vw;
+}
+
+.login .path-726-PxT7vD {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .ellipse-43-PxT7vD {
+  background-color: var(--bright-red);
+  border-radius: 1.2vw;
+  height: 2.4vw;
+  left: 0.42vw;
+  position: absolute;
+  top: 0.31vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.login .box-10RvJQ {
+  height: 2.34vw;
+  left: calc(33.65% - 0.89vw);
+  top: 0.89vw;
+  width: 2.55vw;
+}
+
+.login .rectangle-193-DiDnW6 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .sign-in-elems-b8DrbD {
+  background-color: transparent;
+  display: block;
+  height: 36.09vw;
+  left: 62.08vw;
+  opacity: 0;
+  position: absolute;
+  top: 9.9vw;
+  width: 26.25vw;
+}
+
+.login .sign-in-elems-b8DrbD.animate-enter22 {
+  animation: animate-enter22-frames 0.50s ease 0.20s 1 normal forwards;
+  display: block;
+  opacity: 0;
+}
+
+@keyframes animate-enter22-frames {
+  from{opacity: 0;
+}
+to{opacity: 1;
+}
+}
+
+.login .main-shape-ognWet {
+  background-color: transparent;
+  display: block;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .main-shape-ognWet.animate-enter20 {
+  animation: animate-enter20-frames 0.20s ease-in-out 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+}
+
+@keyframes animate-enter20-frames {
+  from{opacity: 0;
+}
+to{opacity: 1;
+}
+}
+
+.login .shape-behind-FQCRg1 {
+  background-color: var(--green);
+  border-radius: 1.27vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.57;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .sign-in-titel-FQCRg1 {
+  background-color: transparent;
+  color: var(--white);
+  font-family: var(--font-family-roboto_slab);
+  font-size: 3.48vw;
+  font-style: normal;
+  font-weight: 700;
+  height: 4.69vw;
+  letter-spacing: 0.0vw;
+  line-height: 4.18vw;
+  position: absolute;
+  right: calc(49.66% - 5.83vw);
+  text-align: left;
+  top: 1.2vw;
+  white-space: nowrap;
+  width: 11.72vw;
+}
+
+.login .signup-button-ognWet {
+  background-color: transparent;
+  bottom: 3.65vw;
+  cursor: pointer;
+  height: 3.59vw;
+  left: 3.44vw;
+  pointer-events: auto;
+  position: absolute;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 6.88vw);
+}
+
+.login .signup-button-ognWet:hover {
+  transform: scale(1.1);
+}
+
+.login .group-378-VmPB4A {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .rectangle-188-dEejnD {
+  background-color: #f44c1e;
+  border-radius: 0.75vw;
+  cursor: pointer;
+  display: block;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.0vw;
+  transform: scale(0.9);
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.login .rectangle-188-dEejnD.animate-enter21 {
+  animation: animate-enter21-frames 0.20s ease 0.00s 1 normal forwards;
+  display: block;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+@keyframes animate-enter21-frames {
+  from{opacity: 0;
+transform: scale(0.9);
+}
+to{opacity: 1;
+transform: scale(1);
+}
+}
+
+.login .rectangle-188-dEejnD:hover {
+  transform: scale(1.1);
+}
+
+.login .sign-up-dEejnD {
+  background-color: transparent;
+  height: calc(100.00% - 0.57vw);
+  left: calc(49.74% - 3.91vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.92vw;
+  position: absolute;
+  text-align: left;
+  top: 0.26vw;
+  white-space: nowrap;
+  width: 7.81vw;
+}
+
+.login .have-account-ognWet {
+  background-color: transparent;
+  bottom: calc(24.32% - 0.42vw);
+  height: 1.67vw;
+  left: 3.49vw;
+  position: absolute;
+  width: calc(100.00% - 6.88vw);
+}
+
+.login .path-715-rkgT11 {
+  background-color: transparent;
+  bottom: 43.28%;
+  height: 0.05vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  width: 2.19vw;
+}
+
+.login .path-716-rkgT11 {
+  background-color: transparent;
+  bottom: 42.76%;
+  height: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  width: 2.19vw;
+}
+
+.login .dont-have-an-account-rkgT11 {
+  background-color: transparent;
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 1.39vw;
+  font-style: italic;
+  font-weight: 400;
+  height: calc(100.00% + 0.1vw);
+  left: 2.5vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.66vw;
+  opacity: 0.4;
+  position: absolute;
+  text-align: left;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: calc(100.00% - 5.1vw);
+}
+
+.login .sign-in-button-ognWet {
+  background-color: transparent;
+  bottom: calc(34.42% - 1.25vw);
+  cursor: pointer;
+  height: 3.59vw;
+  left: 3.44vw;
+  pointer-events: auto;
+  position: absolute;
+  transition: all 0.2s ease-in;
+  width: calc(100.00% - 6.88vw);
+}
+
+.login .sign-in-button-ognWet:hover {
+  transform: scale(1.1);
+}
+
+.login .group-379-gxRqCv {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .rectangle-189-F2DLiT {
+  background-color: #f4b21e;
+  border-radius: 0.75vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .sign-in-F2DLiT {
+  background-color: transparent;
+  height: calc(100.00% - 0.57vw);
+  left: calc(49.72% - 3.54vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.92vw;
+  position: absolute;
+  text-align: left;
+  top: 0.26vw;
+  white-space: nowrap;
+  width: 7.08vw;
+}
+
+.login .password-field-ognWet {
+  background-color: transparent;
+  height: 3.44vw;
+  left: 3.44vw;
+  position: absolute;
+  top: calc(45.84% - 1.56vw);
+  width: calc(100.00% - 6.88vw);
+}
+
+.login .group-380-HqTooc {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .rectangle-190-TgHPrk {
+  background-color: var(--limed-spruce);
+  border-radius: 0.96vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .group-370-TgHPrk {
+  background-color: transparent;
+  height: 1.25vw;
+  left: 0.62vw;
+  opacity: 0.39;
+  position: absolute;
+  top: calc(48.91% - 0.62vw);
+  width: 2.4vw;
+}
+
+.login .path-717-xQ5KE9 {
+  background-color: transparent;
+  height: calc(100.00% - 0.42vw);
+  left: 0.21vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.21vw;
+  width: 0.83vw;
+}
+
+.login .path-718-xQ5KE9 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .your-password-HqTooc {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(46.05% - 0.62vw);
+  height: 1.35vw;
+  left: 3.8vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 14.58vw;
+}
+
+.login .your-password-HqTooc::placeholder {
+  color: #ffffff99;
+}
+
+.login .email-field-ognWet {
+  background-color: transparent;
+  height: 3.44vw;
+  left: 3.44vw;
+  position: absolute;
+  top: calc(31.77% - 1.09vw);
+  width: calc(100.00% - 6.88vw);
+}
+
+.login .group-381-qZVWjo {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .rectangle-191-wWC5fc {
+  background-color: var(--limed-spruce);
+  border-radius: 0.96vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.login .path-719-wWC5fc {
+  background-color: transparent;
+  height: 1.51vw;
+  left: 0.73vw;
+  object-fit: cover;
+  position: absolute;
+  top: calc(50.00% - 0.78vw);
+  width: 2.4vw;
+}
+
+.login .your-email-qZVWjo {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(48.14% - 0.68vw);
+  height: 1.35vw;
+  left: 3.8vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 14.9vw;
+}
+
+.login .your-email-qZVWjo::placeholder {
+  color: #ffffff99;
+}
+
+.login .bg {
+  background-color: transparent;
+  position: absolute;
+  top: 0.0vw;
+}
+
+.login .box {
+  background-color: transparent;
+  position: absolute;
+}
+
+.login .leaf {
+  background-color: transparent;
+  position: absolute;
+}
+
+.login .text {
+  background-color: transparent;
+  position: absolute;
+}
+
+.error-message .error-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 30px;
+  color: #ffffff;
+  text-align: center; /* Center the message */
+  margin-top: 190px; /* Space it from the input boxes */
+}

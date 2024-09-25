@@ -1,0 +1,994 @@
+/* screen - general-image */
+
+.general-image {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.general-image .bg-YH2EbH {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.15vw;
+  position: fixed;
+  top: -0.05vw;
+  width: 116.2vw;
+}
+
+.general-image .bg-style-zdChRe {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .path-287-HLNIkY {
+  background-color: transparent;
+  height: calc(100.00% + 0.47vw);
+  left: 15.99vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: calc(100.00% - 13.49vw);
+}
+
+.general-image .path-288-HLNIkY {
+  background-color: transparent;
+  height: calc(100.00% + 0.31vw);
+  left: calc(18.70% - 6.3vw);
+  object-fit: cover;
+  position: absolute;
+  top: -0.26vw;
+  width: 33.8vw;
+}
+
+.general-image .person-HLNIkY {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.general-image .arrow-HLNIkY {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.58% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.general-image .main-header-HLNIkY {
+  background-color: var(--mine-shaft);
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.09vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.general-image .logo-HLNIkY {
+  background-color: transparent;
+  height: 5.73vw;
+  left: calc(18.76% - 1.88vw);
+  position: absolute;
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.general-image .logo-YPwX6k {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .m-KvkjDj {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.general-image .path-294-MD4OPy {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .v-KvkjDj {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.general-image .path-295-VQQuQV {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .e-KvkjDj {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.general-image .path-296-UAxKhR {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .group-157-KvkjDj {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.general-image .rectangle-57-lxPvT4 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .group-158-KvkjDj {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.general-image .path-297-X9Dxum {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.general-image .path-298-X9Dxum {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.general-image .path-299-X9Dxum {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.general-image .pin-KvkjDj {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.47% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.general-image .path-300-3ZCDjY {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .ellipse-18-3ZCDjY {
+  background-color: var(--bright-red);
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.general-image .box-KvkjDj {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.general-image .rectangle-58-JPW9tA {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.general-image .new-lable-button-YH2EbH {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.52vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.general-image .group-375-uGs6yh {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.general-image .group-375-uGs6yh:hover {
+  transform: scale(1.1);
+}
+
+.general-image .green-button-new-lable-vxOTe5 {
+  background-color: var(--green);
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .x-vxOTe5 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.general-image .x-vxOTe5:hover {
+  transform: rotate(15deg);
+}
+
+.general-image .path-464-S5jCGW {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.general-image .path-465-S5jCGW {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.general-image .new-lable-vxOTe5 {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.general-image .main-shape-elem-YH2EbH {
+  background-color: transparent;
+  height: 36.15vw;
+  left: 33.85vw;
+  position: fixed;
+  top: 16.35vw;
+  width: 60.36vw;
+}
+
+.general-image .rectangle-59-VQtZix {
+  background-color: var(--white);
+  border-radius: 1.5vw 1.5vw 1.5vw 1.52vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .path-301-VQtZix {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .box-icon-VQtZix {
+  background-color: transparent;
+  height: 7.4vw;
+  left: 0.36vw;
+  position: absolute;
+  top: calc(28.48% - 2.08vw);
+  width: 8.59vw;
+}
+
+.general-image .group-159-jSRNbs {
+  background-color: transparent;
+  bottom: 0.16vw;
+  height: 4.27vw;
+  left: 1.2vw;
+  position: absolute;
+  width: 3.12vw;
+}
+
+.general-image .path-302-Rx6C9B {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .group-160-jSRNbs {
+  background-color: transparent;
+  height: 2.86vw;
+  position: absolute;
+  right: 0.16vw;
+  top: 0.16vw;
+  width: 4.22vw;
+}
+
+.general-image .path-303-889jLU {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .group-161-jSRNbs {
+  background-color: transparent;
+  bottom: calc(34.74% - 0.99vw);
+  height: 2.86vw;
+  left: 0.16vw;
+  position: absolute;
+  width: 4.22vw;
+}
+
+.general-image .path-304-DefRT9 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .group-162-jSRNbs {
+  background-color: transparent;
+  bottom: 0.16vw;
+  height: 4.22vw;
+  position: absolute;
+  right: 1.25vw;
+  width: 3.02vw;
+}
+
+.general-image .path-305-GEzq5Q {
+  background-color: transparent;
+  bottom: 0.0vw;
+  height: 2.81vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.general-image .path-306-GEzq5Q {
+  background-color: transparent;
+  height: 1.35vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.general-image .path-307-GEzq5Q {
+  background-color: transparent;
+  height: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.0vw;
+  width: 0.05vw;
+}
+
+.general-image .group-163-jSRNbs {
+  background-color: transparent;
+  height: 2.76vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.21vw;
+  width: 3.96vw;
+}
+
+.general-image .path-308-futdIh {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .group-164-jSRNbs {
+  background-color: transparent;
+  bottom: calc(35.07% - 0.99vw);
+  height: 2.76vw;
+  position: absolute;
+  right: 0.31vw;
+  width: 3.96vw;
+}
+
+.general-image .path-309-LwqE4x {
+  background-color: transparent;
+  height: 100%;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .path-310-LwqE4x {
+  background-color: transparent;
+  bottom: 49.90%;
+  height: 0.05vw;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  width: 0.05vw;
+}
+
+.general-image .group-165-jSRNbs {
+  background-color: transparent;
+  height: 2.81vw;
+  left: 1.25vw;
+  position: absolute;
+  top: calc(34.49% - 0.99vw);
+  width: calc(100.00% - 2.45vw);
+}
+
+.general-image .path-311-qkUBt3 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .group-166-jSRNbs {
+  background-color: transparent;
+  height: 0.0vw;
+  left: 1.72vw;
+  position: absolute;
+  top: 38.29%;
+  width: 0.0vw;
+}
+
+.general-image .path-312-TZ02RO {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .path-313-jSRNbs {
+  background-color: transparent;
+  height: 2.81vw;
+  object-fit: cover;
+  position: absolute;
+  right: 1.25vw;
+  top: calc(34.49% - 0.99vw);
+  width: 3.12vw;
+}
+
+.general-image .group-167-jSRNbs {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .path-314-wGX1gp {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .path-315-wGX1gp {
+  background-color: transparent;
+  height: 0.36vw;
+  left: calc(16.53% - 0.05vw);
+  object-fit: cover;
+  position: absolute;
+  top: 0.83vw;
+  width: 0.42vw;
+}
+
+.general-image .group-168-jSRNbs {
+  background-color: transparent;
+  height: 0.0vw;
+  left: 1.72vw;
+  position: absolute;
+  top: 38.29%;
+  width: 0.0vw;
+}
+
+.general-image .path-316-izcX3R {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .title-VQtZix {
+  height: 5.16vw;
+  left: 2.14vw;
+  letter-spacing: 0.0vw;
+  line-height: 5.07vw;
+  text-align: left;
+  top: 1.46vw;
+  white-space: nowrap;
+  width: 10.26vw;
+}
+
+.general-image .whats-inside-the-box-VQtZix {
+  background-color: transparent;
+  height: 2.66vw;
+  left: calc(25.41% - 5.36vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.51vw;
+  position: absolute;
+  text-align: left;
+  top: calc(27.39% - 0.73vw);
+  white-space: nowrap;
+  width: 21.2vw;
+}
+
+.general-image .main-box-VQtZix {
+  background-color: var(--picton-blue);
+  border-radius: 0.94vw;
+  bottom: calc(39.26% - 5.83vw);
+  height: 14.9vw;
+  position: absolute;
+  right: calc(42.19% - 12.86vw);
+  width: 30.47vw;
+}
+
+.general-image .drop-image-box-YH2EbH {
+  background-color: transparent;
+  cursor: pointer;
+  height: 13.44vw;
+  left: 52.5vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 29.95vw;
+  transition: all 0.2s ease;
+  width: 27.45vw;
+}
+
+.general-image .drop-image-box-YH2EbH:hover {
+  transform: scale(1.1);
+}
+
+.general-image .drop-image-box-Vag52p {
+  background-color: var(--black);
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .text-inside-the-box-YH2EbH {
+  background-color: transparent;
+  height: 5.57vw;
+  left: 52.55vw;
+  position: fixed;
+  top: 33.59vw;
+  width: 24.27vw;
+}
+
+.general-image .image-icon-shadow-O5hTUX {
+  background-color: transparent;
+  bottom: 0.0vw;
+  height: 4.69vw;
+  left: 2.6vw;
+  object-fit: cover;
+  position: absolute;
+  width: 5.47vw;
+}
+
+.general-image .image-icon-O5hTUX {
+  background-color: transparent;
+  height: calc(100.00% - 0.89vw);
+  left: 2.86vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.68vw;
+  width: 5.47vw;
+}
+
+.general-image .drag-an-image-O5hTUX {
+  background-color: transparent;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.46vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: left;
+  top: 0.0vw;
+  white-space: nowrap;
+  width: 12.81vw;
+}
+
+.general-image .or-O5hTUX {
+  background-color: transparent;
+  bottom: calc(31.25% - 0.78vw);
+  height: 2.55vw;
+  left: 0.0vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.46vw;
+  position: absolute;
+  text-align: left;
+  white-space: nowrap;
+  width: 18.75vw;
+}
+
+.general-image .upload-a-file-YH2EbH {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.24vw;
+  left: 64.69vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: fixed;
+  top: 38.44vw;
+  transition: all 0.2s ease;
+  width: 10.62vw;
+}
+
+.general-image .upload-a-file-YH2EbH:hover {
+  transform: scale(1.1);
+}
+
+.general-image .sign-out-YH2EbH {
+  background-color: transparent;
+  cursor: pointer;
+  height: 2.4vw;
+  left: 86.72vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.55vw;
+  transition: all 0.2s ease;
+  width: 10.73vw;
+}
+
+.general-image .sign-out-YH2EbH:hover {
+  transform: scale(1.1);
+}
+
+.general-image .group-377-kWngWe {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .sign-out-7amptd {
+  -webkit-text-stroke: 0.16vw var(--torch-red);
+  background-color: transparent;
+  height: calc(100.00% + 0.1vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.36vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: center;
+  top: 0.05vw;
+  white-space: nowrap;
+  width: 8.44vw;
+}
+
+.general-image .path-466-7amptd {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.16vw);
+  left: -0.1vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.21vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 9.43vw);
+}
+
+.general-image .path-466-7amptd:hover {
+  transform: translate(-5px, 0);
+}
+
+.general-image .group-373-7amptd {
+  background-color: transparent;
+  bottom: calc(42.91% - 0.21vw);
+  height: 0.52vw;
+  left: 0.68vw;
+  position: absolute;
+  width: 1.3vw;
+}
+
+.general-image .path-467-5rLZE3 {
+  background-color: transparent;
+  height: calc(100.00% - 0.26vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% + 0.1vw);
+}
+
+.general-image .path-468-5rLZE3 {
+  background-color: transparent;
+  height: calc(100.00% + 0.16vw);
+  left: 0.89vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% - 0.78vw);
+}
+
+.general-image .search-bar-YH2EbH {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.02vw;
+  left: 30.94vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 2.66vw;
+  transition: all 0.2s ease-in-out;
+  width: 38.12vw;
+}
+
+.general-image .search-bar-YH2EbH:hover {
+  transform: scale(1.1);
+}
+
+.general-image .search-box-vJN6Sr {
+  background-color: var(--limed-spruce);
+  border-radius: 1.19vw;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .search-icon-vJN6Sr {
+  background-color: transparent;
+  bottom: calc(47.12% - 1.15vw);
+  cursor: pointer;
+  height: 2.4vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  right: 0.89vw;
+  transition: all 0.2s ease;
+  width: 2.4vw;
+}
+
+.general-image .search-icon-vJN6Sr:hover {
+  transform: rotate(15deg);
+}
+
+.general-image .seach-for-a-specific-lable-vJN6Sr {
+  background-color: transparent;
+  border: 0;
+  bottom: calc(43.23% - 0.83vw);
+  height: 1.98vw;
+  left: 1.93vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  opacity: 0.4;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  width: 32.5vw;
+}
+
+.general-image .seach-for-a-specific-lable-vJN6Sr::placeholder {
+  color: #ffffff99;
+}
+
+.general-image .cancel-YH2EbH {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 81.35vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.general-image .cancel-YH2EbH:hover {
+  transform: scale(1.1);
+}
+
+.general-image .cancel-PCaxv0 {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .done-YH2EbH {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 87.24vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.general-image .done-YH2EbH:hover {
+  transform: scale(1.1);
+}
+
+.general-image .done-5MABDb {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .title-YH2EbH {
+  height: 6.04vw;
+  left: 46.88vw;
+  top: 17.6vw;
+  width: 45.52vw;
+}
+
+.general-image .rectangle-194-LNvnWn {
+  background-color: var(--black-2);
+  border-radius: 0.73vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.general-image .titel-LNvnWn {
+  background-color: transparent;
+  border: 0;
+  height: 3.54vw;
+  left: 2.97%;
+  letter-spacing: 0.0vw;
+  line-height: 2.86vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 21.55%;
+  width: 93.94%;
+}
+
+.general-image .titel-LNvnWn::placeholder {
+  color: #ffffff99;
+}

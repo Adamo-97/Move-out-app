@@ -1,0 +1,187 @@
+:root { 
+  --black: #000000;
+  --black-2: #00000033;
+  --bright-red: #b10000;
+  --cloudy: #b2aaa3;
+  --coconut: #fcfeff;
+  --green: #1bc172;
+  --koromiko: #ffbd67;
+  --limed-spruce: #354948;
+  --link-water: #d9e6f1;
+  --mako: #464854;
+  --manatee: #9191a3;
+  --mine-shaft: #2b3131;
+  --picton-blue: #4c9ded;
+  --pigeon-post: #9ebce2;
+  --salmon-pearl: #ee404c;
+  --seagull: #85c1e7;
+  --seashell-peach: #fff7ed;
+  --shakespeare: #5ba8ce;
+  --sunshade: #fe9b2d;
+  --tia-maria: #bf3c02;
+  --torch-red: #ff004f;
+  --tropical-blue: #c0e4f2;
+  --tulip-tree: #e2b537;
+  --turmeric: #cec84d;
+  --white: #ffffff;
+ 
+  --font-size-l: 37.7px;
+  --font-size-m: 30px;
+  --font-size-xl: 39.8px;
+  --font-size-xxl: 40.1px;
+  --font-size-xxxl: 42px;
+  --font-size-xxxxl: 55px;
+  --font-size-xxxxxl: 81.1px;
+ 
+  --font-family-comicsansms-bolditalic: "ComicSansMS-BoldItalic", Helvetica;
+  --font-family-lato: "Lato", Helvetica;
+  --font-family-montserrat: "Montserrat", Helvetica;
+  --font-family-roboto: "Roboto", Helvetica;
+  --font-family-roboto_slab: "Roboto Slab", Helvetica;
+}
+.lato-normal-white-39-8px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-xl);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.montserrat-normal-torch-red-37-7px {
+  color: var(--torch-red);
+  font-family: var(--font-family-montserrat);
+  font-size: var(--font-size-l);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.lato-black-white-30px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-m);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-81-1px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-xxxxxl);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-black-40-1px {
+  color: var(--black);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-xxl);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-55px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-xxxxl);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-42px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-xxxl);
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-39-4px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 39.4px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.robotoslab-bold-white-18px {
+  color: var(--white);
+  font-family: var(--font-family-roboto_slab);
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.roboto-normal-white-50px {
+  color: var(--white);
+  font-family: var(--font-family-roboto);
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+}
+
+.lato-black-white-46-8px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 46.8px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-80px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 80px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-50px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 50px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-20px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-23-5px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 23.5px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.lato-black-white-24-6px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 24.6px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+.comicsansms-bolditalic-normal-white-19-6px {
+  color: var(--white);
+  font-family: var(--font-family-comicsansms-bolditalic);
+  font-size: 19.6px;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.lato-black-white-41-8px {
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 41.8px;
+  font-style: italic;
+  font-weight: 900;
+}
+
+:root {
+}
