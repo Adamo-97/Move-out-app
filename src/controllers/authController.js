@@ -107,8 +107,6 @@ exports.login = (req, res) => {
     const email = req.body['your-email1'];  
     const password = req.body['your-password1'];
 
-    console.log("Received login request for email:", email);  // Debug statement to track the incoming email
-
     // Query the database for the user by email
     db.query('SELECT * FROM users WHERE email = ?', [email], (err, results) => {
         if (err) {
@@ -137,7 +135,6 @@ exports.login = (req, res) => {
             }
 
             if (isMatch) {
-                console.log("Password matched, login successful for email:", email);  // Debug statement
                 req.session.userId = user.id;  // Store user ID in session
                 req.session.isAuthenticated = true;  // Set authenticated flag
                 res.redirect('/home');  // Redirect to home page
@@ -211,9 +208,9 @@ exports.logout = (req, res) => {
     req.session.destroy((err) => {
         if (err) {
             console.error(err);
-            return res.redirect('/home');  // In case of error, redirect somewhere safe
+            return res.redirect('/home');
         }
-        res.setHeader('Cache-Control', 'no-store');  // Prevent caching of the logout response
-        res.redirect('/login');  // Redirect to login after logging out
+        res.setHeader('Cache-Control', 'no-store');
+        res.redirect('/login');
     });
 };

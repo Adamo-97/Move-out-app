@@ -43,11 +43,33 @@ router.get('/home', ensureAuthenticated, (req, res) => {
     res.render('home');  // Render the home page only if authenticated
 });
 
+// Route for the 'Add Label' page
+router.get('/new-lable', ensureAuthenticated, (req, res) => {
+    res.render('new-lable');  // Render the add label page only if authenticated
+});
+
+// Route for the 'Create General Label' page
+router.get('/general-lable', ensureAuthenticated, (req, res) => {
+    res.render('general-lable');  // Render the general label creation page
+});
+
+// Route for the 'Create Hazard Label' page
+router.get('/hazard-lable', ensureAuthenticated, (req, res) => {
+    res.render('hazard-lable');  // Render the hazard label creation page
+});
+
+// Route for the 'Create Fragile Label' page
+router.get('/fragile-lable', ensureAuthenticated, (req, res) => {
+    res.render('fragile-lable');  // Render the fragile label creation page
+});
+
+
+
 // Route for handling logout
 router.get('/logout', authController.logout);
 
 // Add a new label
-router.post('/add-label', authController.addLabel);
+router.post('/new-lable', authController.addLabel);
 
 // Generate a QR code
 router.post('/generate-qr', authController.generateQRCode);
