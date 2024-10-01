@@ -63,7 +63,6 @@ CREATE TABLE user_categories (
 
 -- Function: Add a new user
 DELIMITER $$
-
 CREATE PROCEDURE add_new_user(
     IN name VARCHAR(255),
     IN email VARCHAR(255),
@@ -82,22 +81,18 @@ BEGIN
     -- Assign default categories to the new user
     CALL assign_default_categories(@new_user_id);
 END$$
-
 DELIMITER ;
 
 -- Function: Remove a user
 DELIMITER $$
-
 CREATE PROCEDURE remove_user(IN p_user_id INT)
 BEGIN
     DELETE FROM users WHERE id = p_user_id;
 END $$
-
 DELIMITER ;
 
 -- Function: Add a label and memo or QR code
 DELIMITER $$
-
 CREATE PROCEDURE add_label(
     IN p_label_name VARCHAR(255),
     IN p_user_id INT,
@@ -108,36 +103,33 @@ CREATE PROCEDURE add_label(
 BEGIN
     INSERT INTO labels (label_name, user_id, category_id, memo, public) 
     VALUES (p_label_name, p_user_id, p_category_id, p_memo, p_public);
+
+    
+        -- Return the newly inserted label ID
+    SELECT LAST_INSERT_ID() AS label_id;
 END $$
-
 DELIMITER ;
-
 
 -- Function: Generate QR code and insert into qr_codes table
 DELIMITER $$
-
-CREATE PROCEDURE generate_qr_code(IN p_label_id INT, IN p_qr_data VARCHAR(255))
+CREATE PROCEDURE generate_qr_code(IN p_label_id INT, IN p_qr_data TEXT)
 BEGIN
     INSERT INTO qr_codes (label_id, qr_code_data) 
     VALUES (p_label_id, p_qr_data);
 END $$
-
 DELIMITER ;
 
 -- Function: Delete a label (permanently delete the label)
 DELIMITER $$
-
 CREATE PROCEDURE delete_label(IN p_label_id INT)
 BEGIN
     DELETE FROM labels 
     WHERE id = p_label_id;
 END $$
-
 DELIMITER ;
 
 -- Function: Edit a label
 DELIMITER $$
-
 CREATE PROCEDURE edit_label(
     IN p_label_id INT,
     IN p_label_name VARCHAR(255),
@@ -149,12 +141,10 @@ BEGIN
     SET label_name = p_label_name, category_id = p_category_id, memo = p_memo, updated_at = CURRENT_TIMESTAMP 
     WHERE id = p_label_id;
 END $$
-
 DELIMITER ;
 
 -- Function: Verify email by checking code and updating user
 DELIMITER $$
-
 CREATE PROCEDURE verify_email(
     IN p_verification_code VARCHAR(4)
 )
@@ -163,23 +153,19 @@ BEGIN
     SET verified = TRUE
     WHERE verification_code = p_verification_code;
 END $$
-
 DELIMITER ;
 
 -- Function: Assign default categories to new users
 DELIMITER $$
-
 CREATE PROCEDURE assign_default_categories(IN new_user_id INT)
 BEGIN
     INSERT INTO user_categories (user_id, category_id)
     SELECT new_user_id, id FROM categories WHERE category_name IN ('Fragile', 'Hazard', 'General');
 END$$
-
 DELIMITER ;
 
 -- Function: Add a custom category for a user
 DELIMITER $$
-
 CREATE PROCEDURE add_custom_category(
     IN user_id INT,
     IN category_name VARCHAR(255)
@@ -200,12 +186,10 @@ BEGIN
     INSERT INTO user_categories (user_id, category_id)
     VALUES (user_id, category_id);
 END$$
-
 DELIMITER ;
 
 -- Function: Get lables for each user
 DELIMITER $$
-
 CREATE PROCEDURE get_user_labels(
     IN p_user_id INT
 )
@@ -223,7 +207,6 @@ BEGIN
     WHERE 
         user_id = p_user_id;
 END $$
-
 DELIMITER ;
 
 -- Show tables for verification

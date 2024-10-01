@@ -3,7 +3,17 @@ const db = require('../db/dbConnection');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
 const { promisify } = require('util');
+const QRCode = require('qrcode');
+const cloudinary = require('cloudinary').v2;
 require('dotenv').config({ path: './config/email.env' });
+require('dotenv').config({ path: './config/cloud.env' });
+
+// Cloudinary configuration
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 // Email verification function
 function sendVerificationEmail(user, verificationCode) {
@@ -148,28 +158,14 @@ exports.login = (req, res) => {
 };
 
 exports.addLabel = (req, res) => {
-    console.log('Request Body:', req.body); // Log the entire request body for debugging
+    console.log('Request Body:', req.body);
 
-    // Use the existing names to get the data
     const label_name = req.body['titel19'];
     const memo = req.body['start-typing-here-12'];
     const category_id = req.body.category_id;
-    const user_id = req.session.userId; // Ensure the user is logged in and user ID is stored in session
-
-    // Log the public status before conversion
-    console.log('Raw Public Status:', req.body.public, 'Type:', typeof req.body.public);
-
-    // Explicitly convert the public status to a boolean
+    const user_id = req.session.userId;
     const isPublic = (req.body.public === true || req.body.public === 'true');
 
-    // Debugging statements
-    console.log('Label Name:', label_name);
-    console.log('Category ID:', category_id);
-    console.log('Memo:', memo);
-    console.log('Public Status (Boolean):', isPublic);
-    console.log('User ID:', user_id);
-
-    // Check if user ID and label name are provided
     if (!user_id) {
         console.error('User not authenticated!');
         return res.status(401).json({ success: false, message: 'User not authenticated!' });
@@ -180,17 +176,85 @@ exports.addLabel = (req, res) => {
         return res.status(400).json({ success: false, message: 'Label name is required!' });
     }
 
-    // Call the stored procedure to add the label, including the public status
-    db.query('CALL add_label(?, ?, ?, ?, ?)', [label_name, user_id, category_id, memo, isPublic], (err) => {
-        if (err) {
-            console.error('Error adding label:', err);
-            return res.status(500).json({ success: false, message: `Error adding label: ${err.message}` });
-        }
+    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
 
-        // Successfully added the label
-        console.log('Label added successfully!');
-        res.status(200).json({ success: true });
-    });
+    // Upload the memo to Cloudinary 
+    const memoUpload = cloudinary.uploader.upload_stream(
+        {
+            folder: cloudinaryFolder,
+            public_id: 'memo',
+            resource_type: 'raw'
+        },
+        (error, result) => {
+            if (error) {
+                console.error('Error uploading memo to Cloudinary:', error);
+                return res.status(500).json({ success: false, message: 'Error uploading memo to cloud storage' });
+            }
+
+            const memoUrl = result.secure_url;
+            handleMemoUpload(memoUrl);
+        }
+    );
+
+    memoUpload.end(Buffer.from(memo, 'utf-8'));
+
+    function handleMemoUpload(memoUrl) {
+        // Call the stored procedure to add the label
+        db.query('CALL add_label(?, ?, ?, ?, ?)', [label_name, user_id, category_id, memoUrl, isPublic], (err, results) => {
+            if (err) {
+                console.error('Error adding label:', err);
+                return res.status(500).json({ success: false, message: `Error adding label: ${err.message}` });
+            }
+    
+            const labelId = results[0][0].label_id;
+            // Generate a URL for the QR code that points to the general-complete page
+            const qrData = `${req.protocol}://${req.get('host')}/general-complete?labelId=${labelId}`;
+    
+            // Generate the QR code
+            QRCode.toDataURL(qrData, (err, url) => {
+                if (err) {
+                    console.error('Error generating QR Code:', err);
+                    return res.status(500).json({ success: false, message: 'Error generating QR Code' });
+                }
+    
+                // Upload QR code to Cloudinary
+                const qrStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: cloudinaryFolder,
+                        public_id: 'qr_code',
+                        resource_type: 'image'
+                    },
+                    (error, result) => {
+                        if (error) {
+                            console.error('Error uploading QR code to Cloudinary:', error);
+                            return res.status(500).json({ success: false, message: 'Error uploading QR code to cloud storage' });
+                        }
+    
+                        const qrUrl = result.secure_url;
+    
+                        // Store the QR code URL in the database
+                        db.query('CALL generate_qr_code(?, ?)', [labelId, qrUrl], (err) => {
+                            if (err) {
+                                console.error('Error storing QR code:', err);
+                                return res.status(500).json({ success: false, message: 'Error storing QR code' });
+                            }
+    
+                            // Successfully added the label and QR code
+                            console.log('Label and QR code added successfully!');
+                            
+                            // Redirect to the general-complete page with the new label ID
+                            res.redirect(`/general-complete?labelId=${labelId}`);
+                        });
+                    }
+                );
+    
+                // Convert the base64 URL to a buffer and upload to Cloudinary
+                const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
+                const buffer = Buffer.from(base64Data, 'base64');
+                qrStream.end(buffer);
+            });
+        });
+    }
 };
 
 exports.generateQRCode = (req, res) => {

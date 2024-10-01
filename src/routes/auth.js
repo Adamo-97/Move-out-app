@@ -80,7 +80,48 @@ router.get('/general-text', ensureAuthenticated, (req, res) => {
 
 // Route for the 'General Complete' page
 router.get('/general-complete', ensureAuthenticated, (req, res) => {
-    res.render('general-complete', { query: req.query }); // Pass query parameters to the template if needed
+    const labelId = req.query.labelId;
+    console.log('Label ID in /general-complete:', labelId);
+    
+    if (!labelId) {
+        console.error('Label ID is required.');
+        return res.status(400).send('Label ID is required.');
+    }
+
+    const query = `
+        SELECT labels.label_name, qr_codes.qr_code_data 
+        FROM labels 
+        LEFT JOIN qr_codes ON labels.id = qr_codes.label_id 
+        WHERE labels.id = ?
+    `;
+
+    db.query(query, [labelId], (err, results) => {
+        if (err) {
+            console.error('Error fetching label data:', err);
+            return res.status(500).send('Server error');
+        }
+
+        console.log('Query results:', results);
+
+        if (!results || results.length === 0) {
+            console.log('No label found with the specified ID.');
+            return res.status(404).send('Label not found');
+        }
+
+        const labelData = {
+            label_name: results[0].label_name,
+            qr_data: results[0].qr_code_data
+        };
+
+        console.log('Label data being sent to template:', labelData); // New log
+
+        try {
+            res.render('general-complete', { label: labelData });
+        } catch (renderError) {
+            console.error('Error rendering general-complete:', renderError);
+            res.render('error', { message: 'An error occurred while rendering the page.' });
+        }        
+    });
 });
 
 // Route for the 'Create Hazard Label' page
