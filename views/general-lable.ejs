@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
-    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
     <meta name="viewport" content="width=1920, maximum-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
@@ -99,6 +97,7 @@
               <div class="group-231-dP9QAp">
                 <img class="path-422-Oxumpx" src="img/path-307@1x.png" alt="Path 422" />
               </div>
+              
             </div>
             <h1 class="title-7TrXuf title lato-black-white-81-1px">Titel :</h1>
             <div class="whats-inside-the-box-7TrXuf lato-black-black-40-1px">What&#39;s inside the box?..</div>
@@ -125,10 +124,10 @@
               type="text"
               required
             /></div></a
-        ><a href="/new-lable">
+        ><a href="/new-lable" id="cancel-button">
           <div class="cancel-1y0SvW smart-layers-pointers">
             <img class="cancel-zuZF9H" src="img/cancel-13@1x.png" alt="Cancel" /></div></a
-        ><a href="general-image.html">
+        ><a href="/general-image">
           <div class="upload-button-1y0SvW smart-layers-pointers">
             <div class="rectangle-75-WmHaMI"></div>
             <div class="upload-icon-WmHaMI">
@@ -147,21 +146,78 @@
         <div class="title-1y0SvW title">
           <div class="rectangle-194-qA6Ro4"></div>
           <textarea
-            class="titel-qA6Ro4 lato-black-white-55px"
-            name="titel114"
-            placeholder="What will you name your box?..."
-            type="text"
-            required
+              class="titel-qA6Ro4 lato-black-white-55px"
+              name="titel114"
+              id="label-name" 
+              placeholder="What will you name your box?..."
+              type="text"
+              required
           ></textarea>
-        </div>
-        <a href="/general-text">
+        <!-- Public switch -->
+          <div class="public-switch-container">
+            <span class="public-label">Public</span>
+            <!-- Hidden input to track the switch state -->
+            <input type="hidden" id="publicStatus" name="public" value="true">
+            <!-- Toggle switch with updated JavaScript function -->
+            <label class="switch">
+                <input type="checkbox" id="publicToggle" checked onclick="updatePublicStatus()">
+                <span class="slider"></span>
+            </label>
+          </div>        
+
+        <!-- Using the existing button for navigation -->
+        <a href="#" id="text-button">
           <div class="text-button-1y0SvW smart-layers-pointers">
-            <div class="rectangle-77-OpoWAB"></div>
-            <img class="icon-OpoWAB icon" src="img/icon-1@1x.png" alt="icon" />
-            <div class="write-a-description-OpoWAB lato-black-white-42px">Write a description</div>
-          </div></a
-        >
-      </div>
+              <div class="rectangle-77-OpoWAB"></div>
+              <img class="icon-OpoWAB icon" src="img/icon-1@1x.png" alt="icon" />
+              <div class="write-a-description-OpoWAB lato-black-white-42px">Write a description</div>
+          </div>
+        </a>
+
     </div>
+    <script>
+      function updatePublicStatus() {
+          const toggle = document.getElementById('publicToggle');
+          document.getElementById('publicStatus').value = toggle.checked ? 'true' : 'false';
+      }
+
+      document.addEventListener('DOMContentLoaded', () => {
+        const cancelButton = document.getElementById('cancel-button'); // Assuming an ID for the cancel button
+
+        // Listen for the cancel button click
+        cancelButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.history.back(); // Goes back to the previous page
+        });
+      });
+      document.addEventListener('DOMContentLoaded', () => {
+        const textButton = document.getElementById('text-button'); // Using the existing button
+        const labelNameInput = document.getElementById('label-name');
+        const publicStatusInput = document.getElementById('publicStatus');
+
+        // Check if all necessary elements are available
+        if (!labelNameInput || !publicStatusInput) {
+            console.error('Label Name input or Public Status input not found!');
+            return;
+        }
+
+        textButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default behavior
+
+            // Get the values from the input
+            const labelName = labelNameInput.value.trim();
+            const categoryId = 3; // Set category ID to 3 for "General"
+            const publicStatus = publicStatusInput.value; // Get public status
+
+            // Check if label name is provided
+            if (labelName) {
+                // Redirect to general-text page with query parameters
+                window.location.href = `/general-text?titel114=${encodeURIComponent(labelName)}&category_id=${categoryId}&public=${publicStatus}`;
+            } else {
+                alert('Please enter a label name!');
+            }
+        });
+    });
+    </script>
   </body>
 </html>

@@ -91,6 +91,7 @@ exports.signup = (req, res) => {
 
             db.query('CALL add_new_user(?, ?, ?, ?, ?)', [name, email, hashedPassword, verificationCode, false], (err) => {
                 if (err) {
+                    console.error('Error during user creation:', err.stack || err); // Log the full error stack if available
                     return res.render('signup', { message: 'Database error!' });
                 }
 
@@ -147,17 +148,48 @@ exports.login = (req, res) => {
 };
 
 exports.addLabel = (req, res) => {
-    const { label_name, category_id, memo } = req.body;
-    const user_id = req.session.userId;  // Assume the user is logged in and user_id is stored in session
+    console.log('Request Body:', req.body); // Log the entire request body for debugging
 
-    // Call the stored procedure to add the label
-    db.query('CALL add_label(?, ?, ?, ?)', [label_name, user_id, category_id, memo], (err) => {
+    // Use the existing names to get the data
+    const label_name = req.body['titel19'];
+    const memo = req.body['start-typing-here-12'];
+    const category_id = req.body.category_id;
+    const user_id = req.session.userId; // Ensure the user is logged in and user ID is stored in session
+
+    // Log the public status before conversion
+    console.log('Raw Public Status:', req.body.public, 'Type:', typeof req.body.public);
+
+    // Explicitly convert the public status to a boolean
+    const isPublic = (req.body.public === true || req.body.public === 'true');
+
+    // Debugging statements
+    console.log('Label Name:', label_name);
+    console.log('Category ID:', category_id);
+    console.log('Memo:', memo);
+    console.log('Public Status (Boolean):', isPublic);
+    console.log('User ID:', user_id);
+
+    // Check if user ID and label name are provided
+    if (!user_id) {
+        console.error('User not authenticated!');
+        return res.status(401).json({ success: false, message: 'User not authenticated!' });
+    }
+
+    if (!label_name) {
+        console.error('Label name is required!');
+        return res.status(400).json({ success: false, message: 'Label name is required!' });
+    }
+
+    // Call the stored procedure to add the label, including the public status
+    db.query('CALL add_label(?, ?, ?, ?, ?)', [label_name, user_id, category_id, memo, isPublic], (err) => {
         if (err) {
-            console.error(err);
-            return res.render('error', { message: 'Error adding label!' });
+            console.error('Error adding label:', err);
+            return res.status(500).json({ success: false, message: `Error adding label: ${err.message}` });
         }
 
-        res.redirect('/dashboard');  // Redirect to dashboard or wherever you want
+        // Successfully added the label
+        console.log('Label added successfully!');
+        res.status(200).json({ success: true });
     });
 };
 

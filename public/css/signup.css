@@ -2,7 +2,10 @@
 
 .signup {
   background-color: var(--white);
-  height: 56.25vw;
+  min-height: 100vh; /* Use full height */
+  display: flex; /* Flexbox for centering */
+  align-items: center; /* Center items vertically */
+  justify-content: center; /* Center items horizontally */
   overflow: hidden;
   overflow-x: hidden;
   position: relative;

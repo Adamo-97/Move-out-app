@@ -4,11 +4,12 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const config = require('./config/config.json'); // Load session and DB config
 
-// Import routes
-const authRoutes = require('./src/routes/auth'); // Routes for authentication
-
 // Create an Express app
 const app = express();
+
+// Middleware to parse JSON and URL-encoded data
+app.use(express.json()); // Place this after initializing 'app'
+app.use(express.urlencoded({ extended: true })); // To parse URL-encoded bodies
 
 // Configure body-parser to handle form submissions
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,6 +42,9 @@ app.use(session({
     saveUninitialized: config.session.saveUninitialized,  // Save new sessions that are not initialized
     cookie: { secure: false }  // Use false for local development
 }));
+
+// Import routes
+const authRoutes = require('./src/routes/auth');
 
 // Use routes from the `authRoutes`
 app.use('/', authRoutes);

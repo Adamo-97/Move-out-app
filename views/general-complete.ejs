@@ -16,49 +16,6 @@
     <input type="hidden" id="anPageName" name="page" value="general-complete" />
     <div class="container-center-horizontal">
       <div class="general-complete screen">
-        <div class="gb-iv90TT">
-          <div class="bg-style-muEoE1">
-            <img class="path-42-0O4GRV" src="img/path-42-1@1x.png" alt="Path 42" />
-            <img class="path-43-0O4GRV" src="img/path-288@1x.png" alt="Path 43" />
-            <img class="person-0O4GRV" src="img/person-10@1x.png" alt="Person" />
-            <img class="arrow-0O4GRV" src="img/arrow-14@1x.png" alt="Arrow" />
-            <div class="main-header-0O4GRV"></div>
-            <div class="logo-0O4GRV">
-              <div class="logo-6etndZ">
-                <div class="m-f8aqV8"><img class="path-49-Ir6R07" src="img/path-294@1x.png" alt="Path 49" /></div>
-                <div class="v-f8aqV8"><img class="path-50-WKtxkq" src="img/path-295@1x.png" alt="Path 50" /></div>
-                <div class="e-f8aqV8"><img class="path-51-HMbdPa" src="img/path-296@1x.png" alt="Path 51" /></div>
-                <div class="group-29-f8aqV8">
-                  <img class="rectangle-6-WilzYa" src="img/rectangle-11@1x.png" alt="Rectangle 6" />
-                </div>
-                <div class="group-30-f8aqV8">
-                  <img class="path-52-PE7jnr" src="img/path-297@1x.png" alt="Path 52" />
-                  <img class="path-53-PE7jnr" src="img/path-110@1x.png" alt="Path 53" />
-                  <img class="path-54-PE7jnr" src="img/path-111@1x.png" alt="Path 54" />
-                </div>
-                <div class="pin-f8aqV8">
-                  <img class="path-55-ET7qaf" src="img/path-300@1x.png" alt="Path 55" />
-                  <div class="ellipse-4-ET7qaf"></div>
-                </div>
-                <div class="box-f8aqV8">
-                  <img class="rectangle-7-7xDa2B" src="img/rectangle-12@1x.png" alt="Rectangle 7" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <a href="new-lable-clicked.html">
-          <div class="new-lable-button-iv90TT">
-            <div class="group-375-Q6cHqu smart-layers-pointers">
-              <div class="green-button-new-lable-Dv2bcl"></div>
-              <div class="x-Dv2bcl smart-layers-pointers">
-                <img class="path-464-rkXSOo" src="img/path-464-11-1x-png@1x.png" alt="Path 464" />
-                <img class="path-465-rkXSOo" src="img/path-465-10-1x-png@1x.png" alt="Path 465" />
-              </div>
-              <div class="new-lable-Dv2bcl lato-normal-white-39-8px">New lable</div>
-            </div>
-          </div></a
-        >
         <div class="main-shape-iv90TT">
           <div class="main-shape-5Sb3YF"></div>
           <img class="path-56-5Sb3YF" src="img/path-56@1x.png" alt="Path 56" />
@@ -86,40 +43,20 @@
             <div class="group-40-o0zpnV"><img class="path-71-EYjnCE" src="img/path-307@1x.png" alt="Path 71" /></div>
           </div>
         </div>
-        <div class="qr-placeholder-iv90TT"></div>
+        <div class="qr-placeholder-iv90TT">
+          <% if (label.qr_data) { %>
+            <img src="data:image/png;base64,<%= label.qr_data %>" alt="QR Code" />
+        <% } %>
+        </div>
+        
         <div class="titel-placeholder-iv90TT">
-          <div class="titel-placeholder-rMcpFE"></div>
+        <div class="titel-placeholder-rMcpFE"></div>
         </div>
         <div class="titel-placeholder-JAxmLZ">
           <div class="titel-placeholder-SSIOQa"></div>
-          <h1 class="titel-text-SSIOQa lato-black-white-50px">Box 1</h1>
+          <h1 class="titel-text-SSIOQa lato-black-white-50px"><%= label.label_name %></h1>
         </div>
-        <a href="login.html">
-          <div class="sign-out-iv90TT smart-layers-pointers">
-            <div class="group-377-pQgS19">
-              <div class="sign-out-dRcAJo montserrat-normal-torch-red-37-7px">Sign out</div>
-              <img class="path-466-dRcAJo smart-layers-pointers" src="img/path-466-10@1x.png" alt="Path 466" />
-              <div class="group-373-dRcAJo">
-                <img class="path-467-AilndB" src="img/path-467-10@1x.png" alt="Path 467" />
-                <img class="path-468-AilndB" src="img/path-468-10@1x.png" alt="Path 468" />
-              </div>
-            </div></div></a
-        ><a href="search.html">
-          <div class="search-bar-iv90TT smart-layers-pointers">
-            <a href="search.html" onclick="window.event.stopPropagation()"> <div class="search-box-0Z3Sxe"></div></a
-            ><img
-              class="search-icon-0Z3Sxe smart-layers-pointers"
-              src="img/search-icon-11-1x-png-1x-png@1x.png"
-              alt="search icon"
-            />
-            <input
-              class="seach-for-a-specific-lable-0Z3Sxe lato-black-white-30px"
-              name="seach-for-a-specific-lable-28"
-              placeholder="Seach for a specific lable ..."
-              type="text"
-              required
-            /></div></a
-        ><a href="home.html">
+          <a href="/home">
           <div class="remove-button-iv90TT smart-layers-pointers">
             <div class="remove-W8ZGGM"></div>
             <img
@@ -127,15 +64,15 @@
               src="img/remove-icon-1@1x.png"
               alt="remove icon"
             /></div></a
-        ><a href="edit-lable-general.html">
+        ><a href="/edit-lable-general">
           <div class="edit-button-iv90TT smart-layers-pointers">
             <div class="edit-u6n1IL"></div>
             <img class="edit-yx3fC4 smart-layers-pointers" src="img/edit-1@1x.png" alt="edit" /></div></a
-        ><a href="home.html">
+        ><a href="/home">
           <div class="print-button-iv90TT smart-layers-pointers">
             <div class="print-urvQAg"></div>
             <img class="path-73-urvQAg smart-layers-pointers" src="img/path-73-1@1x.png" alt="Path 73" /></div></a
-        ><a href="preview-lable-general.html">
+        ><a href="/preview-lable-general">
           <div class="prev-button-iv90TT smart-layers-pointers">
             <div class="prev-o8xOJx"></div>
             <img class="path-72-o8xOJx smart-layers-pointers" src="img/path-72-1@1x.png" alt="Path 72" /></div
