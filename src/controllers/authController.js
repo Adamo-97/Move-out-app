@@ -158,6 +158,7 @@ exports.login = (req, res) => {
 };
 
 exports.addLabel = (req, res) => {
+    console.log('--- [addLabel] Start of Function ---');
     console.log('Request Body:', req.body);
 
     const label_name = req.body['titel19'];
@@ -165,6 +166,14 @@ exports.addLabel = (req, res) => {
     const category_id = req.body.category_id;
     const user_id = req.session.userId;
     const isPublic = (req.body.public === true || req.body.public === 'true');
+
+    console.log('Received values:', {
+        label_name,
+        memo,
+        category_id,
+        user_id,
+        isPublic,
+    });
 
     if (!user_id) {
         console.error('User not authenticated!');
@@ -178,7 +187,7 @@ exports.addLabel = (req, res) => {
 
     const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
 
-    // Upload the memo to Cloudinary 
+    // Upload the memo to Cloudinary
     const memoUpload = cloudinary.uploader.upload_stream(
         {
             folder: cloudinaryFolder,
@@ -192,6 +201,7 @@ exports.addLabel = (req, res) => {
             }
 
             const memoUrl = result.secure_url;
+            console.log('[addLabel] Memo URL from Cloudinary:', memoUrl);
             handleMemoUpload(memoUrl);
         }
     );
@@ -205,18 +215,21 @@ exports.addLabel = (req, res) => {
                 console.error('Error adding label:', err);
                 return res.status(500).json({ success: false, message: `Error adding label: ${err.message}` });
             }
-    
+
             const labelId = results[0][0].label_id;
+            console.log('[handleMemoUpload] New Label ID:', labelId);
+
             // Generate a URL for the QR code that points to the general-complete page
             const qrData = `${req.protocol}://${req.get('host')}/general-complete?labelId=${labelId}`;
-    
+            console.log('[handleMemoUpload] QR Data for Code:', qrData);
+
             // Generate the QR code
             QRCode.toDataURL(qrData, (err, url) => {
                 if (err) {
                     console.error('Error generating QR Code:', err);
                     return res.status(500).json({ success: false, message: 'Error generating QR Code' });
                 }
-    
+
                 // Upload QR code to Cloudinary
                 const qrStream = cloudinary.uploader.upload_stream(
                     {
@@ -229,25 +242,26 @@ exports.addLabel = (req, res) => {
                             console.error('Error uploading QR code to Cloudinary:', error);
                             return res.status(500).json({ success: false, message: 'Error uploading QR code to cloud storage' });
                         }
-    
+
                         const qrUrl = result.secure_url;
-    
+                        console.log('[handleMemoUpload] QR Code URL from Cloudinary:', qrUrl);
+
                         // Store the QR code URL in the database
                         db.query('CALL generate_qr_code(?, ?)', [labelId, qrUrl], (err) => {
                             if (err) {
                                 console.error('Error storing QR code:', err);
                                 return res.status(500).json({ success: false, message: 'Error storing QR code' });
                             }
-    
+
                             // Successfully added the label and QR code
                             console.log('Label and QR code added successfully!');
-                            
-                            // Redirect to the general-complete page with the new label ID
-                            res.redirect(`/general-complete?labelId=${labelId}`);
+
+                            // Send JSON response with the label ID
+                            return res.status(200).json({ success: true, labelId: labelId });
                         });
                     }
                 );
-    
+
                 // Convert the base64 URL to a buffer and upload to Cloudinary
                 const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
                 const buffer = Buffer.from(base64Data, 'base64');

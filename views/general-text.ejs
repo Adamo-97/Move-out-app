@@ -198,40 +198,50 @@
               }
   
               try {
-                  // Send the data to the backend using fetch
-                  const response = await fetch('/new-lable', {
-                      method: 'POST',
-                      headers: {
-                          'Content-Type': 'application/json',
-                      },
-                      body: JSON.stringify({
-                          titel19: labelNameValue, // Use name attribute as key
-                          'start-typing-here-12': memo, // Use name attribute as key
-                          category_id: categoryId, // Use the category ID
-                          public: publicStatus, // Include the public status
-                      }),
-                  });
-  
-                  // Debugging: Log the response status and body
-                  console.log('Response Status:', response.status);
-                  const result = await response.json();
-                  console.log('Response Body:', result);
-  
-                  if (!response.ok) {
-                      console.error('Server Error:', result);
-                      alert(`Error creating label: ${result.message}`);
-                      return;
-                  }
-  
-                  if (result.success) {
-                      window.location.href = '/general-complete'; // Redirect to the completion page
-                  } else {
-                      alert('Error creating label: ' + result.message);
-                  }
-              } catch (error) {
-                  console.error('Error during label creation:', error);
-                  alert('An unexpected error occurred! Check the console for more details.');
-              }
+                // Send the data to the backend using fetch
+                const response = await fetch('/new-lable', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        titel19: labelNameValue, // Use name attribute as key
+                        'start-typing-here-12': memo, // Use name attribute as key
+                        category_id: categoryId, // Use the category ID
+                        public: publicStatus, // Include the public status
+                    }),
+                });
+
+                // Debugging: Log the response status
+                console.log('Response Status:', response.status);
+
+                // Check if the response is JSON
+                const contentType = response.headers.get('content-type');
+                let result;
+                if (contentType && contentType.includes('application/json')) {
+                    result = await response.json();
+                } else {
+                    console.error('Expected JSON response but received:', contentType);
+                    throw new Error('Unexpected response format');
+                }
+
+                console.log('Response Body:', result);
+
+                if (!response.ok) {
+                    console.error('Server Error:', result);
+                    alert(`Error creating label: ${result.message}`);
+                    return;
+                }
+
+                if (result.success) {
+                    window.location.href = `/general-complete?labelId=${result.labelId}&design_type=general`; // Redirect with labelId and design type
+                } else {
+                    alert('Error creating label: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error during label creation:', error);
+                alert('An unexpected error occurred! Check the console for more details.');
+            }
           });
       });
   </script>

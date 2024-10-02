@@ -80,11 +80,13 @@ router.get('/general-text', ensureAuthenticated, (req, res) => {
 
 // Route for the 'General Complete' page
 router.get('/general-complete', ensureAuthenticated, (req, res) => {
+    console.log('--- [/general-complete] Start of Function ---');
+
     const labelId = req.query.labelId;
-    console.log('Label ID in /general-complete:', labelId);
-    
+    console.log('[general-complete] Label ID:', labelId);
+
     if (!labelId) {
-        console.error('Label ID is required.');
+        console.error('[general-complete] Label ID is required.');
         return res.status(400).send('Label ID is required.');
     }
 
@@ -97,14 +99,14 @@ router.get('/general-complete', ensureAuthenticated, (req, res) => {
 
     db.query(query, [labelId], (err, results) => {
         if (err) {
-            console.error('Error fetching label data:', err);
+            console.error('[general-complete] Error fetching label data:', err);
             return res.status(500).send('Server error');
         }
 
-        console.log('Query results:', results);
+        console.log('[general-complete] Query results:', results);
 
         if (!results || results.length === 0) {
-            console.log('No label found with the specified ID.');
+            console.log('[general-complete] No label found with the specified ID.');
             return res.status(404).send('Label not found');
         }
 
@@ -113,14 +115,14 @@ router.get('/general-complete', ensureAuthenticated, (req, res) => {
             qr_data: results[0].qr_code_data
         };
 
-        console.log('Label data being sent to template:', labelData); // New log
+        console.log('[general-complete] Label data being sent to template:', labelData);
 
         try {
             res.render('general-complete', { label: labelData });
         } catch (renderError) {
-            console.error('Error rendering general-complete:', renderError);
-            res.render('error', { message: 'An error occurred while rendering the page.' });
-        }        
+            console.error('[general-complete] Error rendering general-complete:', renderError);
+            return res.status(500).send('Error rendering the page.');
+        }
     });
 });
 
