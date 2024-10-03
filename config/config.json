@@ -1,0 +1,17 @@
+{
+  "database": {
+    "host": "localhost",
+    "user": "dbadm",
+    "password": "P@ssw0rd",
+    "database": "moveout_app",
+    "port": 3306
+  },
+  "session": {
+    "secret": "aG5pTY6VxPh2oX94S3ePRLczNJm5TRjx90vLKb7RmTr12345@!",
+    "resave": false,
+    "saveUninitialized": true,
+    "cookie": {
+      "secure": false
+    }
+  }
+}

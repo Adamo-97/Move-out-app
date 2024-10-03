@@ -1,20 +1,15 @@
-require('dotenv').config({ path: '../../config/config.env' }); // Load environment variables from .env
 const mysql = require('mysql2');
+const config = require('../../config/config.json');
 
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
-    port: process.env.DB_PORT,
+    host: config.database.host,
+    user: config.database.user,
+    password: config.database.password,
+    database: config.database.database,
+    port: config.database.port
 });
 
 db.connect((err) => {
-    console.log('Connecting to database with the following details:');
-    console.log('Host:', process.env.DB_HOST);
-    console.log('User:', process.env.DB_USER);
-    console.log('Database:', process.env.DB_NAME);
-
     if (err) {
         console.error('Error connecting to the database:', err);
     } else {

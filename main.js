@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs'); // Not needed after removing Ngrok
-require('dotenv').config({ path: './config/config.env' }); // Load environment variables from .env
+const config = require('./config/config.json'); // Keep this for session management
 
 // Create an Express app
 const app = express();
@@ -38,10 +38,10 @@ app.use((req, res, next) => {
 
 // Set up session management using settings from config.json
 app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: process.env.SESSION_RESAVE === 'true', // Convert string to boolean
-    saveUninitialized: process.env.SESSION_SAVE_UNINITIALIZED === 'true', // Convert string to boolean
-    cookie: { secure: process.env.SESSION_COOKIE_SECURE === 'true' } // Convert string to boolean
+    secret: process.env.SESSION_SECRET || config.session.secret, // Use environment variable for session secret
+    resave: config.session.resave,
+    saveUninitialized: config.session.saveUninitialized,
+    cookie: { secure: process.env.NODE_ENV === 'production' } // Secure cookies in production
 }));
 
 // Import routes
@@ -56,3 +56,5 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+
+// No need for Ngrok or its shutdown process on Render

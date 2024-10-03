@@ -220,7 +220,7 @@ exports.addLabel = (req, res) => {
             console.log('[handleMemoUpload] New Label ID:', labelId);
 
             // Generate a URL for the QR code that points to the general-complete page
-            const qrData = `${config.baseUrl}/general-complete?labelId=${labelId}`;
+            const qrData = `${req.protocol}://${req.get('host')}/general-complete?labelId=${labelId}`;
             console.log('[handleMemoUpload] QR Data for Code:', qrData);
 
             // Generate the QR code
@@ -229,6 +229,7 @@ exports.addLabel = (req, res) => {
                     console.error('Error generating QR Code:', err);
                     return res.status(500).json({ success: false, message: 'Error generating QR Code' });
                 }
+
                 // Upload QR code to Cloudinary
                 const qrStream = cloudinary.uploader.upload_stream(
                     {
