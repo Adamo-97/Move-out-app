@@ -3,7 +3,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const fs = require('fs'); // Not needed after removing Ngrok
-require('dotenv').config(); // Load environment variables from .env
+require('dotenv').config({ path: './config/config.env' }); // Load environment variables from .env
 
 // Create an Express app
 const app = express();
