@@ -56,9 +56,10 @@ router.get('/home', ensureAuthenticated, (req, res) => {
 
         // The results from a stored procedure call are in the first element of the array
         const userBoxes = results[0];
+        console.log('Fetched labels:', userBoxes); // Debug: Check if QR data is present
 
         // Render the home page with the user's boxes
-        res.render('home', { boxes: userBoxes });
+        res.render('home', { labels: userBoxes });
     });
 });
 
@@ -66,7 +67,18 @@ router.get('/home', ensureAuthenticated, (req, res) => {
 router.get('/new-lable', ensureAuthenticated, (req, res) => {
     res.render('new-lable');  // Render the add label page only if authenticated
 });
-router.post('/new-lable', authController.addLabel); 
+// Route for creating a new label
+router.post('/new-lable', (req, res) => {
+    // Assuming the label creation logic is in the authController
+    authController.addLabel(req, res, (err) => {
+        if (err) {
+            console.error('Error creating label:', err);
+            return res.status(500).send('Server error');
+        }
+        // Redirect to /home after the label is successfully created
+        res.redirect('/home');
+    });
+});
 
 // Route for the 'Create General Label' page
 router.get('/general-lable', ensureAuthenticated, (req, res) => {

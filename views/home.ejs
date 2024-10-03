@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/home.css" />
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
+    <link rel="stylesheet" type="text/css" href="css/general-complete.css">
   </head>
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="home" />
@@ -84,5 +85,20 @@
         ></a>
       </div>
     </div>
+
+    <div class="cards">
+      <% labels.forEach(function(label) { %>
+        <div class="label-container">
+          <% if (label.category_id === 3) { %>
+            <%- include('general-complete', { label: { label_name: label.label_name, qr_data: label.qr_code_data } }) %>
+          <% } else if (label.category_id === 2) { %>
+            <%- include('hazard-complete', { label: { label_name: label.label_name, qr_data: label.qr_code_data } }) %>
+          <% } else if (label.category_id === 1) { %>
+            <%- include('fragile-complete', { label: { label_name: label.label_name, qr_data: label.qr_code_data } }) %>
+          <% } %>
+        </div>
+      <% }); %>
+    </div>
+
   </body>
 </html>

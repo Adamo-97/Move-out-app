@@ -188,26 +188,42 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Function: Get lables for each user
+-- Function: Get labels for each user
 DELIMITER $$
 CREATE PROCEDURE get_user_labels(
     IN p_user_id INT
 )
 BEGIN
     SELECT 
-        id AS label_id,
-        label_name,
-        category_id,
-        memo,
-        public,
-        created_at,
-        updated_at
+        labels.id AS label_id,
+        labels.label_name,
+        labels.category_id,
+        labels.memo,
+        labels.public,
+        labels.created_at,
+        labels.updated_at,
+        qr_codes.qr_code_data  -- Include QR code data
     FROM 
         labels
+    LEFT JOIN 
+        qr_codes ON labels.id = qr_codes.label_id  -- Join with qr_codes table
     WHERE 
-        user_id = p_user_id;
+        labels.user_id = p_user_id;
 END $$
 DELIMITER ;
+
+-- Function to share lables between users 
+CREATE TABLE shared_labels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sender_id INT NOT NULL,
+    recipient_id INT NOT NULL,
+    label_id INT NOT NULL,
+    status ENUM('pending', 'accepted', 'declined') DEFAULT 'pending',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (recipient_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (label_id) REFERENCES labels(id) ON DELETE CASCADE
+);
 
 -- Show tables for verification
 SHOW TABLES;

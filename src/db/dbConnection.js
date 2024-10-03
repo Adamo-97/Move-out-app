@@ -1,12 +1,12 @@
+require('dotenv').config(); // Load environment variables from .env
 const mysql = require('mysql2');
-const config = require('../../config/config.json');
 
 const db = mysql.createConnection({
-    host: config.database.host,
-    user: config.database.user,
-    password: config.database.password,
-    database: config.database.database,
-    port: config.database.port
+    host: process.env.DB_HOST || 'localhost',
+    user: process.env.DB_USER || 'dbadm',
+    password: process.env.DB_PASSWORD || 'P@ssw0rd',
+    database: process.env.DB_NAME || 'moveout_app',
+    port: process.env.DB_PORT || 3000
 });
 
 db.connect((err) => {

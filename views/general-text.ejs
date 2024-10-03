@@ -234,7 +234,8 @@
                 }
 
                 if (result.success) {
-                    window.location.href = `/general-complete?labelId=${result.labelId}&design_type=general`; // Redirect with labelId and design type
+                    // Redirect to the URL provided in the server response
+                    window.location.href = result.redirectUrl;
                 } else {
                     alert('Error creating label: ' + result.message);
                 }

@@ -6,11 +6,21 @@
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <link rel="stylesheet" type="text/css" href="css/general-complete.css" />
-    <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
-    <link rel="stylesheet" type="text/css" href="css/globals.css" />
+    <style>
+        .general-complete.screen {
+            display: grid; /* Make this a grid container */
+            grid-template-columns: 1fr; /* Single column layout */
+            gap: 1vw; /* Adjust as necessary for spacing */
+            position: relative; /* Keep the positioning context */
+        }
+
+        .qr-placeholder-iv90TT, .titel-placeholder-JAxmLZ, .remove-button-iv90TT,
+        .edit-button-iv90TT, .print-button-iv90TT, .prev-button-iv90TT {
+            grid-column: 1; /* All elements will take the full column */
+        }
+    </style>
 </head>
-<body style="margin: 0; background: #ffffff">
+<body style="margin: 0;">
     <input type="hidden" id="anPageName" name="page" value="general-complete" />
     
         <div class="label-container">
@@ -51,10 +61,6 @@
                             <p>QR Code data is not available</p>
                         <% } %>
                     </div>  
-
-                    <div class="titel-placeholder-iv90TT">
-                        <div class="titel-placeholder-rMcpFE"></div>
-                    </div>
 
                     <div class="titel-placeholder-JAxmLZ">
                         <div class="titel-placeholder-SSIOQa"></div>

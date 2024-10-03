@@ -498,50 +498,9 @@
   transform: rotate(15deg);
 }
 
-/* Scale the entire label on hover and center the effect */
-.label-container {
-  transform-origin: center; /* Ensures scaling happens from the center */
-  transition: transform 0.3s ease; /* Smooth scaling transition */
-}
-
-.label-container:hover {
-  transform: scale(1.05); /* Scale the whole label */
-}
-
-/* Initially hide the icons above their final position */
-.label-container .prev-button-iv90TT,
-.label-container .print-button-iv90TT,
-.label-container .edit-button-iv90TT,
-.label-container .remove-button-iv90TT {
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-20px); /* Move icons upwards initially */
-  transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease; /* Smooth transition for showing/hiding */
-}
-
-/* Show and "fall in" the icons one by one on hover */
-.label-container:hover .prev-button-iv90TT,
-.label-container:hover .print-button-iv90TT,
-.label-container:hover .edit-button-iv90TT,
-.label-container:hover .remove-button-iv90TT {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0); /* Bring icons to their original position */
-}
-
-/* Add delay to each button for staggered falling effect */
-.label-container:hover .prev-button-iv90TT {
-  transition-delay: 0.1s;
-}
-
-.label-container:hover .print-button-iv90TT {
-  transition-delay: 0.2s;
-}
-
-.label-container:hover .edit-button-iv90TT {
-  transition-delay: 0.3s;
-}
-
-.label-container:hover .remove-button-iv90TT {
-  transition-delay: 0.4s;
+.general-complete.screen {
+  display: grid; /* Make this a grid container */
+  grid-template-columns: 1fr; /* Adjust to your needs (single column layout) */
+  gap: 1vw; /* Space between elements, adjust as needed */
+  position: relative; /* Maintain the positioning context */
 }

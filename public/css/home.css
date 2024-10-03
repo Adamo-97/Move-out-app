@@ -498,3 +498,33 @@
 .home .seach-for-a-specific-lable-LvIzbA::placeholder {
   color: #ffffff99;
 }
+
+.cards {
+  display: grid; /* Use grid layout */
+  gap: 320px 400px; /* Vertical and horizontal gaps */
+  max-width: 1200px; /* Set maximum width */
+  margin: -1390px auto 0; /* Push up further */
+  grid-template-columns: repeat(4, 1fr); /* 4 columns, equally spaced */
+  justify-content: center; /* Center the grid items horizontally */
+  padding: 20px; /* Maintain padding around the container */
+  transform: translateX(-620px); /* Push more to the left */
+  position: relative; /* Required to set z-index */
+  z-index: 0; /* Send the grid behind other elements */
+}
+
+.label-container {
+  margin-bottom: 20px; /* Add extra space below each label */
+  width: 100%; /* Fit within the grid cell */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.general-complete, .hazard-complete, .fragile-complete {
+  width: 100%; /* Ensure they fit within the label container */
+  height: auto;
+  position: relative; /* Reset positioning */
+  box-sizing: border-box; /* Include padding and border in width */
+}

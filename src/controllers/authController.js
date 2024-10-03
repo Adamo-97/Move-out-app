@@ -7,6 +7,7 @@ const QRCode = require('qrcode');
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config({ path: './config/email.env' });
 require('dotenv').config({ path: './config/cloud.env' });
+const config = require('../../config/config.json'); // Make sure this is at the top of your file
 
 // Cloudinary configuration
 cloudinary.config({
@@ -220,7 +221,7 @@ exports.addLabel = (req, res) => {
             console.log('[handleMemoUpload] New Label ID:', labelId);
 
             // Generate a URL for the QR code that points to the general-complete page
-            const qrData = `${req.protocol}://${req.get('host')}/general-complete?labelId=${labelId}`;
+            const qrData = `${config.baseUrl}/general-complete?labelId=${labelId}`;
             console.log('[handleMemoUpload] QR Data for Code:', qrData);
 
             // Generate the QR code
@@ -229,7 +230,6 @@ exports.addLabel = (req, res) => {
                     console.error('Error generating QR Code:', err);
                     return res.status(500).json({ success: false, message: 'Error generating QR Code' });
                 }
-
                 // Upload QR code to Cloudinary
                 const qrStream = cloudinary.uploader.upload_stream(
                     {
@@ -252,12 +252,16 @@ exports.addLabel = (req, res) => {
                                 console.error('Error storing QR code:', err);
                                 return res.status(500).json({ success: false, message: 'Error storing QR code' });
                             }
-
+                        
                             // Successfully added the label and QR code
                             console.log('Label and QR code added successfully!');
-
-                            // Send JSON response with the label ID
-                            return res.status(200).json({ success: true, labelId: labelId });
+                        
+                            // Send JSON response with the redirect URL and labelId
+                            return res.status(200).json({ 
+                                success: true, 
+                                labelId: labelId, 
+                                redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` 
+                            });
                         });
                     }
                 );
