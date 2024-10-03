@@ -7,7 +7,6 @@ const QRCode = require('qrcode');
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config({ path: './config/email.env' });
 require('dotenv').config({ path: './config/cloud.env' });
-const config = require('../../config/config.json'); // Make sure this is at the top of your file
 
 // Cloudinary configuration
 cloudinary.config({
