@@ -104,7 +104,6 @@ BEGIN
     INSERT INTO labels (label_name, user_id, category_id, memo, public) 
     VALUES (p_label_name, p_user_id, p_category_id, p_memo, p_public);
 
-    
         -- Return the newly inserted label ID
     SELECT LAST_INSERT_ID() AS label_id;
 END $$
@@ -123,6 +122,11 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE delete_label(IN p_label_id INT)
 BEGIN
+    -- Delete from the child table (qr_codes) first if it exists
+    DELETE FROM qr_codes 
+    WHERE label_id = p_label_id;
+
+    -- Delete from the parent table (labels)
     DELETE FROM labels 
     WHERE id = p_label_id;
 END $$
@@ -224,6 +228,46 @@ CREATE TABLE shared_labels (
     FOREIGN KEY (recipient_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (label_id) REFERENCES labels(id) ON DELETE CASCADE
 );
+
+--filtering and sorting of labels based on the various criteria
+DELIMITER $$
+CREATE PROCEDURE filter_user_labels(
+    IN p_user_id INT,
+    IN p_search_keyword VARCHAR(255),
+    IN p_order_by_date ENUM('asc', 'desc'),
+    IN p_category_id INT,
+    IN p_public_only BOOLEAN
+)
+BEGIN
+    SELECT 
+        labels.id AS label_id,
+        labels.label_name,
+        labels.category_id,
+        labels.memo,
+        labels.public,
+        labels.created_at,
+        labels.updated_at,
+        qr_codes.qr_code_data
+    FROM 
+        labels
+    LEFT JOIN 
+        qr_codes ON labels.id = qr_codes.label_id
+    WHERE 
+        labels.user_id = p_user_id
+        AND (p_search_keyword IS NULL OR labels.label_name LIKE CONCAT('%', p_search_keyword, '%'))
+        AND (p_category_id IS NULL OR labels.category_id = p_category_id)
+        AND (p_public_only IS NULL OR labels.public = p_public_only)
+    ORDER BY 
+        CASE 
+            WHEN p_order_by_date = 'asc' THEN labels.created_at
+            ELSE NULL
+        END ASC,
+        CASE 
+            WHEN p_order_by_date = 'desc' THEN labels.created_at
+            ELSE NULL
+        END DESC;
+END $$
+DELIMITER ;
 
 -- Show tables for verification
 SHOW TABLES;

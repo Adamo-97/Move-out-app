@@ -138,6 +138,16 @@ router.get('/general-complete', ensureAuthenticated, (req, res) => {
     });
 });
 
+// Route for handling label deletion within home
+router.delete('/home', ensureAuthenticated, authController.deleteLabel);
+
+// Route for the voice page 
+router.get('/general-voice', ensureAuthenticated, (req, res) => {
+    res.render('general-voice', { query: req.query }); // Pass query parameters to the template
+});
+// Route for creating a new voice label
+router.post('/general-voice', ensureAuthenticated, authController.addVoiceLabel);
+
 // Route for the 'Create Hazard Label' page
 router.get('/hazard-lable', ensureAuthenticated, (req, res) => {
     res.render('hazard-lable');  // Render the hazard label creation page

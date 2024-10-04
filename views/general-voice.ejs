@@ -45,7 +45,7 @@
             </div>
           </div>
         </div>
-        <a href="new-lable-clicked.html">
+        <a href="/new-lable">
           <div class="new-lable-button-AFDyxE">
             <div class="group-375-ku06eJ smart-layers-pointers">
               <div class="green-button-new-lable-JS14HT"></div>
@@ -134,7 +134,7 @@
         </div>
         <div class="timer-AFDyxE"><div class="x0000-3FzQFZ comicsansms-bolditalic-normal-white-19-6px">00:00</div></div>
         <div class="mic-icon-AFDyxE"><img class="mic-icon-WvRDGJ" src="img/mic-icon-1@1x.png" alt="Mic icon" /></div>
-        <a href="login.html">
+        <a href="/login">
           <div class="sign-out-AFDyxE smart-layers-pointers">
             <div class="group-377-WAhCuO">
               <div class="sign-out-2ADK9h montserrat-normal-torch-red-37-7px">Sign out</div>
@@ -144,7 +144,7 @@
                 <img class="path-468-M4IrvE" src="img/path-468-10@1x.png" alt="Path 468" />
               </div>
             </div></div></a
-        ><a href="search.html">
+        ><a href="/search">
           <div class="search-bar-AFDyxE smart-layers-pointers">
             <a href="search.html" onclick="window.event.stopPropagation()"> <div class="search-box-qxaQZr"></div></a
             ><img
@@ -159,10 +159,10 @@
               type="text"
               required
             /></div></a
-        ><a href="new-lable-clicked.html">
+        ><a href="/new-lable">
           <div class="cancel-AFDyxE smart-layers-pointers">
             <img class="cancel-JUmw9V" src="img/cancel-13@1x.png" alt="Cancel" /></div></a
-        ><a href="general-complete.html">
+        ><a href="/general-complete">
           <div class="done-AFDyxE smart-layers-pointers">
             <img class="done-dMPZbd" src="img/done-1@1x.png" alt="Done" /></div
         ></a>
@@ -178,5 +178,99 @@
         </div>
       </div>
     </div>
+    <script>
+      let mediaRecorder;
+      let audioChunks = [];
+      let timerInterval;
+      let maxRecordingTime = 300; // 5 minutes in seconds
+      let elapsedTime = 0;
+      
+      const startButton = document.querySelector('.start-recording-fFzO8k');
+      const stopButton = document.querySelector('.stop-recording-mVqemf');
+      const timerDisplay = document.querySelector('.timer-AFDyxE .x0000-3FzQFZ');
+      const timelineProgress = document.querySelector('.timeline-progress-Jx4Dnz');
+  
+      // Function to format time in MM:SS format
+      function formatTime(seconds) {
+          const mins = Math.floor(seconds / 60);
+          const secs = seconds % 60;
+          return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+  
+      // Function to start the recording
+      startButton.addEventListener('click', () => {
+          if (mediaRecorder && mediaRecorder.state === "recording") return; // Prevent multiple recordings
+  
+          navigator.mediaDevices.getUserMedia({ audio: true })
+              .then(stream => {
+                  mediaRecorder = new MediaRecorder(stream);
+                  mediaRecorder.start();
+                  audioChunks = [];
+  
+                  mediaRecorder.ondataavailable = event => {
+                      audioChunks.push(event.data);
+                  };
+  
+                  mediaRecorder.onstop = handleRecordingStop;
+  
+                  // Start timer and timeline animation
+                  elapsedTime = 0;
+                  timerDisplay.textContent = formatTime(elapsedTime);
+                  timelineProgress.style.width = '0%';
+  
+                  timerInterval = setInterval(() => {
+                      elapsedTime++;
+                      timerDisplay.textContent = formatTime(elapsedTime);
+                      timelineProgress.style.width = `${(elapsedTime / maxRecordingTime) * 100}%`;
+  
+                      // Stop recording automatically after 5 minutes
+                      if (elapsedTime >= maxRecordingTime) {
+                          stopRecording();
+                      }
+                  }, 1000);
+              });
+      });
+  
+      // Function to stop the recording
+      stopButton.addEventListener('click', stopRecording);
+  
+      function stopRecording() {
+          if (mediaRecorder && mediaRecorder.state === "recording") {
+              mediaRecorder.stop();
+              clearInterval(timerInterval);
+          }
+      }
+  
+      // Function to handle recording stop event
+      function handleRecordingStop() {
+          const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+          const audioUrl = URL.createObjectURL(audioBlob);
+          const audio = document.createElement('audio');
+          audio.src = audioUrl;
+          document.body.appendChild(audio);
+  
+          // Store the audio blob to be sent to the server
+          const formData = new FormData();
+          formData.append('audioMemo', audioBlob, 'voice-memo.wav');
+  
+          // Send the audio memo to the server
+          fetch('/new-voice-label', {
+              method: 'POST',
+              body: formData
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  window.location.href = data.redirectUrl;
+              } else {
+                  alert('Error uploading voice memo.');
+              }
+          })
+          .catch(error => {
+              console.error('Error uploading voice memo:', error);
+          });
+      }
+  </script>
+  
   </body>
 </html>

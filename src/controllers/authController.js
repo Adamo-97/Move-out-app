@@ -275,47 +275,191 @@ exports.addLabel = (req, res) => {
     }
 };
 
-exports.generateQRCode = (req, res) => {
-    const { label_id, qr_data } = req.body;
+exports.addVoiceLabel = (req, res) => {
+    const label_name = req.body['titel110']; // Note: Adjust field name to match your form
+    const category_id = req.body.category_id;
+    const user_id = req.session.userId;
+    const isPublic = (req.body.public === true || req.body.public === 'true');
+    const audioMemo = req.files.audioMemo; // Assuming `express-fileupload` is used for handling file uploads
 
-    // Call the stored procedure to generate a QR code for the label
-    db.query('CALL generate_qr_code(?, ?)', [label_id, qr_data], (err) => {
-        if (err) {
-            console.error(err);
-            return res.render('error', { message: 'Error generating QR code!' });
+    if (!user_id) {
+        console.error('User not authenticated!');
+        return res.status(401).json({ success: false, message: 'User not authenticated!' });
+    }
+
+    if (!label_name) {
+        console.error('Label name is required!');
+        return res.status(400).json({ success: false, message: 'Label name is required!' });
+    }
+
+    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
+
+    // Upload the audio memo to Cloudinary
+    cloudinary.uploader.upload_stream(
+        {
+            folder: cloudinaryFolder,
+            public_id: 'voice-memo',
+            resource_type: 'video' // Use video resource type for audio
+        },
+        (error, result) => {
+            if (error) {
+                console.error('Error uploading audio memo to Cloudinary:', error);
+                return res.status(500).json({ success: false, message: 'Error uploading audio memo to cloud storage' });
+            }
+
+            const audioUrl = result.secure_url;
+            console.log('[addVoiceLabel] Audio URL from Cloudinary:', audioUrl);
+
+            // Call the stored procedure to add the label
+            db.query('CALL add_label(?, ?, ?, ?, ?)', [label_name, user_id, category_id, audioUrl, isPublic], (err, results) => {
+                if (err) {
+                    console.error('Error adding label:', err);
+                    return res.status(500).json({ success: false, message: `Error adding label: ${err.message}` });
+                }
+
+                const labelId = results[0][0].label_id;
+                console.log('[addVoiceLabel] New Label ID:', labelId);
+
+                // Generate a URL for the QR code that points to the general-complete page
+                const qrData = `${req.protocol}://${req.get('host')}/general-complete?labelId=${labelId}`;
+                console.log('[addVoiceLabel] QR Data for Code:', qrData);
+
+                // Generate the QR code
+                QRCode.toDataURL(qrData, (err, url) => {
+                    if (err) {
+                        console.error('Error generating QR Code:', err);
+                        return res.status(500).json({ success: false, message: 'Error generating QR Code' });
+                    }
+
+                    // Upload QR code to Cloudinary
+                    const qrStream = cloudinary.uploader.upload_stream(
+                        {
+                            folder: cloudinaryFolder,
+                            public_id: 'qr_code',
+                            resource_type: 'image'
+                        },
+                        (error, result) => {
+                            if (error) {
+                                console.error('Error uploading QR code to Cloudinary:', error);
+                                return res.status(500).json({ success: false, message: 'Error uploading QR code to cloud storage' });
+                            }
+
+                            const qrUrl = result.secure_url;
+                            console.log('[addVoiceLabel] QR Code URL from Cloudinary:', qrUrl);
+
+                            // Store the QR code URL in the database
+                            db.query('CALL generate_qr_code(?, ?)', [labelId, qrUrl], (err) => {
+                                if (err) {
+                                    console.error('Error storing QR code:', err);
+                                    return res.status(500).json({ success: false, message: 'Error storing QR code' });
+                                }
+                                
+                                // Successfully added the label and QR code
+                                console.log('Label and QR code added successfully!');
+                                
+                                // Send JSON response with the redirect URL and labelId
+                                return res.status(200).json({ 
+                                    success: true, 
+                                    labelId: labelId, 
+                                    redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` 
+                                });
+                            });
+                        }
+                    );
+
+                    // Convert the base64 URL to a buffer and upload to Cloudinary
+                    const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
+                    const buffer = Buffer.from(base64Data, 'base64');
+                    qrStream.end(buffer);
+                });
+            });
+        }
+    ).end(audioMemo.data);
+};
+
+exports.deleteLabel = (req, res) => {
+    const labelId = req.body.labelId;
+    const userId = req.session.userId;
+
+    if (!labelId || !userId) {
+        console.error('Label ID or User ID is missing.');
+        return res.status(400).json({ success: false, message: 'Label ID and user authentication are required.' });
+    }
+
+    // Fetch the label_name from the database using the label ID
+    db.query('SELECT label_name FROM labels WHERE id = ? AND user_id = ?', [labelId, userId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error fetching label data or label not found:', err);
+            return res.status(500).json({ success: false, message: 'Error fetching label data.' });
         }
 
-        res.redirect('/dashboard');  // Redirect to dashboard or wherever you want
+        const labelName = results[0].label_name;
+        const cloudinaryFolder = `users/${userId}/labels/${labelName}`;
+        console.log(`Attempting to delete resources within Cloudinary folder: ${cloudinaryFolder}`);
+
+        // Helper function to delete all resources within the folder
+        const deleteAllResources = (callback) => {
+            // Step 1: Delete raw resources
+            cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { resource_type: 'raw', invalidate: true }, (rawDeleteError, rawDeleteResult) => {
+                if (rawDeleteError) {
+                    console.error('Error deleting raw resources from Cloudinary:', rawDeleteError);
+                } else {
+                    console.log(`Deleted raw resources within folder: ${cloudinaryFolder}`, rawDeleteResult);
+                }
+
+                // Step 2: Delete image resources
+                cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { resource_type: 'image', invalidate: true }, (imageDeleteError, imageDeleteResult) => {
+                    if (imageDeleteError) {
+                        console.error('Error deleting image resources from Cloudinary:', imageDeleteError);
+                    } else {
+                        console.log(`Deleted image resources within folder: ${cloudinaryFolder}`, imageDeleteResult);
+                    }
+
+                    // Step 3: Delete video resources
+                    cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { resource_type: 'video', invalidate: true }, (videoDeleteError, videoDeleteResult) => {
+                        if (videoDeleteError) {
+                            console.error('Error deleting video resources from Cloudinary:', videoDeleteError);
+                        } else {
+                            console.log(`Deleted video resources within folder: ${cloudinaryFolder}`, videoDeleteResult);
+                        }
+
+                        // Call the callback to proceed
+                        callback();
+                    });
+                });
+            });
+        };
+
+        // Step 1: Delete all resources within the folder and respond to the user
+        deleteAllResources(() => {
+            // Step 2: Delete the label from the database
+            db.query('CALL delete_label(?)', [labelId], (err) => {
+                if (err) {
+                    console.error('Error deleting label from database:', err);
+                    return res.status(500).json({ success: false, message: 'Error deleting label from database.' });
+                }
+
+                console.log('Label deleted from the database successfully.');
+                // Respond to the user immediately
+                res.status(200).json({ success: true, message: 'Label deleted successfully!' });
+
+                // Step 3: Schedule folder deletion in the background
+                setTimeout(() => {
+                    console.log(`Attempting to delete the folder ${cloudinaryFolder} in the background...`);
+
+                    cloudinary.api.delete_folder(cloudinaryFolder, (folderError, folderResult) => {
+                        if (folderError) {
+                            console.error('Error deleting folder from Cloudinary:', folderError);
+                        } else {
+                            console.log(`Deleted folder: ${cloudinaryFolder}`, folderResult);
+                        }
+                    });
+                }, 300000); // 300000 ms = 5 minutes
+            });
+        });
     });
 };
 
-exports.archiveLabel = (req, res) => {
-    const { label_id } = req.body;
-
-    // Call the stored procedure to archive the label
-    db.query('CALL archive_label(?)', [label_id], (err) => {
-        if (err) {
-            console.error(err);
-            return res.render('error', { message: 'Error archiving label!' });
-        }
-
-        res.redirect('/dashboard');
-    });
-};
-
-exports.editLabel = (req, res) => {
-    const { label_id, label_name, category_id, memo } = req.body;
-
-    // Call the stored procedure to edit the label
-    db.query('CALL edit_label(?, ?, ?, ?)', [label_id, label_name, category_id, memo], (err) => {
-        if (err) {
-            console.error(err);
-            return res.render('error', { message: 'Error editing label!' });
-        }
-
-        res.redirect('/dashboard');
-    });
-};
 
 // Handle logout logic
 exports.logout = (req, res) => {

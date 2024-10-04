@@ -90,7 +90,8 @@
       <% labels.forEach(function(label) { %>
         <div class="label-container">
           <% if (label.category_id === 3) { %>
-            <%- include('general-complete', { label: { label_name: label.label_name, qr_data: label.qr_code_data } }) %>
+            <%- include('general-complete', { label: { label_id: label.label_id, label_name: label.label_name, qr_data: label.qr_code_data } }) %>
+
           <% } else if (label.category_id === 2) { %>
             <%- include('hazard-complete', { label: { label_name: label.label_name, qr_data: label.qr_code_data } }) %>
           <% } else if (label.category_id === 1) { %>

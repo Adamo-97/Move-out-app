@@ -71,14 +71,11 @@
                         <% } %>
                     </div>
 
-                    <!-- Fixed the incorrect nesting of <a> and <div> elements -->
-                    <a href="/home">
-                        <div class="remove-button-iv90TT smart-layers-pointers">
-                            <div class="remove-W8ZGGM"></div>
-                            <img class="remove-icon-W8ZGGM smart-layers-pointers" src="img/remove-icon-1@1x.png" alt="remove icon" />
-                        </div>
-                    </a>
-
+                    <div class="remove-button-iv90TT smart-layers-pointers" data-label-id="<%= label.label_id %>">
+                        <div class="remove-W8ZGGM"></div>
+                        <img class="remove-icon-W8ZGGM smart-layers-pointers" src="img/remove-icon-1@1x.png" alt="remove icon" />
+                    </div>
+                    
                     <a href="/edit-lable-general">
                         <div class="edit-button-iv90TT smart-layers-pointers">
                             <div class="edit-u6n1IL"></div>
@@ -102,6 +99,65 @@
                 </div>
             </div>
         </div>
-
+        <script>
+            // Function to handle label deletion
+            function handleLabelDeletion(button) {
+                const labelId = button.getAttribute('data-label-id');
+        
+                if (!labelId) {
+                    console.error('Label ID not found.');
+                    return;
+                }
+        
+                console.log('Delete button clicked for label ID:', labelId);
+        
+                // Confirm deletion with the user
+                if (!confirm('Are you sure you want to delete this label?')) {
+                    return;
+                }
+        
+                // Make an AJAX call to delete the label
+                fetch('/home', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ labelId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Label deleted successfully!');
+                        // Remove the label element from the DOM
+                        button.closest('.label-container').remove();
+                    } else {
+                        alert('Error deleting label: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting label:', error);
+                    alert('Error deleting label.');
+                });
+            }
+        
+            // Handle the first label separately
+            const firstLabelButton = document.querySelector('.remove-button-iv90TT');
+            if (firstLabelButton) {
+                firstLabelButton.addEventListener('click', function () {
+                    handleLabelDeletion(firstLabelButton);
+                });
+            }
+        
+            // Event delegation for all other labels
+            document.addEventListener('click', function(event) {
+                const button = event.target.closest('.remove-button-iv90TT');
+        
+                // Ignore the first label button as it's handled separately
+                if (button && button !== firstLabelButton) {
+                    handleLabelDeletion(button);
+                }
+            });
+        </script>
+        
 </body>
 </html>
