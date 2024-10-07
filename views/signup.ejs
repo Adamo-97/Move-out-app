@@ -483,34 +483,43 @@
       </div>
     </div>
     <script>
+      document.querySelector('form').addEventListener('submit', function(e) {
+        let name = document.querySelector("input[name='your-name2']").value.trim();
+        let email = document.querySelector("input[name='your-email2']").value.trim();
+        let password = document.querySelector("input[name='your-password2']").value;
+        let confirmPassword = document.querySelector("input[name='confirm-password2']").value;
 
-      let name = document.querySelector("input[name='your-name2']").value.trim();
-      let email = document.querySelector("input[name='your-email2']").value.trim();
-      let password = document.querySelector("input[name='your-password2']").value;
-      let confirmPassword = document.querySelector("input[name='confirm-password2']").value;
+        // Validation for form fields
+        if (!name || !email || !password || !confirmPassword) {
+          e.preventDefault(); // Prevent form submission
+          alert("Please fill out all fields.");
+          return;
+        }
 
-      // validation for form fields
-      if (!name || !email || !password || !confirmPassword) {
-        e.preventDefault(); // Prevent form submission
-        alert("Please fill out all fields.");
-        return;
-      }
+        // Email validation
+        let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+        if (!emailPattern.test(email)) {
+          e.preventDefault();
+          alert("Please enter a valid email address.");
+          return;
+        }
 
-      // Password and confirm password should match
-      if (password !== confirmPassword) {
-        e.preventDefault();
-        alert("Passwords do not match.");
-        return;
-      }
+        // Password validation
+        let passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+        if (!passwordPattern.test(password)) {
+          e.preventDefault();
+          alert("Password must be at least 6 characters long, include an uppercase letter, a lowercase letter, a number, and a special character.");
+          return;
+        }
 
-      // email validation
-      let emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-      if (!emailPattern.test(email)) {
-        e.preventDefault();
-        alert("Please enter a valid email address.");
-        return;
-      }
-
+        // Password and confirm password should match
+        if (password !== confirmPassword) {
+          e.preventDefault();
+          alert("Passwords do not match.");
+          return;
+        }
+      });
+      
       function ShowOnScroll() {
         this.toShow = [];
         this.nextEventY = undefined;

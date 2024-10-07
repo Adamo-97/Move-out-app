@@ -2,7 +2,6 @@ const bcrypt = require('bcryptjs');
 const db = require('../db/dbConnection');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const { promisify } = require('util');
 const QRCode = require('qrcode');
 const cloudinary = require('cloudinary').v2;
 require('dotenv').config({ path: './config/email.env' });
@@ -15,8 +14,8 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-// Email verification function
-function sendVerificationEmail(user, verificationCode) {
+// Helper function to send an email
+function sendEmail(to, subject, message, isHtml = false, callback) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -27,16 +26,32 @@ function sendVerificationEmail(user, verificationCode) {
 
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: user.email,
-        subject: 'Email Verification',
-        html: `Your verification code is: <b>${verificationCode}</b>. Please enter this code to verify your email.`
+        to: to,
+        subject: subject,
+        [isHtml ? 'html' : 'text']: message // Use 'html' or 'text' based on the isHtml flag
     };
 
-    transporter.sendMail(mailOptions, (err) => {
+    transporter.sendMail(mailOptions, (err, info) => {
         if (err) {
-            console.error('Error sending verification email:', err);
+            console.error('Error sending email:', err);
+            if (callback) callback(err);
+        } else {
+            console.log('Email sent:', info.response);
+            if (callback) callback(null);
         }
     });
+}
+
+// Email verification function
+function sendVerificationEmail(user, verificationCode) {
+    const message = `Your verification code is: <b>${verificationCode}</b>. Please enter this code to verify your email.`;
+    sendEmail(user.email, 'Email Verification', message, true); // Use HTML format
+}
+
+// Function to send the pin email
+function sendPinEmail(email, pin, callback) {
+    const message = `Your pin for accessing the private label is: ${pin}`;
+    sendEmail(email, 'Your Access Pin', message, false, callback); // Use plain text format
 }
 
 // Handling email verification
@@ -70,6 +85,7 @@ exports.verifyCode = (req, res) => {
 exports.signup = (req, res) => {
     const { 'your-name2': name, 'your-email2': email, 'your-password2': password, 'confirm-password2': confirmPassword } = req.body;
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
     if (!name || !email || !password || !confirmPassword) {
         return res.render('signup', { message: 'All fields are required!' });
@@ -77,6 +93,10 @@ exports.signup = (req, res) => {
 
     if (!emailPattern.test(email)) {
         return res.render('signup', { message: 'Please enter a valid email address!' });
+    }
+
+    if (!passwordPattern.test(password)) {
+        return res.render('signup', { message: 'Password: 6+ chars, uppercase, lowercase, number and a special charachter.' });
     }
 
     if (password !== confirmPassword) {
@@ -101,7 +121,7 @@ exports.signup = (req, res) => {
 
             db.query('CALL add_new_user(?, ?, ?, ?, ?)', [name, email, hashedPassword, verificationCode, false], (err) => {
                 if (err) {
-                    console.error('Error during user creation:', err.stack || err); // Log the full error stack if available
+                    console.error('Error during user creation:', err.stack || err);
                     return res.render('signup', { message: 'Database error!' });
                 }
 
@@ -113,8 +133,8 @@ exports.signup = (req, res) => {
 };
 
 // Handle login logic
+// TODO: Forward unverified users to the verification page
 exports.login = (req, res) => {
-    // Use the front-end field names
     const email = req.body['your-email1'];  
     const password = req.body['your-password1'];
 
@@ -126,16 +146,32 @@ exports.login = (req, res) => {
         }
 
         if (results.length === 0) {
-            console.log("User not found for email:", email);  // Debug statement
+            console.log("User not found for email:", email);
             return res.render('login', { message: 'User not found!' });
         }
 
         const user = results[0];
-        console.log("User found:", user);  // Debug statement
+        console.log("User found:", user);
 
         if (!user.verified) {
-            console.log("User email not verified:", email);  // Debug statement
-            return res.render('login', { message: 'Please verify your email before logging in!' });
+            console.log("User email not verified:", email);
+
+            // Generate a new verification code and update the user in the database
+            const verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
+            db.query('UPDATE users SET verification_code = ? WHERE id = ?', [verificationCode, user.id], (updateErr) => {
+                if (updateErr) {
+                    console.error('Error updating verification code:', updateErr);
+                    return res.render('login', { message: 'Error sending verification code.' });
+                }
+
+                // Send the new verification email
+                sendVerificationEmail({ email }, verificationCode);
+            });
+
+            // Render the login page with the message
+            return res.render('login', {
+                message: 'Please verify your email.'
+            });
         }
 
         // Compare the password provided with the hashed password in the database
@@ -146,14 +182,126 @@ exports.login = (req, res) => {
             }
 
             if (isMatch) {
-                req.session.userId = user.id;  // Store user ID in session
-                req.session.isAuthenticated = true;  // Set authenticated flag
-                res.redirect('/home');  // Redirect to home page
+                req.session.userId = user.id;
+                req.session.isAuthenticated = true;
+                res.redirect('/home');
             } else {
-                console.log("Incorrect password for email:", email);  // Debug statement
+                console.log("Incorrect password for email:", email);
                 res.render('login', { message: 'Incorrect password!' });
             }
         });
+    });
+};
+
+exports.scanLabel = (req, res) => {
+    const { labelId } = req.body;
+
+    // Retrieve label information
+    db.query('SELECT public, user_id FROM labels WHERE label_id = ?', [labelId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error retrieving label information:', err);
+            return res.status(500).json({ success: false, message: 'Internal error.' });
+        }
+
+        const isPublic = results[0].public;
+        const userId = results[0].user_id;
+
+        // Check if the label is public
+        if (isPublic) {
+            console.log('This label is public. No PIN required.');
+            return res.json({ success: true, message: 'This is a public label. No PIN required.' });
+        }
+
+        // The label is private; proceed with PIN generation
+        const newPin = generatePin();
+
+        // Update the pin in the database
+        db.query('UPDATE labels SET pin = ? WHERE label_id = ?', [newPin, labelId], (updateErr) => {
+            if (updateErr) {
+                console.error('Error updating pin:', updateErr);
+                return res.status(500).json({ success: false, message: 'Internal error.' });
+            }
+
+            // Retrieve the user's email
+            db.query('SELECT email FROM users WHERE id = ?', [userId], (emailErr, emailResults) => {
+                if (emailErr || emailResults.length === 0) {
+                    console.error('Error retrieving user email:', emailErr);
+                    return res.status(500).json({ success: false, message: 'Internal error.' });
+                }
+
+                const userEmail = emailResults[0].email;
+
+                // Send the pin to the user's email
+                sendPinEmail(userEmail, newPin, (sendErr) => {
+                    if (sendErr) {
+                        console.error('Error sending email:', sendErr);
+                        return res.status(500).json({ success: false, message: 'Failed to send email.' });
+                    }
+
+                    // Successfully generated and sent pin
+                    console.log('New pin sent to user email:', userEmail);
+                    res.json({ success: true, redirectUrl: `/verify-pin?labelId=${labelId}` });
+                });
+            });
+        });
+    });
+};
+// Function to generate a 6-digit pin
+function generatePin() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+// Handle the PIN verification logic
+exports.verifyPin = (req, res) => {
+    const { labelId, pin } = req.body;
+
+    if (!labelId || !pin) {
+        return res.status(400).json({ success: false, message: 'Label ID and PIN are required.' });
+    }
+
+    // Check if the provided pin matches the one in the database
+    db.query('SELECT pin, memo FROM labels WHERE label_id = ?', [labelId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error retrieving pin:', err);
+            return res.status(500).json({ success: false, message: 'Internal error.' });
+        }
+
+        const storedPin = results[0].pin;
+        const memoUrl = results[0].memo;
+
+        if (storedPin !== pin) {
+            return res.status(401).json({ success: false, message: 'Invalid PIN.' });
+        }
+
+        // PIN is valid; redirect to the memo URL
+        res.json({ success: true, memoUrl });
+    });
+};
+
+// Handle the access memo logic
+exports.accessMemo = (req, res) => {
+    const { labelId } = req.query;
+
+    if (!labelId) {
+        return res.status(400).send('Label ID is required.');
+    }
+
+    // Retrieve the label information
+    db.query('SELECT public, memo FROM labels WHERE label_id = ?', [labelId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error retrieving label information:', err);
+            return res.status(500).send('Internal error.');
+        }
+
+        const label = results[0];
+
+        // If the label is public, directly redirect to the memo URL
+        if (label.public) {
+            return res.redirect(label.memo);
+        }
+
+        // The label is private; redirect to the PIN verification page
+        res.redirect(`/verify-pin?labelId=${labelId}`);
     });
 };
 
@@ -166,13 +314,168 @@ exports.addLabel = (req, res) => {
     const category_id = req.body.category_id;
     const user_id = req.session.userId;
     const isPublic = (req.body.public === true || req.body.public === 'true');
+    const pin = isPublic ? null : req.body.pin; // Add pin conditionally
+    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
+
+    console.log('Received values:', { label_name, memo, category_id, user_id, isPublic, pin });
+
+    if (!user_id) {
+        console.error('User not authenticated!');
+        return res.status(401).json({ success: false, message: 'User not authenticated!' });
+    }
+
+    if (!label_name) {
+        console.error('Label name is required!');
+        return res.status(400).json({ success: false, message: 'Label name is required!' });
+    }
+
+    // Main function flow
+    uploadMemoToCloudinary(memo, cloudinaryFolder)
+        .then(memoUrl => addLabelToDatabase(label_name, user_id, category_id, memoUrl, isPublic, pin)
+            .then(labelId => ({ labelId, memoUrl })) // Pass both labelId and memoUrl to the next step
+        )
+        .then(({ labelId, memoUrl }) => generateQRCode(memoUrl).then(qrDataUrl => ({ labelId, qrDataUrl, cloudinaryFolder })))
+        .then(({ labelId, qrDataUrl, cloudinaryFolder }) => uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId))
+        .then(({ labelId, qrUrl }) => storeQRCodeInDatabase(labelId, qrUrl))
+        .then(({ labelId }) => {
+            // Successfully added the label and QR code
+            console.log('Label and QR code added successfully!');
+            res.status(200).json({ success: true, labelId: labelId, redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` });
+        })
+        .catch(error => {
+            console.error(error.message);
+            res.status(500).json({ success: false, message: error.message });
+        });
+};
+
+// Function to upload memo to Cloudinary
+function uploadMemoToCloudinary(memo, cloudinaryFolder, isPublic) {
+    return new Promise((resolve, reject) => {
+        const memoBuffer = Buffer.from(memo, 'utf-8');
+        const memoStream = cloudinary.uploader.upload_stream(
+            {
+                folder: cloudinaryFolder,
+                public_id: 'memo',
+                resource_type: 'raw',
+                format: 'txt',
+                type: isPublic ? 'upload' : 'authenticated' // Use 'upload' for public, 'authenticated' for private
+            },
+            (error, result) => {
+                if (error) {
+                    reject(new Error('Error uploading memo to Cloudinary: ' + error.message));
+                } else {
+                    console.log('[uploadMemoToCloudinary] Memo URL:', result.secure_url);
+                    resolve(result.secure_url);
+                }
+            }
+        );
+        memoStream.end(memoBuffer);
+    });
+}
+
+// Function to add label to the database
+function addLabelToDatabase(label_name, user_id, category_id, memoUrl, isPublic, pin) {
+    return new Promise((resolve, reject) => {
+        db.query('CALL add_label(?, ?, ?, ?, ?, ?)', [label_name, user_id, category_id, memoUrl, isPublic, pin], (err, results) => {
+            if (err) {
+                reject(new Error('Error adding label to database: ' + err.message));
+            } else {
+                const labelId = results[0][0].label_id;
+                console.log('[addLabelToDatabase] New Label ID:', labelId);
+                resolve(labelId);
+            }
+        });
+    });
+}
+
+// Function to generate QR code
+function generateQRCode(data) {
+    return new Promise((resolve, reject) => {
+        QRCode.toDataURL(data, (err, url) => {
+            if (err) {
+                reject(new Error('Error generating QR Code: ' + err.message));
+            } else {
+                console.log('[generateQRCode] QR Code URL:', url);
+                resolve(url);
+            }
+        });
+    });
+}
+
+// Function to upload QR code to Cloudinary
+function uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId) {
+    return new Promise((resolve, reject) => {
+        const qrStream = cloudinary.uploader.upload_stream(
+            {
+                folder: cloudinaryFolder,
+                public_id: 'qr_code',
+                resource_type: 'image'
+            },
+            (error, result) => {
+                if (error) {
+                    reject(new Error('Error uploading QR code to Cloudinary: ' + error.message));
+                } else {
+                    console.log('[uploadQRCodeToCloudinary] QR Code URL:', result.secure_url);
+                    resolve({ labelId, qrUrl: result.secure_url });
+                }
+            }
+        );
+        const base64Data = qrDataUrl.replace(/^data:image\/\w+;base64,/, '');
+        const buffer = Buffer.from(base64Data, 'base64');
+        qrStream.end(buffer);
+    });
+}
+
+// Function to store QR code URL in the database
+function storeQRCodeInDatabase(labelId, qrUrl) {
+    return new Promise((resolve, reject) => {
+        db.query('CALL generate_qr_code(?, ?)', [labelId, qrUrl], (err) => {
+            if (err) {
+                reject(new Error('Error storing QR code in database: ' + err.message));
+            } else {
+                console.log('[storeQRCodeInDatabase] QR Code stored successfully for Label ID:', labelId);
+                resolve({ labelId });
+            }
+        });
+    });
+}
+
+// Reusable function for uploading media (audio or other files) to Cloudinary
+function uploadToCloudinary(fileBuffer, folderPath, publicId, resourceType) {
+    return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+            {
+                folder: folderPath,
+                public_id: publicId,
+                resource_type: resourceType
+            },
+            (error, result) => {
+                if (error) {
+                    reject(new Error(`Error uploading to Cloudinary: ${error.message}`));
+                } else {
+                    console.log(`[uploadToCloudinary] URL: ${result.secure_url}`);
+                    resolve(result.secure_url);
+                }
+            }
+        );
+        uploadStream.end(fileBuffer);
+    });
+}
+
+exports.addVoiceLabel = (req, res) => {
+    const label_name = req.body['titel110']; // Adjust to match your form's field name
+    const category_id = req.body.category_id;
+    const user_id = req.session.userId;
+    const isPublic = (req.body.public === true || req.body.public === 'true');
+    const audioMemo = req.files.audioMemo; // Assuming express-fileupload is used
+    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
 
     console.log('Received values:', {
         label_name,
-        memo,
         category_id,
         user_id,
         isPublic,
+        audioMemo
     });
 
     if (!user_id) {
@@ -185,196 +488,40 @@ exports.addLabel = (req, res) => {
         return res.status(400).json({ success: false, message: 'Label name is required!' });
     }
 
-    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
-
-    // Upload the memo to Cloudinary
-    const memoUpload = cloudinary.uploader.upload_stream(
-        {
-            folder: cloudinaryFolder,
-            public_id: 'memo',
-            resource_type: 'raw'
-        },
-        (error, result) => {
-            if (error) {
-                console.error('Error uploading memo to Cloudinary:', error);
-                return res.status(500).json({ success: false, message: 'Error uploading memo to cloud storage' });
-            }
-
-            const memoUrl = result.secure_url;
-            console.log('[addLabel] Memo URL from Cloudinary:', memoUrl);
-            handleMemoUpload(memoUrl);
-        }
-    );
-
-    memoUpload.end(Buffer.from(memo, 'utf-8'));
-
-    function handleMemoUpload(memoUrl) {
-        // Call the stored procedure to add the label
-        db.query('CALL add_label(?, ?, ?, ?, ?)', [label_name, user_id, category_id, memoUrl, isPublic], (err, results) => {
-            if (err) {
-                console.error('Error adding label:', err);
-                return res.status(500).json({ success: false, message: `Error adding label: ${err.message}` });
-            }
-
-            const labelId = results[0][0].label_id;
-            console.log('[handleMemoUpload] New Label ID:', labelId);
-
-            // Generate a URL for the QR code that points to the general-complete page
+    // Step 1: Upload audio memo to Cloudinary
+    uploadToCloudinary(audioMemo.data, cloudinaryFolder, 'voice-memo', 'video')
+        .then(audioUrl => {
+            console.log('Audio URL from Cloudinary:', audioUrl);
+            // Step 2: Add label to the database
+            return addLabelToDatabase(label_name, user_id, category_id, audioUrl, isPublic, null); // No pin for audio labels
+        })
+        .then(labelId => {
+            console.log('New Label ID:', labelId);
+            // Step 3: Generate a URL for the QR code that points to the general-complete page
             const qrData = `${req.protocol}://${req.get('host')}/general-complete?labelId=${labelId}`;
-            console.log('[handleMemoUpload] QR Data for Code:', qrData);
-
-            // Generate the QR code
-            QRCode.toDataURL(qrData, (err, url) => {
-                if (err) {
-                    console.error('Error generating QR Code:', err);
-                    return res.status(500).json({ success: false, message: 'Error generating QR Code' });
-                }
-
-                // Upload QR code to Cloudinary
-                const qrStream = cloudinary.uploader.upload_stream(
-                    {
-                        folder: cloudinaryFolder,
-                        public_id: 'qr_code',
-                        resource_type: 'image'
-                    },
-                    (error, result) => {
-                        if (error) {
-                            console.error('Error uploading QR code to Cloudinary:', error);
-                            return res.status(500).json({ success: false, message: 'Error uploading QR code to cloud storage' });
-                        }
-
-                        const qrUrl = result.secure_url;
-                        console.log('[handleMemoUpload] QR Code URL from Cloudinary:', qrUrl);
-
-                        // Store the QR code URL in the database
-                        db.query('CALL generate_qr_code(?, ?)', [labelId, qrUrl], (err) => {
-                            if (err) {
-                                console.error('Error storing QR code:', err);
-                                return res.status(500).json({ success: false, message: 'Error storing QR code' });
-                            }
-                        
-                            // Successfully added the label and QR code
-                            console.log('Label and QR code added successfully!');
-                        
-                            // Send JSON response with the redirect URL and labelId
-                            return res.status(200).json({ 
-                                success: true, 
-                                labelId: labelId, 
-                                redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` 
-                            });
-                        });
-                    }
-                );
-
-                // Convert the base64 URL to a buffer and upload to Cloudinary
-                const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
-                const buffer = Buffer.from(base64Data, 'base64');
-                qrStream.end(buffer);
-            });
+            console.log('QR Data for Code:', qrData);
+            return generateQRCode(qrData).then(qrDataUrl => ({ labelId, qrDataUrl }));
+        })
+        .then(({ labelId, qrDataUrl }) => {
+            console.log('QR Data URL:', qrDataUrl);
+            // Step 4: Upload QR code to Cloudinary
+            return uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId);
+        })
+        .then(({ labelId, qrUrl }) => {
+            console.log('QR Code URL from Cloudinary:', qrUrl);
+            // Step 5: Store the QR code URL in the database
+            return storeQRCodeInDatabase(labelId, qrUrl);
+        })
+        .then(({ labelId }) => {
+            console.log('Stored Label ID:', labelId);
+            // Successfully added the voice label and QR code
+            console.log('Voice label and QR code added successfully!');
+            res.status(200).json({ success: true, labelId: labelId, redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` });
+        })
+        .catch(error => {
+            console.error('Error:', error.message);
+            res.status(500).json({ success: false, message: error.message });
         });
-    }
-};
-
-exports.addVoiceLabel = (req, res) => {
-    const label_name = req.body['titel110']; // Note: Adjust field name to match your form
-    const category_id = req.body.category_id;
-    const user_id = req.session.userId;
-    const isPublic = (req.body.public === true || req.body.public === 'true');
-    const audioMemo = req.files.audioMemo; // Assuming `express-fileupload` is used for handling file uploads
-
-    if (!user_id) {
-        console.error('User not authenticated!');
-        return res.status(401).json({ success: false, message: 'User not authenticated!' });
-    }
-
-    if (!label_name) {
-        console.error('Label name is required!');
-        return res.status(400).json({ success: false, message: 'Label name is required!' });
-    }
-
-    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
-
-    // Upload the audio memo to Cloudinary
-    cloudinary.uploader.upload_stream(
-        {
-            folder: cloudinaryFolder,
-            public_id: 'voice-memo',
-            resource_type: 'video' // Use video resource type for audio
-        },
-        (error, result) => {
-            if (error) {
-                console.error('Error uploading audio memo to Cloudinary:', error);
-                return res.status(500).json({ success: false, message: 'Error uploading audio memo to cloud storage' });
-            }
-
-            const audioUrl = result.secure_url;
-            console.log('[addVoiceLabel] Audio URL from Cloudinary:', audioUrl);
-
-            // Call the stored procedure to add the label
-            db.query('CALL add_label(?, ?, ?, ?, ?)', [label_name, user_id, category_id, audioUrl, isPublic], (err, results) => {
-                if (err) {
-                    console.error('Error adding label:', err);
-                    return res.status(500).json({ success: false, message: `Error adding label: ${err.message}` });
-                }
-
-                const labelId = results[0][0].label_id;
-                console.log('[addVoiceLabel] New Label ID:', labelId);
-
-                // Generate a URL for the QR code that points to the general-complete page
-                const qrData = `${req.protocol}://${req.get('host')}/general-complete?labelId=${labelId}`;
-                console.log('[addVoiceLabel] QR Data for Code:', qrData);
-
-                // Generate the QR code
-                QRCode.toDataURL(qrData, (err, url) => {
-                    if (err) {
-                        console.error('Error generating QR Code:', err);
-                        return res.status(500).json({ success: false, message: 'Error generating QR Code' });
-                    }
-
-                    // Upload QR code to Cloudinary
-                    const qrStream = cloudinary.uploader.upload_stream(
-                        {
-                            folder: cloudinaryFolder,
-                            public_id: 'qr_code',
-                            resource_type: 'image'
-                        },
-                        (error, result) => {
-                            if (error) {
-                                console.error('Error uploading QR code to Cloudinary:', error);
-                                return res.status(500).json({ success: false, message: 'Error uploading QR code to cloud storage' });
-                            }
-
-                            const qrUrl = result.secure_url;
-                            console.log('[addVoiceLabel] QR Code URL from Cloudinary:', qrUrl);
-
-                            // Store the QR code URL in the database
-                            db.query('CALL generate_qr_code(?, ?)', [labelId, qrUrl], (err) => {
-                                if (err) {
-                                    console.error('Error storing QR code:', err);
-                                    return res.status(500).json({ success: false, message: 'Error storing QR code' });
-                                }
-                                
-                                // Successfully added the label and QR code
-                                console.log('Label and QR code added successfully!');
-                                
-                                // Send JSON response with the redirect URL and labelId
-                                return res.status(200).json({ 
-                                    success: true, 
-                                    labelId: labelId, 
-                                    redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` 
-                                });
-                            });
-                        }
-                    );
-
-                    // Convert the base64 URL to a buffer and upload to Cloudinary
-                    const base64Data = url.replace(/^data:image\/\w+;base64,/, '');
-                    const buffer = Buffer.from(base64Data, 'base64');
-                    qrStream.end(buffer);
-                });
-            });
-        }
-    ).end(audioMemo.data);
 };
 
 exports.deleteLabel = (req, res) => {
@@ -397,8 +544,8 @@ exports.deleteLabel = (req, res) => {
         const cloudinaryFolder = `users/${userId}/labels/${labelName}`;
         console.log(`Attempting to delete resources within Cloudinary folder: ${cloudinaryFolder}`);
 
-        // Helper function to delete all resources within the folder
-        const deleteAllResources = (callback) => {
+        // Helper function to delete all resources and the folder
+        const deleteAllResourcesAndFolder = () => {
             // Step 1: Delete raw resources
             cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { resource_type: 'raw', invalidate: true }, (rawDeleteError, rawDeleteResult) => {
                 if (rawDeleteError) {
@@ -423,43 +570,35 @@ exports.deleteLabel = (req, res) => {
                             console.log(`Deleted video resources within folder: ${cloudinaryFolder}`, videoDeleteResult);
                         }
 
-                        // Call the callback to proceed
-                        callback();
+                        // Step 4: Delete the folder after all resources have been deleted
+                        cloudinary.api.delete_folder(cloudinaryFolder, (folderError, folderResult) => {
+                            if (folderError) {
+                                console.error('Error deleting folder from Cloudinary:', folderError);
+                            } else {
+                                console.log(`Deleted folder: ${cloudinaryFolder}`, folderResult);
+                            }
+                        });
                     });
                 });
             });
         };
 
-        // Step 1: Delete all resources within the folder and respond to the user
-        deleteAllResources(() => {
-            // Step 2: Delete the label from the database
-            db.query('CALL delete_label(?)', [labelId], (err) => {
-                if (err) {
-                    console.error('Error deleting label from database:', err);
-                    return res.status(500).json({ success: false, message: 'Error deleting label from database.' });
-                }
+        // Step 1: Delete all resources within the folder and then the folder itself
+        deleteAllResourcesAndFolder();
 
-                console.log('Label deleted from the database successfully.');
-                // Respond to the user immediately
-                res.status(200).json({ success: true, message: 'Label deleted successfully!' });
+        // Step 2: Delete the label from the database
+        db.query('CALL delete_label(?)', [labelId], (err) => {
+            if (err) {
+                console.error('Error deleting label from database:', err);
+                return res.status(500).json({ success: false, message: 'Error deleting label from database.' });
+            }
 
-                // Step 3: Schedule folder deletion in the background
-                setTimeout(() => {
-                    console.log(`Attempting to delete the folder ${cloudinaryFolder} in the background...`);
-
-                    cloudinary.api.delete_folder(cloudinaryFolder, (folderError, folderResult) => {
-                        if (folderError) {
-                            console.error('Error deleting folder from Cloudinary:', folderError);
-                        } else {
-                            console.log(`Deleted folder: ${cloudinaryFolder}`, folderResult);
-                        }
-                    });
-                }, 300000); // 300000 ms = 5 minutes
-            });
+            console.log('Label deleted from the database successfully.');
+            // Respond to the user immediately
+            res.status(200).json({ success: true, message: 'Label deleted successfully!' });
         });
     });
 };
-
 
 // Handle logout logic
 exports.logout = (req, res) => {

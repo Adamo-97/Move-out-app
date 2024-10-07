@@ -162,6 +162,9 @@ router.get('/general-text', ensureAuthenticated, (req, res) => {
     res.render('general-text');  // Render the general label creation page
 });
 
+// route for the scan page
+router.post('/scan-label', authController.scanLabel);
+
 // Route for handling logout
 router.get('/logout', authController.logout);
 
