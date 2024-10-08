@@ -146,7 +146,7 @@ router.get('/general-voice', ensureAuthenticated, (req, res) => {
     res.render('general-voice', { query: req.query }); // Pass query parameters to the template
 });
 // Route for creating a new voice label
-router.post('/general-voice', ensureAuthenticated, authController.addVoiceLabel);
+router.post('/general-voice', ensureAuthenticated, authController.addLabel);
 
 // Route for the 'Create Hazard Label' page
 router.get('/hazard-lable', ensureAuthenticated, (req, res) => {
