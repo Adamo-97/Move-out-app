@@ -379,10 +379,22 @@ exports.addLabel = (req, res) => {
 
             // Call the appropriate function based on file type
             if (fileType === 'audio') {
-                handleVoiceMemoUpload(req, res, fileBuffer, filename);
-            } else if (fileType === 'image') {
-                handleImageUpload(req, res, fileBuffer, filename);
-            } else {
+                handleVoiceMemoUpload(req, res, fileBuffer, filename)
+                .then(() => res.status(200).json({ success: true, redirectUrl: '/home' }))  // Success response
+                .catch((error) => {
+                    console.error('Error during audio upload:', error);
+                    res.status(500).json({ success: false, message: 'Error uploading audio.' });
+                });
+            } 
+            if (fileType === 'image') {
+                handleImageUpload(req, res, fileBuffer, filename)
+                    .then(() => res.status(200).json({ success: true, redirectUrl: '/home' }))  // Send JSON response on success
+                    .catch((error) => {
+                        console.error('Error during image upload:', error);
+                        res.status(500).json({ success: false, message: 'Error uploading image.' });
+                    });
+            }
+            else {
                 res.status(400).json({ success: false, message: 'Unsupported file type.' });
             }
         });
@@ -435,102 +447,129 @@ function handleTextMemoUpload(req, res) {
 }
 
 // Function to handle the voice memo upload
-function handleVoiceMemoUpload(req, res) {
-    console.log('--- [handleVoiceMemoUpload] Start of Function ---');
-    const label_name = req.body.label_name;
-    const category_id = req.body.category_id;
-    const user_id = req.session.userId;
-    const isPublic = req.body.public;
-    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
+function handleVoiceMemoUpload(req, res, fileBuffer, filename) {
+    return new Promise((resolve, reject) => {  // Wrap the logic in a promise
+        console.log('--- [handleVoiceMemoUpload] Start of Function ---');
+        const label_name = req.body.label_name;
+        const category_id = req.body.category_id;
+        const user_id = req.session.userId;
+        const isPublic = req.body.public;
+        const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
 
-    console.log('Received values:', { label_name, category_id, user_id, isPublic });
+        console.log('Received values:', { label_name, category_id, user_id, isPublic });
 
-    if (!user_id) {
-        console.error('User not authenticated!');
-        return res.status(401).json({ success: false, message: 'User not authenticated!' });
-    }
-
-    if (!label_name) {
-        console.error('Label name is required!');
-        return res.status(400).json({ success: false, message: 'Label name is required!' });
-    }
-
-    // Upload the voice memo to Cloudinary
-    cloudinary.uploader.upload_stream(
-        {
-            folder: cloudinaryFolder,
-            resource_type: 'raw',
-            public_id: 'voice-memo',
-        },
-        (error, result) => {
-            if (error) {
-                console.error('Cloudinary upload error:', error.message);
-                return res.status(500).json({ success: false, message: 'Cloudinary upload error: ' + error.message });
-            }
-
-            const audioUrl = result.secure_url;
-            console.log('Audio URL from Cloudinary:', audioUrl);
-
-            // Save to database and get the label ID
-            addLabelToDatabase(label_name, user_id, category_id, audioUrl, isPublic)
-                .then((labelId) => {
-                    console.log('New Label ID:', labelId);
-
-                    // Redirect to /home instead of general-complete
-                    res.redirect('/home');
-                })
-                .catch(error => {
-                    console.error(error.message);
-                    res.status(500).json({ success: false, message: error.message });
-                });
+        if (!user_id) {
+            console.error('User not authenticated!');
+            return reject(new Error('User not authenticated!'));
         }
-    ).end(req.fileBuffer);
+
+        if (!label_name) {
+            console.error('Label name is required!');
+            return reject(new Error('Label name is required!'));
+        }
+
+        if (!fileBuffer) {
+            console.error('File buffer is empty!');
+            return reject(new Error('File is missing!'));
+        }
+
+        // Upload the voice memo to Cloudinary
+        cloudinary.uploader.upload_stream(
+            {
+                folder: cloudinaryFolder,
+                resource_type: 'video',
+                public_id: 'voice-memo',
+            },
+            (error, result) => {
+                if (error) {
+                    console.error('Cloudinary upload error:', error.message);
+                    return reject(new Error('Cloudinary upload error: ' + error.message));
+                }
+
+                const audioUrl = result.secure_url;
+                console.log('Audio URL from Cloudinary:', audioUrl);
+
+                // Save to database and get the label ID
+                addLabelToDatabase(label_name, user_id, category_id, audioUrl, isPublic)
+                    .then((labelId) => {
+                        console.log('New Label ID:', labelId);
+
+                        // After adding label to DB, generate QR code and upload to Cloudinary
+                        return generateQRCode(audioUrl)
+                            .then((qrDataUrl) => uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId))
+                            .then(({ qrUrl }) => storeQRCodeInDatabase(labelId, qrUrl))
+                            .then(() => resolve(labelId));  // Resolve the promise
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                        return reject(error);
+                    });
+            }
+        ).end(fileBuffer);
+    });
 }
 
 // Function to handle image upload
-function handleImageUpload(req, res) {
-    console.log('--- [handleImageUpload] Start of Function ---');
-    const busboyInstance = busboy({ headers: req.headers });
-    let label_name, category_id, isPublic, user_id = req.session.userId;
-    let fileBuffer;
+function handleImageUpload(req, res, fileBuffer, filename) {
+    return new Promise((resolve, reject) => {
+        console.log('--- [handleImageUpload] Start of Function ---');
+        const label_name = req.body.label_name;
+        const category_id = req.body.category_id;
+        const user_id = req.session.userId;
+        const isPublic = req.body.public;
+        const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
 
-    console.log('--- [handleImageUpload] Start of Function ---');
+        console.log('Received values:', { label_name, category_id, user_id, isPublic });
 
-    busboyInstance.on('field', (fieldname, val) => {
-        if (fieldname === 'label_name' || fieldname === 'titel19' || fieldname === 'titel110') label_name = val;
-        if (fieldname === 'category_id') category_id = val;
-        if (fieldname === 'public') isPublic = val === 'true';
-    });
-
-    busboyInstance.on('file', (fieldname, file, filename, encoding, mimetype) => {
-        let chunks = [];
-        file.on('data', (data) => {
-            chunks.push(data);
-        });
-        file.on('end', () => {
-            fileBuffer = Buffer.concat(chunks);
-        });
-    });
-
-    busboyInstance.on('finish', () => {
-        console.log('Busboy finish event triggered');
-
-        if (!user_id || !label_name) {
-            console.error('User not authenticated or label name missing.');
-            return res.status(400).json({ success: false, message: 'Invalid request.' });
+        if (!user_id) {
+            console.error('User not authenticated!');
+            return reject(new Error('User not authenticated!'));
         }
 
-        const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
-        uploadToCloudinary(fileBuffer, cloudinaryFolder, 'image')
-            .then(imageUrl => addLabelToDatabase(label_name, user_id, category_id, imageUrl, isPublic))
-            .then(labelId => res.status(200).json({ success: true, redirectUrl: `/general-complete?labelId=${labelId}` }))
-            .catch(err => {
-                console.error(err.message);
-                res.status(500).json({ success: false, message: err.message });
-            });
-    });
+        if (!label_name) {
+            console.error('Label name is required!');
+            return reject(new Error('Label name is required!'));
+        }
 
-    req.pipe(busboyInstance);
+        if (!fileBuffer) {
+            console.error('File buffer is empty!');
+            return reject(new Error('File is missing!'));
+        }
+
+        // Upload the image to Cloudinary
+        cloudinary.uploader.upload_stream(
+            {
+                folder: cloudinaryFolder,
+                resource_type: 'image',
+                public_id: 'uploaded-image',
+            },
+            (error, result) => {
+                if (error) {
+                    console.error('Cloudinary upload error:', error.message);
+                    return reject(new Error('Cloudinary upload error: ' + error.message));
+                }
+
+                const imageUrl = result.secure_url;
+                console.log('Image URL from Cloudinary:', imageUrl);
+
+                // Save to database and get the label ID
+                addLabelToDatabase(label_name, user_id, category_id, imageUrl, isPublic)
+                    .then((labelId) => {
+                        console.log('New Label ID:', labelId);
+
+                        // After adding label to DB, generate QR code and upload to Cloudinary
+                        return generateQRCode(imageUrl)
+                            .then((qrDataUrl) => uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId))
+                            .then(({ qrUrl }) => storeQRCodeInDatabase(labelId, qrUrl))
+                            .then(() => resolve(labelId));  // Resolve the promise
+                    })
+                    .catch(error => {
+                        console.error(error.message);
+                        return reject(error);
+                    });
+            }
+        ).end(fileBuffer);
+    });
 }
 
 // Helper function to upload files to Cloudinary

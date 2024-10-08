@@ -334,44 +334,56 @@
 
       // Function to handle the "check" button click to submit the data
       checkButton.addEventListener('click', () => {
-          if (!audioBlob) {
-              alert('Please record an audio before submitting.');
-              return;
+      if (!audioBlob) {
+          alert('Please record an audio before submitting.');
+          return;
+      }
+
+      const formData = new FormData();
+      
+      // Append the audio blob with the correct file name and MIME type
+      const file = new File([audioBlob], 'voice-memo.wav', { type: 'audio/wav' });
+      formData.append('audioMemo', file);
+
+      // Also send label name and other necessary fields
+      formData.append('label_name', labelNameInput ? labelNameInput.value.trim() : '');
+      formData.append('category_id', categoryId); // Use the category ID from the URL
+      formData.append('public', publicStatus); // Include the public status
+
+      // Send the audio memo and additional data to the server
+      fetch('/general-voice', {
+          method: 'POST',
+          body: formData
+      })
+      .then(response => {
+          // Check if response is JSON, otherwise handle it as text
+          const contentType = response.headers.get("content-type");
+          if (contentType && contentType.includes("application/json")) {
+              return response.json(); // Parse JSON if it's JSON
+          } else {
+              return response.text(); // Otherwise, parse as plain text
           }
+      })
+      .then(data => {
+          // Handle JSON response
+          if (typeof data === 'object') {
+              console.log('Server response (JSON):', data); // Log the JSON response to check if it's correct
 
-          const formData = new FormData();
-          
-          // Append the audio blob with the correct file name and MIME type
-          const file = new File([audioBlob], 'voice-memo.wav', { type: 'audio/wav' });
-          formData.append('audioMemo', file);
-
-          // Also send label name and other necessary fields
-          formData.append('label_name', labelNameInput ? labelNameInput.value.trim() : '');
-          formData.append('category_id', categoryId); // Use the category ID from the URL
-          formData.append('public', publicStatus); // Include the public status
-
-          // Debugging: Log FormData keys and values to verify
-          for (const [key, value] of formData.entries()) {
-              console.log(`${key}:`, value);
-          }
-
-          // Send the audio memo and additional data to the server
-          fetch('/general-voice', {
-              method: 'POST',
-              body: formData
-          })
-          .then(response => response.json())
-          .then(data => {
               if (data.success) {
                   window.location.href = data.redirectUrl; // Redirect using the URL from the server's response
               } else {
                   alert('Error uploading voice memo.');
               }
-          })
-          .catch(error => {
-              console.error('Error uploading voice memo:', error);
-          });
+          } else {
+              // Handle non-JSON response
+              console.error('Non-JSON response from server:', data);
+              alert('Error uploading voice memo.');
+          }
+      })
+      .catch(error => {
+          console.error('Error uploading voice memo:', error);
       });
+  });
 
   </script>  
   

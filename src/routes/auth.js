@@ -90,6 +90,20 @@ router.get('/general-text', ensureAuthenticated, (req, res) => {
     res.render('general-text', { query: req.query }); // Pass query parameters to the template
 });
 
+// Route for the voice page 
+router.get('/general-voice', ensureAuthenticated, (req, res) => {
+    res.render('general-voice', { query: req.query }); // Pass query parameters to the template
+});
+// Route for creating a new voice label
+router.post('/general-voice', ensureAuthenticated, authController.addLabel);
+
+// Route for the image page
+router.get('/general-image', ensureAuthenticated, (req, res) => {
+    res.render('general-image', { query: req.query }); // Pass query parameters to the template
+});
+// Route for creating a new image label
+router.post('/general-image', ensureAuthenticated, authController.addLabel);
+
 // Route for the 'General Complete' page
 router.get('/general-complete', ensureAuthenticated, (req, res) => {
     console.log('--- [/general-complete] Start of Function ---');
@@ -140,13 +154,6 @@ router.get('/general-complete', ensureAuthenticated, (req, res) => {
 
 // Route for handling label deletion within home
 router.delete('/home', ensureAuthenticated, authController.deleteLabel);
-
-// Route for the voice page 
-router.get('/general-voice', ensureAuthenticated, (req, res) => {
-    res.render('general-voice', { query: req.query }); // Pass query parameters to the template
-});
-// Route for creating a new voice label
-router.post('/general-voice', ensureAuthenticated, authController.addLabel);
 
 // Route for the 'Create Hazard Label' page
 router.get('/hazard-lable', ensureAuthenticated, (req, res) => {
