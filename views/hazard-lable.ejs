@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
-    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
     <meta name="viewport" content="width=1920, maximum-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
@@ -14,6 +12,7 @@
   </head>
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="hazard-lable" />
+
     <div class="container-center-horizontal">
       <div class="hazard-lable screen">
         <div class="bg-xQPpwm">
@@ -25,9 +24,15 @@
           <img class="arrow-M8abyx" src="img/arrow-11@1x.png" alt="Arrow" />
           <div class="main-header-M8abyx"></div>
           <div class="logo-M8abyx">
-            <div class="m-40bxQ4"><img class="path-182-x4VRtn" src="img/path-162@1x.png" alt="Path 182" /></div>
-            <div class="v-40bxQ4"><img class="path-183-5DiuzY" src="img/path-107@1x.png" alt="Path 183" /></div>
-            <div class="e-40bxQ4"><img class="path-184-RV5EUm" src="img/path-108@1x.png" alt="Path 184" /></div>
+            <div class="m-40bxQ4">
+              <img class="path-182-x4VRtn" src="img/path-162@1x.png" alt="Path 182" />
+            </div>
+            <div class="v-40bxQ4">
+              <img class="path-183-5DiuzY" src="img/path-107@1x.png" alt="Path 183" />
+            </div>
+            <div class="e-40bxQ4">
+              <img class="path-184-RV5EUm" src="img/path-108@1x.png" alt="Path 184" />
+            </div>
             <div class="group-97-40bxQ4">
               <img class="rectangle-28-CSsqMK" src="img/rectangle-11@1x.png" alt="Rectangle 28" />
             </div>
@@ -45,7 +50,9 @@
             </div>
           </div>
         </div>
-        <a href="login.html">
+
+        <!-- Sign out button -->
+        <a href="/logout">
           <div class="sign-out-xQPpwm smart-layers-pointers">
             <div class="group-377-fGGDfo">
               <div class="sign-out-u0EnwY montserrat-normal-torch-red-37-7px">Sign out</div>
@@ -54,19 +61,29 @@
                 <img class="path-467-Geuhwo" src="img/path-467-10@1x.png" alt="Path 467" />
                 <img class="path-468-Geuhwo" src="img/path-468-10@1x.png" alt="Path 468" />
               </div>
-            </div></div></a
-        ><a href="search.html">
+            </div>
+          </div>
+        </a>
+
+        <!-- Search bar -->
+        <a href="/search">
           <div class="search-bar-xQPpwm smart-layers-pointers">
-            <a href="search.html" onclick="window.event.stopPropagation()"> <div class="search-box-a9Ugne"></div></a
-            ><img class="search-icon-a9Ugne smart-layers-pointers" src="img/search-icon-20@1x.png" alt="search icon" />
+            <a href="/search" onclick="window.event.stopPropagation()">
+              <div class="search-box-a9Ugne"></div>
+            </a>
+            <img class="search-icon-a9Ugne smart-layers-pointers" src="img/search-icon-20@1x.png" alt="search icon" />
             <input
               class="seach-for-a-specific-lable-a9Ugne lato-black-white-30px"
               name="seach-for-a-specific-lable-218"
               placeholder="Seach for a specific lable ..."
               type="text"
               required
-            /></div></a
-        ><a href="new-lable-clicked.html">
+            />
+          </div>
+        </a>
+
+        <!-- New label button -->
+        <a href="/new-lable">
           <div class="new-lable-button-xQPpwm">
             <div class="group-375-NbktcY smart-layers-pointers">
               <div class="green-button-new-lable-nKqvxP"></div>
@@ -76,8 +93,9 @@
               </div>
               <div class="new-lable-nKqvxP lato-normal-white-39-8px">New lable</div>
             </div>
-          </div></a
-        >
+          </div>
+        </a>
+
         <div class="main-shape-xQPpwm main-shape">
           <div class="main-shape-mvyLgi main-shape">
             <div class="rectangle-30-LfxWBb"></div>
@@ -98,10 +116,16 @@
             <h1 class="title-LfxWBb title lato-black-white-81-1px">Titel :</h1>
             <div class="whats-inside-the-box-LfxWBb lato-black-black-40-1px">What&#39;s inside the box?..</div>
           </div>
-          <a href="new-lable-clicked.html">
+
+          <!-- Cancel button -->
+          <a href="/new-lable">
             <div class="cancel-mvyLgi smart-layers-pointers">
-              <img class="cancel-lLSxWR" src="img/cancel-10@1x.png" alt="Cancel" /></div></a
-          ><a href="hazard-image.html">
+              <img class="cancel-lLSxWR" src="img/cancel-10@1x.png" alt="Cancel" />
+            </div>
+          </a>
+
+          <!-- Upload button -->
+          <a href="/hazard-image">
             <div class="upload-button-mvyLgi smart-layers-pointers">
               <div class="rectangle-75-NlgBxV"></div>
               <div class="upload-icon-NlgBxV">
@@ -109,20 +133,28 @@
                 <img class="path-424-onh8VB" src="img/path-424-2@1x.png" alt="Path 424" />
               </div>
               <div class="upload-a-picture-NlgBxV lato-black-white-42px">Upload a picture</div>
-            </div></a
-          ><a href="hazard-voice.html">
+            </div>
+          </a>
+
+          <!-- Record button -->
+          <a href="/hazard-voice">
             <div class="record-button-mvyLgi smart-layers-pointers">
               <div class="rectangle-76-eXcIUJ"></div>
               <img class="icon-eXcIUJ icon" src="img/icon-4@1x.png" alt="icon" />
               <div class="record-a-voice-memo-eXcIUJ lato-black-white-42px">Record a voice memo</div>
-            </div></a
-          ><a href="hazard-text.html">
+            </div>
+          </a>
+
+          <!-- Text button -->
+          <a href="/hazard-text">
             <div class="text-button-mvyLgi smart-layers-pointers">
               <div class="rectangle-77-89lHMD"></div>
               <img class="icon-89lHMD icon" src="img/icon-1@1x.png" alt="icon" />
               <div class="write-a-description-89lHMD lato-black-white-42px">Write a description</div>
-            </div></a
-          >
+            </div>
+          </a>
+
+          <!-- Title input -->
           <div class="title-mvyLgi title">
             <div class="rectangle-194-GWhWeL"></div>
             <textarea
@@ -132,9 +164,84 @@
               type="text"
               required
             ></textarea>
+            <!-- Public Switch -->
+            <div class="public-switch-container">
+              <span class="public-label">Public</span>
+              <!-- Hidden input to track the switch state -->
+              <input type="hidden" id="publicStatus" name="public" value="true">
+              <!-- Toggle switch with updated JavaScript function -->
+              <label class="switch">
+                  <input type="checkbox" id="publicToggle" checked onclick="updatePublicStatus()">
+                  <span class="slider"></span>
+              </label>
+            </div>      
           </div>
         </div>
       </div>
     </div>
+    <script>
+      function updatePublicStatus() {
+          const toggle = document.getElementById('publicToggle');
+          document.getElementById('publicStatus').value = toggle.checked ? 'true' : 'false';
+      }
+  
+      document.addEventListener('DOMContentLoaded', () => {
+          const cancelButton = document.querySelector('.cancel-mvyLgi'); // Adjust to the hazard page
+  
+          // Listen for the cancel button click
+          cancelButton.addEventListener('click', (event) => {
+              event.preventDefault();
+              window.history.back(); // Goes back to the previous page
+          });
+      });
+  
+      document.addEventListener('DOMContentLoaded', () => {
+          const textButton = document.querySelector('.text-button-mvyLgi'); 
+          const recordButton = document.querySelector('.record-button-mvyLgi'); 
+          const uploadButton = document.querySelector('.upload-button-mvyLgi'); 
+          const labelNameInput = document.querySelector('.titel-GWhWeL'); 
+          const publicStatusInput = document.getElementById('publicStatus');
+  
+          // Check if all necessary elements are available
+          if (!labelNameInput || !publicStatusInput) {
+              console.error('Label Name input or Public Status input not found!');
+              return;
+          }
+  
+          // Common function to handle redirection
+          function handleNavigation(event, redirectUrl) {
+              event.preventDefault(); // Prevent default behavior
+  
+              // Get the values from the input
+              const labelName = labelNameInput.value.trim();
+              const categoryId = 2; // Set category ID to 2 for "Hazard"
+              const publicStatus = publicStatusInput.value; // Get public status
+  
+              // Check if label name is provided
+              if (labelName) {
+                  // Redirect to the specified page with query parameters
+                  window.location.href = `${redirectUrl}?titel112=${encodeURIComponent(labelName)}&category_id=${categoryId}&public=${publicStatus}`;
+              } else {
+                  alert('Please enter a label name!');
+              }
+          }
+  
+          // Event listener for "Write a Description" button
+          textButton.addEventListener('click', (event) => {
+              handleNavigation(event, '/hazard-text'); // Adjusted for hazard
+          });
+  
+          // Event listener for "Record a Voice Memo" button
+          recordButton.addEventListener('click', (event) => {
+              handleNavigation(event, '/hazard-voice'); // Adjusted for hazard
+          });
+  
+          // Event listener for "Upload a Picture" button
+          uploadButton.addEventListener('click', (event) => {
+              handleNavigation(event, '/hazard-image'); // Adjusted for hazard
+          });
+      });
+  </script>
+  
   </body>
 </html>

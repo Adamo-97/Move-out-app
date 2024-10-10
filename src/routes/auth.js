@@ -39,6 +39,12 @@ router.get('/verify', (req, res) => {
 // Route for handling verification code submission (POST)
 router.post('/verify', authController.verifyCode);
 
+// Route for handling label deletion within home
+router.delete('/home', ensureAuthenticated, authController.deleteLabel);
+
+// Route for handling logout
+router.get('/logout', authController.logout);
+
 // Route for the dashboard (after login)
 router.get('/home', ensureAuthenticated, (req, res) => {
     const userId = req.session.userId; // Assume the user ID is stored in the session after login
@@ -82,38 +88,86 @@ router.post('/new-lable', (req, res) => {
 
 // Route for the 'Create General Label' page
 router.get('/general-lable', ensureAuthenticated, (req, res) => {
-    res.render('general-lable', { query: req.query }); // Pass query parameters to the template
+    res.render('general-lable', { query: req.query }); 
+});
+// Route for handling fragile label creation
+router.get('/fragile-lable', ensureAuthenticated, (req, res) => {
+    res.render('fragile-lable', { query: req.query }); 
+});
+// Route for handling hazard label creation
+router.get('/hazard-lable', ensureAuthenticated, (req, res) => {
+    res.render('hazard-lable', { query: req.query }); 
 });
 
 // Route for 'general-text' page
 router.get('/general-text', ensureAuthenticated, (req, res) => {
-    res.render('general-text', { query: req.query }); // Pass query parameters to the template
+    res.render('general-text', { query: req.query }); 
+});
+// Route for 'general-text' page
+router.get('/fragile-text', ensureAuthenticated, (req, res) => {
+    res.render('fragile-text', { query: req.query }); 
+});
+// Route for hazard text page
+router.get('/hazard-text', ensureAuthenticated, (req, res) => {
+    res.render('hazard-text', { query: req.query }); 
 });
 
-// Route for the voice page 
+// Route for the voice page General
 router.get('/general-voice', ensureAuthenticated, (req, res) => {
-    res.render('general-voice', { query: req.query }); // Pass query parameters to the template
+    res.render('general-voice', { query: req.query }); 
 });
-// Route for creating a new voice label
+// Route for creating a new voice label General
 router.post('/general-voice', ensureAuthenticated, authController.addLabel);
-
-// Route for the image page
-router.get('/general-image', ensureAuthenticated, (req, res) => {
-    res.render('general-image', { query: req.query }); // Pass query parameters to the template
+// Route for the voice page Fragile
+router.get('/fragile-voice', ensureAuthenticated, (req, res) => {
+    res.render('fragile-voice', { query: req.query }); 
 });
-// Route for creating a new image label
-router.post('/general-image', ensureAuthenticated, authController.addLabel);
+//Route for creating a new voice label Fragile
+router.post('/fragile-voice', ensureAuthenticated, authController.addLabel);
+// Route for the voice page Hazard
+router.get('/hazard-voice', ensureAuthenticated, (req, res) => {
+    res.render('hazard-voice', { query: req.query }); 
+});
+//Route for creating a new voice label Hazard
+router.post('/hazard-voice', ensureAuthenticated, authController.addLabel);
 
-// Route for the 'General Complete' page
-router.get('/general-complete', ensureAuthenticated, (req, res) => {
-    console.log('--- [/general-complete] Start of Function ---');
+// Route for the image page General
+router.get('/general-image', ensureAuthenticated, (req, res) => {
+    res.render('general-image', { query: req.query }); 
+});
+// Route for creating a new image label general
+router.post('/general-image', ensureAuthenticated, authController.addLabel);
+// Route for the image page Fragile
+router.get('/fragile-image', ensureAuthenticated, (req, res) => {
+    res.render('fragile-image', { query: req.query }); 
+});
+// Router for creating a new image label fragile
+router.post('/fragile-image', ensureAuthenticated, authController.addLabel);
+// Route for the image page Hazard
+router.get('/hazard-image', ensureAuthenticated, (req, res) => {
+    res.render('hazard-image', { query: req.query }); 
+});
+// Route for creating a new image label hazard
+router.post('/hazard-image', ensureAuthenticated, authController.addLabel);
+
+// Generalized route for 'Complete' page (handles general, fragile, hazard)
+router.get('/label-complete', ensureAuthenticated, (req, res) => {
+    console.log('--- [/label-complete] Start of Function ---');
 
     const labelId = req.query.labelId;
-    console.log('[general-complete] Label ID:', labelId);
+    const categoryId = req.query.category_id; // Extract the category_id from the query
+
+    console.log('[label-complete] Label ID:', labelId);
+    console.log('[label-complete] Category ID:', categoryId);
 
     if (!labelId) {
-        console.error('[general-complete] Label ID is required.');
+        console.error('[label-complete] Label ID is required.');
         return res.status(400).send('Label ID is required.');
+    }
+
+    if (!categoryId) {
+        console.error('[label-complete] Category ID is required.');
+        return res.status(400).send('Category ID is required.');
     }
 
     const query = `
@@ -125,14 +179,14 @@ router.get('/general-complete', ensureAuthenticated, (req, res) => {
 
     db.query(query, [labelId], (err, results) => {
         if (err) {
-            console.error('[general-complete] Error fetching label data:', err);
+            console.error('[label-complete] Error fetching label data:', err);
             return res.status(500).send('Server error');
         }
 
-        console.log('[general-complete] Query results:', results);
+        console.log('[label-complete] Query results:', results);
 
         if (!results || results.length === 0) {
-            console.log('[general-complete] No label found with the specified ID.');
+            console.log('[label-complete] No label found with the specified ID.');
             return res.status(404).send('Label not found');
         }
 
@@ -141,39 +195,33 @@ router.get('/general-complete', ensureAuthenticated, (req, res) => {
             qr_data: results[0].qr_code_data
         };
 
-        console.log('[general-complete] Label data being sent to template:', labelData);
+        console.log('[label-complete] Label data being sent to template:', labelData);
+
+        // Determine the label type based on the categoryId and render the correct template
+        let template = '';
+        switch (parseInt(categoryId)) {
+            case 1:
+                template = 'fragile-comple';
+                break;
+            case 2:
+                template = 'hazard-complete';
+                break;
+            case 3:
+                template = 'general-complete';
+                break;
+            default:
+                console.error('[label-complete] Invalid Category ID.');
+                return res.status(400).send('Invalid Category ID.');
+        }
 
         try {
-            res.render('general-complete', { label: labelData });
+            res.render(template, { label: labelData });
         } catch (renderError) {
-            console.error('[general-complete] Error rendering general-complete:', renderError);
+            console.error(`[label-complete] Error rendering ${template}:`, renderError);
             return res.status(500).send('Error rendering the page.');
         }
     });
 });
 
-// Route for handling label deletion within home
-router.delete('/home', ensureAuthenticated, authController.deleteLabel);
-
-// Route for the 'Create Hazard Label' page
-router.get('/hazard-lable', ensureAuthenticated, (req, res) => {
-    res.render('hazard-lable');  // Render the hazard label creation page
-});
-
-// Route for the 'Create Fragile Label' page
-router.get('/fragile-lable', ensureAuthenticated, (req, res) => {
-    res.render('fragile-lable');  // Render the fragile label creation page
-});
-
-router.get('/general-text', ensureAuthenticated, (req, res) => {
-    res.render('general-text');  // Render the general label creation page
-});
-
-// route for the scan page
-router.post('/scan-label', authController.scanLabel);
-
-// Route for handling logout
-router.get('/logout', authController.logout);
-
-
+// Export the router
 module.exports = router;

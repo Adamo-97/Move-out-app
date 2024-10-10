@@ -504,7 +504,7 @@
   background-color: transparent;
   bottom: calc(31.25% - 0.78vw);
   height: 2.55vw;
-  left: 0.0vw;
+  left: 15.0vw;
   letter-spacing: 0.0vw;
   line-height: 2.46vw;
   position: absolute;
@@ -758,4 +758,23 @@
 
 .fragile-image .titel-mpm7n9::placeholder {
   color: #ffffff99;
+}
+
+/* Keep the drop area responsive but make sure the upload button is above it */
+.main-box-993Wkr {
+  position: relative;
+  z-index: 1;  /* Normal z-index */
+  transition: all 0.3s ease;
+}
+
+.main-box-993Wkr.dragover {
+  z-index: 10;  /* Increase z-index on dragover */
+  box-shadow: 0 0 10px rgba(141, 141, 141, 0.305);  /* Optional glow effect */
+}
+
+/* Ensure that the upload text/button stays above the drop area */
+.upload-a-file-993Wkr {
+  position: relative;
+  z-index: 100;  /* Higher z-index to stay clickable */
+  cursor: pointer;
 }

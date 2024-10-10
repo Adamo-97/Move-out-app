@@ -168,11 +168,11 @@
             </a>
 
             <!-- Done Button -->
-            <a href="/general-complete">
-                <div class="done-YH2EbH smart-layers-pointers">
-                    <img class="done-5MABDb" src="img/done-1@1x.png" alt="Done" />
-                </div>
-            </a>
+            <button id="check-button" type="button">
+                    <div class="done-YH2EbH smart-layers-pointers">
+                        <img class="done-5MABDb" src="img/done-1@1x.png" alt="Done" />
+                    </div>
+            </button>
 
             <!-- Title Section -->
             <div class="title-YH2EbH title">
@@ -187,113 +187,6 @@
             </div>
         </div>
     </div>
-    <script>
-      let selectedImage = null;  // To store the selected image file
-      const checkButton = document.querySelector('.done-YH2EbH');
-      const cancelButton = document.querySelector('.cancel-YH2EbH');
-      const dropArea = document.querySelector('.drop-image-box-YH2EbH');
-      const uploadText = document.querySelector('.upload-a-file-YH2EbH');
-      const titleInput = document.querySelector('[name="titel111"]');
-      const dropMessage = document.querySelector('.drag-an-image-O5hTUX');
-    
-      // Fetch the title from the URL query parameters
-      const urlParams = new URLSearchParams(window.location.search);
-      const labelName = urlParams.get('titel114');
-      const categoryId = urlParams.get('category_id') || 3;  // Default category ID to 3 if not present
-      const publicStatus = urlParams.get('public') === 'true';  // Parse the public status as boolean
-    
-      // Populate the title input if available
-      if (labelName) {
-        titleInput.value = labelName;
-      }
-    
-      // Handle file drop on the drop area
-      dropArea.addEventListener('drop', (e) => {
-        e.preventDefault();  // Prevent default behavior (e.g., opening the file in a new tab)
-        e.stopPropagation();  // Stop other event handling
-        dropArea.classList.remove('dragover');  // Remove the dragover styling
-    
-        const files = e.dataTransfer.files;  // Get dropped files
-        if (files.length) {
-          selectedImage = files[0];  // Store the image file
-          console.log('Image file selected:', selectedImage.name);  // Log the file name
-          displaySuccessMessage();  // Show success message
-        }
-      });
-    
-      // Handle dragover event
-      dropArea.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        dropArea.classList.add('dragover');  // Add the dragover styling
-        console.log('Dragging over the drop area');
-      });
-    
-      // Handle dragleave event
-      dropArea.addEventListener('dragleave', (e) => {
-        dropArea.classList.remove('dragover');  // Remove the dragover styling
-        console.log('Left the drop area');
-      });
-    
-      // Clicking on "upload a file" text to open file explorer
-      uploadText.addEventListener('click', openFileExplorer);
-    
-      function openFileExplorer() {
-        const fileInput = document.createElement('input');
-        fileInput.type = 'file';
-        fileInput.accept = 'image/*';  // Only allow image files
-        fileInput.onchange = (e) => {
-          selectedImage = e.target.files[0];  // Store the selected image
-          console.log('Image selected from explorer:', selectedImage.name);
-          displaySuccessMessage();  // Show success message
-        };
-        fileInput.click();  // Open file explorer
-      }
-    
-      // Function to display the success message after image selection or drop
-      function displaySuccessMessage() {
-        dropMessage.textContent = 'Image uploaded';  // Display success message
-        const checkMark = document.createElement('span');  // Create a checkmark element
-        checkMark.textContent = ' ✓';  // Add a checkmark symbol
-        dropMessage.appendChild(checkMark);  // Append checkmark
-      }
-    
-      // Check button click handler to submit the image
-      checkButton.addEventListener('click', () => {
-        if (!selectedImage) {
-          alert('Please upload an image before submitting.');
-          return;
-        }
-    
-        const formData = new FormData();
-        formData.append('image', selectedImage);  // Append the image file
-        formData.append('label_name', titleInput.value.trim());  // Append label name
-        formData.append('category_id', categoryId);  // Append category ID
-        formData.append('public', publicStatus);  // Append public status
-    
-        // Send image and additional data to the server
-        fetch('/general-image', {
-          method: 'POST',
-          body: formData
-        })
-        .then(response => response.json())  // Parse the JSON response
-        .then(data => {
-          if (data.success) {
-            window.location.href = data.redirectUrl;  // Redirect on success
-          } else {
-            alert('Error uploading image.');
-          }
-        })
-        .catch(error => {
-          console.error('Error uploading image:', error);
-        });
-      });
-    
-      // Cancel button click handler to return to the previous page
-      cancelButton.addEventListener('click', () => {
-        window.location.href = '/home';  // Redirect back on cancel
-      });
-    </script>
-    
+    <script src="../src/EJS-Javascript/labelImageUpload.js"></script>
 </body>
 </html>

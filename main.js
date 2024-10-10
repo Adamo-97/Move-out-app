@@ -2,7 +2,6 @@ const express = require('express');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
-const fs = require('fs'); // Not needed after removing Ngrok
 const config = require('./config/config.json'); // Keep this for session management
 
 // Create an Express app
@@ -26,6 +25,9 @@ app.use(express.static('public', {
         }
     }
 }));
+
+// Serve static files (like JavaScript) from the 'src' folder
+app.use('/src', express.static(path.join(__dirname, 'src')));
 
 // Cache-control middleware to prevent pages from being cached
 app.use((req, res, next) => {

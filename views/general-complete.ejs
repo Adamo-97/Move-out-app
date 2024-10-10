@@ -4,9 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=1920, maximum-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
     <style>
+        /* General container styling */
         .general-complete.screen {
             display: grid; /* Make this a grid container */
             grid-template-columns: 1fr; /* Single column layout */
@@ -14,8 +16,13 @@
             position: relative; /* Keep the positioning context */
         }
 
-        .qr-placeholder-iv90TT, .titel-placeholder-JAxmLZ, .remove-button-iv90TT,
-        .edit-button-iv90TT, .print-button-iv90TT, .prev-button-iv90TT {
+        /* Elements within the grid */
+        .qr-placeholder-iv90TT, 
+        .titel-placeholder-JAxmLZ, 
+        .remove-button-iv90TT,
+        .edit-button-iv90TT, 
+        .print-button-iv90TT, 
+        .prev-button-iv90TT {
             grid-column: 1; /* All elements will take the full column */
         }
     </style>
@@ -23,141 +30,134 @@
 <body style="margin: 0;">
     <input type="hidden" id="anPageName" name="page" value="general-complete" />
     
-        <div class="label-container">
-            <div class="container-center-horizontal">
-                <div class="general-complete screen">
-                    <div class="main-shape-iv90TT">
-                        <div class="main-shape-5Sb3YF"></div>
-                        <img class="path-56-5Sb3YF" src="img/path-56@1x.png" alt="Path 56" />
-                        <div class="box-icon-5Sb3YF">
-                            <div class="group-31-o0zpnV"><img class="path-57-175eYn" src="img/path-57@1x.png" alt="Path 57" /></div>
-                            <div class="group-32-o0zpnV"><img class="path-58-U31Qzu" src="img/path-58@1x.png" alt="Path 58" /></div>
-                            <div class="group-33-o0zpnV"><img class="path-59-zNK7x2" src="img/path-59@1x.png" alt="Path 59" /></div>
-                            <div class="group-34-o0zpnV">
-                                <img class="path-60-PLeOxC" src="img/path-60@1x.png" alt="Path 60" />
-                                <img class="path-61-PLeOxC" src="img/path-61@1x.png" alt="Path 61" />
-                                <img class="path-62-PLeOxC" src="img/path-307@1x.png" alt="Path 62" />
-                            </div>
-                            <div class="group-35-o0zpnV"><img class="path-63-SfRsxi" src="img/path-63@1x.png" alt="Path 63" /></div>
-                            <div class="group-36-o0zpnV">
-                                <img class="path-64-FUCrSq" src="img/path-64@1x.png" alt="Path 64" />
-                                <img class="path-65-FUCrSq" src="img/path-307@1x.png" alt="Path 65" />
-                            </div>
-                            <div class="group-37-o0zpnV"><img class="path-66-KztuxI" src="img/path-66@1x.png" alt="Path 66" /></div>
-                            <div class="group-38-o0zpnV"><img class="path-67-JRrtoP" src="img/path-307@1x.png" alt="Path 67" /></div>
-                            <img class="path-68-o0zpnV" src="img/path-68@1x.png" alt="Path 68" />
-                            <div class="group-39-o0zpnV">
-                                <img class="path-69-4U34pA" src="img/path-69@1x.png" alt="Path 69" />
-                                <img class="path-70-4U34pA" src="img/path-70@1x.png" alt="Path 70" />
-                            </div>
-                            <div class="group-40-o0zpnV"><img class="path-71-EYjnCE" src="img/path-307@1x.png" alt="Path 71" /></div>
+    <div class="label-container">
+        <div class="container-center-horizontal">
+            <div class="general-complete screen">
+                <!-- Main shape container -->
+                <div class="main-shape-iv90TT">
+                    <div class="main-shape-5Sb3YF"></div>
+                    <img class="path-56-5Sb3YF" src="img/path-56@1x.png" alt="Path 56" />
+                    <div class="box-icon-5Sb3YF">
+                        <div class="group-31-o0zpnV">
+                            <img class="path-57-175eYn" src="img/path-57@1x.png" alt="Path 57" />
+                        </div>
+                        <div class="group-32-o0zpnV">
+                            <img class="path-58-U31Qzu" src="img/path-58@1x.png" alt="Path 58" />
+                        </div>
+                        <div class="group-33-o0zpnV">
+                            <img class="path-59-zNK7x2" src="img/path-59@1x.png" alt="Path 59" />
+                        </div>
+                        <div class="group-34-o0zpnV">
+                            <img class="path-60-PLeOxC" src="img/path-60@1x.png" alt="Path 60" />
+                            <img class="path-61-PLeOxC" src="img/path-61@1x.png" alt="Path 61" />
+                            <img class="path-62-PLeOxC" src="img/path-307@1x.png" alt="Path 62" />
+                        </div>
+                        <div class="group-35-o0zpnV">
+                            <img class="path-63-SfRsxi" src="img/path-63@1x.png" alt="Path 63" />
+                        </div>
+                        <div class="group-36-o0zpnV">
+                            <img class="path-64-FUCrSq" src="img/path-64@1x.png" alt="Path 64" />
+                            <img class="path-65-FUCrSq" src="img/path-307@1x.png" alt="Path 65" />
+                        </div>
+                        <div class="group-37-o0zpnV">
+                            <img class="path-66-KztuxI" src="img/path-66@1x.png" alt="Path 66" />
+                        </div>
+                        <div class="group-38-o0zpnV">
+                            <img class="path-67-JRrtoP" src="img/path-307@1x.png" alt="Path 67" />
+                        </div>
+                        <img class="path-68-o0zpnV" src="img/path-68@1x.png" alt="Path 68" />
+                        <div class="group-39-o0zpnV">
+                            <img class="path-69-4U34pA" src="img/path-69@1x.png" alt="Path 69" />
+                            <img class="path-70-4U34pA" src="img/path-70@1x.png" alt="Path 70" />
+                        </div>
+                        <div class="group-40-o0zpnV">
+                            <img class="path-71-EYjnCE" src="img/path-307@1x.png" alt="Path 71" />
                         </div>
                     </div>
-
-                    <div class="qr-placeholder-iv90TT">
-                        <% if (label && label.qr_data) { %>
-                            <img src="<%= label.qr_data %>" alt="QR Code" />
-                        <% } else { %>
-                            <p>QR Code data is not available</p>
-                        <% } %>
-                    </div>  
-
-                    <div class="titel-placeholder-JAxmLZ">
-                        <div class="titel-placeholder-SSIOQa"></div>
-                        <% if (label && label.label_name) { %>
-                            <h1 class="titel-text-SSIOQa lato-black-white-50px"><%= label.label_name %></h1>
-                        <% } else { %>
-                            <p>Label name is not available</p>
-                        <% } %>
-                    </div>
-
-                    <div class="remove-button-iv90TT smart-layers-pointers" data-label-id="<%= label.label_id %>">
-                        <div class="remove-W8ZGGM"></div>
-                        <img class="remove-icon-W8ZGGM smart-layers-pointers" src="img/remove-icon-1@1x.png" alt="remove icon" />
-                    </div>
-                    
-                    <a href="/edit-lable-general">
-                        <div class="edit-button-iv90TT smart-layers-pointers">
-                            <div class="edit-u6n1IL"></div>
-                            <img class="edit-yx3fC4 smart-layers-pointers" src="img/edit-1@1x.png" alt="edit" />
-                        </div>
-                    </a>
-
-                    <a href="/home">
-                        <div class="print-button-iv90TT smart-layers-pointers">
-                            <div class="print-urvQAg"></div>
-                            <img class="path-73-urvQAg smart-layers-pointers" src="img/path-73-1@1x.png" alt="Path 73" />
-                        </div>
-                    </a>
-
-                    <a href="/preview-lable-general">
-                        <div class="prev-button-iv90TT smart-layers-pointers">
-                            <div class="prev-o8xOJx"></div>
-                            <img class="path-72-o8xOJx smart-layers-pointers" src="img/path-72-1@1x.png" alt="Path 72" />
-                        </div>
-                    </a>
                 </div>
+
+                <!-- QR Code placeholder -->
+                <div class="qr-placeholder-iv90TT">
+                    <% if (label && label.qr_data) { %>
+                        <img src="<%= label.qr_data %>" alt="QR Code" />
+                    <% } else { %>
+                        <p>QR Code data is not available</p>
+                    <% } %>
+                </div>  
+
+                <!-- Title placeholder -->
+                <div class="titel-placeholder-JAxmLZ">
+                    <div class="titel-placeholder-SSIOQa"></div>
+                    <% if (label && label.label_name) { %>
+                        <h1 class="titel-text-SSIOQa lato-black-white-50px"><%= label.label_name %></h1>
+                    <% } else { %>
+                        <p>Label name is not available</p>
+                    <% } %>
+                </div>
+
+                <!-- Remove button -->
+                <div class="remove-button-iv90TT smart-layers-pointers" data-label-id="<%= label.label_id %>">
+                    <div class="remove-W8ZGGM"></div>
+                    <img class="remove-icon-W8ZGGM smart-layers-pointers" src="img/remove-icon-1@1x.png" alt="remove icon" />
+                </div>
+                
+                <!-- Edit button -->
+                <a href="/edit-lable-general">
+                    <div class="edit-button-iv90TT smart-layers-pointers">
+                        <div class="edit-u6n1IL"></div>
+                        <img class="edit-yx3fC4 smart-layers-pointers" src="img/edit-1@1x.png" alt="edit" />
+                    </div>
+                </a>
+
+                <!-- Print button -->
+                <button type="button" id="general-print-button">
+                    <div class="print-button-iv90TT smart-layers-pointers">
+                        <div class="print-urvQAg"></div>
+                        <img class="path-73-urvQAg smart-layers-pointers" src="img/path-73-1@1x.png" alt="Path 73" />
+                    </div>
+                </button>
+
+                <!-- Share button and hidden email share form -->
+                <a href="javascript:void(0);" onclick="toggleEmailShareForm()">
+                    <div class="prev-button-iv90TT smart-layers-pointers">
+                        <div class="prev-o8xOJx">
+                            <i class="fas fa-paper-plane path-72-o8xOJx smart-layers-pointers" 
+                            style="color: white; font-size: 58px; margin: auto; transform: translate(2px, -5px);" 
+                            aria-hidden="true"></i>
+                        </div>
+
+                        <!-- Hidden email share form (inside the same container as the button) -->
+                        <div id="emailShareForm" class="email-share-form" style="display: none;">
+                            <div class="input-wrapper">
+                                <svg class="icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <g data-name="Layer 2">
+                                        <g data-name="inbox">
+                                            <rect width="24" height="24" transform="rotate(180 12 12)" opacity="0"></rect>
+                                            <path d="M20.79 11.34l-3.34-6.68A3 3 0 0 0 14.76 3H9.24a3 3 0 0 0-2.69 1.66l-3.34 6.68a2 2 0 0 0-.21.9V18a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3v-5.76a2 2 0 0 0-.21-.9zM8.34 5.55a1 1 0 0 1 .9-.55h5.52a1 1 0 0 1 .9.55L18.38 11H16a1 1 0 0 0-1 1v2a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-2a1 1 0 0 0-1-1H5.62z"></path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <input type="text" name="text" class="input" placeholder="info@gmail.com" />
+                                <button class="Subscribe-btn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="10" viewBox="0 0 38 15" class="arrow">
+                                        <path d="M10 7.519l-.939-.344h0l.939.344zm14.386-1.205l-.981-.192.981.192zm1.276 5.509l.537.843.148-.094.107-.139-.792-.611zm4.819-4.304l-.385-.923h0l.385.923zm7.227.707a1 1 0 0 0 0-1.414L31.343.448a1 1 0 0 0-1.414 0 1 1 0 0 0 0 1.414l5.657 5.657-5.657 5.657a1 1 0 0 0 1.414 1.414l6.364-6.364zM1 7.519l.554.833.029-.019.094-.061.361-.23 1.277-.77c1.054-.609 2.397-1.32 3.629-1.787.617-.234 1.17-.392 1.623-.455.477-.066.707-.008.788.034.025.013.031.021.039.034a.56.56 0 0 1 .058.235c.029.327-.047.906-.39 1.842l1.878.689c.383-1.044.571-1.949.505-2.705-.072-.815-.45-1.493-1.16-1.865-.627-.329-1.358-.332-1.993-.244-.659.092-1.367.305-2.056.566-1.381.523-2.833 1.297-3.921 1.925l-1.341.808-.385.245-.104.068-.028.018c-.011.007-.011.007.543.84zm8.061-.344c-.198.54-.328 1.038-.36 1.484-.032.441.024.94.325 1.364.319.45.786.64 1.21.697.403.054.824-.001 1.21-.09.775-.179 1.694-.566 2.633-1.014l3.023-1.554c2.115-1.122 4.107-2.168 5.476-2.524.329-.086.573-.117.742-.115s.195.038.161.014c-.15-.105.085-.139-.076.685l1.963.384c.192-.98.152-2.083-.74-2.707-.405-.283-.868-.37-1.28-.376s-.849.069-1.274.179c-1.65.43-3.888 1.621-5.909 2.693l-2.948 1.517c-.92.439-1.673.743-2.221.87-.276.064-.429.065-.492.057-.043-.006.066.003.155.127.07.099.024.131.038-.063.014-.187.078-.49.243-.94l-1.878-.689zm14.343-1.053c-.361 1.844-.474 3.185-.413 4.161.059.95.294 1.72.811 2.215.567.544 1.242.546 1.664.459a2.34 2.34 0 0 0 .502-.167l.15-.076.049-.028.018-.011c.013-.008.013-.008-.524-.852l-.536-.844.019-.012c-.038.018-.064.027-.084.032-.037.008.053-.013.125.056.021.02-.151-.135-.198-.895-.046-.734.034-1.887.38-3.652l-1.963-.384zm2.257 5.701l.791.611.024-.031.08-.101.311-.377 1.093-1.213c.922-.954 2.005-1.894 2.904-2.27l-.771-1.846c-1.31.547-2.637 1.758-3.572 2.725l-1.184 1.314-.341.414-.093.117-.025.032c-.01.013-.01.013.781.624zm5.204-3.381c.989-.413 1.791-.42 2.697-.307.871.108 2.083.385 3.437.385v-2c-1.197 0-2.041-.226-3.19-.369-1.114-.139-2.297-.146-3.715.447l.771 1.846z"></path>
+                                    </svg>
+                                    Send
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </a>
+
+
             </div>
         </div>
-        <script>
-            // Function to handle label deletion
-            function handleLabelDeletion(button) {
-                const labelId = button.getAttribute('data-label-id');
-        
-                if (!labelId) {
-                    console.error('Label ID not found.');
-                    return;
-                }
-        
-                console.log('Delete button clicked for label ID:', labelId);
-        
-                // Confirm deletion with the user
-                if (!confirm('Are you sure you want to delete this label?')) {
-                    return;
-                }
-        
-                // Make an AJAX call to delete the label
-                fetch('/home', {
-                    method: 'DELETE',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ labelId })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        alert('Label deleted successfully!');
-                        // Remove the label element from the DOM
-                        button.closest('.label-container').remove();
-                    } else {
-                        alert('Error deleting label: ' + data.message);
-                    }
-                })
-                .catch(error => {
-                    console.error('Error deleting label:', error);
-                    alert('Error deleting label.');
-                });
-            }
-        
-            // Handle the first label separately
-            const firstLabelButton = document.querySelector('.remove-button-iv90TT');
-            if (firstLabelButton) {
-                firstLabelButton.addEventListener('click', function () {
-                    handleLabelDeletion(firstLabelButton);
-                });
-            }
-        
-            // Event delegation for all other labels
-            document.addEventListener('click', function(event) {
-                const button = event.target.closest('.remove-button-iv90TT');
-        
-                // Ignore the first label button as it's handled separately
-                if (button && button !== firstLabelButton) {
-                    handleLabelDeletion(button);
-                }
-            });
-        </script>
-        
+    </div>
+
+    <script src="../src/EJS-Javascript/deleteLable.js"></script>
+    <script src="../src/EJS-Javascript/shareLable.js"></script> 
+    <script src="../src/EJS-Javascript/printLable.js"></script>   
+    
 </body>
 </html>

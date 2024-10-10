@@ -2,8 +2,6 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <!--<meta name=description content="This site was generated with Anima. www.animaapp.com"/>-->
-    <!-- <link rel="shortcut icon" type=image/png href="https://animaproject.s3.amazonaws.com/home/favicon.png" /> -->
     <meta name="viewport" content="width=1920, maximum-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
     <meta name="og:type" content="website" />
@@ -186,7 +184,7 @@
         </div>
 
         <!-- Sign Out Button -->
-        <a href="/login">
+        <a href="/logout">
           <div class="sign-out-AFDyxE smart-layers-pointers">
             <div class="group-377-WAhCuO">
               <div class="sign-out-2ADK9h montserrat-normal-torch-red-37-7px">Sign out</div>
@@ -244,147 +242,8 @@
       </div>
     </div>
 
-    <script>
-      let mediaRecorder;
-      let audioChunks = [];
-      let audioBlob; // Store the recorded audio
-      let stream; // Declare stream at a higher scope
-      let timerInterval;
-      let maxRecordingTime = 180; // 3 minutes in seconds
-      let elapsedTime = 0;
-
-      const startButton = document.querySelector('.start-recording-fFzO8k');
-      const stopButton = document.querySelector('.stop-recording-mVqemf');
-      const checkButton = document.getElementById('check-button'); // "Done" button with id "check-button"
-      const timerDisplay = document.querySelector('.timer-AFDyxE .x0000-3FzQFZ');
-      const timelineProgress = document.querySelector('.timeline-progress-Jx4Dnz');
-
-      // Extract query parameters from the URL
-      const urlParams = new URLSearchParams(window.location.search);
-      const labelName = urlParams.get('titel114'); // Get the label name from the query parameter
-      const categoryId = urlParams.get('category_id') || 3; // Get the category ID, default to 3 if not present
-      const publicStatus = urlParams.get('public') === 'true'; // Get the public status as a boolean
-
-      // Populate the label name input if it exists
-      const labelNameInput = document.querySelector('[name="titel110"]'); // Use the provided input name for title
-      if (labelNameInput && labelName) {
-          labelNameInput.value = labelName;
-      }
-
-      // Function to format time in MM:SS format
-      function formatTime(seconds) {
-          const mins = Math.floor(seconds / 60);
-          const secs = seconds % 60;
-          return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-      }
-
-      // Function to start the recording
-      startButton.addEventListener('click', () => {
-          if (mediaRecorder && mediaRecorder.state === "recording") return; // Prevent multiple recordings
-
-          navigator.mediaDevices.getUserMedia({ audio: true })
-              .then(userStream => {
-                  stream = userStream; // Store the stream in the higher scope variable
-                  mediaRecorder = new MediaRecorder(stream);
-                  mediaRecorder.start();
-                  audioChunks = [];
-
-                  mediaRecorder.ondataavailable = event => {
-                      audioChunks.push(event.data);
-                  };
-
-                  mediaRecorder.onstop = () => {
-                      audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
-                      const audioUrl = URL.createObjectURL(audioBlob);
-                      const audio = document.createElement('audio');
-                      audio.src = audioUrl;
-                      document.body.appendChild(audio);
-
-                      // Stop all audio tracks to release the recording indicator
-                      stream.getTracks().forEach(track => track.stop());
-                  };
-
-                  // Start timer and timeline animation
-                  elapsedTime = 0;
-                  timerDisplay.textContent = formatTime(elapsedTime);
-                  timelineProgress.style.width = '0%';
-
-                  timerInterval = setInterval(() => {
-                      elapsedTime++;
-                      timerDisplay.textContent = formatTime(elapsedTime);
-                      timelineProgress.style.width = `${(elapsedTime / maxRecordingTime) * 100}%`;
-
-                      // Stop recording automatically after the max recording time
-                      if (elapsedTime >= maxRecordingTime) {
-                          stopRecording();
-                      }
-                  }, 1000);
-              });
-      });
-
-      // Function to stop the recording
-      stopButton.addEventListener('click', stopRecording);
-
-      function stopRecording() {
-          if (mediaRecorder && mediaRecorder.state === "recording") {
-              mediaRecorder.stop();
-              clearInterval(timerInterval);
-          }
-      }
-
-      // Function to handle the "check" button click to submit the data
-      checkButton.addEventListener('click', () => {
-      if (!audioBlob) {
-          alert('Please record an audio before submitting.');
-          return;
-      }
-
-      const formData = new FormData();
-      
-      // Append the audio blob with the correct file name and MIME type
-      const file = new File([audioBlob], 'voice-memo.wav', { type: 'audio/wav' });
-      formData.append('audioMemo', file);
-
-      // Also send label name and other necessary fields
-      formData.append('label_name', labelNameInput ? labelNameInput.value.trim() : '');
-      formData.append('category_id', categoryId); // Use the category ID from the URL
-      formData.append('public', publicStatus); // Include the public status
-
-      // Send the audio memo and additional data to the server
-      fetch('/general-voice', {
-          method: 'POST',
-          body: formData
-      })
-      .then(response => {
-          // Check if response is JSON, otherwise handle it as text
-          const contentType = response.headers.get("content-type");
-          if (contentType && contentType.includes("application/json")) {
-              return response.json(); // Parse JSON if it's JSON
-          } else {
-              return response.text(); // Otherwise, parse as plain text
-          }
-      })
-      .then(data => {
-          // Handle JSON response
-          if (typeof data === 'object') {
-              console.log('Server response (JSON):', data); // Log the JSON response to check if it's correct
-
-              if (data.success) {
-                  window.location.href = data.redirectUrl; // Redirect using the URL from the server's response
-              } else {
-                  alert('Error uploading voice memo.');
-              }
-          } else {
-              // Handle non-JSON response
-              console.error('Non-JSON response from server:', data);
-              alert('Error uploading voice memo.');
-          }
-      })
-      .catch(error => {
-          console.error('Error uploading voice memo:', error);
-      });
-  });
-
+  <script 
+    src="../src/EJS-Javascript/voiceLable.js">
   </script>  
   
   </body>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/verify-pin.css" />
+    <title>Verify PIN</title>
+</head>
+<body>
+    <form class="form">
+      <div class="content">
+        <p align="center">Enter your 6-digit code </p>
+        <div class="inp">
+        <input maxlength="1" class="input" type="text" placeholder="">
+        <input maxlength="1" class="input" type="text" placeholder=""> 
+        <input maxlength="1" class="input" type="text" placeholder=""> 
+        <input maxlength="1" class="input" type="text" placeholder=""> 
+        <input maxlength="1" class="input" type="text" placeholder=""> 
+        <input maxlength="1" class="input" type="text" placeholder=""> 
+        </div>
+        <button>Verify</button>
+      </div>
+      
+    </form>
+    <script>
+        //auto tap to next input
+        const inputs = document.querySelectorAll('input');
+        for (let i = 0; i < inputs.length; i++) {
+            inputs[i].addEventListener('keyup', function() {
+                if (this.value.length == this.maxLength) {
+                    inputs[i + 1].focus();
+                }
+            });
+        }
+    </script>
+</body>
+</html>

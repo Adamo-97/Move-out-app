@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <style>
+        /* General container styling */
+        .fragile-comple.screen {
+            display: grid; /* Make this a grid container */
+            grid-template-columns: 1fr; /* Single column layout */
+            gap: 1vw; /* Adjust as necessary for spacing */
+            position: relative; /* Keep the positioning context */
+        }
+
+        /* Elements within the grid */
+        .qr-placeholder-k5IpBb,
+        .titel-placeholder-k5IpBb,
+        .remove-button-k5IpBb,
+        .edit-button-k5IpBb,
+        .print-button-k5IpBb,
+        .prev-button-k5IpBb {
+            grid-column: 1; /* All elements will take the full column */
+        }
+    </style>
+  </head>
+  
+  <body style="margin: 0; background: #ffffff">
+    <input type="hidden" id="anPageName" name="page" value="fragile-comple" />
+    
+    <!-- Add an ID to the container -->
+    <div id="fragile-label-container" class="label-container">
+      <div class="container-center-horizontal">
+        <div class="fragile-comple screen">
+          <!-- Main Shape Section -->
+          <div class="main-shape-k5IpBb">
+            <div class="main-shape-j0WkFk"></div>
+            <img class="path-56-j0WkFk" src="img/path-56-2@1x.png" alt="Path 56" />
+            <div class="fragile-icon-j0WkFk">
+              <div class="fragile-icon-byOiao">
+                <img class="path-16-x3XeFN" src="img/path-16@1x.png" alt="Path 16" />
+                <div class="group-10-x3XeFN">
+                  <img class="path-17-qzEG3V" src="img/path-17@1x.png" alt="Path 17" />
+                  <img class="path-18-qzEG3V" src="img/path-18@1x.png" alt="Path 18" />
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- QR Placeholder -->
+          <div class="qr-placeholder-k5IpBb">
+            <% if (label && label.qr_data) { %>
+              <img src="<%= label.qr_data %>" alt="QR Code" />
+          <% } else { %>
+              <p>QR Code data is not available</p>
+          <% } %>
+          </div>
+          
+          <!-- Title Placeholder -->
+          <div class="titel-placeholder-k5IpBb">
+            <div class="titel-placeholder-FsKoEO"></div>
+            <% if (label && label.label_name) { %>
+              <h1 class="titel-text-FsKoEO lato-black-white-50px"><%= label.label_name %></h1>
+            <% } else { %>
+              <p>Label name is not available</p>
+            <% } %>
+          </div>
+          
+          <!-- Remove Button -->
+            <div class="remove-button-k5IpBb" data-label-id="<%= label.label_id %>">
+              <div class="remove-WPSRvX"></div>
+              <img class="remove-icon-WPSRvX smart-layers-pointers" src="img/remove-icon-1@1x.png" alt="remove icon" />
+            </div>
+          
+          <!-- Edit Button -->
+          <a href="/edit-lable-fragile">
+            <div class="edit-button-k5IpBb">
+              <div class="edit-SpHtT8"></div>
+              <img class="edit-4DXmtt smart-layers-pointers" src="img/edit@1x.png" alt="edit" />
+            </div>
+          </a>
+          
+          <!-- Print Button -->
+          <button type="button" id="fragile-print-button">
+            <div class="print-button-k5IpBb">
+              <div class="print-NN0mpQ"></div>
+              <img class="path-73-NN0mpQ smart-layers-pointers" src="img/path-73-1@1x.png" alt="Path 73" />
+            </div>
+          </button>
+          
+          <!-- Preview Button -->
+          <a href="/preview-lable-fragile">
+            <div class="prev-button-k5IpBb">
+              <div class="prev-cnW3mu"></div>
+              <img class="path-72-cnW3mu smart-layers-pointers" src="img/path-72-2@1x.png" alt="Path 72" />
+            </div>
+          </a>
+          
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="../src/EJS-Javascript/deleteLable.js"></script>
+    <script src="../src/EJS-Javascript/printLable.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          console.log("DOM fully loaded");
+          setupPrintButton('fragile-print-button', 'label-container', 'fragile-label');
+      });
+    </script>
+  </body>
+</html>

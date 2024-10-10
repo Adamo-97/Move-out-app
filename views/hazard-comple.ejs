@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
+    <meta name="og:type" content="website" />
+    <meta name="twitter:card" content="photo" />
+    <style>
+      /* Hazard Comple container styling */
+      .hazard-comple.screen {
+          display: grid; /* Make this a grid container */
+          grid-template-columns: 1fr; /* Single column layout */
+          gap: 1vw; /* Adjust as necessary for spacing */
+          position: relative; /* Keep the positioning context */
+      }
+
+      /* Elements within the grid */
+      .qr-placeholder-NBZXkN, 
+      .titel-placeholder-NBZXkN,
+      .remove-button-NBZXkN,
+      .edit-button-NBZXkN,
+      .print-button-NBZXkN,
+      .prev-button-NBZXkN {
+          grid-column: 1; /* All elements will take the full column */
+      }
+
+    </style>
+  </head>
+  <body style="margin: 0; background: #ffffff">
+    <input type="hidden" id="anPageName" name="page" value="hazard-comple" />
+    
+    <div class="label-container">
+      <div class="container-center-horizontal">
+        <div class="hazard-comple screen">
+          <!-- Label Shape Section -->
+          <div class="lable-shape-NBZXkN">
+            <div class="main-shape-KDRcXI"></div>
+            <img class="path-56-KDRcXI" src="img/path-56-1@1x.png" alt="Path 56" />
+            <div class="hazard-icon-KDRcXI">
+              <img class="path-35-iOnIFu" src="img/path-35@1x.png" alt="Path 35" />
+              <div class="group-20-iOnIFu">
+                <div class="rectangle-5-6mMW1C"></div>
+                <div class="ellipse-3-6mMW1C"></div>
+              </div>
+              <div class="group-21-iOnIFu">
+                <img class="path-36-x99Vp1" src="img/path-36@1x.png" alt="Path 36" />
+                <img class="path-37-x99Vp1" src="img/path-37@1x.png" alt="Path 37" />
+                <img class="path-38-x99Vp1" src="img/path-38@1x.png" alt="Path 38" />
+                <img class="path-39-x99Vp1" src="img/path-39@1x.png" alt="Path 39" />
+              </div>
+            </div>
+          </div>
+          
+          <!-- QR Placeholder -->
+          <div class="qr-placeholder-NBZXkN">
+            <% if (label && label.qr_data) { %>
+              <img src="<%= label.qr_data %>" alt="QR Code" />
+          <% } else { %>
+              <p>QR Code data is not available</p>
+          <% } %>
+          </div>
+          
+          <!-- Title Placeholder -->
+          <div class="titel-placeholder-NBZXkN">
+            <div class="titel-placeholder-sTNRHE"></div>
+            <% if (label && label.label_name) { %>
+              <h1 class="titel-text-sTNRHE lato-black-white-50px"><%= label.label_name %></h1>
+            <% } else { %>
+              <p>Label name is not available</p>
+            <% } %>
+          </div>
+
+          <!-- Remove Button -->
+          <div class="remove-button-NBZXkN" data-label-id="<%= label.label_id %>">
+            <div class="remove-Jbe2CJ"></div>
+            <img class="remove-icon-Jbe2CJ smart-layers-pointers" src="img/remove-icon-1@1x.png" alt="remove icon" />
+          </div>
+          
+          
+          <!-- Edit Button -->
+          <a href="/edit-lable-hazard">
+            <div class="edit-button-NBZXkN">
+              <div class="edit-0LlqzX"></div>
+              <img class="edit-R8w2ba smart-layers-pointers" src="img/edit-1@1x.png" alt="edit" />
+            </div>
+          </a>
+          
+          <!-- Print Button -->
+          <a href="/home">
+            <div class="print-button-NBZXkN">
+              <div class="print-xtiU7q"></div>
+              <img class="path-73-xtiU7q smart-layers-pointers" src="img/path-73-1@1x.png" alt="Path 73" />
+            </div>
+          </a>
+          
+          <!-- Preview Button -->
+          <button type="button" id="hazard-print-button">
+            <div class="prev-button-NBZXkN">
+              <div class="prev-YzbH8N"></div>
+              <img class="path-72-YzbH8N smart-layers-pointers" src="img/path-72-1@1x.png" alt="Path 72" />
+            </div>
+          </button>
+        
+      </div>
+    </div>
+    </div>
+    <script src="../src/EJS-Javascript/deleteLable.js"></script>
+    <script src="../src/EJS-Javascript/printLable.js"></script>
+
+  </body>
+</html>

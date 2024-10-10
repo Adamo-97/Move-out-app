@@ -324,16 +324,18 @@ exports.addLabel = (req, res) => {
         let fileField = null;
         let filename = null;
 
+        // Listen for file event
         busboyInstance.on('file', (fieldname, file, origFilename, encoding, mimetype) => {
             console.log('File field:', fieldname, 'Filename:', origFilename, 'Mimetype:', mimetype);
             
+            // Ensure filename is correctly set
             filename = typeof origFilename === 'object' && origFilename.filename ? origFilename.filename : origFilename;
 
-            // Fallback mechanism for missing mimetype
+            // Fallback for mimetype
             if (!mimetype) {
                 console.warn('Mimetype is missing, attempting to infer from filename.');
                 mimetype = inferMimeType(filename);
-                
+
                 if (!mimetype) {
                     console.error('Could not infer mimetype from filename:', filename);
                     return res.status(400).json({ success: false, message: 'Unsupported file type. Only audio and image files are allowed.' });
@@ -341,29 +343,34 @@ exports.addLabel = (req, res) => {
                 console.log('Inferred Mimetype:', mimetype);
             }
 
-            // Check file type based on mimetype
+            // Check for supported file types
             const allowedTypes = ['audio', 'image'];
             const fileCategory = mimetype.split('/')[0]; // Get 'audio' or 'image'
-            
+
             if (allowedTypes.includes(fileCategory)) {
                 fileType = fileCategory;
                 fileField = fieldname;
                 const chunks = [];
-                
+
+                // Collect file data in chunks
                 file.on('data', (data) => {
+                    console.log('Receiving file data chunk...');
                     chunks.push(data);
                 });
-                
+
+                // When file data is finished, concatenate chunks
                 file.on('end', () => {
                     fileBuffer = Buffer.concat(chunks);
                     console.log('File upload complete, total size:', fileBuffer.length);
                 });
+
             } else {
                 console.error('Unsupported file type:', mimetype);
                 return res.status(400).json({ success: false, message: 'Unsupported file type. Only audio and image files are allowed.' });
             }
         });
 
+        // Handle fields (like label_name, category_id, etc.)
         busboyInstance.on('field', (fieldname, val) => {
             console.log('Field received:', fieldname, 'Value:', val);
             if (fieldname === 'label_name' || fieldname === 'titel19' || fieldname === 'titel110') req.body.label_name = val;
@@ -371,31 +378,45 @@ exports.addLabel = (req, res) => {
             if (fieldname === 'public') req.body.public = val === 'true';
         });
 
+        // Finish event handler for Busboy
         busboyInstance.on('finish', () => {
             if (!fileBuffer || !fileType) {
                 console.error('File buffer or file type is missing.');
                 return res.status(400).json({ success: false, message: 'File data is missing or unsupported file type.' });
             }
 
-            // Call the appropriate function based on file type
+            // Check if file type is audio and process it accordingly
             if (fileType === 'audio') {
                 handleVoiceMemoUpload(req, res, fileBuffer, filename)
-                .then(() => res.status(200).json({ success: true, redirectUrl: '/home' }))  // Success response
-                .catch((error) => {
-                    console.error('Error during audio upload:', error);
-                    res.status(500).json({ success: false, message: 'Error uploading audio.' });
-                });
-            } 
-            if (fileType === 'image') {
-                handleImageUpload(req, res, fileBuffer, filename)
-                    .then(() => res.status(200).json({ success: true, redirectUrl: '/home' }))  // Send JSON response on success
+                    .then(() => {
+                        if (!res.headersSent) {
+                            return res.status(200).json({ success: true, redirectUrl: '/home' });
+                        }
+                    })
                     .catch((error) => {
-                        console.error('Error during image upload:', error);
-                        res.status(500).json({ success: false, message: 'Error uploading image.' });
+                        console.error('Error during audio upload:', error);
+                        if (!res.headersSent) {
+                            return res.status(500).json({ success: false, message: 'Error uploading audio.' });
+                        }
                     });
             }
-            else {
-                res.status(400).json({ success: false, message: 'Unsupported file type.' });
+            else if (fileType === 'image') {
+                handleImageUpload(req, res, fileBuffer, filename)
+                    .then(() => {
+                        if (!res.headersSent) { // Check if headers have already been sent
+                            return res.status(200).json({ success: true, redirectUrl: '/home' });  // Success response
+                        }
+                    })
+                    .catch((error) => {
+                        console.error('Error during image upload:', error);
+                        if (!res.headersSent) { // Prevent sending headers twice
+                            return res.status(500).json({ success: false, message: 'Error uploading image.' });
+                        }
+                    });
+            } else {
+                if (!res.headersSent) { // Prevent sending headers twice
+                    return res.status(400).json({ success: false, message: 'Unsupported file type.' });
+                }
             }
         });
 
@@ -408,8 +429,12 @@ exports.addLabel = (req, res) => {
 // Function to handle the text memo upload
 function handleTextMemoUpload(req, res) {
     console.log('--- [handleTextMemoUpload] Start of Function ---');
-    const label_name = req.body['titel19'];
-    const memo = req.body['start-typing-here-12'];
+    const label_name = req.body['titel19']  // General
+                    || req.body['titel16']  // Fragile
+                    || req.body['titel13']; // Hazard
+    const memo = req.body['start-typing-here-12']  // General
+            || req.body['start-typing-here-11']  // Fragile
+            || req.body['start-typing-here-1']; // Hazard
     const category_id = req.body.category_id;
     const user_id = req.session.userId;
     const isPublic = (req.body.public === true || req.body.public === 'true');
@@ -448,7 +473,7 @@ function handleTextMemoUpload(req, res) {
 
 // Function to handle the voice memo upload
 function handleVoiceMemoUpload(req, res, fileBuffer, filename) {
-    return new Promise((resolve, reject) => {  // Wrap the logic in a promise
+    return new Promise((resolve, reject) => {
         console.log('--- [handleVoiceMemoUpload] Start of Function ---');
         const label_name = req.body.label_name;
         const category_id = req.body.category_id;
@@ -473,21 +498,26 @@ function handleVoiceMemoUpload(req, res, fileBuffer, filename) {
             return reject(new Error('File is missing!'));
         }
 
-        // Upload the voice memo to Cloudinary
+        // Upload the voice memo (WebM audio) to Cloudinary as a 'video'
         cloudinary.uploader.upload_stream(
             {
                 folder: cloudinaryFolder,
-                resource_type: 'video',
+                resource_type: 'video',  // Use 'video' for WebM files, even if they are audio-only
                 public_id: 'voice-memo',
             },
             (error, result) => {
                 if (error) {
-                    console.error('Cloudinary upload error:', error.message);
+                    console.error('Cloudinary upload error:', JSON.stringify(error, null, 2)); // Log full error response
                     return reject(new Error('Cloudinary upload error: ' + error.message));
                 }
 
+                if (!result || !result.secure_url) {
+                    console.error('Cloudinary upload failed: Missing secure_url in response:', result);
+                    return reject(new Error('Cloudinary upload failed: Missing secure_url in response.'));
+                }
+
                 const audioUrl = result.secure_url;
-                console.log('Audio URL from Cloudinary:', audioUrl);
+                console.log('Audio/Video URL from Cloudinary:', audioUrl);
 
                 // Save to database and get the label ID
                 addLabelToDatabase(label_name, user_id, category_id, audioUrl, isPublic)
@@ -501,7 +531,7 @@ function handleVoiceMemoUpload(req, res, fileBuffer, filename) {
                             .then(() => resolve(labelId));  // Resolve the promise
                     })
                     .catch(error => {
-                        console.error(error.message);
+                        console.error('Error saving to database:', error.message);
                         return reject(error);
                     });
             }
@@ -572,33 +602,27 @@ function handleImageUpload(req, res, fileBuffer, filename) {
     });
 }
 
-// Helper function to upload files to Cloudinary
-function uploadToCloudinary(fileBuffer, folder, resourceType) {
-    console.log('--- [uploadToCloudinary] Start of Function ---');
-    return new Promise((resolve, reject) => {
-        cloudinary.uploader.upload_stream(
-            {
-                folder: folder,
-                resource_type: resourceType,
-                public_id: resourceType === 'audio' ? 'voice-memo' : 'image',
-            },
-            (error, result) => {
-                if (error) {
-                    return reject(new Error('Cloudinary upload error: ' + error.message));
-                }
-                resolve(result.secure_url);
-            }
-        ).end(fileBuffer);
-    });
-}
-
 // Helper function to infer mimetype
 function inferMimeType(filename) {
     console.log("[inferMimeType] function called with filename:", filename);
+    
+    // Audio file types
     if (filename.endsWith('.wav')) return 'audio/wav';
     if (filename.endsWith('.mp3')) return 'audio/mpeg';
+    if (filename.endsWith('.webm')) return 'audio/webm';  // WebM audio format
+    
+    // Image file types
     if (filename.endsWith('.jpg') || filename.endsWith('.jpeg')) return 'image/jpeg';
     if (filename.endsWith('.png')) return 'image/png';
+    if (filename.endsWith('.gif')) return 'image/gif';      // GIF images
+    if (filename.endsWith('.svg')) return 'image/svg+xml';  // SVG images
+    if (filename.endsWith('.bmp')) return 'image/bmp';      // BMP images
+    if (filename.endsWith('.tiff') || filename.endsWith('.tif')) return 'image/tiff';  // TIFF images
+    
+    // PDF file type
+    if (filename.endsWith('.pdf')) return 'application/pdf';  // PDF format
+
+    // Default case if no match
     return null;
 }
 
@@ -720,40 +744,47 @@ exports.deleteLabel = (req, res) => {
         const cloudinaryFolder = `users/${userId}/labels/${labelName}`;
         console.log(`Attempting to delete resources within Cloudinary folder: ${cloudinaryFolder}`);
 
-        // Helper function to delete all resources and the folder
+        // Helper function to delete all resources, subfolders, and the main folder
         const deleteAllResourcesAndFolder = () => {
-            // Step 1: Delete raw resources
-            cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { resource_type: 'raw', invalidate: true }, (rawDeleteError, rawDeleteResult) => {
-                if (rawDeleteError) {
-                    console.error('Error deleting raw resources from Cloudinary:', rawDeleteError);
-                } else {
-                    console.log(`Deleted raw resources within folder: ${cloudinaryFolder}`, rawDeleteResult);
+            // Step 1: Delete all resources (raw, image, video)
+            cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { invalidate: true }, (resourceDeleteError, resourceDeleteResult) => {
+                if (resourceDeleteError) {
+                    console.error('Error deleting resources from Cloudinary:', resourceDeleteError);
+                    return;
                 }
+                console.log(`Deleted resources in folder: ${cloudinaryFolder}`, resourceDeleteResult);
 
-                // Step 2: Delete image resources
-                cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { resource_type: 'image', invalidate: true }, (imageDeleteError, imageDeleteResult) => {
-                    if (imageDeleteError) {
-                        console.error('Error deleting image resources from Cloudinary:', imageDeleteError);
-                    } else {
-                        console.log(`Deleted image resources within folder: ${cloudinaryFolder}`, imageDeleteResult);
+                // Step 2: Delete any empty subfolders within the main folder
+                cloudinary.api.sub_folders(cloudinaryFolder, (subFolderError, subFolderResult) => {
+                    if (subFolderError) {
+                        console.error('Error fetching subfolders from Cloudinary:', subFolderError);
+                        return;
+                    }
+                    const subFolders = subFolderResult.folders;
+
+                    // Check if subfolders exist
+                    if (subFolders && subFolders.length > 0) {
+                        console.log(`Deleting subfolders in folder: ${cloudinaryFolder}`, subFolders);
+
+                        // Recursively delete all subfolders
+                        subFolders.forEach(subFolder => {
+                            cloudinary.api.delete_folder(`${cloudinaryFolder}/${subFolder.path}`, { skip_backup: true }, (subFolderDeleteError, subFolderDeleteResult) => {
+                                if (subFolderDeleteError) {
+                                    console.error(`Error deleting subfolder ${subFolder.path}:`, subFolderDeleteError);
+                                } else {
+                                    console.log(`Deleted subfolder: ${subFolder.path}`, subFolderDeleteResult);
+                                }
+                            });
+                        });
                     }
 
-                    // Step 3: Delete video resources
-                    cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { resource_type: 'video', invalidate: true }, (videoDeleteError, videoDeleteResult) => {
-                        if (videoDeleteError) {
-                            console.error('Error deleting video resources from Cloudinary:', videoDeleteError);
+                    // Step 3: Delete the main folder after ensuring it's empty
+                    cloudinary.api.delete_folder(cloudinaryFolder, { skip_backup: true }, (folderDeleteError, folderDeleteResult) => {
+                        if (folderDeleteError) {
+                            console.error('Error deleting folder from Cloudinary:', folderDeleteError);
                         } else {
-                            console.log(`Deleted video resources within folder: ${cloudinaryFolder}`, videoDeleteResult);
+                            console.log(`Deleted folder: ${cloudinaryFolder}`, folderDeleteResult);
                         }
-
-                        // Step 4: Delete the folder after all resources have been deleted
-                        cloudinary.api.delete_folder(cloudinaryFolder, (folderError, folderResult) => {
-                            if (folderError) {
-                                console.error('Error deleting folder from Cloudinary:', folderError);
-                            } else {
-                                console.log(`Deleted folder: ${cloudinaryFolder}`, folderResult);
-                            }
-                        });
                     });
                 });
             });

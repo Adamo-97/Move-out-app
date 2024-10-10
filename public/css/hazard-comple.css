@@ -1,349 +1,3 @@
-/* screen - hazard-comple */
-
-.hazard-comple {
-  background-color: var(--white);
-  height: 56.25vw;
-  overflow: hidden;
-  overflow-x: hidden;
-  position: relative;
-  width: 100.0vw;
-}
-
-.hazard-comple .gb-NBZXkN {
-  background-color: transparent;
-  height: 58.44vw;
-  left: -16.2vw;
-  position: fixed;
-  top: -0.05vw;
-  width: 116.2vw;
-}
-
-.hazard-comple .bg-style-8FlN9w {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  position: relative;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .path-42-EOGf9N {
-  background-color: transparent;
-  height: calc(100.00% + 0.47vw);
-  left: 15.99vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.05vw;
-  width: calc(100.00% - 13.49vw);
-}
-
-.hazard-comple .path-43-EOGf9N {
-  background-color: transparent;
-  height: calc(100.00% + 0.31vw);
-  left: calc(18.69% - 6.3vw);
-  object-fit: cover;
-  position: absolute;
-  top: -0.26vw;
-  width: 33.8vw;
-}
-
-.hazard-comple .person-EOGf9N {
-  background-color: transparent;
-  height: calc(100.00% - 4.74vw);
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 4.74vw;
-  width: 53.7vw;
-}
-
-.hazard-comple .arrow-EOGf9N {
-  background-color: transparent;
-  height: 6.2vw;
-  left: calc(33.56% - 3.28vw);
-  object-fit: cover;
-  position: absolute;
-  top: calc(23.11% - 1.41vw);
-  width: 9.79vw;
-}
-
-.hazard-comple .main-header-EOGf9N {
-  background-color: var(--mine-shaft);
-  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
-  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
-  height: 7.34vw;
-  left: 16.15vw;
-  position: absolute;
-  top: 0.0vw;
-  width: calc(100.00% - 16.15vw);
-}
-
-.hazard-comple .logo-EOGf9N {
-  background-color: transparent;
-  height: 5.73vw;
-  left: calc(18.75% - 1.88vw);
-  position: absolute;
-  top: 2.03vw;
-  width: 10.1vw;
-}
-
-.hazard-comple .logo-9SEr7V {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  position: relative;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .m-MeSNyB {
-  background-color: transparent;
-  height: 2.5vw;
-  left: 0.0vw;
-  position: absolute;
-  top: 0.0vw;
-  width: 2.6vw;
-}
-
-.hazard-comple .path-49-vutYfe {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .v-MeSNyB {
-  background-color: transparent;
-  height: 2.08vw;
-  position: absolute;
-  right: calc(46.93% - 0.99vw);
-  top: 0.42vw;
-  width: 2.08vw;
-}
-
-.hazard-comple .path-50-hkbuyc {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .e-MeSNyB {
-  background-color: transparent;
-  height: 2.08vw;
-  position: absolute;
-  right: calc(23.66% - 0.47vw);
-  top: 0.42vw;
-  width: 2.03vw;
-}
-
-.hazard-comple .path-51-rItglV {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .group-29-MeSNyB {
-  background-color: transparent;
-  height: calc(100.00% - 0.73vw);
-  position: absolute;
-  right: 0.0vw;
-  top: 0.73vw;
-  width: 8.49vw;
-}
-
-.hazard-comple .rectangle-6-fEPaTd {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .group-30-MeSNyB {
-  background-color: transparent;
-  bottom: calc(42.37% - 0.42vw);
-  height: 0.99vw;
-  position: absolute;
-  right: calc(36.29% - 1.09vw);
-  width: 3.02vw;
-}
-
-.hazard-comple .path-52-K7dT16 {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.0vw;
-  width: 0.99vw;
-}
-
-.hazard-comple .path-53-K7dT16 {
-  background-color: transparent;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  right: calc(46.23% - 0.42vw);
-  top: 0.05vw;
-  width: 0.89vw;
-}
-
-.hazard-comple .path-54-K7dT16 {
-  background-color: transparent;
-  height: 100%;
-  object-fit: cover;
-  position: absolute;
-  right: 0.0vw;
-  top: 0.05vw;
-  width: 0.89vw;
-}
-
-.hazard-comple .pin-MeSNyB {
-  background-color: transparent;
-  height: 3.44vw;
-  left: calc(30.47% - 0.73vw);
-  position: absolute;
-  top: 0.42vw;
-  width: 2.34vw;
-}
-
-.hazard-comple .path-55-C9VGlE {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .ellipse-4-C9VGlE {
-  background-color: var(--bright-red);
-  border-radius: 0.9vw;
-  height: 1.77vw;
-  left: 0.31vw;
-  position: absolute;
-  top: 0.26vw;
-  width: calc(100.00% - 0.57vw);
-}
-
-.hazard-comple .box-MeSNyB {
-  background-color: transparent;
-  height: 1.72vw;
-  left: calc(31.64% - 0.62vw);
-  position: absolute;
-  top: 0.62vw;
-  width: 1.93vw;
-}
-
-.hazard-comple .rectangle-7-GuvvzI {
-  background-color: transparent;
-  height: 100%;
-  left: 0.05vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.05vw;
-  width: 100%;
-}
-
-.hazard-comple .new-lable-button-NBZXkN {
-  background-color: transparent;
-  cursor: pointer;
-  height: 3.33vw;
-  left: 30.47vw;
-  position: fixed;
-  top: 8.54vw;
-  width: 12.92vw;
-}
-
-.hazard-comple .group-375-Xao93K {
-  background-color: transparent;
-  cursor: pointer;
-  height: 100%;
-  left: 0.0vw;
-  pointer-events: auto;
-  position: relative;
-  top: 0.0vw;
-  transition: all 0.2s ease;
-  width: 100%;
-}
-
-.hazard-comple .group-375-Xao93K:hover {
-  transform: scale(1.1);
-}
-
-.hazard-comple .green-button-new-lable-m7oyGi {
-  background-color: var(--green);
-  border-radius: 0.83vw;
-  height: 100%;
-  left: 0.0vw;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.hazard-comple .x-m7oyGi {
-  background-color: transparent;
-  cursor: pointer;
-  height: 1.98vw;
-  left: 0.62vw;
-  pointer-events: auto;
-  position: absolute;
-  top: calc(50.00% - 0.99vw);
-  transition: all 0.2s ease;
-  width: 1.93vw;
-}
-
-.hazard-comple .x-m7oyGi:hover {
-  transform: rotate(15deg);
-}
-
-.hazard-comple .path-464-ka3MYH {
-  background-color: transparent;
-  height: calc(100.00% - 1.61vw);
-  left: 0.0vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.78vw;
-  width: 100%;
-}
-
-.hazard-comple .path-465-ka3MYH {
-  background-color: transparent;
-  height: 100%;
-  left: 0.78vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.0vw;
-  width: calc(100.00% - 1.61vw);
-}
-
-.hazard-comple .new-lable-m7oyGi {
-  background-color: transparent;
-  height: 2.55vw;
-  letter-spacing: 0.0vw;
-  line-height: 2.49vw;
-  position: absolute;
-  right: 0.99vw;
-  text-align: left;
-  top: 0.31vw;
-  white-space: nowrap;
-  width: 8.8vw;
-}
-
 .hazard-comple .lable-shape-NBZXkN {
   background-color: transparent;
   height: 10.42vw;
@@ -471,14 +125,6 @@
   width: 0.42vw;
 }
 
-.hazard-comple .qr-placeholder-NBZXkN {
-  background-color: transparent;
-  height: 5.57vw;
-  left: 39.43vw;
-  position: absolute;
-  top: 27.71vw;
-  width: 5.57vw;
-}
 
 .hazard-comple .titel-placeholder-NBZXkN {
   background-color: transparent;
@@ -535,20 +181,6 @@
   position: relative;
   top: 0.0vw;
   width: 100%;
-}
-
-.hazard-comple .sign-out-WYbxit {
-  -webkit-text-stroke: 0.16vw var(--torch-red);
-  background-color: transparent;
-  height: calc(100.00% + 0.1vw);
-  letter-spacing: 0.0vw;
-  line-height: 2.36vw;
-  position: absolute;
-  right: -0.1vw;
-  text-align: center;
-  top: 0.05vw;
-  white-space: nowrap;
-  width: 8.44vw;
 }
 
 .hazard-comple .path-466-WYbxit {
@@ -808,3 +440,28 @@
 .hazard-comple .path-72-YzbH8N:hover {
   transform: rotate(15deg);
 }
+
+/* Adjust the QR placeholder to handle overflow for hazard labels */
+.hazard-comple .qr-placeholder-NBZXkN {
+  background-color: transparent;
+  height: 5.57vw;
+  left: 39.43vw;
+  position: absolute;
+  top: 21.25vw;
+  width: 5.57vw;
+  overflow: hidden; /* Ensure the QR code doesn't exceed the bounds */
+  display: flex; /* Allows centering */
+  justify-content: center; /* Centers the QR code horizontally */
+  align-items: center; /* Centers the QR code vertically */
+  padding: 0.2vw; /* Add some padding to keep a border */
+  box-sizing: border-box; /* Include padding within the width and height */
+}
+
+.qr-placeholder-NBZXkN img {
+  max-width: 100%; /* Make the QR code fit the width of the placeholder */
+  max-height: 100%; /* Make the QR code fit the height of the placeholder */
+  width: auto; /* Maintain aspect ratio */
+  height: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure the QR code fits within the placeholder without distortion */
+}
+
