@@ -2129,3 +2129,34 @@ transform: scale(1);
   text-align: center; /* Center the message */
   margin-top: 190px; /* Space it from the input boxes */
 }
+
+/* Button styles */
+.btn {
+  position: absolute;
+  top: 65.3%;
+  left: 80.5%;
+  background-color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.5s, opacity 0.5s ease-in-out;
+  opacity: 0;
+  animation: fadeIn 1s ease-in-out 0.5s forwards;
+}
+
+.btn svg {
+  transition: transform 0.5s;
+}
+
+.btn:hover svg {
+  fill: #313131;
+}
+
+/* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0; /* Fully transparent at start */
+  }
+  100% {
+    opacity: 1; /* Fully visible at end */
+  }
+}

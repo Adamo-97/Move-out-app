@@ -9,9 +9,6 @@
     <link rel="stylesheet" type="text/css" href="css/home.css" />
     <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
     <link rel="stylesheet" type="text/css" href="css/globals.css" />
-    <link rel="stylesheet" type="text/css" href="css/general-complete.css" />
-    <link rel="stylesheet" type="text/css" href="css/fragile-comple.css" />
-    <link rel="stylesheet" type="text/css" href="css/hazard-comple.css" />
 </head>
 <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="home" />
@@ -98,20 +95,44 @@
             </a>
         </div>
     </div>
-
+            
     <!-- Labels Section -->
     <div class="cards">
         <% labels.forEach(function(label) { %>
-            <div class="label-container">
                 <% if (label.category_id === 3) { %>
-                    <%- include('general-complete', { label: { label_id: label.label_id, label_name: label.label_name, qr_data: label.qr_code_data } }) %>
-                <% } else if (label.category_id === 2) { %>
-                    <%- include('hazard-comple', { label: { label_id: label.label_id, label_name: label.label_name, qr_data: label.qr_code_data } }) %>
-                <% } else if (label.category_id === 1) { %>
-                    <%- include('fragile-comple', { label: { label_id: label.label_id, label_name: label.label_name, qr_data: label.qr_code_data } }) %>
-                <% } %>
-            </div>
+                <%- include('general-complete', { label: { label_id: label.label_id, label_name: label.label_name, qr_data: label.qr_code_data, category_id: label.category_id } }) %>
+            <% } else if (label.category_id === 2) { %>
+                <%- include('hazard-comple', { label: { label_id: label.label_id, label_name: label.label_name, qr_data: label.qr_code_data, category_id: label.category_id } }) %>
+            <% } else if (label.category_id === 1) { %>
+                <%- include('fragile-comple', { label: { label_id: label.label_id, label_name: label.label_name, qr_data: label.qr_code_data, category_id: label.category_id } }) %>
+            <% } %>
         <% }); %>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          // Attach event listeners to print buttons
+          document.querySelectorAll('.print-button').forEach(button => {
+              button.addEventListener('click', function () {
+                  const labelId = this.getAttribute('data-label-id');
+                  const categoryId = this.getAttribute('data-category-id');
+    
+                  console.log('Label ID:', labelId);
+                  console.log('Category ID:', categoryId);
+    
+                  // Fetch the image from the server
+                  fetch(`/generate-image?labelId=${labelId}&category_id=${categoryId}`)
+                      .then(response => response.blob())
+                      .then(blob => {
+                          // Use FileSaver.js to prompt for the download
+                          saveAs(blob, `label-${labelId}.png`);
+                      })
+                      .catch(error => console.error('Error downloading image:', error));
+              });
+          });
+      });
+    </script>
+    
 </body>
 </html>

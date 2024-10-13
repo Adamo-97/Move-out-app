@@ -2,36 +2,19 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="css/fragile-comple.css" />
+    <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="css/globals.css" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <style>
-        /* General container styling */
-        .fragile-comple.screen {
-            display: grid; /* Make this a grid container */
-            grid-template-columns: 1fr; /* Single column layout */
-            gap: 1vw; /* Adjust as necessary for spacing */
-            position: relative; /* Keep the positioning context */
-        }
 
-        /* Elements within the grid */
-        .qr-placeholder-k5IpBb,
-        .titel-placeholder-k5IpBb,
-        .remove-button-k5IpBb,
-        .edit-button-k5IpBb,
-        .print-button-k5IpBb,
-        .prev-button-k5IpBb {
-            grid-column: 1; /* All elements will take the full column */
-        }
-    </style>
   </head>
   
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="fragile-comple" />
     
-    <!-- Add an ID to the container -->
-    <div id="fragile-label-container" class="label-container">
       <div class="container-center-horizontal">
         <div class="fragile-comple screen">
           <!-- Main Shape Section -->
@@ -82,14 +65,19 @@
             </div>
           </a>
           
-          <!-- Print Button -->
-          <button type="button" id="fragile-print-button">
-            <div class="print-button-k5IpBb">
-              <div class="print-NN0mpQ"></div>
-              <img class="path-73-NN0mpQ smart-layers-pointers" src="img/path-73-1@1x.png" alt="Path 73" />
-            </div>
-          </button>
-          
+          <!-- Print Button with data attributes -->
+          <a href="javascript:void(0);" id="print-button-<%= label.label_id %>" 
+            class="print-button" 
+            data-label-id="<%= label.label_id %>" 
+            data-category-id="<%= label.category_id %>"
+            onclick="triggerDownload('<%= label.label_id %>');">
+             <div class="print-button-k5IpBb">
+                 <div class="print-NN0mpQ"></div>
+                 <img class="path-73-NN0mpQ" src="img/path-73-1@1x.png" alt="Path 73" />
+             </div>
+         </a>
+         
+
           <!-- Preview Button -->
           <a href="/preview-lable-fragile">
             <div class="prev-button-k5IpBb">
@@ -100,16 +88,8 @@
           
         </div>
       </div>
-    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="../src/EJS-Javascript/deleteLable.js"></script>
-    <script src="../src/EJS-Javascript/printLable.js"></script>
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
-          console.log("DOM fully loaded");
-          setupPrintButton('fragile-print-button', 'label-container', 'fragile-label');
-      });
-    </script>
+
   </body>
 </html>

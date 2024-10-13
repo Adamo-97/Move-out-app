@@ -269,6 +269,7 @@
   top: 8.49vw;
   transition: all 0.2s ease-in-out;
   width: 12.92vw;
+  z-index: 1;
 }
 
 .home .new-lable-button-xl4bh6:hover {
@@ -445,6 +446,7 @@
   top: 2.6vw;
   transition: all 0.2s ease-in-out;
   width: 38.12vw;
+  z-index: 1;
 }
 
 .home .search-bar-xl4bh6:hover {
@@ -500,31 +502,37 @@
 }
 
 .cards {
-  display: grid; /* Use grid layout */
-  gap: 320px 400px; /* Vertical and horizontal gaps */
-  max-width: 1200px; /* Set maximum width */
-  margin: -1390px auto 0; /* Push up further */
-  grid-template-columns: repeat(4, 1fr); /* 4 columns, equally spaced */
-  justify-content: center; /* Center the grid items horizontally */
-  padding: 20px; /* Maintain padding around the container */
-  transform: translateX(-620px); /* Push more to the left */
-  position: relative; /* Required to set z-index */
-  z-index: 0; /* Send the grid behind other elements */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 equal columns */
+  row-gap: 16vw; /* Vertical space between grid items */
+  column-gap: 0.5vw; /* Horizontal space between grid items */
+  max-width: 70vw;
+  margin: auto auto auto auto; /* Center the grid */
+  padding: 0;
+  transform: translate(-330px, -1120px); /* left , up */
+  z-index: -100; /* Place the grid behind other elements */
 }
 
-.label-container {
-  margin-bottom: 20px; /* Add extra space below each label */
-  width: 100%; /* Fit within the grid cell */
-  height: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.general-complete, 
+.hazard-comple, 
+.fragile-comple {
+  display: flex; /* Use Flexbox to control internal alignment */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: flex-start; /* Align children to the top */
+  align-items: flex-start; /* Align children to the left */
+  width: 16vw; /* Set the width of each card */
+  height: auto; /* Let the height adapt to the content */
+  padding: 0; /* Add padding inside the card */
   box-sizing: border-box;
+  position: relative;
 }
 
-.general-complete, .hazard-complete, .fragile-complete {
-  width: 100%; /* Ensure they fit within the label container */
-  height: auto;
-  position: relative; /* Reset positioning */
-  box-sizing: border-box; /* Include padding and border in width */
+.general-complete > *, 
+.hazard-comple > *, 
+.fragile-comple > * {
+  width: auto; /* Auto width for child elements */
+  max-width: 100%; /* Prevent child elements from exceeding the container width */
+  box-sizing: border-box;
+  margin-bottom: 0.5vw; /* Add space between child elements */
+  align-self: flex-start; /* Align child elements to the left */
 }

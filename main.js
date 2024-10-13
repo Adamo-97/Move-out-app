@@ -1,11 +1,15 @@
 const express = require('express');
+const passport = require('passport'); // Add passport import
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
-const config = require('./config/config.json'); // Keep this for session management
+const config = require('./config/config.json');
+require('./src/controllers/passport');  // Ensure your passport configuration is correctly set up
 
 // Create an Express app
 const app = express();
+// Import routes
+const authRoutes = require('./src/routes/auth');
 
 // Middleware to parse JSON and URL-encoded data
 app.use(express.json()); 
@@ -46,13 +50,14 @@ app.use(session({
     cookie: { secure: process.env.NODE_ENV === 'production' } // Secure cookies in production
 }));
 
-// Import routes
-const authRoutes = require('./src/routes/auth');
+// Initialize Passport.js and use session
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Use routes from the `authRoutes`
 app.use('/', authRoutes);
 
-// Start the server on the port provided by Render
+// Start the server on the port provided by Render or default to 3000
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {

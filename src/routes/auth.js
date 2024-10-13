@@ -1,7 +1,11 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 const authController = require('../controllers/authController');
 const db = require('../db/dbConnection');
+const puppeteer = require('puppeteer');
+const fs = require('fs');
+const path = require('path');
 
 // Middleware to protect routes
 const ensureAuthenticated = (req, res, next) => {
@@ -20,9 +24,23 @@ router.get('/', (req, res) => {
 router.get('/login', (req, res) => {
     res.render('login', { message: null });
 });
-
 // Route for handling login
 router.post('/login', authController.login);
+// Route to initiate Google login
+router.get('/auth/google', passport.authenticate('google', {
+    scope: ['profile', 'email']
+}));
+
+// Route to handle the callback from Google
+router.get('/auth/google/callback', 
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    (req, res) => {
+        // Successful authentication, redirect to home
+        req.session.isAuthenticated = true;  // Mark the session as authenticated
+        req.session.userId = req.user.id;  // Store the user ID in the session
+
+        res.redirect('/home');  // Redirect to home after Google login
+    });
 
 // Route for sign-up page
 router.get('/signup', (req, res) => {
@@ -155,7 +173,7 @@ router.get('/label-complete', ensureAuthenticated, (req, res) => {
     console.log('--- [/label-complete] Start of Function ---');
 
     const labelId = req.query.labelId;
-    const categoryId = req.query.category_id; // Extract the category_id from the query
+    const categoryId = req.query.category_id;
 
     console.log('[label-complete] Label ID:', labelId);
     console.log('[label-complete] Category ID:', categoryId);
@@ -192,7 +210,9 @@ router.get('/label-complete', ensureAuthenticated, (req, res) => {
 
         const labelData = {
             label_name: results[0].label_name,
-            qr_data: results[0].qr_code_data
+            qr_data: results[0].qr_code_data,
+            labelId: results.labelId,
+            categoryId: results.categoryId,
         };
 
         console.log('[label-complete] Label data being sent to template:', labelData);
@@ -221,6 +241,82 @@ router.get('/label-complete', ensureAuthenticated, (req, res) => {
             return res.status(500).send('Error rendering the page.');
         }
     });
+});
+
+// Route for generating an image of the label with a transparent background
+router.get('/generate-image', ensureAuthenticated, async (req, res) => {
+    const labelId = req.query.labelId;
+    const categoryId = req.query.category_id;
+
+    console.log('--- Starting Cropped and Enlarged Image Generation ---');
+
+    if (!labelId || !categoryId) {
+        return res.status(400).send('labelId and categoryId query parameters are required.');
+    }
+
+    try {
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+
+        const cookies = req.headers.cookie;
+        if (cookies) {
+            await page.setCookie(...cookies.split(';').map(cookieStr => {
+                const [name, value] = cookieStr.split('=');
+                return { name, value, domain: 'localhost' };
+            }));
+        }
+
+        const pageUrl = `http://localhost:3000/label-complete?labelId=${labelId}&category_id=${categoryId}`;
+        console.log('Navigating to:', pageUrl); // Log URL for debugging
+        await page.goto(pageUrl, { waitUntil: 'networkidle0' });
+
+        // Wait for the label container to appear
+        await page.waitForSelector('.label-container', { timeout: 5000 });
+
+        const labelElement = await page.$('.label-container');
+        if (!labelElement) {
+            console.error('Label container not found!');
+            await browser.close();
+            return res.status(500).send('Label container not found.');
+        }
+
+        // Define the size of the viewport and scaling factor for enlargement
+        await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 2 });
+
+        // Capture the bounding box
+        const boundingBox = await labelElement.boundingBox();
+        console.log('Bounding box for label:', boundingBox);
+
+        // Crop and capture the screenshot
+        const imagePathCropped = path.join(__dirname, `cropped-label-${labelId}.png`);
+        await page.screenshot({
+            path: imagePathCropped,
+            type: 'png',
+            omitBackground: true,
+            clip: {
+                x: boundingBox.width / 2,
+                y: boundingBox.y,
+                width: boundingBox.width / 2,
+                height: boundingBox.height,
+            }
+        });
+
+        await browser.close();
+
+        res.download(imagePathCropped, `cropped-label-${labelId}.png`, (err) => {
+            if (err) {
+                console.error('Error sending image:', err);
+                return res.status(500).send('Error sending image');
+            }
+            fs.unlink(imagePathCropped, (err) => {
+                if (err) console.error('Error deleting image file:', err);
+            });
+        });
+
+    } catch (error) {
+        console.error('Error generating image:', error);
+        res.status(500).send('Error generating image');
+    }
 });
 
 // Export the router

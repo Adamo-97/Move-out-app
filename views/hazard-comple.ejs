@@ -2,35 +2,18 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=1920, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/png" href="https://animaproject.s3.amazonaws.com/home/favicon.png" />
+    <link rel="stylesheet" type="text/css" href="css/hazard-comple.css" />
+    <link rel="stylesheet" type="text/css" href="css/styleguide.css" />
+    <link rel="stylesheet" type="text/css" href="css/globals.css" />
     <meta name="og:type" content="website" />
     <meta name="twitter:card" content="photo" />
-    <style>
-      /* Hazard Comple container styling */
-      .hazard-comple.screen {
-          display: grid; /* Make this a grid container */
-          grid-template-columns: 1fr; /* Single column layout */
-          gap: 1vw; /* Adjust as necessary for spacing */
-          position: relative; /* Keep the positioning context */
-      }
 
-      /* Elements within the grid */
-      .qr-placeholder-NBZXkN, 
-      .titel-placeholder-NBZXkN,
-      .remove-button-NBZXkN,
-      .edit-button-NBZXkN,
-      .print-button-NBZXkN,
-      .prev-button-NBZXkN {
-          grid-column: 1; /* All elements will take the full column */
-      }
-
-    </style>
   </head>
   <body style="margin: 0; background: #ffffff">
     <input type="hidden" id="anPageName" name="page" value="hazard-comple" />
     
-    <div class="label-container">
       <div class="container-center-horizontal">
         <div class="hazard-comple screen">
           <!-- Label Shape Section -->
@@ -87,23 +70,25 @@
           </a>
           
           <!-- Print Button -->
-          <a href="/home">
-            <div class="print-button-NBZXkN">
+          <a href="javascript:void(0);" id="print-button-<%= label.label_id %>" 
+            class="print-button" 
+            data-label-id="<%= label.label_id %>" 
+            data-category-id="<%= label.category_id %>"
+            onclick="triggerDownload('<%= label.label_id %>');">            <div class="print-button-NBZXkN">
               <div class="print-xtiU7q"></div>
               <img class="path-73-xtiU7q smart-layers-pointers" src="img/path-73-1@1x.png" alt="Path 73" />
             </div>
           </a>
           
           <!-- Preview Button -->
-          <button type="button" id="hazard-print-button">
+          <a href="javascript:void(0);" onclick="toggleEmailShareForm()">
             <div class="prev-button-NBZXkN">
               <div class="prev-YzbH8N"></div>
               <img class="path-72-YzbH8N smart-layers-pointers" src="img/path-72-1@1x.png" alt="Path 72" />
             </div>
-          </button>
+          </a>
         
       </div>
-    </div>
     </div>
     <script src="../src/EJS-Javascript/deleteLable.js"></script>
     <script src="../src/EJS-Javascript/printLable.js"></script>

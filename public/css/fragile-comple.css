@@ -1,4 +1,3 @@
-
 .fragile-comple .main-shape-k5IpBb {
   background-color: transparent;
   height: 10.42vw;
@@ -38,15 +37,6 @@
   width: 1.41vw;
 }
 
-.fragile-comple .fragile-icon-byOiao {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  position: relative;
-  top: 0.0vw;
-  width: 100%;
-}
-
 .fragile-comple .path-16-x3XeFN {
   background-color: transparent;
   height: calc(100.00% - 0.1vw);
@@ -55,15 +45,6 @@
   position: absolute;
   top: 0.05vw;
   width: calc(100.00% - 0.1vw);
-}
-
-.fragile-comple .group-10-x3XeFN {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
 }
 
 .fragile-comple .path-17-qzEG3V {
@@ -84,15 +65,6 @@
   position: absolute;
   top: calc(16.18% - 0.05vw);
   width: 0.1vw;
-}
-
-.fragile-comple .qr-placeholder-k5IpBb {
-  background-color: transparent;
-  height: 5.57vw;
-  left: 39.43vw;
-  position: absolute;
-  top: 21.25vw;
-  width: 5.57vw;
 }
 
 .fragile-comple .titel-placeholder-k5IpBb {
@@ -125,75 +97,6 @@
   text-align: left;
   top: 0.99vw;
   width: 12.97vw;
-}
-
-.fragile-comple .group-377-xQq3R3 {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  position: relative;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.fragile-comple .sign-out-o6qxZV {
-  -webkit-text-stroke: 0.16vw var(--torch-red);
-  background-color: transparent;
-  height: calc(100.00% + 0.1vw);
-  letter-spacing: 0.0vw;
-  line-height: 2.36vw;
-  position: absolute;
-  right: -0.1vw;
-  text-align: center;
-  top: 0.05vw;
-  white-space: nowrap;
-  width: 8.44vw;
-}
-
-.fragile-comple .path-466-o6qxZV {
-  background-color: transparent;
-  cursor: pointer;
-  height: calc(100.00% - 0.16vw);
-  left: -0.1vw;
-  object-fit: cover;
-  pointer-events: auto;
-  position: absolute;
-  top: 0.21vw;
-  transition: all 0.2s ease;
-  width: calc(100.00% - 9.43vw);
-}
-
-.fragile-comple .path-466-o6qxZV:hover {
-  transform: translate(-5px, 0);
-}
-
-.fragile-comple .group-373-o6qxZV {
-  background-color: transparent;
-  bottom: calc(42.91% - 0.21vw);
-  height: 0.52vw;
-  left: 0.68vw;
-  position: absolute;
-  width: 1.3vw;
-}
-
-.fragile-comple .path-467-hIP3me {
-  background-color: transparent;
-  height: calc(100.00% - 0.26vw);
-  left: -0.1vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.16vw;
-  width: calc(100.00% + 0.1vw);
-}
-
-.fragile-comple .path-468-hIP3me {
-  background-color: transparent;
-  height: calc(100.00% + 0.16vw);
-  left: 0.89vw;
-  object-fit: cover;
-  position: absolute;
-  top: -0.1vw;
-  width: calc(100.00% - 0.78vw);
 }
 
 .fragile-comple .remove-button-k5IpBb {
@@ -472,3 +375,34 @@
   transform: scale(0.9);
 }
 /* End of email css */
+
+/* CSS for the print button */
+  @media print {
+    /* Scale down the label for better fitting in the PDF */
+    .label-container {
+      transform: scale(1.5); /* Adjust this scale value based on how much larger or smaller you want it */
+      transform-origin: top left;
+    }
+
+    /* Reduce the title size for the PDF */
+    .titel-text-FsKoEO {
+      font-size: 25px; /* Adjust the title font size */
+    }
+
+    /* Optional: Hide unnecessary buttons (remove, edit, etc.) */
+    .remove-button-k5IpBb,
+    .edit-button-k5IpBb,
+    .print-button-k5IpBb,
+    .prev-button-k5IpBb {
+      display: none !important;
+    }
+
+    /* Ensure high-resolution images */
+    img {
+      image-rendering: auto;
+      print-color-adjust: exact;          /* Standard */
+      -webkit-print-color-adjust: exact;  /* Chrome, Safari */
+      -moz-print-color-adjust: exact;     /* Firefox */
+      -ms-print-color-adjust: exact;      /* Internet Explorer */
+    }
+  }
