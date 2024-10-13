@@ -4,7 +4,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const config = require('./config/config.json');
-require('./src/controllers/passport');  // Ensure your passport configuration is correctly set up
+require('./src/helpers/passport');
 
 // Create an Express app
 const app = express();

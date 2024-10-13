@@ -609,3 +609,39 @@
   transform: scale(0.9);
 }
 /* End of email css */
+
+/* Initially hide the icons (remove, edit, print, and share) */
+.remove-button-iv90TT,
+.edit-button-iv90TT,
+.print-button-iv90TT,
+.prev-button-iv90TT {
+  opacity: 0;
+  transform: translateY(-10px); /* Start slightly above */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When hovering over the entire .general-complete.screen, show the icons */
+.general-complete.screen:hover .remove-button-iv90TT,
+.general-complete.screen:hover .edit-button-iv90TT,
+.general-complete.screen:hover .print-button-iv90TT,
+.general-complete.screen:hover .prev-button-iv90TT {
+  opacity: 1;
+  transform: translateY(0); /* Move icons to their normal position */
+}
+
+/* Stagger the appearance of each icon using transition-delay */
+.general-complete.screen:hover .remove-button-iv90TT {
+  transition-delay: 0.4s;
+}
+
+.general-complete.screen:hover .edit-button-iv90TT {
+  transition-delay: 0.3s;
+}
+
+.general-complete.screen:hover .print-button-iv90TT {
+  transition-delay: 0.2s;
+}
+
+.general-complete.screen:hover .prev-button-iv90TT {
+  transition-delay: 0.1s;
+}

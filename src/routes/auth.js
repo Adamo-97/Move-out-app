@@ -71,19 +71,30 @@ router.get('/home', ensureAuthenticated, (req, res) => {
         return res.redirect('/login'); // Redirect to login if the user is not authenticated
     }
 
-    // Call the stored procedure to get all boxes for the logged-in user
-    db.query('CALL get_user_labels(?)', [userId], (err, results) => {
+    // First, fetch the user's name from the users table
+    db.query('SELECT name FROM users WHERE id = ?', [userId], (err, userResult) => {
         if (err) {
-            console.error('Error fetching user boxes:', err);
+            console.error('Error fetching user name:', err);
             return res.status(500).send('Server error');
         }
 
-        // The results from a stored procedure call are in the first element of the array
-        const userBoxes = results[0];
-        console.log('Fetched labels:', userBoxes); // Debug: Check if QR data is present
+        // Assuming the user exists, extract the name
+        const userName = userResult[0].name;
 
-        // Render the home page with the user's boxes
-        res.render('home', { labels: userBoxes });
+        // Call the stored procedure to get all labels for the logged-in user
+        db.query('CALL get_user_labels(?)', [userId], (err, results) => {
+            if (err) {
+                console.error('Error fetching user boxes:', err);
+                return res.status(500).send('Server error');
+            }
+
+            // The results from a stored procedure call are in the first element of the array
+            const userBoxes = results[0];
+            console.log('Fetched labels:', userBoxes); // Debug: Check if QR data is present
+
+            // Render the home page with the user's name and labels
+            res.render('home', { labels: userBoxes, userName });
+        });
     });
 });
 

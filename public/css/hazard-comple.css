@@ -458,10 +458,45 @@
 }
 
 .qr-placeholder-NBZXkN img {
-  max-width: 100%; /* Make the QR code fit the width of the placeholder */
-  max-height: 100%; /* Make the QR code fit the height of the placeholder */
-  width: auto; /* Maintain aspect ratio */
-  height: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Ensure the QR code fits within the placeholder without distortion */
+  max-width: 100%; 
+  max-height: 100%; 
+  width: auto; 
+  height: auto; 
+  object-fit: contain;
 }
 
+/* Initially hide the icons (remove, edit, print, and preview) */
+.remove-button-NBZXkN,
+.edit-button-NBZXkN,
+.print-button-NBZXkN,
+.prev-button-NBZXkN {
+  opacity: 0;
+  transform: translateY(-10px); /* Start slightly above */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When hovering over the entire .hazard-comple.screen, show the icons */
+.hazard-comple.screen:hover .remove-button-NBZXkN,
+.hazard-comple.screen:hover .edit-button-NBZXkN,
+.hazard-comple.screen:hover .print-button-NBZXkN,
+.hazard-comple.screen:hover .prev-button-NBZXkN {
+  opacity: 1;
+  transform: translateY(0); /* Move icons to their normal position */
+}
+
+/* Stagger the appearance of each icon using transition-delay */
+.hazard-comple.screen:hover .remove-button-NBZXkN {
+  transition-delay: 0.4s;
+}
+
+.hazard-comple.screen:hover .edit-button-NBZXkN {
+  transition-delay: 0.3s;
+}
+
+.hazard-comple.screen:hover .print-button-NBZXkN {
+  transition-delay: 0.2s;
+}
+
+.hazard-comple.screen:hover .prev-button-NBZXkN {
+  transition-delay: 0.1s;
+}

@@ -406,3 +406,41 @@
       -ms-print-color-adjust: exact;      /* Internet Explorer */
     }
   }
+
+
+/* Initially hide the icons (remove, edit, print, and preview) */
+.remove-button-k5IpBb,
+.edit-button-k5IpBb,
+.print-button-k5IpBb,
+.prev-button-k5IpBb {
+  opacity: 0;
+  transform: translateY(-10px); /* Start slightly above */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When hovering over the entire .fragile-comple.screen, show the icons */
+.fragile-comple.screen:hover .remove-button-k5IpBb,
+.fragile-comple.screen:hover .edit-button-k5IpBb,
+.fragile-comple.screen:hover .print-button-k5IpBb,
+.fragile-comple.screen:hover .prev-button-k5IpBb {
+  opacity: 1;
+  transform: translateY(0); /* Move icons to their normal position */
+}
+
+/* Stagger the appearance of each icon using transition-delay */
+.fragile-comple.screen:hover .remove-button-k5IpBb {
+  transition-delay: 0.4s;
+}
+
+.fragile-comple.screen:hover .edit-button-k5IpBb {
+  transition-delay: 0.3s;
+}
+
+.fragile-comple.screen:hover .print-button-k5IpBb {
+  transition-delay: 0.2s;
+}
+
+.fragile-comple.screen:hover .prev-button-k5IpBb {
+  transition-delay: 0.1s;
+}
+

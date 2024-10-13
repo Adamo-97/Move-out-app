@@ -2138,9 +2138,9 @@ transform: scale(1);
   background-color: white;
   border-radius: 10px;
   cursor: pointer;
-  transition: transform 0.5s, opacity 0.5s ease-in-out;
+  transition: transform 0.3s, opacity 0.3s ease-in-out;
   opacity: 0;
-  animation: fadeIn 1s ease-in-out 0.5s forwards;
+  animation: fadeIn 1s ease-in-out 0.3s forwards;
 }
 
 .btn svg {
