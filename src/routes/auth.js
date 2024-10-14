@@ -6,6 +6,7 @@ const db = require('../db/dbConnection');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const { createCanvas, loadImage } = require('canvas');
 
 // Middleware to protect routes
 const ensureAuthenticated = (req, res, next) => {
@@ -46,20 +47,16 @@ router.get('/auth/google/callback',
 router.get('/signup', (req, res) => {
     res.render('signup', { message: null });
 });
-
 router.post('/signup', authController.signup);
 
 // Route for rendering the email verification page (GET)
 router.get('/verify', (req, res) => {
     res.render('verify', { message: null });
 });
-
 // Route for handling verification code submission (POST)
 router.post('/verify', authController.verifyCode);
-
 // Route for handling label deletion within home
 router.delete('/home', ensureAuthenticated, authController.deleteLabel);
-
 // Route for handling logout
 router.get('/logout', authController.logout);
 
@@ -222,8 +219,8 @@ router.get('/label-complete', ensureAuthenticated, (req, res) => {
         const labelData = {
             label_name: results[0].label_name,
             qr_data: results[0].qr_code_data,
-            labelId: results.labelId,
-            categoryId: results.categoryId,
+            labelId: labelId,
+            categoryId: categoryId,
         };
 
         console.log('[label-complete] Label data being sent to template:', labelData);
@@ -235,7 +232,7 @@ router.get('/label-complete', ensureAuthenticated, (req, res) => {
                 template = 'fragile-comple';
                 break;
             case 2:
-                template = 'hazard-complete';
+                template = 'hazard-comple';
                 break;
             case 3:
                 template = 'general-complete';
@@ -244,83 +241,183 @@ router.get('/label-complete', ensureAuthenticated, (req, res) => {
                 console.error('[label-complete] Invalid Category ID.');
                 return res.status(400).send('Invalid Category ID.');
         }
-
-        try {
+            // Check if the request is coming from Puppeteer for generating an image
+        if (req.headers['user-agent'].includes('HeadlessChrome')) {
+            // Extra condition for Puppeteer requests
+            console.log('Request from Puppeteer detected, adjusting response for image generation');
             res.render(template, { label: labelData });
-        } catch (renderError) {
-            console.error(`[label-complete] Error rendering ${template}:`, renderError);
-            return res.status(500).send('Error rendering the page.');
+        } else {
+            try {
+                res.render(template, { label: labelData });
+            } catch (renderError) {
+                console.error(`[label-complete] Error rendering ${template}:`, renderError);
+                return res.status(500).send('Error rendering the page.');
+            }
         }
     });
 });
 
-// Route for generating an image of the label with a transparent background
+// Router for generating an image of a label
 router.get('/generate-image', ensureAuthenticated, async (req, res) => {
     const labelId = req.query.labelId;
     const categoryId = req.query.category_id;
 
-    console.log('--- Starting Cropped and Enlarged Image Generation ---');
+    console.log('Received labelId:', labelId);
+    console.log('Received categoryId:', categoryId);
 
     if (!labelId || !categoryId) {
-        return res.status(400).send('labelId and categoryId query parameters are required.');
+        return res.status(400).send('labelId and category_id are required.');
     }
 
     try {
-        const browser = await puppeteer.launch();
+        const browser = await puppeteer.launch({ headless: false });
         const page = await browser.newPage();
 
+        // Increase the scale factor to improve image quality
+        await page.setViewport({
+            width: 1200,  
+            height: 800,  
+            deviceScaleFactor: 5  
+        });
+
+        // Pass the session cookie to Puppeteer
         const cookies = req.headers.cookie;
         if (cookies) {
             await page.setCookie(...cookies.split(';').map(cookieStr => {
                 const [name, value] = cookieStr.split('=');
-                return { name, value, domain: 'localhost' };
+                return { name: name.trim(), value: value.trim(), domain: 'localhost' };
             }));
         }
 
         const pageUrl = `http://localhost:3000/label-complete?labelId=${labelId}&category_id=${categoryId}`;
-        console.log('Navigating to:', pageUrl); // Log URL for debugging
+        console.log('Navigating to:', pageUrl);
+
         await page.goto(pageUrl, { waitUntil: 'networkidle0' });
 
-        // Wait for the label container to appear
-        await page.waitForSelector('.label-container', { timeout: 5000 });
+        // Inject custom CSS to scale the title
+        await page.addStyleTag({
+            content: `
+                .titel-text-FsKoEO {
+                font-size: 2.5em !important;
+                }
+                .titel-text-sTNRHE{
+                font-size: 2.5em !important;
+                }
+                .titel-text-SSIOQa{
+                font-size: 2.5em !important;
+                }
+            `
+        });
 
-        const labelElement = await page.$('.label-container');
-        if (!labelElement) {
-            console.error('Label container not found!');
+        // Select the relevant divs based on category_id (main-shape, qr-placeholder, titel-placeholder)
+        const sectionsToCapture = await page.evaluate((categoryId) => {
+            let mainShape, qrPlaceholder, titlePlaceholder;
+
+            // Element selectors based on the categoryId
+            switch (parseInt(categoryId)) {
+                case 1: // Fragile
+                    mainShape = document.querySelector('.main-shape-k5IpBb'); // Placeholder class for Fragile
+                    qrPlaceholder = document.querySelector('.qr-placeholder-k5IpBb'); // Placeholder class for Fragile
+                    titlePlaceholder = document.querySelector('.titel-placeholder-k5IpBb'); // Placeholder class for Fragile
+                    break;
+                case 2: // Hazard
+                    mainShape = document.querySelector('.lable-shape-NBZXkN');  // Placeholder class for Hazard
+                    qrPlaceholder = document.querySelector('.qr-placeholder-NBZXkN');  // Placeholder class for Hazard
+                    titlePlaceholder = document.querySelector('.titel-placeholder-NBZXkN');  // Placeholder class for Hazard
+                    break;
+                case 3: // General
+                    mainShape = document.querySelector('.main-shape-iv90TT');  // Placeholder class for General
+                    qrPlaceholder = document.querySelector('.qr-placeholder-iv90TT');  // Placeholder class for General
+                    titlePlaceholder = document.querySelector('.titel-placeholder-JAxmLZ');  // Placeholder class for General
+                    break;
+                default:
+                    return null; // Invalid categoryId
+            }
+
+            if (!mainShape || !qrPlaceholder || !titlePlaceholder) {
+                return null;
+            }
+
+            // Get bounding boxes for each element and find the overall bounding box
+            const mainShapeBox = mainShape.getBoundingClientRect();
+            const qrBox = qrPlaceholder.getBoundingClientRect();
+            const titleBox = titlePlaceholder.getBoundingClientRect();
+
+            // Calculate the bounding box that wraps all selected elements
+            const x = Math.min(mainShapeBox.x, qrBox.x, titleBox.x);
+            const y = Math.min(mainShapeBox.y, qrBox.y, titleBox.y);
+            const width = Math.max(mainShapeBox.right, qrBox.right, titleBox.right) - x;
+            const height = Math.max(mainShapeBox.bottom, qrBox.bottom, titleBox.bottom) - y;
+
+            return { x, y, width, height };
+        }, categoryId);  // Pass categoryId to the page.evaluate function
+
+
+        if (!sectionsToCapture) {
+            console.error('One or more elements were not found in DOM!');
             await browser.close();
-            return res.status(500).send('Label container not found.');
+            return res.status(500).send('Required elements were not found.');
         }
 
-        // Define the size of the viewport and scaling factor for enlargement
-        await page.setViewport({ width: 1200, height: 800, deviceScaleFactor: 2 });
-
-        // Capture the bounding box
-        const boundingBox = await labelElement.boundingBox();
-        console.log('Bounding box for label:', boundingBox);
-
-        // Crop and capture the screenshot
-        const imagePathCropped = path.join(__dirname, `cropped-label-${labelId}.png`);
+        // Capture screenshot and crop the image to the bounds of the required elements
+        const imagePath = path.join(__dirname, `label-${labelId}.png`);
         await page.screenshot({
-            path: imagePathCropped,
-            type: 'png',
+            path: imagePath,
             omitBackground: true,
+            type: 'png',
             clip: {
-                x: boundingBox.width / 2,
-                y: boundingBox.y,
-                width: boundingBox.width / 2,
-                height: boundingBox.height,
+                x: sectionsToCapture.x,
+                y: sectionsToCapture.y,
+                width: sectionsToCapture.width,
+                height: sectionsToCapture.height
             }
         });
 
         await browser.close();
 
-        res.download(imagePathCropped, `cropped-label-${labelId}.png`, (err) => {
-            if (err) {
-                console.error('Error sending image:', err);
-                return res.status(500).send('Error sending image');
-            }
-            fs.unlink(imagePathCropped, (err) => {
-                if (err) console.error('Error deleting image file:', err);
+        // Apply rounded corners using a Canvas
+        const roundedImagePath = path.join(__dirname, `label-rounded-${labelId}.png`);
+        const canvas = createCanvas(sectionsToCapture.width * 5, sectionsToCapture.height * 5);
+        const ctx = canvas.getContext('2d');
+
+        // Load the screenshot into the canvas
+        const image = await loadImage(imagePath);
+
+        // Draw the image with rounded corners on the canvas
+        const radius = 20 * 5;
+        ctx.beginPath();
+        ctx.moveTo(radius, 0);
+        ctx.arcTo(sectionsToCapture.width * 5, 0, sectionsToCapture.width * 5, sectionsToCapture.height * 5, radius);
+        ctx.arcTo(sectionsToCapture.width * 5, sectionsToCapture.height * 5, 0, sectionsToCapture.height * 5, radius);
+        ctx.arcTo(0, sectionsToCapture.height * 5, 0, 0, radius);
+        ctx.arcTo(0, 0, sectionsToCapture.width * 5, 0, radius);
+        ctx.closePath();
+        ctx.clip();
+
+        // Draw the image inside the clipped (rounded) area
+        ctx.drawImage(image, 0, 0, sectionsToCapture.width * 5, sectionsToCapture.height * 5);
+
+        // Save the rounded image to file
+        const out = fs.createWriteStream(roundedImagePath);
+        const stream = canvas.createPNGStream();
+        stream.pipe(out);
+        out.on('finish', () => {
+            console.log('Rounded image saved successfully.');
+
+            // Send the rounded image to the client
+            res.download(roundedImagePath, `label-${labelId}.png`, (err) => {
+                if (err) {
+                    console.error('Error sending rounded image:', err);
+                    return res.status(500).send('Error sending rounded image');
+                }
+
+                // Remove the original screenshot and rounded image after sending
+                fs.unlink(imagePath, (err) => {
+                    if (err) console.error('Error deleting original image file:', err);
+                });
+                fs.unlink(roundedImagePath, (err) => {
+                    if (err) console.error('Error deleting rounded image file:', err);
+                });
             });
         });
 
@@ -330,5 +427,9 @@ router.get('/generate-image', ensureAuthenticated, async (req, res) => {
     }
 });
 
+// Route for the admin page
+router.get('/admin', (req, res) => {
+    res.render('admin');
+});
 // Export the router
 module.exports = router;

@@ -9,7 +9,6 @@ function setupPrintButton(buttonId, labelContainerId, labelName) {
     if (!printButton) {
         console.error(`Print button not found with ID: ${buttonId}`);
     }
-
     if (!labelContainer) {
         console.error(`Label container not found with ID: ${labelContainerId}`);
     }
