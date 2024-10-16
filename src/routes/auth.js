@@ -7,6 +7,7 @@ const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
 const { createCanvas, loadImage } = require('canvas');
+const { sendPinEmail } = require('../helpers/emailHelpers');
 
 // Middleware to protect routes
 const ensureAuthenticated = (req, res, next) => {
@@ -431,49 +432,99 @@ router.get('/generate-image', ensureAuthenticated, async (req, res) => {
     }
 });
 
-// Route to handle QR code scanning
-router.get('/scan-label', (req, res) => {
-    console.log('--- [/scan-label] Start of Function ---');
+// Function to generate a 6-digit pin
+function generatePin() {
+    return Math.floor(100000 + Math.random() * 900000).toString();
+}
+
+router.get('/verify-pin', ensureAuthenticated, (req, res) => {
+    console.log('--- [/verify-pin] Start of Function ---');
+    
     const { labelId } = req.query;
+    console.log('labelId received from query:', labelId);  // Log the received labelId
 
-    // Retrieve label information from the database
-    db.query('SELECT public, memo FROM labels WHERE label_id = ?', [labelId], (err, results) => {
+    if (!labelId) {
+        return res.status(400).json({ success: false, message: 'Label ID is missing.' });
+    }
+
+    // Fetch the label information (including user_id and pin)
+    db.query('SELECT user_id, pin FROM labels WHERE id = ?', [labelId], (err, results) => {
         if (err || results.length === 0) {
-            console.error('Error retrieving label information:', err);
-            return res.status(500).send('Internal error.');
+            console.error('Error retrieving label information:', err || 'No results found');
+            return res.status(500).json({ success: false, message: 'Internal error or label not found.' });
         }
 
-        const isPublic = results[0].public;
-        const memoUrl = results[0].memo;
+        const userId = results[0].user_id;
+        let pin = results[0].pin;
 
-        // Check if the label is public
-        if (isPublic) {
-            // If public, redirect directly to the memo
-            return res.redirect(memoUrl);
-        } else {
-            // If private, redirect to the PIN verification page
-            res.redirect(`/verify-pin?labelId=${labelId}`);
+        // If the pin is not generated yet, generate a new one
+        if (!pin) {
+            pin = generatePin();
+            console.log('Generated PIN:', pin);
+
+            // Update the label with the new PIN
+            db.query('UPDATE labels SET pin = ? WHERE id = ?', [pin, labelId], (updateErr) => {
+                if (updateErr) {
+                    console.error('Error updating pin:', updateErr);
+                    return res.status(500).json({ success: false, message: 'Internal error.' });
+                }
+            });
         }
+
+        // Retrieve the user's email
+        db.query('SELECT email FROM users WHERE id = ?', [userId], (emailErr, emailResults) => {
+            if (emailErr || emailResults.length === 0) {
+                console.error('Error retrieving user email:', emailErr);
+                return res.status(500).json({ success: false, message: 'Internal error.' });
+            }
+
+            const userEmail = emailResults[0].email;
+
+            // Send the PIN to the user's email
+            sendPinEmail(userEmail, pin, (sendErr) => {
+                if (sendErr) {
+                    console.error('Error sending email:', sendErr);
+                    return res.status(500).json({ success: false, message: 'Failed to send email.' });
+                }
+
+                // Render the verify page where the user enters the PIN
+                res.render('verify-pin', { labelId, message: 'A PIN has been sent to your email.' });
+            });
+        });
     });
 });
 
-// Route for PIN verification page
-router.get('/verify-pin', ensureAuthenticated, (req, res) => {
-    res.render('verify-pin', { labelId: req.query.labelId, message: null });
-});
 // POST route to verify the 6-digit PIN
 router.post('/verify-pin', (req, res) => {
+    console.log('--- [/verify-pin POST] Start of Function ---');
     const { labelId, digit1, digit2, digit3, digit4, digit5, digit6 } = req.body;
 
     // Combine the digits into a single PIN
     const pin = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
 
-    // Call the controller logic to verify the PIN
-    authController.verifyPin(req, res, pin);
-});
-// Route to access the memo after PIN verification
-router.get('/access-memo', ensureAuthenticated, (req, res) => {
-    authController.accessMemo(req, res);
+    // Retrieve the stored PIN and memo URL for the label
+    db.query('SELECT pin, memo FROM labels WHERE id = ?', [labelId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error retrieving pin and memo:', err);
+            return res.status(500).json({ success: false, message: 'Internal error.' });
+        }
+
+        const storedPin = results[0].pin;
+        const memoUrl = results[0].memo;
+
+        console.log('Stored PIN:', storedPin);
+        console.log('Entered PIN:', pin);
+        console.log('Memo URL:', memoUrl);
+
+        // If the entered PIN matches the stored PIN
+        if (storedPin === pin) {
+            // Redirect the user to the memo URL
+            res.redirect(memoUrl);
+        } else {
+            // Invalid PIN
+            res.render('verify-pin', { labelId, message: 'Invalid PIN. Please try again.' });
+        }
+    });
 });
 
 // Route for the admin page

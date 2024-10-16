@@ -39,8 +39,15 @@ CREATE PROCEDURE add_label(
     IN p_pin VARCHAR(6)   
 )
 BEGIN
-    INSERT INTO labels (label_name, user_id, category_id, memo, public, pin) 
-    VALUES (p_label_name, p_user_id, p_category_id, p_memo, p_public, p_pin);
+    IF p_public THEN
+        -- Public label, use the existing memo column, no verification_url needed
+        INSERT INTO labels (label_name, user_id, category_id, memo, public, pin) 
+        VALUES (p_label_name, p_user_id, p_category_id, p_memo, p_public, p_pin);
+    ELSE
+        -- Private label, store the verification URL in the new column
+        INSERT INTO labels (label_name, user_id, category_id, memo, public, pin, verification_url) 
+        VALUES (p_label_name, p_user_id, p_category_id, p_memo, p_public, p_pin, p_memo);
+    END IF;
 
     -- Return the newly inserted label ID
     SELECT LAST_INSERT_ID() AS label_id;

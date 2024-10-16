@@ -231,32 +231,86 @@ function uploadMemoToCloudinary(memo, cloudinaryFolder, isPublic) {
 // Function to add label to the database
 function addLabelToDatabase(label_name, user_id, category_id, memoUrl, isPublic, pin) {
     console.log('--- [addLabelToDatabase] Start of Function ---');
+
     return new Promise((resolve, reject) => {
-        db.query('CALL add_label(?, ?, ?, ?, ?, ?)', [label_name, user_id, category_id, memoUrl, isPublic, pin], (err, results) => {
-            if (err) {
-                reject(new Error('Error adding label to database: ' + err.message));
-            } else {
-                const labelId = results[0][0].label_id;
-                console.log('[addLabelToDatabase] New Label ID:', labelId);
-                resolve(labelId);
-            }
-        });
+        // First, insert the label and get the labelId
+        db.query('CALL add_label(?, ?, ?, ?, ?, ?)', 
+            [label_name, user_id, category_id, memoUrl, isPublic, pin], 
+            (err, results) => {
+                if (err) {
+                    reject(new Error('Error adding label to database: ' + err.message));
+                } else {
+                    const labelId = results[0][0].label_id;
+                    console.log('[addLabelToDatabase] New Label ID:', labelId);
+
+                    // Generate the verification URL for private labels
+                    const verificationUrl = isPublic ? null : `http://localhost:3000/verify-pin?labelId=${labelId}`;
+
+                    // Now, update the label with the verification URL for private labels
+                    if (!isPublic) {
+                        db.query('UPDATE labels SET verification_url = ? WHERE id = ?', 
+                            [verificationUrl, labelId], 
+                            (updateErr) => {
+                                if (updateErr) {
+                                    reject(new Error('Error updating label with verification URL: ' + updateErr.message));
+                                } else {
+                                    console.log('[addLabelToDatabase] Verification URL added:', verificationUrl);
+                                    resolve(labelId);
+                                }
+                            });
+                    } else {
+                        resolve(labelId);
+                    }
+                }
+            });
     });
 }
 
-// Function to generate QR code
-function generateQRCode(data) {
+// Function to generate QR code based on whether the label is public or private
+function generateQRCode(memoUrl, labelId) {
     console.log('--- [generateQRCode] Start of Function ---');
-    return new Promise((resolve, reject) => {
-        QRCode.toDataURL(data, (err, url) => {
-            if (err) {
-                reject(new Error('Error generating QR Code: ' + err.message));
-            } else {
-                console.log('[generateQRCode] QR Code URL:', url);
-                resolve(url);
-            }
+    
+    // Debugging: Log the data received
+    console.log('[generateQRCode] Data received:', memoUrl);
+
+    // Check if the memoUrl is public (i.e., it contains 'upload') or private ('authenticated')
+    const isPublic = memoUrl.includes('/raw/upload/');
+
+    if (isPublic) {
+        console.log('[generateQRCode] Label is Public, generating QR for memo URL:', memoUrl);
+
+        // Public label: Use the Cloudinary memo URL
+        return new Promise((resolve, reject) => {
+            QRCode.toDataURL(memoUrl, (err, url) => {
+                if (err) {
+                    console.error('Error generating QR Code for Public label:', err.message);
+                    reject(new Error('Error generating QR Code: ' + err.message));
+                } else {
+                    console.log('[generateQRCode] Public QR Code URL:', url);
+                    resolve(url);
+                }
+            });
         });
-    });
+
+    } else {
+        console.log('[generateQRCode] Label is Private, generating QR for verification URL.');
+        
+        // Private label: Generate QR code pointing to the verification URL
+        const verificationUrl = `http://localhost:3000/verify-pin?labelId=${labelId}`;
+        console.log('[generateQRCode] Verification URL:', verificationUrl);
+
+        return new Promise((resolve, reject) => {
+            QRCode.toDataURL(verificationUrl, { errorCorrectionLevel: 'H' }, (err, url) => {
+                if (err) {
+                    console.error('Error generating QR Code for Private label:', err.message);
+                    reject(new Error('Error generating QR Code: ' + err.message));
+                } else {
+                    console.log('[generateQRCode] Private QR Code URL:', url);
+                    resolve(url);
+                }
+            });
+        });
+    }
 }
 
 // Function to upload QR code to Cloudinary

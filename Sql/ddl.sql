@@ -25,19 +25,19 @@ CREATE TABLE categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(50) NOT NULL
 );
-
 -- Insert initial categories (use INSERT IGNORE to avoid duplicates)
-INSERT INTO categories (category_name) VALUES ('Fragile'), ('Hazard'), ('General');
+INSERT INTO categories (category_name) VALUES ('Fragile'), ('Hazard'), ('General'), ('Care');
 
 -- Create the labels table with ON DELETE CASCADE for user_id and category_id
 CREATE TABLE labels (
     id INT AUTO_INCREMENT PRIMARY KEY,
     label_name VARCHAR(255) NOT NULL,
-    user_id INT,  -- This matches the data type of `id` in the `users` table
-    category_id INT,  -- This matches the data type of `id` in the `categories` table
+    user_id INT,  
+    category_id INT,
     memo TEXT,
-    public BOOLEAN DEFAULT TRUE,  -- New public column with default value as TRUE
-    pin VARCHAR(6),  -- New column to store the 6-digit pin for private labels
+    public BOOLEAN DEFAULT TRUE,
+    pin VARCHAR(6),
+    verification_url TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -56,8 +56,8 @@ CREATE TABLE qr_codes (
 -- Create the user_categories table
 CREATE TABLE user_categories (
     user_category_id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,  -- Matches the `id` column in the `users` table
-    category_id INT,  -- Matches the `id` column in the `categories` table
+    user_id INT,
+    category_id INT,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (category_id) REFERENCES categories(id) ON DELETE CASCADE
 );

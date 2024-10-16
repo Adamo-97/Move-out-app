@@ -5,7 +5,7 @@ require('dotenv').config({ path: './config/email.env' });
 require('dotenv').config({ path: './config/cloud.env' });
 const busboy = require('busboy');
 const { sendVerificationEmail, sendPinEmail } = require('../helpers/emailHelpers');
-const { handleTextMemoUpload, handleVoiceMemoUpload, handleImageUpload } = require('../helpers/addLable');
+const { handleTextMemoUpload, handleVoiceMemoUpload, handleImageUpload, inferMimeType } = require('../helpers/addLable');
 
 // Cloudinary configuration
 cloudinary.config({
@@ -150,119 +150,6 @@ exports.login = (req, res) => {
                 res.render('login', { message: 'Incorrect password!' });
             }
         });
-    });
-};
-
-exports.scanLabel = (req, res) => {
-    const { labelId } = req.query;  // Use req.query for GET parameters
-
-    // Retrieve label information
-    db.query('SELECT public, user_id FROM labels WHERE label_id = ?', [labelId], (err, results) => {
-        if (err || results.length === 0) {
-            console.error('Error retrieving label information:', err);
-            return res.status(500).json({ success: false, message: 'Internal error.' });
-        }
-
-        const isPublic = results[0].public;
-        const userId = results[0].user_id;
-
-        // Check if the label is public
-        if (isPublic) {
-            console.log('This label is public. No PIN required.');
-            return res.json({ success: true, message: 'This is a public label. No PIN required.' });
-        }
-
-        // The label is private; proceed with PIN generation
-        const newPin = generatePin();
-
-        // Update the pin in the database
-        db.query('UPDATE labels SET pin = ? WHERE label_id = ?', [newPin, labelId], (updateErr) => {
-            if (updateErr) {
-                console.error('Error updating pin:', updateErr);
-                return res.status(500).json({ success: false, message: 'Internal error.' });
-            }
-
-            // Retrieve the user's email
-            db.query('SELECT email FROM users WHERE id = ?', [userId], (emailErr, emailResults) => {
-                if (emailErr || emailResults.length === 0) {
-                    console.error('Error retrieving user email:', emailErr);
-                    return res.status(500).json({ success: false, message: 'Internal error.' });
-                }
-
-                const userEmail = emailResults[0].email;
-
-                // Send the pin to the user's email
-                sendPinEmail(userEmail, newPin, (sendErr) => {
-                    if (sendErr) {
-                        console.error('Error sending email:', sendErr);
-                        return res.status(500).json({ success: false, message: 'Failed to send email.' });
-                    }
-
-                    // Successfully generated and sent pin
-                    console.log('New pin sent to user email:', userEmail);
-                    res.json({ success: true, redirectUrl: `/verify-pin?labelId=${labelId}` });
-                });
-            });
-        });
-    });
-};
-
-// Function to generate a 6-digit pin
-function generatePin() {
-    return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
-// Handle the PIN verification logic
-exports.verifyPin = (req, res, pin) => {
-    const { labelId } = req.body;
-
-    if (!labelId || !pin) {
-        return res.status(400).json({ success: false, message: 'Label ID and PIN are required.' });
-    }
-
-    // Check if the provided pin matches the one in the database
-    db.query('SELECT pin, memo FROM labels WHERE label_id = ?', [labelId], (err, results) => {
-        if (err || results.length === 0) {
-            console.error('Error retrieving pin:', err);
-            return res.status(500).json({ success: false, message: 'Internal error.' });
-        }
-
-        const storedPin = results[0].pin;
-        const memoUrl = results[0].memo;
-
-        if (storedPin !== pin) {
-            return res.status(401).json({ success: false, message: 'Invalid PIN.' });
-        }
-
-        // PIN is valid; redirect to the memo URL
-        res.json({ success: true, memoUrl });
-    });
-};
-
-// Handle the access memo logic
-exports.accessMemo = (req, res) => {
-    const { labelId } = req.query;
-
-    if (!labelId) {
-        return res.status(400).send('Label ID is required.');
-    }
-
-    // Retrieve the label information
-    db.query('SELECT public, memo FROM labels WHERE label_id = ?', [labelId], (err, results) => {
-        if (err || results.length === 0) {
-            console.error('Error retrieving label information:', err);
-            return res.status(500).send('Internal error.');
-        }
-
-        const label = results[0];
-
-        // If the label is public, directly redirect to the memo URL
-        if (label.public) {
-            return res.redirect(label.memo);
-        }
-
-        // The label is private; redirect to the PIN verification page
-        res.redirect(`/verify-pin?labelId=${labelId}`);
     });
 };
 
