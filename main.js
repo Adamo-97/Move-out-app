@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const config = require('./config/config.json');
 require('./src/helpers/passport');
+const os = require('os'); // Require 'os' module to get network interfaces
 
 // Create an Express app
 const app = express();
@@ -57,9 +58,24 @@ app.use(passport.session());
 // Use routes from the `authRoutes`
 app.use('/', authRoutes);
 
-// Start the server on the port provided by Render or default to 3000
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+// Start the server on the port 
+// Helper function to get the local network IP address
+function getLocalNetworkIP() {
+    const interfaces = os.networkInterfaces();
+    for (const iface in interfaces) {
+      for (const details of interfaces[iface]) {
+        // Check if the IP address is IPv4 and not internal (i.e., not localhost)
+        if (details.family === 'IPv4' && !details.internal) {
+          return details.address;
+        }
+      }
+    }
+    return 'IP not found';
+  }
+  
+  app.listen(3000, '0.0.0.0', () => {
+    const localIP = getLocalNetworkIP();
+    console.log(`Server running on port 3000`);
+    console.log(`Access it via localhost: http://localhost:3000`);
+    console.log(`Access it via network: http://${localIP}:3000`);
+  });

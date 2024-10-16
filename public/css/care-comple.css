@@ -1,0 +1,305 @@
+/* screen - care-comple */
+
+.care-comple {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.care-comple .main-shape-e81x7O {
+  background-color: transparent;
+  height: 10.42vw;
+  left: 33.49vw;
+  position: absolute;
+  top: 16.67vw;
+  width: 14.84vw;
+}
+
+.care-comple .main-shape-tEkNqR {
+  background-color: var(--white);
+  border-radius: 1.5vw;
+  box-shadow: 0.36vw 0.36vw 0.52vw #00000033;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-comple .path-56-tEkNqR {
+  background-color: transparent;
+  height: calc(100.00% - 2.86vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-comple .qr-placeholder-e81x7O {
+  background-color: transparent;
+  height: 5.57vw;
+  left: 39.43vw;
+  position: absolute;
+  top: 21.25vw;
+  width: 5.57vw;
+}
+
+.care-comple .titel-placeholder-e81x7O {
+  background-color: transparent;
+  height: 3.59vw;
+  left: 34.06vw;
+  position: absolute;
+  top: 17.08vw;
+  width: 13.7vw;
+}
+
+.care-comple .titel-placeholder-OKYzwX {
+  background-color: var(--black-2);
+  border-radius: 0.88vw;
+  height: 100%;
+  left: 0.0vw;
+  opacity: 0.19;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-comple .titel-text-OKYzwX {
+  background-color: transparent;
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: 2.6vw;
+  font-style: italic;
+  font-weight: 900;
+  height: 3.23vw;
+  left: 0.36vw;
+  letter-spacing: 0.0vw;
+  line-height: 1.13vw;
+  position: absolute;
+  text-align: left;
+  top: 0.99vw;
+  width: 12.97vw;
+}
+
+.care-comple .remove-button-e81x7O {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 44.64vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 27.6vw;
+  transition: all 0.2s ease;
+  width: 3.54vw;
+}
+
+.care-comple .remove-button-e81x7O:hover {
+  transform: scale(1.1);
+}
+
+.care-comple .remove-NGPgxC {
+  background-color: #838996;
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-comple .remove-icon-NGPgxC {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.78vw);
+  left: 0.78vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.36vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 1.51vw);
+}
+
+.care-comple .remove-icon-NGPgxC:hover {
+  transform: rotate(15deg);
+}
+
+.care-comple .edit-button-e81x7O {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 40.99vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 27.6vw;
+  transition: all 0.2s ease;
+  width: 3.54vw;
+}
+
+.care-comple .edit-button-e81x7O:hover {
+  transform: scale(1.1);
+}
+
+.care-comple .edit-RJ5z46 {
+  background-color: #838996;
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-comple .edit-evggee {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 0.83vw);
+  left: calc(48.45% - 0.78vw);
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.36vw;
+  transition: all 0.2s ease;
+  width: 1.67vw;
+}
+
+.care-comple .edit-evggee:hover {
+  transform: rotate(15deg);
+}
+
+.care-comple .print-button-e81x7O {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 37.29vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 27.6vw;
+  transition: all 0.2s ease;
+  width: 3.54vw;
+}
+
+.care-comple .print-button-e81x7O:hover {
+  transform: scale(1.1);
+}
+
+.care-comple .print-vvDeTy {
+  background-color: #838996;
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-comple .path-73-vvDeTy {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 1.04vw);
+  left: 0.36vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.52vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 0.68vw);
+}
+
+.care-comple .path-73-vvDeTy:hover {
+  transform: rotate(15deg);
+}
+
+.care-comple .share-button-e81x7O {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.54vw;
+  left: 33.65vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 27.6vw;
+  transition: all 0.2s ease;
+  width: 3.54vw;
+}
+
+.care-comple .share-button-e81x7O:hover {
+  transform: scale(1.1);
+}
+
+.care-comple .circle-3atM2a {
+  background-color: #838996;
+  border-radius: 1.76vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-comple .share_6407048-3atM2a {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 1.04vw);
+  left: 0.47vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.52vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 0.99vw);
+}
+
+.care-comple .share_6407048-3atM2a:hover {
+  transform: rotate(15deg);
+}
+
+.care-comple .logo_placeholder-e81x7O {
+  background-color: transparent;
+  height: 2.81vw;
+  left: 33.96vw;
+  position: absolute;
+  top: 21.09vw;
+  width: 2.81vw;
+}
+
+/* Initially hide the icons (remove, edit, print, and share) */
+.remove-button-e81x7O,
+.edit-button-e81x7O,
+.print-button-e81x7O,
+.share-button-e81x7O {
+  opacity: 0;
+  transform: translateY(-10px); /* Start slightly above */
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When hovering over the the main shape div, show the icons */
+.care-comple.screen:hover .remove-button-e81x7O,
+.care-comple.screen:hover .edit-button-e81x7O,
+.care-comple.screen:hover .print-button-e81x7O,
+.care-comple.screen:hover .share-button-e81x7O {
+  opacity: 1;
+  transform: translateY(0); /* Move icons to their normal position */
+}
+
+/* Stagger the appearance of each icon using transition-delay */
+.care-comple.screen:hover .remove-button-e81x7O {
+  transition-delay: 0.4s;
+}
+
+.care-comple.screen:hover .edit-button-e81x7O {
+  transition-delay: 0.3s;
+}
+
+.care-comple.screen:hover .print-button-e81x7O {
+  transition-delay: 0.2s;
+}
+
+.care-comple.screen:hover .share-button-e81x7O {
+  transition-delay: 0.1s;
+}
+
+

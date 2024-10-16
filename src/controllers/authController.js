@@ -154,7 +154,7 @@ exports.login = (req, res) => {
 };
 
 exports.scanLabel = (req, res) => {
-    const { labelId } = req.body;
+    const { labelId } = req.query;  // Use req.query for GET parameters
 
     // Retrieve label information
     db.query('SELECT public, user_id FROM labels WHERE label_id = ?', [labelId], (err, results) => {
@@ -206,14 +206,15 @@ exports.scanLabel = (req, res) => {
         });
     });
 };
+
 // Function to generate a 6-digit pin
 function generatePin() {
     return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 // Handle the PIN verification logic
-exports.verifyPin = (req, res) => {
-    const { labelId, pin } = req.body;
+exports.verifyPin = (req, res, pin) => {
+    const { labelId } = req.body;
 
     if (!labelId || !pin) {
         return res.status(400).json({ success: false, message: 'Label ID and PIN are required.' });

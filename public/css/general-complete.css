@@ -498,6 +498,22 @@
   transform: rotate(15deg);
 }
 
+.general-complete .share_6407048-3atM2a {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 1.04vw);
+  left: 0.47vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.52vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 0.99vw);
+}
+
+.general-complete .share_6407048-3atM2a:hover {
+  transform: rotate(15deg);
+}
 .general-complete.screen {
   display: grid; /* Make this a grid container */
   grid-template-columns: 1fr; /* Adjust to your needs (single column layout) */
@@ -506,7 +522,6 @@
 }
 
 /* Email css */
-/* From Uiverse.io by vinodjangid07 */ 
 #emailShareForm {
   position: absolute; /* Keep it within the button's container */
   bottom: 100%; /* Position it above the button */

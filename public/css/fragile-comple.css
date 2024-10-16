@@ -444,3 +444,19 @@
   transition-delay: 0.1s;
 }
 
+.fragile-comple .share_6407048-3atM2a {
+  background-color: transparent;
+  cursor: pointer;
+  height: calc(100.00% - 1.04vw);
+  left: 0.47vw;
+  object-fit: cover;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.52vw;
+  transition: all 0.2s ease;
+  width: calc(100.00% - 0.99vw);
+}
+
+.fragile-comple .share_6407048-3atM2a:hover {
+  transform: rotate(15deg);
+}

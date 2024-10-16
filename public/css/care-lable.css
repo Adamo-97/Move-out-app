@@ -1,0 +1,804 @@
+/* screen - care-lable */
+
+.care-lable {
+  background-color: var(--white);
+  height: 56.25vw;
+  overflow: hidden;
+  overflow-x: hidden;
+  position: relative;
+  width: 100.0vw;
+}
+
+.care-lable .bg-qeF0cu {
+  background-color: transparent;
+  height: 58.44vw;
+  left: -16.15vw;
+  position: fixed;
+  top: -0.1vw;
+  width: 116.2vw;
+}
+
+.care-lable .bg-style-mFiOJr {
+  background-color: transparent;
+  height: calc(100.00% - 2.19vw);
+  left: 16.15vw;
+  position: absolute;
+  top: 0.16vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.care-lable .path-267-HvRE6x {
+  background-color: transparent;
+  height: calc(100.00% + 2.66vw);
+  left: -0.1vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.1vw;
+  width: calc(100.00% + 2.66vw);
+}
+
+.care-lable .path-268-HvRE6x {
+  background-color: transparent;
+  height: calc(100.00% + 2.5vw);
+  left: -0.73vw;
+  object-fit: cover;
+  position: absolute;
+  top: -0.42vw;
+  width: 33.8vw;
+}
+
+.care-lable .person-mFiOJr {
+  background-color: transparent;
+  height: calc(100.00% - 4.74vw);
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 4.74vw;
+  width: 53.7vw;
+}
+
+.care-lable .arrow-mFiOJr {
+  background-color: transparent;
+  height: 6.2vw;
+  left: calc(33.58% - 3.28vw);
+  object-fit: cover;
+  position: absolute;
+  top: calc(23.11% - 1.41vw);
+  width: 9.79vw;
+}
+
+.care-lable .main-header-mFiOJr {
+  background-color: #2b3131;
+  border-radius: 0.0vw 0.0vw 2.6vw 2.6vw;
+  box-shadow: 0.36vw 0.68vw 1.09vw #5e5e5e33;
+  height: 7.34vw;
+  left: 16.09vw;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 16.15vw);
+}
+
+.care-lable .logo-mFiOJr {
+  height: 5.73vw;
+  left: calc(18.76% - 1.88vw);
+  top: 2.03vw;
+  width: 10.1vw;
+}
+
+.care-lable .m-mAU1Ik {
+  background-color: transparent;
+  height: 2.5vw;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 2.6vw;
+}
+
+.care-lable .path-274-oV9gtG {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .v-mAU1Ik {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(46.93% - 0.99vw);
+  top: 0.42vw;
+  width: 2.08vw;
+}
+
+.care-lable .path-275-sVTJZj {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .e-mAU1Ik {
+  background-color: transparent;
+  height: 2.08vw;
+  position: absolute;
+  right: calc(23.66% - 0.47vw);
+  top: 0.42vw;
+  width: 2.03vw;
+}
+
+.care-lable .path-276-sdkcUD {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .group-147-mAU1Ik {
+  background-color: transparent;
+  height: calc(100.00% - 0.73vw);
+  position: absolute;
+  right: 0.0vw;
+  top: 0.73vw;
+  width: 8.49vw;
+}
+
+.care-lable .rectangle-50-eiFDBY {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .group-148-mAU1Ik {
+  background-color: transparent;
+  bottom: calc(42.37% - 0.42vw);
+  height: 0.99vw;
+  position: absolute;
+  right: calc(36.29% - 1.09vw);
+  width: 3.02vw;
+}
+
+.care-lable .path-277-g3ECHl {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 0.99vw;
+}
+
+.care-lable .path-278-g3ECHl {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: calc(46.23% - 0.42vw);
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.care-lable .path-279-g3ECHl {
+  background-color: transparent;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  right: 0.0vw;
+  top: 0.05vw;
+  width: 0.89vw;
+}
+
+.care-lable .pin-mAU1Ik {
+  background-color: transparent;
+  height: 3.44vw;
+  left: calc(30.46% - 0.73vw);
+  position: absolute;
+  top: 0.42vw;
+  width: 2.34vw;
+}
+
+.care-lable .path-280-4eCdpm {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .ellipse-17-4eCdpm {
+  background-color: #b10000;
+  border-radius: 0.9vw;
+  height: 1.77vw;
+  left: 0.31vw;
+  position: absolute;
+  top: 0.26vw;
+  width: calc(100.00% - 0.57vw);
+}
+
+.care-lable .box-mAU1Ik {
+  background-color: transparent;
+  height: 1.72vw;
+  left: calc(31.64% - 0.62vw);
+  position: absolute;
+  top: 0.62vw;
+  width: 1.93vw;
+}
+
+.care-lable .rectangle-51-HHHBDx {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.05vw;
+  width: 100%;
+}
+
+.care-lable .new-lable-button-qeF0cu {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.33vw;
+  left: 30.47vw;
+  position: fixed;
+  top: 8.54vw;
+  width: 12.92vw;
+}
+
+.care-lable .group-375-NaVRB0 {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: relative;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.care-lable .group-375-NaVRB0:hover {
+  transform: scale(1.1);
+}
+
+.care-lable .green-button-new-lable-AkXcxp {
+  background-color: #1bc172;
+  border-radius: 0.83vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .x-AkXcxp {
+  background-color: transparent;
+  cursor: pointer;
+  height: 1.98vw;
+  left: 0.62vw;
+  pointer-events: auto;
+  position: absolute;
+  top: calc(50.00% - 0.99vw);
+  transition: all 0.2s ease;
+  width: 1.93vw;
+}
+
+.care-lable .x-AkXcxp:hover {
+  transform: rotate(15deg);
+}
+
+.care-lable .path-464-Q8PWYg {
+  background-color: transparent;
+  height: calc(100.00% - 1.61vw);
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.78vw;
+  width: 100%;
+}
+
+.care-lable .path-465-Q8PWYg {
+  background-color: transparent;
+  height: 100%;
+  left: 0.78vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: calc(100.00% - 1.61vw);
+}
+
+.care-lable .new-lable-AkXcxp {
+  background-color: transparent;
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-xl);
+  font-style: italic;
+  font-weight: 400;
+  height: 2.55vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.49vw;
+  position: absolute;
+  right: 0.99vw;
+  text-align: left;
+  top: 0.31vw;
+  white-space: nowrap;
+  width: 8.8vw;
+}
+
+.care-lable .main-shape-qeF0cu {
+  background-color: transparent;
+  height: 36.15vw;
+  left: 33.8vw;
+  position: fixed;
+  top: 16.3vw;
+  width: 60.36vw;
+}
+
+.care-lable .rectangle-52-uOxLfH {
+  background-color: var(--white);
+  border-radius: 1.55vw;
+  box-shadow: 0.36vw 0.36vw 1.51vw #00000042;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .path-281-uOxLfH {
+  background-color: transparent;
+  height: 16.15vw;
+  left: 0.05vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .title-uOxLfH {
+  background-color: transparent;
+  color: var(--white);
+  font-family: lato ;
+  font-size: 48px;
+  font-style: italic;
+  font-weight: 800;
+  height: 5.16vw;
+  left: 2.14vw;
+  letter-spacing: 0.0vw;
+  line-height: 5.07vw;
+  position: absolute;
+  text-align: left;
+  top: 1.46vw;
+  white-space: nowrap;
+  width: 10.26vw;
+}
+
+.care-lable .start-by-listing-your-items-uOxLfH {
+  background-color: transparent;
+  color: black;
+  font-family: lato;
+  font-size: 35px;
+  font-style: italic;
+  font-weight: 800;
+  height: 2.66vw;
+  left: calc(27.54% - 6.67vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.51vw;
+  position: absolute;
+  text-align: left;
+  top: calc(27.39% - 0.73vw);
+  white-space: nowrap;
+  width: 24.22vw;
+}
+
+.care-lable .cancel-qeF0cu {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 80.42vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.care-lable .cancel-qeF0cu:hover {
+  transform: scale(1.1);
+}
+
+.care-lable .cancel-77enew {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .title-qeF0cu {
+  background-color: transparent;
+  height: 6.04vw;
+  left: 46.88vw;
+  position: fixed;
+  top: 17.6vw;
+  width: 45.52vw;
+}
+
+.care-lable .rectangle-194-Pj11ju {
+  background-color: rgba(0, 0, 0, 0.19); /* Black color with 19% opacity */
+  border-radius: 0.73vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .titel-Pj11ju {
+  background-color: transparent;
+  border: 0;
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  font-size: var(--font-size-xl);
+  font-style: italic;
+  font-weight: 900;
+  height: 3.54vw;
+  left: 2.97%;
+  letter-spacing: 0.0vw;
+  line-height: 2.86vw;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 21.55%;
+  width: 93.94%;
+}
+
+.care-lable .titel-Pj11ju::placeholder {
+  color: #ffffff99;
+}
+
+.care-lable .done-qeF0cu {
+  background-color: transparent;
+  cursor: pointer;
+  height: 4.84vw;
+  left: 86.77vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 45.83vw;
+  transition: all 0.2s ease;
+  width: 4.84vw;
+}
+
+.care-lable .done-qeF0cu:hover {
+  transform: scale(1.1);
+}
+
+.care-lable .done-jfUkfC {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .more-items-button-qeF0cu {
+  background-color: transparent;
+  cursor: pointer;
+  height: 3.91vw;
+  left: 50.0vw;
+  pointer-events: auto;
+  position: fixed;
+  top: 42.29vw;
+  transition: all 0.2s ease;
+  width: 13.96vw;
+}
+
+.care-lable .more-items-button-qeF0cu:hover {
+  transform: scale(1.1);
+}
+
+.care-lable .upload-button-NVxVjd {
+  background-color: transparent;
+  cursor: pointer;
+  height: 100%;
+  left: 0.0vw;
+  pointer-events: auto;
+  position: absolute;
+  top: 0.0vw;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.care-lable .upload-button-NVxVjd:hover {
+  transform: scale(1.1);
+}
+
+.care-lable .rectangle-75-N5OgdN {
+  background-color: #838996;
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: relative;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .more-items-NVxVjd {
+  background-color: transparent;
+  bottom: calc(47.13% - 1.3vw);
+  height: 2.71vw;
+  left: 0.52vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  position: absolute;
+  text-align: left;
+  white-space: nowrap;
+  width: calc(100.00% - 0.89vw);
+}
+
+.care-lable .add-logo-qeF0cu {
+  background-color: transparent;
+  height: 7.14vw;
+  left: 34.84vw;
+  position: fixed;
+  top: 24.58vw;
+  width: 7.14vw;
+}
+
+.care-lable .square-yDX2as {
+  background-color: transparent;
+  height: 100%;
+  left: 0.0vw;
+  object-fit: cover;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .add-yDX2as {
+  background-color: transparent;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  position: absolute;
+  right: calc(47.37% - 1.98vw);
+  text-align: left;
+  text-decoration: underline;
+  top: 0.83vw;
+  white-space: nowrap;
+  width: 4.17vw;
+}
+
+.care-lable .logo-yDX2as {
+  bottom: 0.73vw;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  right: calc(48.15% - 2.08vw);
+  text-align: left;
+  white-space: nowrap;
+  width: 4.32vw;
+}
+
+.care-lable .items-qeF0cu {
+  background-color: transparent;
+  height: 12.29vw;
+  left: 50.0vw;
+  position: fixed;
+  top: 29.17vw;
+  width: 30.47vw;
+}
+
+.care-lable .background-items-QxApAM {
+  background-color: #838996;
+  border-radius: 0.94vw;
+  height: 100%;
+  left: 0.0vw;
+  position: absolute;
+  top: 0.0vw;
+  width: 100%;
+}
+
+.care-lable .item-placeholder-QxApAM {
+  bottom: 0.99vw;
+}
+
+.care-lable .text-L9ELn5 {
+  background-color: transparent;
+  border: 0;
+  height: 2.71vw;
+  left: 0.68vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  opacity: 0.75;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 0.42vw;
+  white-space: nowrap;
+  width: 15.83vw;
+}
+
+.care-lable .text-L9ELn5::placeholder {
+  color: #ffffff99;
+}
+
+.care-lable .x000-L9ELn5 {
+  background-color: transparent;
+  border: 0;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  opacity: 0.75;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  right: calc(22.49% - 1.15vw);
+  text-align: center;
+  top: 0.42vw;
+  white-space: nowrap;
+  width: 5.16vw;
+}
+
+.care-lable .x000-L9ELn5::placeholder {
+  color: #ffffff99;
+}
+
+.care-lable .item-placeholder-nnpcdy {
+  top: calc(49.99% - 1.61vw);
+}
+
+.care-lable .text-8qDzlx {
+  background-color: transparent;
+  border: 0;
+  height: 2.71vw;
+  left: 0.68vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  opacity: 0.75;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 0.42vw;
+  white-space: nowrap;
+  width: 15.83vw;
+}
+
+.care-lable .text-8qDzlx::placeholder {
+  color: #ffffff99;
+}
+
+.care-lable .x000-8qDzlx {
+  background-color: transparent;
+  border: 0;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  opacity: 0.75;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  right: calc(22.49% - 1.15vw);
+  text-align: center;
+  top: 0.42vw;
+  white-space: nowrap;
+  width: 5.16vw;
+}
+
+.care-lable .x000-8qDzlx::placeholder {
+  color: #ffffff99;
+}
+
+.care-lable .item-placeholder-3JTOoB {
+  top: 0.94vw;
+}
+
+.care-lable .text-H5INvM {
+  background-color: transparent;
+  border: 0;
+  height: 2.71vw;
+  left: 0.68vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  opacity: 0.75;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  text-align: left;
+  top: 0.42vw;
+  white-space: nowrap;
+  width: 15.83vw;
+}
+
+.care-lable .text-H5INvM::placeholder {
+  color: #ffffff99;
+}
+
+.care-lable .x000-H5INvM {
+  background-color: transparent;
+  border: 0;
+  height: 2.71vw;
+  letter-spacing: 0.0vw;
+  line-height: 2.61vw;
+  opacity: 0.75;
+  padding: 0;
+  position: absolute;
+  resize: none;
+  right: calc(22.49% - 1.15vw);
+  text-align: center;
+  top: 0.42vw;
+  white-space: nowrap;
+  width: 5.16vw;
+}
+
+.care-lable .x000-H5INvM::placeholder {
+  color: #ffffff99;
+}
+
+.care-lable .item-placeholder {
+  background-color: transparent;
+  height: 3.28vw;
+  left: 1.15vw;
+  position: absolute;
+  width: calc(100.00% - 2.03vw);
+}
+
+.care-lable .logo {
+  background-color: transparent;
+  position: absolute;
+}
+
+.care-lable .price-box {
+  background-color: rgba(0, 0, 0, 0.19); /* Black color with 19% opacity */
+  border-radius: 0.73vw;
+  height: calc(100.00% - 0.1vw);
+  position: absolute;
+  right: calc(22.25% - 1.15vw);
+  top: 0.0vw;
+  width: 5.26vw;
+}
+
+.care-lable .sek {
+  background-color: transparent;
+  color: var(--white);
+  font-family: var(--font-family-lato);
+  height: calc(100.00% - 0.31vw);
+  letter-spacing: 0.0vw;
+  line-height: 2.86vw;
+  position: absolute;
+  right: -0.1vw;
+  text-align: left;
+  top: 0.26vw;
+  white-space: nowrap;
+  width: 5.1vw;
+}
+
+.care-lable .text-box {
+  background-color: rgba(0, 0, 0, 0.19); /* Black color with 19% opacity */
+  border-radius: 0.73vw;
+  height: calc(100.00% - 0.1vw);
+  left: 0.0vw;
+  position: absolute;
+  top: 0.1vw;
+  width: 17.29vw;
+}

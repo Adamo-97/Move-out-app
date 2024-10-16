@@ -124,6 +124,10 @@ router.get('/fragile-lable', ensureAuthenticated, (req, res) => {
 router.get('/hazard-lable', ensureAuthenticated, (req, res) => {
     res.render('hazard-lable', { query: req.query }); 
 });
+// Route for the 'Create Care Label' page
+router.get('/care-lable', ensureAuthenticated, (req, res) => {
+    res.render('care-lable', { query: req.query });
+});
 
 // Route for 'general-text' page
 router.get('/general-text', ensureAuthenticated, (req, res) => {
@@ -425,6 +429,51 @@ router.get('/generate-image', ensureAuthenticated, async (req, res) => {
         console.error('Error generating image:', error);
         res.status(500).send('Error generating image');
     }
+});
+
+// Route to handle QR code scanning
+router.get('/scan-label', (req, res) => {
+    console.log('--- [/scan-label] Start of Function ---');
+    const { labelId } = req.query;
+
+    // Retrieve label information from the database
+    db.query('SELECT public, memo FROM labels WHERE label_id = ?', [labelId], (err, results) => {
+        if (err || results.length === 0) {
+            console.error('Error retrieving label information:', err);
+            return res.status(500).send('Internal error.');
+        }
+
+        const isPublic = results[0].public;
+        const memoUrl = results[0].memo;
+
+        // Check if the label is public
+        if (isPublic) {
+            // If public, redirect directly to the memo
+            return res.redirect(memoUrl);
+        } else {
+            // If private, redirect to the PIN verification page
+            res.redirect(`/verify-pin?labelId=${labelId}`);
+        }
+    });
+});
+
+// Route for PIN verification page
+router.get('/verify-pin', ensureAuthenticated, (req, res) => {
+    res.render('verify-pin', { labelId: req.query.labelId, message: null });
+});
+// POST route to verify the 6-digit PIN
+router.post('/verify-pin', (req, res) => {
+    const { labelId, digit1, digit2, digit3, digit4, digit5, digit6 } = req.body;
+
+    // Combine the digits into a single PIN
+    const pin = `${digit1}${digit2}${digit3}${digit4}${digit5}${digit6}`;
+
+    // Call the controller logic to verify the PIN
+    authController.verifyPin(req, res, pin);
+});
+// Route to access the memo after PIN verification
+router.get('/access-memo', ensureAuthenticated, (req, res) => {
+    authController.accessMemo(req, res);
 });
 
 // Route for the admin page

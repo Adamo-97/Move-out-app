@@ -1086,3 +1086,73 @@ transform: translate(0,0);
   width: 100%;
 }
 
+/* care button */
+.care-box-RMVKx3 {
+  background-color: transparent;
+  cursor: pointer;
+
+  position: absolute;
+  top: 8.33vw;
+  left: 85vw;
+  display: flex;
+  pointer-events: auto;
+  align-items: center;
+  background-color: #838996;
+  border-radius: 50px; 
+  width: 12.5vw;
+  height: 4.01vw;
+  transform: translate(-1vw, 0);
+
+    /* Add entrance animation */
+    opacity: 0; /* Initially hidden */
+    transform: translateX(50px); /* Start slightly off-screen */
+    animation: button-enter 0.6s ease forwards; /* Play animation */
+}
+@keyframes button-enter {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px); /* Start off to the right */
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-0.7vw); /* End in the correct position */
+  }
+}
+
+.care-icon-RMVKx3 {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.care-icon-image {
+  width: 55px;
+  height: 55px;
+  justify-content: center;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Hover animation */
+.care-icon-image:hover {
+  transform: rotate(15deg);
+}
+
+.care-text {
+  font-family: 'Lato', sans-serif;
+  font-size: 46px;
+  color: white;
+  font-weight: bold;
+  padding-left: 10px;
+}
+
+.gcircle-gray {
+  background-color: rgba(0, 0, 0, 0.19); 
+  border-radius: 50%;
+  width: 75px; 
+  height: 75px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
