@@ -81,12 +81,13 @@
                     <input
                         class="seach-for-a-specific-lable-LvIzbA lato-black-white-30px"
                         name="seach-for-a-specific-lable-223"
-                        placeholder="Seach for a specific lable ..."
+                        placeholder="Search for a category, label, or sort by date ..."
                         type="text"
                         required
                     />
                 </div>
             </a>
+
         </div>
     </div>
             
@@ -170,6 +171,16 @@
             </label>
         </div>
 
+
+        
+        <!--Notification Bell -->
+        <div class="notification">
+            <div class="bell-container">
+                <div class="bell"></div>
+            </div>
+        </div>
+    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="../src/helpers/printLable.js"></script>
     <script>
@@ -194,6 +205,21 @@
               });
           });
       });
+
+      document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll('.edit-button').forEach(button => {
+            button.addEventListener('click', function () {
+                const labelId = this.getAttribute('data-label-id');
+                const categoryId = this.getAttribute('data-category-id');
+
+                console.log('Label ID:', labelId);
+                console.log('Category ID:', categoryId);
+
+                // Redirect to the edit page
+                window.location.href = `/edit-lable-general?labelId=${labelId}&category_id=${categoryId}`;
+            });
+        });
+    });
     </script>
 </body>
 </html>

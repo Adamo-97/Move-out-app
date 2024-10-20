@@ -1,5 +1,4 @@
 /* screen - general-lable */
-
 .general-lable {
   background-color: var(--white);
   height: 56.25vw;
@@ -656,155 +655,6 @@
   width: 21.2vw;
 }
 
-.general-lable .sign-out-1y0SvW {
-  background-color: transparent;
-  cursor: pointer;
-  height: 2.4vw;
-  left: 86.72vw;
-  pointer-events: auto;
-  position: absolute;
-  top: 2.55vw;
-  transition: all 0.2s ease;
-  width: 10.73vw;
-}
-
-.general-lable .sign-out-1y0SvW:hover {
-  transform: scale(1.1);
-}
-
-.general-lable .group-377-Oet0gm {
-  background-color: transparent;
-  height: 100%;
-  left: 0.0vw;
-  position: relative;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.general-lable .sign-out-6XaiVb {
-  -webkit-text-stroke: 0.16vw var(--torch-red);
-  background-color: transparent;
-  height: calc(100.00% + 0.1vw);
-  letter-spacing: 0.0vw;
-  line-height: 2.36vw;
-  position: absolute;
-  right: -0.1vw;
-  text-align: center;
-  top: 0.05vw;
-  white-space: nowrap;
-  width: 8.44vw;
-}
-
-.general-lable .path-466-6XaiVb {
-  background-color: transparent;
-  cursor: pointer;
-  height: calc(100.00% - 0.16vw);
-  left: -0.1vw;
-  object-fit: cover;
-  pointer-events: auto;
-  position: absolute;
-  top: 0.21vw;
-  transition: all 0.2s ease;
-  width: calc(100.00% - 9.43vw);
-}
-
-.general-lable .path-466-6XaiVb:hover {
-  transform: translate(-5px, 0);
-}
-
-.general-lable .group-373-6XaiVb {
-  background-color: transparent;
-  bottom: calc(42.91% - 0.21vw);
-  height: 0.52vw;
-  left: 0.68vw;
-  position: absolute;
-  width: 1.3vw;
-}
-
-.general-lable .path-467-DloPmU {
-  background-color: transparent;
-  height: calc(100.00% - 0.26vw);
-  left: -0.1vw;
-  object-fit: cover;
-  position: absolute;
-  top: 0.16vw;
-  width: calc(100.00% + 0.1vw);
-}
-
-.general-lable .path-468-DloPmU {
-  background-color: transparent;
-  height: calc(100.00% + 0.16vw);
-  left: 0.89vw;
-  object-fit: cover;
-  position: absolute;
-  top: -0.1vw;
-  width: calc(100.00% - 0.78vw);
-}
-
-.general-lable .search-bar-1y0SvW {
-  background-color: transparent;
-  cursor: pointer;
-  height: 3.02vw;
-  left: 30.94vw;
-  pointer-events: auto;
-  position: absolute;
-  top: 2.66vw;
-  transition: all 0.2s ease-in-out;
-  width: 38.12vw;
-}
-
-.general-lable .search-bar-1y0SvW:hover {
-  transform: scale(1.1);
-}
-
-.general-lable .search-box-cR3VYn {
-  background-color: var(--limed-spruce);
-  border-radius: 1.19vw;
-  cursor: pointer;
-  height: 100%;
-  left: 0.0vw;
-  position: absolute;
-  top: 0.0vw;
-  width: 100%;
-}
-
-.general-lable .search-icon-cR3VYn {
-  background-color: transparent;
-  bottom: calc(47.12% - 1.15vw);
-  cursor: pointer;
-  height: 2.4vw;
-  object-fit: cover;
-  pointer-events: auto;
-  position: absolute;
-  right: 0.89vw;
-  transition: all 0.2s ease;
-  width: 2.4vw;
-}
-
-.general-lable .search-icon-cR3VYn:hover {
-  transform: rotate(15deg);
-}
-
-.general-lable .seach-for-a-specific-lable-cR3VYn {
-  background-color: transparent;
-  border: 0;
-  bottom: calc(43.23% - 0.83vw);
-  height: 1.98vw;
-  left: 1.93vw;
-  letter-spacing: 0.0vw;
-  line-height: 1.13vw;
-  opacity: 0.4;
-  padding: 0;
-  position: absolute;
-  resize: none;
-  text-align: left;
-  width: 32.5vw;
-}
-
-.general-lable .seach-for-a-specific-lable-cR3VYn::placeholder {
-  color: #ffffff99;
-}
-
 .general-lable .cancel-1y0SvW {
   background-color: transparent;
   cursor: pointer;
@@ -946,6 +796,7 @@
 }
 
 .general-lable .title-1y0SvW {
+  position: fixed;
   height: 6.04vw;
   left: 46.88vw;
   top: 17.6vw;
@@ -1027,13 +878,13 @@
   width: 17.92vw;
 }
 
-/* Adjust switch size */
+/*  switch */
 .switch {
-  font-size: 28px; /* Slightly increased font size */
+  font-size: 28px; 
   position: relative;
   display: inline-block;
-  width: 3em; /* Slightly increased width */
-  height: 1.75em; /* Slightly increased height */
+  width: 3em; 
+  height: 1.75em;
 }
 
 .switch input {

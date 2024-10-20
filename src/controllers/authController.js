@@ -4,8 +4,9 @@ const cloudinary = require('cloudinary').v2;
 require('dotenv').config({ path: './config/email.env' });
 require('dotenv').config({ path: './config/cloud.env' });
 const busboy = require('busboy');
-const { sendVerificationEmail, sendPinEmail } = require('../helpers/emailHelpers');
-const { handleTextMemoUpload, handleVoiceMemoUpload, handleImageUpload, inferMimeType } = require('../helpers/addLable');
+const { sendVerificationEmail } = require('../helpers/emailHelpers');
+const { handleTextMemoUpload, handleVoiceMemoUpload, handleImageUpload, inferMimeType, } = require('../helpers/addLable');
+const { deleteResources, archiveFolder, deleteQRCode } = require('../helpers/deleteLabel');
 
 // Cloudinary configuration
 cloudinary.config({
@@ -273,87 +274,50 @@ exports.addLabel = (req, res) => {
     }
 };
 
-//function to delete label
+// Main function to delete label
 exports.deleteLabel = (req, res) => {
     const labelId = req.body.labelId;
-    const userId = req.session.userId;
+    const user_Id = req.session.userId; // Consistent with the rest of the code
 
-    if (!labelId || !userId) {
+    if (!labelId || !user_Id) {
         console.error('Label ID or User ID is missing.');
         return res.status(400).json({ success: false, message: 'Label ID and user authentication are required.' });
     }
 
-    // Fetch the label_name from the database using the label ID
-    db.query('SELECT label_name FROM labels WHERE id = ? AND user_id = ?', [labelId, userId], (err, results) => {
+    // Fetch the label details from the database using the label ID
+    db.query('SELECT label_name, public FROM labels WHERE id = ? AND user_id = ?', [labelId, user_Id], (err, results) => {
         if (err || results.length === 0) {
             console.error('Error fetching label data or label not found:', err);
             return res.status(500).json({ success: false, message: 'Error fetching label data.' });
         }
 
-        const labelName = results[0].label_name;
-        const cloudinaryFolder = `users/${userId}/labels/${labelName}`;
+        const isPublic = results[0].public === 1;
+        const cloudinaryFolder = `users/${user_Id}/labels/${labelId}`;
+
         console.log(`Attempting to delete resources within Cloudinary folder: ${cloudinaryFolder}`);
 
-        // Helper function to delete all resources, subfolders, and the main folder
-        const deleteAllResourcesAndFolder = () => {
-            // Step 1: Delete all resources (raw, image, video)
-            cloudinary.api.delete_resources_by_prefix(cloudinaryFolder, { invalidate: true }, (resourceDeleteError, resourceDeleteResult) => {
-                if (resourceDeleteError) {
-                    console.error('Error deleting resources from Cloudinary:', resourceDeleteError);
-                    return;
-                }
-                console.log(`Deleted resources in folder: ${cloudinaryFolder}`, resourceDeleteResult);
+        // Step 1: Delete all resources (memo, QR code, etc.) in the folder
+        deleteResources(cloudinaryFolder, isPublic)
+            .then(() => deleteQRCode(cloudinaryFolder))
+            .then(() => archiveFolder(cloudinaryFolder, user_Id, labelId, isPublic))
+            .then(() => {
+                console.log('Folder archived successfully.');
 
-                // Step 2: Delete any empty subfolders within the main folder
-                cloudinary.api.sub_folders(cloudinaryFolder, (subFolderError, subFolderResult) => {
-                    if (subFolderError) {
-                        console.error('Error fetching subfolders from Cloudinary:', subFolderError);
-                        return;
-                    }
-                    const subFolders = subFolderResult.folders;
-
-                    // Check if subfolders exist
-                    if (subFolders && subFolders.length > 0) {
-                        console.log(`Deleting subfolders in folder: ${cloudinaryFolder}`, subFolders);
-
-                        // Recursively delete all subfolders
-                        subFolders.forEach(subFolder => {
-                            cloudinary.api.delete_folder(`${cloudinaryFolder}/${subFolder.path}`, { skip_backup: true }, (subFolderDeleteError, subFolderDeleteResult) => {
-                                if (subFolderDeleteError) {
-                                    console.error(`Error deleting subfolder ${subFolder.path}:`, subFolderDeleteError);
-                                } else {
-                                    console.log(`Deleted subfolder: ${subFolder.path}`, subFolderDeleteResult);
-                                }
-                            });
-                        });
+                // Step 3: Delete the label from the database
+                db.query('CALL delete_label(?)', [labelId], (dbErr) => {
+                    if (dbErr) {
+                        console.error('Error deleting label from database:', dbErr);
+                        return res.status(500).json({ success: false, message: 'Error deleting label from database.' });
                     }
 
-                    // Step 3: Delete the main folder after ensuring it's empty
-                    cloudinary.api.delete_folder(cloudinaryFolder, { skip_backup: true }, (folderDeleteError, folderDeleteResult) => {
-                        if (folderDeleteError) {
-                            console.error('Error deleting folder from Cloudinary:', folderDeleteError);
-                        } else {
-                            console.log(`Deleted folder: ${cloudinaryFolder}`, folderDeleteResult);
-                        }
-                    });
+                    console.log('Label deleted from the database successfully.');
+                    return res.status(200).json({ success: true, message: 'Label and associated resources deleted successfully!' });
                 });
+            })
+            .catch(error => {
+                console.error('Error during label deletion and archiving:', error);
+                return res.status(500).json({ success: false, message: 'Error during label deletion and archiving.' });
             });
-        };
-
-        // Step 1: Delete all resources within the folder and then the folder itself
-        deleteAllResourcesAndFolder();
-
-        // Step 2: Delete the label from the database
-        db.query('CALL delete_label(?)', [labelId], (err) => {
-            if (err) {
-                console.error('Error deleting label from database:', err);
-                return res.status(500).json({ success: false, message: 'Error deleting label from database.' });
-            }
-
-            console.log('Label deleted from the database successfully.');
-            // Respond to the user immediately
-            res.status(200).json({ success: true, message: 'Label deleted successfully!' });
-        });
     });
 };
 

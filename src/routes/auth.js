@@ -6,8 +6,12 @@ const db = require('../db/dbConnection');
 const puppeteer = require('puppeteer');
 const fs = require('fs');
 const path = require('path');
+const busboy = require('busboy');
 const { createCanvas, loadImage } = require('canvas');
 const { sendPinEmail } = require('../helpers/emailHelpers');
+const { regenerateQRCode } = require('../helpers/editLabel');
+const { handleMemoUpdate } = require('../helpers/memoHandler');
+const { updateTextMemo } = require('../helpers/updateTextMemo');
 
 // Middleware to protect routes
 const ensureAuthenticated = (req, res, next) => {
@@ -56,7 +60,7 @@ router.get('/verify', (req, res) => {
 });
 // Route for handling verification code submission (POST)
 router.post('/verify', authController.verifyCode);
-// Route for handling label deletion within home
+// DELETE request for label deletion
 router.delete('/home', ensureAuthenticated, authController.deleteLabel);
 // Route for handling logout
 router.get('/logout', authController.logout);
@@ -98,17 +102,46 @@ router.get('/home', ensureAuthenticated, (req, res) => {
 
 // Route for the 'Add Label' page
 router.get('/new-lable', ensureAuthenticated, (req, res) => {
-    res.render('new-lable');  // Render the add label page only if authenticated
+    const userId = req.session.userId; // Assume the user ID is stored in the session after login
+
+    if (!userId) {
+        return res.redirect('/login'); // Redirect to login if the user is not authenticated
+    }
+
+    // First, fetch the user's name from the users table
+    db.query('SELECT name FROM users WHERE id = ?', [userId], (err, userResult) => {
+        if (err) {
+            console.error('Error fetching user name:', err);
+            return res.status(500).send('Server error');
+        }
+
+        // Assuming the user exists, extract the name
+        const userName = userResult[0].name;
+
+        // Call the stored procedure to get all labels for the logged-in user
+        db.query('CALL get_user_labels(?)', [userId], (err, results) => {
+            if (err) {
+                console.error('Error fetching user boxes:', err);
+                return res.status(500).send('Server error');
+            }
+
+            // The results from a stored procedure call are in the first element of the array
+            const userBoxes = results[0];
+            console.log('Fetched labels:', userBoxes); // Debug: Check if QR data is present
+
+            // Render the home page with the user's name and labels
+            res.render('new-lable', { labels: userBoxes, userName });
+        });
+    });
 });
 // Route for creating a new label
 router.post('/new-lable', (req, res) => {
-    // Assuming the label creation logic is in the authController
+
     authController.addLabel(req, res, (err) => {
         if (err) {
             console.error('Error creating label:', err);
             return res.status(500).send('Server error');
         }
-        // Redirect to /home after the label is successfully created
         res.redirect('/home');
     });
 });
@@ -180,6 +213,181 @@ router.get('/hazard-image', ensureAuthenticated, (req, res) => {
 });
 // Route for creating a new image label hazard
 router.post('/hazard-image', ensureAuthenticated, authController.addLabel);
+
+// Route for edit General label
+router.get('/edit-lable-general', ensureAuthenticated, (req, res) => {
+    const labelId = req.query.labelId;
+
+    if (!labelId) {
+        return res.status(400).send('Label ID is required.');
+    }
+
+    // Fetch the label data from the database using the labelId
+    db.query('SELECT * FROM labels WHERE id = ?', [labelId], (err, results) => {
+        if (err || results.length === 0) {
+            return res.status(404).send('Label not found');
+        }
+
+        const label = results[0];
+        console.log('Label fetched:', label);  // Debugging to check if the label is fetched
+
+        // Pass the label data to the EJS template
+        res.render('edit-lable-general', { label });
+    });
+});
+router.post('/edit-lable-general', ensureAuthenticated, (req, res) => {
+    console.log('--- [/edit-lable-general] Start of Function ---');
+
+    const bb = busboy({ headers: req.headers });
+    let fields = {}; // Store form fields
+    let didUpdateTitle = false; // Flag for title update
+    let didUpdatePublic = false; // Flag for public status change
+    let memoChanged = false; // Flag for memo change
+    let operationsPending = 0; // Counter for pending asynchronous operations
+    let responseSent = false; // Flag to ensure only one response is sent
+    let regenerateQRNeeded = false; // Flag to track if QR regeneration is needed
+    let currentMemo = ''; // Define currentMemo in the outer scope
+
+    // Handle form fields
+    bb.on('field', (name, value) => {
+        fields[name] = value;
+        console.log(`${name}: ${value}`); // Log form data for debugging
+    });
+
+    // When the form parsing is complete
+    bb.on('close', () => {
+        console.log('Busboy parsing finished');
+        const labelId = fields.labelId;
+        const titel12 = fields.titel12;
+        const publicToggle = fields.public === 'true'; // Convert the string 'true'/'false' to boolean
+        const textMemo = fields.textMemo; // New memo content
+
+        // Log to confirm data has been received
+        console.log('Received Label ID:', labelId);
+        console.log('Received Title:', titel12);
+        console.log('Received Text Memo:', textMemo);
+        console.log('Received Public Status:', publicToggle);
+
+        // Query the current label to compare title, public status, and memo
+        db.query('SELECT label_name, public, memo FROM labels WHERE id = ?', [labelId], (err, results) => {
+            console.log('--- Inside Query Callback ---');
+            if (err) {
+                console.error('Error querying label:', err);
+                return res.status(500).send('Database error');
+            }
+            if (results.length === 0) {
+                return res.status(404).send('Label not found');
+            }
+
+            const currentTitle = results[0].label_name;
+            const currentPublic = Boolean(results[0].public); // Convert DB value (1/0) to boolean
+            currentMemo = results[0].memo; // Set currentMemo in the outer scope
+            console.log('Current title in database:', currentTitle);
+            console.log('Current public status in database (boolean):', currentPublic);
+            console.log('Current memo in database:', currentMemo);
+
+            // Step 1: Title Update
+            if (titel12 !== currentTitle) {
+                console.log(`Title has changed from "${currentTitle}" to "${titel12}"`);
+                didUpdateTitle = true;
+                operationsPending++; // Increment pending operations
+
+                // Update the title in the database
+                db.query('UPDATE labels SET label_name = ? WHERE id = ?', [titel12, labelId], (err, updateResults) => {
+                    if (err) {
+                        console.error('Error updating title:', err);
+                        return finishWithError(res, 'Error updating label title');
+                    }
+                    console.log('Title updated successfully');
+                    checkIfAllDone(); // Check if all operations are completed
+                });
+                console.log('operationsPending:', operationsPending);
+            }
+
+            // Step 2: Public Status Change
+            if (publicToggle !== currentPublic) {
+                console.log(`Public status has changed from "${currentPublic}" to "${publicToggle}"`);
+                didUpdatePublic = true;
+                regenerateQRNeeded = true; // Mark that QR regeneration is needed
+                operationsPending++; // Increment pending operations
+                checkIfAllDone();
+                console.log('operationsPending:', operationsPending);
+            }
+
+            // Step 3: Memo Update
+            if (textMemo && textMemo !== currentMemo) {
+                console.log('Text memo has changed, updating memo');
+                memoChanged = true;
+                regenerateQRNeeded = true; // Mark that QR regeneration is needed
+                operationsPending++; // Increment pending operations
+
+                // Call updateTextMemo function
+                updateTextMemo(labelId, textMemo, req.session.userId)
+                    .then(() => {
+                        console.log('Text memo updated successfully');
+                        checkIfAllDone(); // Check if all operations are completed
+                    })
+                    .catch((err) => {
+                        console.error('Error updating text memo:', err);
+                        return finishWithError(res, 'Error updating text memo');
+                    });
+
+                console.log('operationsPending:', operationsPending);
+            }
+
+            // If no changes were detected, redirect immediately
+            if (!didUpdateTitle && !didUpdatePublic && !memoChanged) {
+                console.log('No changes detected, redirecting to home');
+                return res.redirect('/home');
+            }
+        });
+
+        // Function to check if all asynchronous operations are done
+        function checkIfAllDone() {
+            operationsPending--; // Decrement the number of pending operations
+            if (operationsPending === 0 && !responseSent) {
+                // Only regenerate QR if needed
+                if (regenerateQRNeeded) {
+                    console.log('Changes detected in public status or memo, regenerating QR code');
+                    regenerateQRCode(labelId, publicToggle, textMemo || currentMemo, req.session.userId)
+                        .then(() => {
+                            console.log('QR code regenerated successfully');
+                            res.redirect('/home');
+                            responseSent = true; // Ensure no further responses are sent
+                        })
+                        .catch((err) => {
+                            console.error('Error regenerating QR code:', err);
+                            return finishWithError(res, 'Error regenerating QR code');
+                        });
+                } else {
+                    // If no QR regeneration is needed, just redirect
+                    res.redirect('/home');
+                    responseSent = true; // Ensure no further responses are sent
+                }
+            }
+        }
+
+        // Function to handle errors and ensure only one error response is sent
+        function finishWithError(res, errorMessage) {
+            if (!responseSent) {
+                console.error(errorMessage);
+                res.status(500).send(errorMessage);
+                responseSent = true; // Ensure no further responses are sent
+            }
+        }
+    });
+
+    req.pipe(bb); // Pipe the request to Busboy for processing
+});
+
+// Route for edit Fragile label
+router.get('/edit-lable-fragile', ensureAuthenticated, (req, res) => {
+    res.render('edit-lable-fragile', { query: req.query }); 
+});
+// Route for edit Hazard label
+router.get('/edit-lable-hazard', ensureAuthenticated, (req, res) => {
+    res.render('edit-lable-hazard', { query: req.query }); 
+});
 
 // Generalized route for 'Complete' page (handles general, fragile, hazard)
 router.get('/label-complete', ensureAuthenticated, (req, res) => {
@@ -437,7 +645,7 @@ function generatePin() {
     return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-router.get('/verify-pin', ensureAuthenticated, (req, res) => {
+router.get('/verify-pin', (req, res) => {
     console.log('--- [/verify-pin] Start of Function ---');
     
     const { labelId } = req.query;
@@ -528,7 +736,7 @@ router.post('/verify-pin', (req, res) => {
 });
 
 // Route for the admin page
-router.get('/admin', (req, res) => {
+router.get('/admin', ensureAuthenticated, (req, res) => {
     res.render('admin');
 });
 // Export the router

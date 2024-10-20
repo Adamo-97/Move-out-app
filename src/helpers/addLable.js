@@ -5,6 +5,7 @@ const QRCode = require('qrcode');
 // Function to handle the text memo upload
 function handleTextMemoUpload(req, res) {
     console.log('--- [handleTextMemoUpload] Start of Function ---');
+    
     const label_name = req.body['titel19']  // General
                     || req.body['titel16']  // Fragile
                     || req.body['titel13']; // Hazard
@@ -12,11 +13,10 @@ function handleTextMemoUpload(req, res) {
             || req.body['start-typing-here-11']  // Fragile
             || req.body['start-typing-here-1']; // Hazard
     const category_id = req.body.category_id;
-    const user_id = req.session.userId;
+    const user_id = req.session.userId;  
     const isPublic = (req.body.public === true || req.body.public === 'true');
     const pin = isPublic ? null : req.body.pin; // Add pin conditionally
-    const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
-
+    
     console.log('Received values:', { label_name, memo, category_id, user_id, isPublic, pin });
 
     if (!user_id) {
@@ -29,14 +29,32 @@ function handleTextMemoUpload(req, res) {
         return res.status(400).json({ success: false, message: 'Label name is required!' });
     }
 
-    // Upload the text memo to Cloudinary
-    uploadMemoToCloudinary(memo, cloudinaryFolder, isPublic)
-        .then(memoUrl => addLabelToDatabase(label_name, user_id, category_id, memoUrl, isPublic, pin)
-            .then(labelId => ({ labelId, memoUrl })) // Pass both labelId and memoUrl to the next step
-        )
-        .then(({ labelId, memoUrl }) => generateQRCode(memoUrl).then(qrDataUrl => ({ labelId, qrDataUrl, cloudinaryFolder })))
-        .then(({ labelId, qrDataUrl, cloudinaryFolder }) => uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId))
-        .then(({ labelId, qrUrl }) => storeQRCodeInDatabase(labelId, qrUrl))
+    // Step 1: Add the label to the database first to get labelId
+    addLabelToDatabase(label_name, user_id, category_id, null, isPublic, pin)
+        .then(labelId => {
+            // Now that labelId is available, create the folder path
+            const cloudinaryFolder = `users/${user_id}/labels/${labelId}`;
+
+            // Step 2: Upload the text memo to Cloudinary
+            return uploadMemoToCloudinary(memo, cloudinaryFolder, isPublic)  // Correctly use 'authenticated' for private labels
+                .then(memoUrl => ({ labelId, memoUrl, cloudinaryFolder })); // Pass values to the next step
+        })
+        .then(({ labelId, memoUrl, cloudinaryFolder }) => {
+            // Step 3: Update the memo URL in the database now that we have it
+            return updateLabelMemoInDatabase(labelId, memoUrl).then(() => ({ labelId, memoUrl, cloudinaryFolder }));
+        })
+        .then(({ labelId, memoUrl, cloudinaryFolder }) => {
+            // Step 4: Generate the QR code based on the memo URL
+            return generateQRCode(memoUrl, labelId).then(qrDataUrl => ({ labelId, qrDataUrl, cloudinaryFolder }));
+        })
+        .then(({ labelId, qrDataUrl, cloudinaryFolder }) => {
+            // Step 5: Upload the QR code to Cloudinary
+            return uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId);
+        })
+        .then(({ labelId, qrUrl }) => {
+            // Step 6: Store the QR code URL in the database
+            return storeQRCodeInDatabase(labelId, qrUrl);
+        })
         .then(({ labelId }) => {
             console.log('Label and QR code added successfully!');
             res.status(200).json({ success: true, labelId: labelId, redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` });
@@ -53,9 +71,8 @@ function handleVoiceMemoUpload(req, res, fileBuffer, filename) {
         console.log('--- [handleVoiceMemoUpload] Start of Function ---');
         const label_name = req.body.label_name;
         const category_id = req.body.category_id;
-        const user_id = req.session.userId;
+        const user_id = req.session.userId;  
         const isPublic = req.body.public;
-        const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
 
         console.log('Received values:', { label_name, category_id, user_id, isPublic });
 
@@ -74,44 +91,66 @@ function handleVoiceMemoUpload(req, res, fileBuffer, filename) {
             return reject(new Error('File is missing!'));
         }
 
-        // Upload the voice memo (WebM audio) to Cloudinary as a 'video'
-        cloudinary.uploader.upload_stream(
-            {
-                folder: cloudinaryFolder,
-                resource_type: 'video',  // Use 'video' for WebM files, even if they are audio-only
-                public_id: 'voice-memo',
-            },
-            (error, result) => {
-                if (error) {
-                    console.error('Cloudinary upload error:', JSON.stringify(error, null, 2)); // Log full error response
-                    return reject(new Error('Cloudinary upload error: ' + error.message));
-                }
+        // Step 1: Add the label to the database first to get labelId (without memo at this point)
+        addLabelToDatabase(label_name, user_id, category_id, null, isPublic)
+            .then((labelId) => {
+                console.log('New Label ID:', labelId);
 
-                if (!result || !result.secure_url) {
-                    console.error('Cloudinary upload failed: Missing secure_url in response:', result);
-                    return reject(new Error('Cloudinary upload failed: Missing secure_url in response.'));
-                }
+                // Step 2: Create the folder path using the labelId
+                const cloudinaryFolder = `users/${user_id}/labels/${labelId}`;
 
-                const audioUrl = result.secure_url;
-                console.log('Audio/Video URL from Cloudinary:', audioUrl);
+                // Step 3: Upload the voice memo (WebM audio) to Cloudinary as a 'video'
+                return new Promise((resolveUpload, rejectUpload) => {
+                    cloudinary.uploader.upload_stream(
+                        {
+                            folder: cloudinaryFolder,  // Create the folder based on labelId
+                            resource_type: 'video',  // Use 'video' for WebM files, even if they are audio-only
+                            public_id: 'voice-memo',
+                            type: isPublic ? 'upload' : 'authenticated',  // Use 'authenticated' for private labels
+                        },
+                        (error, result) => {
+                            if (error) {
+                                console.error('Cloudinary upload error:', JSON.stringify(error, null, 2));
+                                return rejectUpload(new Error('Cloudinary upload error: ' + error.message));
+                            }
 
-                // Save to database and get the label ID
-                addLabelToDatabase(label_name, user_id, category_id, audioUrl, isPublic)
-                    .then((labelId) => {
-                        console.log('New Label ID:', labelId);
+                            if (!result || !result.secure_url) {
+                                console.error('Cloudinary upload failed: Missing secure_url in response:', result);
+                                return rejectUpload(new Error('Cloudinary upload failed: Missing secure_url in response.'));
+                            }
 
-                        // After adding label to DB, generate QR code and upload to Cloudinary
-                        return generateQRCode(audioUrl)
-                            .then((qrDataUrl) => uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId))
-                            .then(({ qrUrl }) => storeQRCodeInDatabase(labelId, qrUrl))
-                            .then(() => resolve(labelId));  // Resolve the promise
-                    })
-                    .catch(error => {
-                        console.error('Error saving to database:', error.message);
-                        return reject(error);
-                    });
-            }
-        ).end(fileBuffer);
+                            const audioUrl = result.secure_url;
+                            console.log('Audio/Video URL from Cloudinary:', audioUrl);
+
+                            // Step 4: Update the label with the memo URL
+                            return updateLabelMemoInDatabase(labelId, audioUrl)
+                                .then(() => resolveUpload({ labelId, audioUrl, cloudinaryFolder }));
+                        }
+                    ).end(fileBuffer);
+                });
+            })
+            .then(({ labelId, audioUrl, cloudinaryFolder }) => {
+                // Step 5: Generate the QR code based on the memo URL
+                return generateQRCode(audioUrl, labelId)
+                    .then(qrDataUrl => ({ labelId, qrDataUrl, cloudinaryFolder }));
+            })
+            .then(({ labelId, qrDataUrl, cloudinaryFolder }) => {
+                // Step 6: Upload the QR code to Cloudinary
+                return uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId)
+                    .then(({ qrUrl }) => ({ labelId, qrUrl }));
+            })
+            .then(({ labelId, qrUrl }) => {
+                // Step 7: Store the QR code URL in the database
+                return storeQRCodeInDatabase(labelId, qrUrl);
+            })
+            .then(({ labelId }) => {
+                console.log('Label, memo, and QR code added successfully!');
+                res.status(200).json({ success: true, labelId: labelId, redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` });
+            })
+            .catch(error => {
+                console.error(error.message);
+                res.status(500).json({ success: false, message: error.message });
+            });
     });
 }
 
@@ -122,8 +161,7 @@ function handleImageUpload(req, res, fileBuffer, filename) {
         const label_name = req.body.label_name;
         const category_id = req.body.category_id;
         const user_id = req.session.userId;
-        const isPublic = req.body.public;
-        const cloudinaryFolder = `users/${user_id}/labels/${label_name}`;
+        const isPublic = req.body.public;  // Convert to boolean if necessary
 
         console.log('Received values:', { label_name, category_id, user_id, isPublic });
 
@@ -142,39 +180,72 @@ function handleImageUpload(req, res, fileBuffer, filename) {
             return reject(new Error('File is missing!'));
         }
 
-        // Upload the image to Cloudinary
-        cloudinary.uploader.upload_stream(
-            {
-                folder: cloudinaryFolder,
-                resource_type: 'image',
-                public_id: 'uploaded-image',
-            },
-            (error, result) => {
-                if (error) {
-                    console.error('Cloudinary upload error:', error.message);
-                    return reject(new Error('Cloudinary upload error: ' + error.message));
-                }
+        // Step 1: Add the label to the database first to get labelId
+        addLabelToDatabase(label_name, user_id, category_id, null, isPublic)
+            .then((labelId) => {
+                // Now that labelId is available, create the folder path
+                const cloudinaryFolder = `users/${user_id}/labels/${labelId}`;
 
-                const imageUrl = result.secure_url;
-                console.log('Image URL from Cloudinary:', imageUrl);
+                // Step 2: Upload the image to Cloudinary with the correct type
+                return new Promise((uploadResolve, uploadReject) => {
+                    cloudinary.uploader.upload_stream(
+                        {
+                            folder: cloudinaryFolder,
+                            resource_type: 'image',
+                            public_id: 'uploaded-image',
+                            type: isPublic ? 'upload' : 'authenticated'  // use 'authenticated' for private labels
+                        },
+                        (error, result) => {
+                            if (error) {
+                                console.error('Cloudinary upload error:', error.message);
+                                return uploadReject(new Error('Cloudinary upload error: ' + error.message));
+                            }
 
-                // Save to database and get the label ID
-                addLabelToDatabase(label_name, user_id, category_id, imageUrl, isPublic)
-                    .then((labelId) => {
-                        console.log('New Label ID:', labelId);
+                            const imageUrl = result.secure_url;
+                            console.log('Image URL from Cloudinary:', imageUrl);
 
-                        // After adding label to DB, generate QR code and upload to Cloudinary
-                        return generateQRCode(imageUrl)
-                            .then((qrDataUrl) => uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId))
-                            .then(({ qrUrl }) => storeQRCodeInDatabase(labelId, qrUrl))
-                            .then(() => resolve(labelId));  // Resolve the promise
-                    })
-                    .catch(error => {
-                        console.error(error.message);
-                        return reject(error);
-                    });
+                            // Update the memo (image URL) in the database
+                            return updateLabelMemoInDatabase(labelId, imageUrl).then(() => {
+                                uploadResolve({ labelId, imageUrl, cloudinaryFolder });
+                            });
+                        }
+                    ).end(fileBuffer);
+                });
+            })
+            .then(({ labelId, imageUrl, cloudinaryFolder }) => {
+                // Step 3: Generate the QR code based on the image URL
+                return generateQRCode(imageUrl, labelId).then(qrDataUrl => ({ labelId, qrDataUrl, cloudinaryFolder }));
+            })
+            .then(({ labelId, qrDataUrl, cloudinaryFolder }) => {
+                // Step 4: Upload the QR code to Cloudinary
+                return uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId);
+            })
+            .then(({ labelId, qrUrl }) => {
+                // Step 5: Store the QR code URL in the database
+                return storeQRCodeInDatabase(labelId, qrUrl);
+            })
+            .then(({ labelId }) => {
+                console.log('Label and QR code added successfully!');
+                resolve(labelId);  // Resolve with labelId
+            })
+            .catch(error => {
+                console.error('Error during image or QR processing:', error.message);
+                reject(error);  // Reject with error
+            });
+    });
+}
+
+// helper function to update the memo URL in the database
+function updateLabelMemoInDatabase(labelId, memoUrl) {
+    return new Promise((resolve, reject) => {
+        const query = 'UPDATE labels SET memo = ? WHERE id = ?';
+        db.query(query, [memoUrl, labelId], (err, result) => {
+            if (err) {
+                console.error('Error updating memo URL in database:', err.message);
+                return reject(new Error('Error updating memo URL in database: ' + err.message));
             }
-        ).end(fileBuffer);
+            resolve();
+        });
     });
 }
 
@@ -244,7 +315,7 @@ function addLabelToDatabase(label_name, user_id, category_id, memoUrl, isPublic,
                     console.log('[addLabelToDatabase] New Label ID:', labelId);
 
                     // Generate the verification URL for private labels
-                    const verificationUrl = isPublic ? null : `http://localhost:3000/verify-pin?labelId=${labelId}`;
+                    const verificationUrl = isPublic ? null : `http://192.168.0.172:3000/verify-pin?labelId=${labelId}`;
 
                     // Now, update the label with the verification URL for private labels
                     if (!isPublic) {
@@ -272,9 +343,10 @@ function generateQRCode(memoUrl, labelId) {
     
     // Debugging: Log the data received
     console.log('[generateQRCode] Data received:', memoUrl);
+    console.log('[generateQRCode] Label ID:', labelId);
 
     // Check if the memoUrl is public (i.e., it contains 'upload') or private ('authenticated')
-    const isPublic = memoUrl.includes('/raw/upload/');
+    const isPublic = memoUrl.includes('/upload/');
 
     if (isPublic) {
         console.log('[generateQRCode] Label is Public, generating QR for memo URL:', memoUrl);
@@ -296,7 +368,7 @@ function generateQRCode(memoUrl, labelId) {
         console.log('[generateQRCode] Label is Private, generating QR for verification URL.');
         
         // Private label: Generate QR code pointing to the verification URL
-        const verificationUrl = `http://localhost:3000/verify-pin?labelId=${labelId}`;
+        const verificationUrl = `http://192.168.0.172:3000/verify-pin?labelId=${labelId}`;
         console.log('[generateQRCode] Verification URL:', verificationUrl);
 
         return new Promise((resolve, reject) => {

@@ -1,4 +1,4 @@
-// Handle label deletion
+// Handle label deletion (Button)
 let isDeleting = false; // Add a flag
 
 function handleLabelDeletion(button) {
@@ -31,9 +31,12 @@ function handleLabelDeletion(button) {
     .then(response => response.json())
     .then(data => {
         isDeleting = false; // Reset flag after request completes
-
+    
         if (data.success) {
-            button.closest('.label-container').remove();
+            const labelContainer = button.closest('.label-container');
+            if (labelContainer) {
+                labelContainer.remove(); // Only remove if the container exists
+            }
             window.location.reload();
         } else {
             alert('Error deleting label: ' + data.message);

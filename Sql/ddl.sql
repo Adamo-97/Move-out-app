@@ -47,7 +47,7 @@ CREATE TABLE labels (
 -- Create the QR codes table with ON DELETE CASCADE for label_id
 CREATE TABLE qr_codes (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    label_id INT,  -- This matches the data type of `id` in the `labels` table
+    label_id INT,
     qr_code_data VARCHAR(255) NOT NULL,  -- Store QR code data
     generated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (label_id) REFERENCES labels(id) ON DELETE CASCADE

@@ -632,16 +632,6 @@
   width: 100%;
 }
 
-.edit-lable-general .rectangle-70-YSUd7F {
-  background-color: var(--picton-blue);
-  border-radius: 0.94vw;
-  bottom: calc(46.02% - 8.28vw);
-  height: 18.02vw;
-  position: absolute;
-  right: calc(49.84% - 18.33vw);
-  width: 36.82vw;
-}
-
 .edit-lable-general .elements-placeholder-gF2xVz {
   background-color: transparent;
   bottom: calc(46.39% - 7.45vw);
@@ -649,17 +639,6 @@
   position: absolute;
   right: calc(49.38% - 16.67vw);
   width: 33.7vw;
-}
-
-.edit-lable-general .box-field-ZM8OWQ {
-  background-color: var(--black);
-  border-radius: 0.94vw;
-  height: 100%;
-  left: 0.0vw;
-  opacity: 0.19;
-  position: relative;
-  top: 0.0vw;
-  width: 100%;
 }
 
 .edit-lable-general .upload-button-gF2xVz {
@@ -1021,4 +1000,263 @@
   position: absolute;
   top: 0.0vw;
   width: 100%;
+}
+
+/*  switch */
+.switch {
+  font-size: 28px; 
+  position: relative;
+  display: inline-block;
+  width: 3em; 
+  height: 1.75em;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ff6a59;
+  transition: 0.4s;
+  border-radius: 25px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "✕";
+  display: grid;
+  text-align: center;
+  vertical-align: middle;
+  place-items: center;
+  font-size: 0.9em;
+  font-weight: 900;
+  width: 1.75em;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  left: 0;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: white;
+  background-color: #ff3c00;
+  border: 1px solid #ba0300;
+  transition: 0.4s;
+}
+
+.switch input:checked + .slider {
+  background-color: teal;
+}
+
+.switch input:checked + .slider:before {
+  content: "\2713";
+  color: teal;
+  background: paleturquoise;
+  border: 1px solid rgba(0, 128, 128, 0.514);
+  transform: translate(1.5em, -50%) rotateZ(360deg);
+}
+
+/* Container for the switch and label */
+.public-switch-container {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 158%; 
+  right: -2vw; 
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+/* Public label styling */
+.public-label {
+  font-family: 'Lato', sans-serif;
+  font-weight: 600; 
+  font-style: italic;
+  font-size: 1.75vw; 
+  color: black;
+  margin-right: 0.6vw; 
+}
+
+
+.edit-lable-general .rectangle-70-YSUd7F {
+  background-color: var(--picton-blue);
+  border-radius: 0.94vw;
+  bottom: calc(46.02% - 8.28vw);
+  height: 18.02vw;
+  position: absolute;
+  right: calc(49.84% - 18.33vw);
+  width: 36.82vw;
+  align-items: center;
+  padding: 20px; 
+  justify-content: center;
+  display: flex;
+}
+/* Make the text memo larger and ensure it's transparent */
+.memo-textarea {
+  width: 100%;
+  height: 100%;
+  font-size: 30px; 
+  color: rgb(255, 255, 255);    
+  background-color: transparent;
+  border: none;    
+  resize: none;    
+  overflow: auto;  
+}
+
+/* Make the audio player bigger and center it inside the rectangle */
+.memo-audio {
+  width: 80%; /* Increase the width of the audio player */
+  height: 100px; /* Set a fixed height for the audio player */
+  display: block;
+  margin: auto auto; /* Center the audio player horizontally */
+}
+
+/* Allow the image to maintain its original dimensions */
+.memo-image {
+  display: block;
+  max-width: 100%;  
+  max-height: 100%; 
+  object-fit: contain; 
+}
+
+/* General popup styling */
+.popup {
+  display: none;
+  position: absolute;
+  background-color: #4C9DED; /* Updated background color */
+  color: #fff;
+  border: 1px solid #888;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  width: 300px;
+  z-index: 100;
+  opacity: 0;
+  transform: scale(0.8); /* Start smaller for scaling animation */
+  transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Positioning popups above the buttons */
+.text-button-gF2xVz .popup,
+.record-button-gF2xVz .popup,
+.upload-button-gF2xVz .popup {
+  bottom: 100%;
+  left: 0;
+  margin-bottom: 10px;
+}
+
+/* Pointer/Arrow */
+.popup::after {
+  content: '';
+  position: absolute;
+  top: 100%; /* Pointer points downwards */
+  left: 20%;
+  border-width: 10px;
+  border-style: solid;
+  border-color: #4C9DED transparent transparent transparent; /* Matches popup background */
+}
+
+/* Show class with animation */
+.show {
+  display: block;
+  opacity: 1;
+  transform: scale(1); /* Smoothly scale to full size */
+}
+
+/* Recording timeline (progress bar) */
+.timeline {
+  width: 100%;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.progress {
+  width: 0;
+  height: 100%;
+  background-color: #ff5a5f; /* Red for recording progress */
+  border-radius: 5px;
+}
+
+/* Timer styling */
+.timer {
+  font-size: 14px;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* Icon buttons for start/stop recording */
+.icon-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+  display: inline-block; /* Keep the buttons inline */
+  vertical-align: middle;
+}
+
+.icon-button i {
+  font-size: 30px; /* Icon size */
+  color: white; /* Icon color */
+}
+
+/* Align all buttons inline */
+.button-group {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Icon alignment */
+.left-icons {
+  display: flex;
+  gap: 10px;
+}
+
+/* Styling for the textarea in the text memo popup */
+.popup textarea {
+  width: 100%; /* Make sure it fits within the popup */
+  height: 150px; /* Set a fixed height for the text area */
+  background-color: rgba(0, 0, 0, 0.19); /* Black background with 19% opacity */
+  color: rgba(255, 255, 255, 1); /* White text with 100% opacity */
+  border: none; /* Remove default borders */
+  padding: 10px; /* Add padding for spacing */
+  border-radius: 5px; /* Rounded corners */
+  resize: none; /* Prevent resizing of the textarea */
+  font-size: 14px; /* Set a standard font size */
+  outline: none; /* Remove the default outline when focused */
+}
+
+/* Additional styling for text alignment and spacing */
+.popup textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* Slightly transparent white for the placeholder text */
+}
+
+/* Styling for the file input button */
+.popup #imageUpload {
+  width: 100%; /* Make it fit the width of the popup */
+  padding: 15px; /* Increase padding to make it bigger */
+  background-color: #4C9DED; /* Match the popup background color */
+  color: #fff; /* White text color */
+  border: none; /* Remove default borders */
+  border-radius: 5px; /* Slightly rounded corners */
+  cursor: pointer; /* Change cursor to pointer */
+  text-align: center; /* Center the text */
+  font-size: 16px; /* Increase font size */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+}
+
+/* Hover animation for the file input button */
+.popup #imageUpload:hover {
+  background-color: #357ABD; /* Darker blue on hover */
+  transform: scale(1.05); /* Slightly enlarge on hover */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Add a shadow on hover */
 }
