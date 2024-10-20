@@ -82,6 +82,7 @@ CREATE TABLE notifications (
     message TEXT NOT NULL, -- The content of the notification
     type ENUM('marketing', 'system', 'reminder', 'label_share') NOT NULL, -- Type of notification
     status ENUM('unread', 'read') DEFAULT 'unread', -- Read/unread status
+    is_global BOOLEAN DEFAULT FALSE, -- Global notifications are visible to all users
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Timestamp of when the notification was created
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE, -- Link to users table
     FOREIGN KEY (sender_id) REFERENCES users(id) ON DELETE SET NULL -- Sender can be NULL

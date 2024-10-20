@@ -227,9 +227,9 @@ BEGIN
     SELECT role INTO adminRole FROM users WHERE id = adminId;
 
     IF adminRole = 'admin' THEN
-        -- Insert a new notification for all users except the admin
-        INSERT INTO notifications (user_id, sender_id, message, type)
-        SELECT id, adminId, message, notif_type 
+        -- Insert a new global notification for all users except the admin
+        INSERT INTO notifications (user_id, sender_id, message, type, is_global)
+        SELECT id, adminId, message, notif_type, TRUE -- Mark the notification as global
         FROM users
         WHERE id != adminId;  -- Exclude the admin from receiving their own notification
     ELSE
@@ -237,6 +237,7 @@ BEGIN
     END IF;
 END$$
 DELIMITER ;
+
 
 -- Function: Get notifications for a user, including shared label details
 DELIMITER $$ 

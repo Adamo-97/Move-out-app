@@ -95,17 +95,21 @@ router.get('/admin', (req, res) => {
 
                         const users = usersResult[0]; // Assuming the result is an array of users
 
-                        // Fetch all notifications
-                        const notificationsQuery = 'SELECT * FROM notifications ORDER BY created_at DESC';
-                        db.query(notificationsQuery, (err, notificationsResult) => {
+                        // Fetch notifications for the admin or global notifications
+                        const notificationsQuery = `
+                            SELECT DISTINCT message, type, is_global 
+                            FROM notifications 
+                            WHERE user_id = ? OR is_global = 1 OR sender_id = ? 
+                            ORDER BY created_at DESC
+                        `;
+
+                        // Use user.id in the notifications query to fetch both global and admin-specific notifications
+                        db.query(notificationsQuery, [user.id, user.id], (err, notifications) => {
                             if (err) {
                                 console.error('Error fetching notifications:', err);
                                 return res.render('admin', { user, totalUsers, activeUsers, activePercentage, users, notifications: [] });
                             }
-
-                            const notifications = notificationsResult; // Array of notifications
-
-                            // Render the admin dashboard with all data, including notifications
+                            // Render the admin dashboard with all the data
                             res.render('admin', { user, totalUsers, activeUsers, activePercentage, users, notifications });
                         });
                     });
