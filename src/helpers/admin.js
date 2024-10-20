@@ -1,10 +1,10 @@
 let selectedCategory = '';
 let isGlobalNotification = false; // Tracks if it's a notification to all users
 
-// Open notification modal
+// Open the notification modal
 function openNotificationModal(userId = null) {
-    document.getElementById('userId').value = userId || '';  // If userId is null, it means send to all
-    isGlobalNotification = !userId; // If no userId, we know it's for all users
+    isGlobalNotification = !userId; // If no userId is passed, set global to true
+    document.getElementById('userId').value = userId || ''; // Set userId field (empty for global)
     document.getElementById('notificationModal').style.display = 'block';
 }
 
@@ -35,21 +35,27 @@ document.getElementById('notificationForm').addEventListener('submit', function 
         return;
     }
 
-    // Make an AJAX request to send the notification
-    fetch(isGlobalNotification ? '/admin/send-notification/all' : '/admin/send-notification', {
+    // Check if it's a global notification
+    const requestUrl = '/admin/send-notification';
+    
+    console.log('Sending request to:', requestUrl);
+    console.log('User ID:', isGlobalNotification ? 'All users' : userId);
+
+    // Make the fetch request to send the notification
+    fetch(requestUrl, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             message: message,
             category: category,
-            userId: userId
+            userId: userId // This will be empty for global notifications
         })
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             closeNotificationModal();
-            addNotificationCard(message, category);  // Add notification to the placeholder
+            addNotificationCard(message, category);  // Update the notifications UI
         } else {
             alert('Failed to send notification');
         }

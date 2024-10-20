@@ -71,13 +71,13 @@ router.get('/admin', (req, res) => {
             db.query(totalUsersQuery, (err, totalResults) => {
                 if (err) {
                     console.error('Error fetching total users:', err);
-                    return res.render('admin', { user, totalUsers: 0, activeUsers: 0, activePercentage: 0, users: [] });
+                    return res.render('admin', { user, totalUsers: 0, activeUsers: 0, activePercentage: 0, users: [], notifications: [] });
                 }
 
                 db.query(activeUsersQuery, (err, activeResults) => {
                     if (err) {
                         console.error('Error fetching active users:', err);
-                        return res.render('admin', { user, totalUsers: 0, activeUsers: 0, activePercentage: 0, users: [] });
+                        return res.render('admin', { user, totalUsers: 0, activeUsers: 0, activePercentage: 0, users: [], notifications: [] });
                     }
 
                     const totalUsers = totalResults[0].totalUsers;
@@ -90,13 +90,24 @@ router.get('/admin', (req, res) => {
                     db.query('CALL get_all_users()', (err, usersResult) => {
                         if (err) {
                             console.error('Error fetching users:', err);
-                            return res.render('admin', { user, totalUsers, activeUsers, activePercentage, users: [] });
+                            return res.render('admin', { user, totalUsers, activeUsers, activePercentage, users: [], notifications: [] });
                         }
 
                         const users = usersResult[0]; // Assuming the result is an array of users
 
-                        // Render the admin dashboard with all data
-                        res.render('admin', { user, totalUsers, activeUsers, activePercentage, users });
+                        // Fetch all notifications
+                        const notificationsQuery = 'SELECT * FROM notifications ORDER BY created_at DESC';
+                        db.query(notificationsQuery, (err, notificationsResult) => {
+                            if (err) {
+                                console.error('Error fetching notifications:', err);
+                                return res.render('admin', { user, totalUsers, activeUsers, activePercentage, users, notifications: [] });
+                            }
+
+                            const notifications = notificationsResult; // Array of notifications
+
+                            // Render the admin dashboard with all data, including notifications
+                            res.render('admin', { user, totalUsers, activeUsers, activePercentage, users, notifications });
+                        });
                     });
                 });
             });
@@ -105,6 +116,7 @@ router.get('/admin', (req, res) => {
         res.redirect('/login');
     }
 });
+
 // Route to deactivate a user
 router.post('/admin/deactivate/:id', (req, res) => {
     const userId = req.params.id;
@@ -137,6 +149,7 @@ router.post('/admin/activate/:id', (req, res) => {
 });
 // Route to send notification to a specific user with a selected category
 router.post('/admin/send-notification', (req, res) => {
+    console.log('--- [/admin/send-notification] Start of Function ---');
     const adminId = req.session.userId; // Assuming admin ID is stored in the session
     const userId = req.body.userId; // User ID from the hidden input field
     const message = req.body.message; // Notification message from the textarea
@@ -146,17 +159,37 @@ router.post('/admin/send-notification', (req, res) => {
     console.log('User ID:', userId);
     console.log('Message:', message);
     console.log('Notification Type:', notifType);
-    // Call the stored procedure to send the notification
-    const query = 'CALL send_notification_to_user(?, ?, ?, ?)';
-    db.query(query, [adminId, userId, message, notifType], (err, results) => {
-        if (err) {
-            console.error('Error sending notification:', err);
-            return res.redirect('/admin'); // Redirect back with an error
-        }
+    // Check if the user ID is provided
+    if(userId) {
+        console.log('Sending notification to user:', userId);
+        // Call the stored procedure to send the notification
+        const query = 'CALL send_notification_to_user(?, ?, ?, ?)';
+        db.query(query, [adminId, userId, message, notifType], (err, results) => {
+            if (err) {
+                console.error('Error sending notification:', err);
+                return res.redirect('/admin'); // Redirect back with an error
+            }
 
-        // Successfully sent the notification, redirect back
-        res.redirect('/admin');
-    });
+            // Successfully sent the notification, redirect back
+            res.redirect('/admin');
+        });
+    }
+
+    // If the user ID is not provided, send a global notification
+    else {
+        console.log('Sending global notification');
+        // Call the stored procedure to send the notification to all users
+        const query = 'CALL send_notification_to_all(?, ?, ?)';
+        db.query(query, [adminId, message, notifType], (err, results) => {
+            if (err) {
+                console.error('Error sending notification to all:', err);
+                return res.redirect('/admin'); // Redirect back with an error
+            }
+
+            // Successfully sent the notification, redirect back
+            res.redirect('/admin');
+        });
+    }
 });
 // Route to handle search/filtering of users
 router.get('/admin/search', (req, res) => {
@@ -192,21 +225,6 @@ router.get('/admin/search', (req, res) => {
 
         // Return the filtered users as JSON
         res.json({ users: results });
-    });
-});
-// Route to send notification to all users
-router.post('/admin/send-notification/all', (req, res) => {
-    const { message, category } = req.body;
-    const adminId = req.session.userId;
-
-    // Call the stored procedure to send notification to all users
-    const query = 'CALL send_notification_to_all(?, ?, ?)';
-    db.query(query, [adminId, message, category], (err, results) => {
-        if (err) {
-            console.error('Error sending notification to all:', err);
-            return res.status(500).json({ success: false, error: 'Database error' });
-        }
-        res.json({ success: true });
     });
 });
 

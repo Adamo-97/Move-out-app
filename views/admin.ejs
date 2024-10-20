@@ -132,7 +132,7 @@
                                 </td>
                                 <td>
                                     <!-- Send Notification button -->
-                                    <button class="notify-btn" onclick="openNotificationModal('<%= user.id %>')">
+                                    <button class="notify-btn" onclick="openNotificationModal('<%= user.id %>', false)">
                                         <span class="material-icons">email</span>
                                     </button>
                                 </td>
@@ -177,61 +177,78 @@
         </main>
 
         <!-- Right Section -->
-<div class="right-section">
-    <div class="reminders">
-        <div class="header">
-            <h2>Make an Announcement</h2>
-            <span class="material-icons-sharp">notifications_none</span>
-        </div>
+        <div class="right-section">
+            <div class="reminders">
+                <div class="header">
+                    <h2>Make an announcment</h2>
+                    <span class="material-icons-sharp">
+                        notifications_none
+                    </span>
+                </div>
 
-        <!-- Placeholder for Sent Notifications -->
-        <div id="notificationsContainer">
-            <!-- Notification cards will be dynamically added here -->
-        </div>
+                <!-- Button to open the modal for sending to all users -->
+                <div class="notification add-reminder" onclick="openNotificationModal(null, true)">
+                    <div>
+                        <span class="material-icons-sharp">add</span>
+                        <h3>Send to All Users</h3>
+                    </div>
+                </div>
 
-        <!-- Add Reminder button that triggers the notification modal -->
-        <div class="notification add-reminder">
-            <div onclick="openNotificationModal()">
-                <span class="material-icons-sharp">add</span>
-                <h3>Add Reminder</h3>
+                <h3>History</h3>
+
+                <!-- Loop through notifications -->
+                <% notifications.forEach(function(notification) { %>
+                    <div class="notification <%= notification.type %>-notification">
+                        <div class="icon">
+                            <span class="material-icons-sharp">
+                                <%= notification.type === 'marketing' ? 'campaign' :
+                                    notification.type === 'system' ? 'build' :
+                                    'notifications' %>
+                            </span>
+                        </div>
+                        <div class="content">
+                            <div class="info">
+                                <h3><%= notification.type.charAt(0).toUpperCase() + notification.type.slice(1) %></h3> <!-- Capitalize type -->
+                                <small class="text_muted"><%= notification.message %></small> <!-- Message -->
+                            </div>
+                            <span class="material-icons-sharp">more_vert</span>
+                        </div>
+                    </div>
+                <% }); %> <!-- End of loop -->
             </div>
         </div>
     </div>
-</div>
+    <!-- Notification Modal (hidden initially) -->
+    <div id="notificationModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeNotificationModal()">&times;</span>
+            <h2>Select Notification Category</h2>
 
-<!-- Notification Modal (hidden initially) -->
-<div id="notificationModal" class="modal" style="display:none;">
-    <div class="modal-content">
-        <span class="close" onclick="closeNotificationModal()">&times;</span>
-        <h2>Select Notification Category</h2>
+            <!-- Category Selection (Use Google Material Icons) -->
+            <div class="categories">
+                <button class="category-btn" onclick="selectCategory('marketing')">
+                    <span class="material-icons">campaign</span> <!-- Marketing Icon -->
+                    <p>Marketing</p>
+                </button>
+                <button class="category-btn" onclick="selectCategory('system')">
+                    <span class="material-icons">build</span> <!-- System Icon -->
+                    <p>System</p>
+                </button>
+                <button class="category-btn" onclick="selectCategory('reminder')">
+                    <span class="material-icons">notifications</span> <!-- Reminder Icon -->
+                    <p>Reminder</p>
+                </button>
+            </div>
 
-        <!-- Category Selection -->
-        <div class="categories">
-            <button class="category-btn" onclick="selectCategory('marketing')">
-                <span class="material-icons">campaign</span>
-                <p>Marketing</p>
-            </button>
-            <button class="category-btn" onclick="selectCategory('system')">
-                <span class="material-icons">build</span>
-                <p>System</p>
-            </button>
-            <button class="category-btn" onclick="selectCategory('reminder')">
-                <span class="material-icons">notifications</span>
-                <p>Reminder</p>
-            </button>
+            <!-- Form to send the notification -->
+            <form id="notificationForm" method="POST">
+                <input type="hidden" id="selectedCategory" name="category" value="">
+                <input type="hidden" id="userId" name="userId" value="">
+                <label for="message">Message:</label>
+                <textarea name="message" id="message" rows="4" placeholder="Enter notification message here..."></textarea>
+                <button type="submit" class="send-btn">Send Notification</button>
+            </form>
         </div>
-
-        <!-- Form to send the notification -->
-        <form id="notificationForm" method="POST" action="/admin/send-notification">
-            <input type="hidden" id="selectedCategory" name="category" value="">
-            <input type="hidden" id="userId" name="userId" value="">
-            <label for="message">Message:</label>
-            <textarea name="message" id="message" rows="4" placeholder="Enter notification message here..."></textarea>
-            <button type="submit" class="send-btn">Send Notification</button>
-        </form>
-    </div>
-</div>
-
     </div>
 
     <script src="../src/helpers/admin.js"></script>
