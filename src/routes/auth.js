@@ -10,8 +10,8 @@ const busboy = require('busboy');
 const { createCanvas, loadImage } = require('canvas');
 const { sendPinEmail } = require('../helpers/emailHelpers');
 const { regenerateQRCode } = require('../helpers/editLabel');
-const { handleMemoUpdate } = require('../helpers/memoHandler');
 const { updateTextMemo } = require('../helpers/updateTextMemo');
+const { updateImageMemo, finishWithError } = require('../helpers/uploadImage'); // Import the new image upload function
 
 // Middleware to protect routes
 const ensureAuthenticated = (req, res, next) => {
@@ -47,6 +47,184 @@ router.get('/auth/google/callback',
 
         res.redirect('/home');  // Redirect to home after Google login
     });
+
+// Route for rendering the admin dashboard
+router.get('/admin', (req, res) => {
+    if (req.session.isAuthenticated && req.session.userId) {
+        const query = 'SELECT * FROM users WHERE id = ?';
+        db.query(query, [req.session.userId], (err, results) => {
+            if (err || results.length === 0) {
+                console.error('Error fetching user:', err);
+                return res.redirect('/login');
+            }
+
+            const user = results[0];
+
+            if (user.role !== 'admin') {
+                return res.redirect('/login');
+            }
+
+            // Fetch total users and active users
+            const totalUsersQuery = 'SELECT COUNT(*) as totalUsers FROM users WHERE role = "user"';
+            const activeUsersQuery = 'SELECT COUNT(*) as activeUsers FROM users WHERE is_active = 1 AND role = "user"';
+
+            db.query(totalUsersQuery, (err, totalResults) => {
+                if (err) {
+                    console.error('Error fetching total users:', err);
+                    return res.render('admin', { user, totalUsers: 0, activeUsers: 0, activePercentage: 0, users: [] });
+                }
+
+                db.query(activeUsersQuery, (err, activeResults) => {
+                    if (err) {
+                        console.error('Error fetching active users:', err);
+                        return res.render('admin', { user, totalUsers: 0, activeUsers: 0, activePercentage: 0, users: [] });
+                    }
+
+                    const totalUsers = totalResults[0].totalUsers;
+                    const activeUsers = activeResults[0].activeUsers;
+
+                    // Calculate active user percentage
+                    const activePercentage = (activeUsers / totalUsers) * 100;
+
+                    // Fetch all users for the users table
+                    db.query('CALL get_all_users()', (err, usersResult) => {
+                        if (err) {
+                            console.error('Error fetching users:', err);
+                            return res.render('admin', { user, totalUsers, activeUsers, activePercentage, users: [] });
+                        }
+
+                        const users = usersResult[0]; // Assuming the result is an array of users
+
+                        // Render the admin dashboard with all data
+                        res.render('admin', { user, totalUsers, activeUsers, activePercentage, users });
+                    });
+                });
+            });
+        });
+    } else {
+        res.redirect('/login');
+    }
+});
+// Route to deactivate a user
+router.post('/admin/deactivate/:id', (req, res) => {
+    const userId = req.params.id;
+    
+    // Call the stored procedure to deactivate the user
+    const query = 'CALL deactivate_user_account(?)';
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error deactivating user:', err);
+            return res.redirect('/admin');
+        }
+
+        res.redirect('/admin'); // Redirect back to the admin dashboard
+    });
+});
+// Route to activate a user
+router.post('/admin/activate/:id', (req, res) => {
+    const userId = req.params.id;
+    
+    // Call the stored procedure to activate the user
+    const query = 'CALL reactivate_user_account(?)';
+    db.query(query, [userId], (err, results) => {
+        if (err) {
+            console.error('Error activating user:', err);
+            return res.redirect('/admin');
+        }
+
+        res.redirect('/admin'); // Redirect back to the admin dashboard
+    });
+});
+// Route to send notification to a specific user with a selected category
+router.post('/admin/send-notification', (req, res) => {
+    const adminId = req.session.userId; // Assuming admin ID is stored in the session
+    const userId = req.body.userId; // User ID from the hidden input field
+    const message = req.body.message; // Notification message from the textarea
+    const notifType = req.body.category; // Category from the hidden input field
+
+    console.log('Admin ID:', adminId);
+    console.log('User ID:', userId);
+    console.log('Message:', message);
+    console.log('Notification Type:', notifType);
+    // Call the stored procedure to send the notification
+    const query = 'CALL send_notification_to_user(?, ?, ?, ?)';
+    db.query(query, [adminId, userId, message, notifType], (err, results) => {
+        if (err) {
+            console.error('Error sending notification:', err);
+            return res.redirect('/admin'); // Redirect back with an error
+        }
+
+        // Successfully sent the notification, redirect back
+        res.redirect('/admin');
+    });
+});
+// Route to handle search/filtering of users
+router.get('/admin/search', (req, res) => {
+    const { query, status } = req.query;
+
+    let searchQuery = `
+        SELECT id, name, email, verified, role, is_active, 
+        DATE_FORMAT(last_active, '%Y-%m-%d %H:%i:%s') AS last_active 
+        FROM users WHERE role != 'admin'
+    `;    
+    const params = [];
+
+    // Add search by ID, name, or email
+    if (query) {
+        searchQuery += ' AND (id LIKE ? OR name LIKE ? OR email LIKE ?)';
+        const searchParam = `%${query}%`;
+        params.push(searchParam, searchParam, searchParam);
+    }
+
+    // Add filtering by active/non-active status
+    if (status === 'active') {
+        searchQuery += ' AND is_active = 1';
+    } else if (status === 'non-active') {
+        searchQuery += ' AND is_active = 0';
+    }
+
+    // Execute the query
+    db.query(searchQuery, params, (err, results) => {
+        if (err) {
+            console.error('Error fetching users:', err);
+            return res.status(500).json({ error: 'Database error' });
+        }
+
+        // Return the filtered users as JSON
+        res.json({ users: results });
+    });
+});
+// Route to send notification to all users
+router.post('/admin/send-notification/all', (req, res) => {
+    const { message, category } = req.body;
+    const adminId = req.session.userId;
+
+    // Call the stored procedure to send notification to all users
+    const query = 'CALL send_notification_to_all(?, ?, ?)';
+    db.query(query, [adminId, message, category], (err, results) => {
+        if (err) {
+            console.error('Error sending notification to all:', err);
+            return res.status(500).json({ success: false, error: 'Database error' });
+        }
+        res.json({ success: true });
+    });
+});
+
+// Route to send notification to a specific user
+router.post('/admin/send-notification', (req, res) => {
+    const { message, category, userId } = req.body;
+    const adminId = req.session.userId;
+
+    // Call the stored procedure to send notification to a specific user
+    const query = 'CALL send_notification_to_user(?, ?, ?, ?)';
+    db.query(query, [adminId, userId, message, category], (err, results) => {
+        if (err) {
+            console.error('Error sending notification:', err);
+            return res.status(500).json({ success: false, error: 'Database error' });
+        }
+        res.json({ success: true });
+    });
+});
 
 // Route for sign-up page
 router.get('/signup', (req, res) => {
@@ -243,6 +421,7 @@ router.post('/edit-lable-general', ensureAuthenticated, (req, res) => {
     let didUpdateTitle = false; // Flag for title update
     let didUpdatePublic = false; // Flag for public status change
     let memoChanged = false; // Flag for memo change
+    let imageChanged = false; // Flag for image change
     let operationsPending = 0; // Counter for pending asynchronous operations
     let responseSent = false; // Flag to ensure only one response is sent
     let regenerateQRNeeded = false; // Flag to track if QR regeneration is needed
@@ -252,6 +431,40 @@ router.post('/edit-lable-general', ensureAuthenticated, (req, res) => {
     bb.on('field', (name, value) => {
         fields[name] = value;
         console.log(`${name}: ${value}`); // Log form data for debugging
+    });
+
+    // Handle file uploads
+    bb.on('file', (name, file, info) => {
+        console.log(`File [${name}] detected.`);
+        const { filename, encoding, mimeType } = info;
+        console.log(`File [${name}]: filename: ${filename}, encoding: ${encoding}, mimeType: ${mimeType}`);
+
+        // Proceed with image upload only if a file is actually selected (filename is not undefined)
+        if (name === 'imageUpload' && filename) {
+            console.log('Image upload detected.');
+            
+            imageChanged = true;
+            regenerateQRNeeded = true; // Mark that QR regeneration is needed
+            operationsPending++; // Increment pending operations
+
+            console.log('Calling updateImageMemo function with labelId:', fields.labelId);
+
+            // Call the updateImageMemo function to upload the image
+            updateImageMemo(fields.labelId, file, req.session.userId, fields.public === 'true')
+                .then(() => {
+                    console.log('Image memo updated successfully for labelId:', fields.labelId);
+                    checkIfAllDone(); // Check if all operations are completed
+                })
+                .catch((err) => {
+                    console.error('Error updating image memo for labelId:', fields.labelId, err);
+                    return finishWithError(res, 'Error updating image memo');
+                });
+
+            console.log('Operations pending after image upload:', operationsPending);
+        } else {
+            // If no file was selected, log and skip image upload
+            console.log('No image file uploaded or filename is undefined.');
+        }
     });
 
     // When the form parsing is complete
@@ -322,7 +535,7 @@ router.post('/edit-lable-general', ensureAuthenticated, (req, res) => {
                 operationsPending++; // Increment pending operations
 
                 // Call updateTextMemo function
-                updateTextMemo(labelId, textMemo, req.session.userId)
+                updateTextMemo(labelId, textMemo, req.session.userId, publicToggle)
                     .then(() => {
                         console.log('Text memo updated successfully');
                         checkIfAllDone(); // Check if all operations are completed
@@ -335,8 +548,8 @@ router.post('/edit-lable-general', ensureAuthenticated, (req, res) => {
                 console.log('operationsPending:', operationsPending);
             }
 
-            // If no changes were detected, redirect immediately
-            if (!didUpdateTitle && !didUpdatePublic && !memoChanged) {
+            // If no changes were detected and no files uploaded, redirect immediately
+            if (!didUpdateTitle && !didUpdatePublic && !memoChanged && !imageChanged) {
                 console.log('No changes detected, redirecting to home');
                 return res.redirect('/home');
             }
@@ -348,8 +561,8 @@ router.post('/edit-lable-general', ensureAuthenticated, (req, res) => {
             if (operationsPending === 0 && !responseSent) {
                 // Only regenerate QR if needed
                 if (regenerateQRNeeded) {
-                    console.log('Changes detected in public status or memo, regenerating QR code');
-                    regenerateQRCode(labelId, publicToggle, textMemo || currentMemo, req.session.userId)
+                    console.log('Changes detected in public status, memo, or image, regenerating QR code');
+                    regenerateQRCode(labelId, publicToggle, currentMemo, req.session.userId)
                         .then(() => {
                             console.log('QR code regenerated successfully');
                             res.redirect('/home');
@@ -735,9 +948,5 @@ router.post('/verify-pin', (req, res) => {
     });
 });
 
-// Route for the admin page
-router.get('/admin', ensureAuthenticated, (req, res) => {
-    res.render('admin');
-});
 // Export the router
 module.exports = router;

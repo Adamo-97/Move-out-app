@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="css/admin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Admin Dashboard</title>
+    <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
+</head>
+
+<body>
+    <header>
+        <div class="toggle">
+            <div class="logo">
+                <h2>Move<span class="danger">Out</span></h2>
+            </div>
+        </div>
+    
+        <div class="search-bar">
+            <form id="searchForm">
+                <div class="search-input-container">
+                    <span class="material-icons-sharp search-icon">search</span>
+                    <input type="text" id="searchInput" name="query" placeholder="Search by ID, Name, Email..." />
+                </div>
+                <div class="filter-icon-container">
+                    <span class="material-icons-sharp filter-icon" onclick="toggleFilterPopup()">filter_list</span>
+                    <!-- Adjusted position of filter popup -->
+                    <div id="filterPopup" class="filter-popup" style="display: none;">
+                        <ul>
+                            <li onclick="selectFilter('all')">All</li>
+                            <li onclick="selectFilter('active')">Active</li>
+                            <li onclick="selectFilter('non-active')">Non-Active</li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    
+        <div class="sidebar">
+            <a href="/logout">
+                <span class="material-icons-sharp">logout</span>
+                <h3>Logout</h3>
+            </a>
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- Main Content -->
+        <main>
+            <h1>Analytics</h1>
+            <!-- Analyses -->
+            <!-- Total Users and Active Users -->
+            <div class="analyse">
+                <!-- Total Users -->
+                <div class="sales">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Total Users</h3>
+                            <h1><%= totalUsers %></h1> <!-- Display total users here -->
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p>100%</p> <!-- Static 100% for total users -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Active Users -->
+                <div class="visits">
+                    <div class="status">
+                        <div class="info">
+                            <h3>Active Users</h3>
+                            <h1><%= activeUsers %></h1> <!-- Display active users here -->
+                        </div>
+                        <div class="progresss">
+                            <svg>
+                                <circle cx="38" cy="38" r="36"></circle>
+                            </svg>
+                            <div class="percentage">
+                                <p><%= Math.round(activePercentage) %>%</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Users Table -->
+            <div class="recent-users">
+                <h2>Users</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Verified</th>
+                            <th>Role</th>
+                            <th>Active</th>
+                            <th>Last active</th>
+                            <th>Action</th>
+                            <th>Notification</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(function(user) { %> <!-- Loop through users -->
+                            <tr>
+                                <td><%= user.id %></td>
+                                <td><%= user.name %></td>
+                                <td><%= user.email %></td>
+                                <td><%= user.verified ? 'Yes' : 'No' %></td>
+                                <td><%= user.role %></td>
+                                <td><%= user.is_active ? 'Yes' : 'No' %></td>
+                                <td><%= user.last_active %></td>
+                                <td>
+                                    <!-- Deactivate/Activate buttons -->
+                                    <% if (user.is_active) { %>
+                                        <form method="POST" action="/admin/deactivate/<%= user.id %>">
+                                            <button class="deactivate-btn" type="submit">Deactivate</button>
+                                        </form>
+                                    <% } else { %>
+                                        <form method="POST" action="/admin/activate/<%= user.id %>">
+                                            <button class="activate-btn" type="submit">Activate</button>
+                                        </form>
+                                    <% } %>
+                                </td>
+                                <td>
+                                    <!-- Send Notification button -->
+                                    <button class="notify-btn" onclick="openNotificationModal('<%= user.id %>')">
+                                        <span class="material-icons">email</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+            <!-- Notification Modal (hidden initially) -->
+            <div id="notificationModal" class="modal" style="display:none;">
+                <div class="modal-content">
+                    <span class="close" onclick="closeNotificationModal()">&times;</span>
+                    <h2>Select Notification Category</h2>
+
+                    <!-- Category Selection (Use Google Material Icons) -->
+                    <div class="categories">
+                        <button class="category-btn" onclick="selectCategory('marketing')">
+                            <span class="material-icons">campaign</span> <!-- Marketing Icon -->
+                            <p>Marketing</p>
+                        </button>
+                        <button class="category-btn" onclick="selectCategory('system')">
+                            <span class="material-icons">build</span> <!-- System Icon -->
+                            <p>System</p>
+                        </button>
+                        <button class="category-btn" onclick="selectCategory('reminder')">
+                            <span class="material-icons">notifications</span> <!-- Reminder Icon -->
+                            <p>Reminder</p>
+                        </button>
+                    </div>
+
+                    <!-- Form to send the notification -->
+                    <form method="POST" action="/admin/send-notification">
+                        <input type="hidden" id="selectedCategory" name="category" value="">
+                        <input type="hidden" id="userId" name="userId" value="">
+                        <label for="message">Message:</label>
+                        <textarea name="message" id="message" rows="4" placeholder="Enter notification message here..."></textarea>
+                        <button type="submit" class="send-btn">Send Notification</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Right Section -->
+<div class="right-section">
+    <div class="reminders">
+        <div class="header">
+            <h2>Make an Announcement</h2>
+            <span class="material-icons-sharp">notifications_none</span>
+        </div>
+
+        <!-- Placeholder for Sent Notifications -->
+        <div id="notificationsContainer">
+            <!-- Notification cards will be dynamically added here -->
+        </div>
+
+        <!-- Add Reminder button that triggers the notification modal -->
+        <div class="notification add-reminder">
+            <div onclick="openNotificationModal()">
+                <span class="material-icons-sharp">add</span>
+                <h3>Add Reminder</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Notification Modal (hidden initially) -->
+<div id="notificationModal" class="modal" style="display:none;">
+    <div class="modal-content">
+        <span class="close" onclick="closeNotificationModal()">&times;</span>
+        <h2>Select Notification Category</h2>
+
+        <!-- Category Selection -->
+        <div class="categories">
+            <button class="category-btn" onclick="selectCategory('marketing')">
+                <span class="material-icons">campaign</span>
+                <p>Marketing</p>
+            </button>
+            <button class="category-btn" onclick="selectCategory('system')">
+                <span class="material-icons">build</span>
+                <p>System</p>
+            </button>
+            <button class="category-btn" onclick="selectCategory('reminder')">
+                <span class="material-icons">notifications</span>
+                <p>Reminder</p>
+            </button>
+        </div>
+
+        <!-- Form to send the notification -->
+        <form id="notificationForm" method="POST" action="/admin/send-notification">
+            <input type="hidden" id="selectedCategory" name="category" value="">
+            <input type="hidden" id="userId" name="userId" value="">
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" rows="4" placeholder="Enter notification message here..."></textarea>
+            <button type="submit" class="send-btn">Send Notification</button>
+        </form>
+    </div>
+</div>
+
+    </div>
+
+    <script src="../src/helpers/admin.js"></script>
+</body>
+
+</html>

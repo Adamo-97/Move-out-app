@@ -94,7 +94,6 @@ exports.signup = (req, res) => {
 };
 
 // Handle login logic
-// TODO: Forward unverified users to the verification page
 exports.login = (req, res) => {
     const email = req.body['your-email1'];  
     const password = req.body['your-password1'];
@@ -145,7 +144,15 @@ exports.login = (req, res) => {
             if (isMatch) {
                 req.session.userId = user.id;
                 req.session.isAuthenticated = true;
-                res.redirect('/home');
+
+                // Check if the user is an admin
+                if (user.role === 'admin') {
+                    // Redirect admin users to the admin page
+                    res.redirect('/admin');
+                } else {
+                    // Redirect regular users to the home page
+                    res.redirect('/home');
+                }
             } else {
                 console.log("Incorrect password for email:", email);
                 res.render('login', { message: 'Incorrect password!' });

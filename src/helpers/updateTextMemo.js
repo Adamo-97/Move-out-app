@@ -93,5 +93,6 @@ function deleteAllFilesFromCloudinaryFolder(folderPath) {
 }
 
 module.exports = {
-    updateTextMemo
+    updateTextMemo,
+    deleteAllFilesFromCloudinaryFolder
 };
