@@ -228,22 +228,6 @@ router.get('/admin/search', (req, res) => {
     });
 });
 
-// Route to send notification to a specific user
-router.post('/admin/send-notification', (req, res) => {
-    const { message, category, userId } = req.body;
-    const adminId = req.session.userId;
-
-    // Call the stored procedure to send notification to a specific user
-    const query = 'CALL send_notification_to_user(?, ?, ?, ?)';
-    db.query(query, [adminId, userId, message, category], (err, results) => {
-        if (err) {
-            console.error('Error sending notification:', err);
-            return res.status(500).json({ success: false, error: 'Database error' });
-        }
-        res.json({ success: true });
-    });
-});
-
 // Route for sign-up page
 router.get('/signup', (req, res) => {
     res.render('signup', { message: null });
