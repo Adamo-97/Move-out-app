@@ -10,16 +10,23 @@ MoveOUT features seamless integration with Google, allowing users to sign up and
 
 An admin dashboard is also available, offering administrators advanced control over the platform. Admins can manage user accounts, monitor data usage, and send notifications, ensuring the application runs smoothly and securely for all users.
 
+Login page image->
 ![Login Page](./Diagrams/login.png "Login Page")
+Signup page image->
 ![Signup Page](./Diagrams/signup.png "Signup Page")
+Email verification page image->
 ![Verify Page](./Diagrams/verify.png "Verify Page")
+Admin page image->
 ![Admin Page](./Diagrams/Admin.png "Admin Page")
+Home page image->
 ![Home Page](./Diagrams/Home.png "Home Page")
+Create label page image->
 ![Create Label Page](./Diagrams/create.png "Create Label Page")
+Notification and logout page image->
 ![Notification Page](./Diagrams/Notification.png "Notification Page")
 
 ## Architecture Overview
-The following image provides an overview of the architecture of the MoveOUT system.
+An overview of the architecture of the MoveOUT system.
 ![System Architecture Diagram](./Diagrams/System%20Architecture%20Diagram.png "System Architecture Diagram")
 
 ## How to Use
@@ -120,8 +127,6 @@ To run and build the **MoveOUT** project, follow these steps carefully to ensure
 
 ---
 
-By setting up these configurations in their respective files inside the `/config/` folder, your environment will be ready to build, run, and deploy the **MoveOUT** project. Proceed to the build and run steps once all prerequisites are met.
-
 ### Build
 
 To build and run the **MoveOUT** project, follow the steps below. These instructions are specifically for users working in **WSL (Windows Subsystem for Linux) with Ubuntu**, or any Linux-based environment.
@@ -184,8 +189,6 @@ To build and run the **MoveOUT** project, follow the steps below. These instruct
 
 ---
 
-By following these steps, you will have the **MoveOUT** project built correctly and running in your development environment. You can now proceed with testing and working on the application.
-
 ### Test
 
 The **MoveOUT** project does not include automated unit or integration tests at this time. Instead, debugging and testing are performed manually through the console during development. Here’s how you can monitor and manually test the application:
@@ -229,10 +232,6 @@ The **MoveOUT** project does not include automated unit or integration tests at 
 - Perform manual browser testing to ensure the frontend works as expected.
   - Navigate through the app to check functionalities such as login, label creation, sharing, and notification panels.
   - Open the **developer tools** in your browser (usually by pressing F12) to check for any frontend errors or warnings.
-
----
-
-Here’s the updated **Run** section with the correct details about account deactivation and the admin's role:
 
 ---
 
