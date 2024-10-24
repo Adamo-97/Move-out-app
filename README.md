@@ -1,5 +1,4 @@
-# Title
-MoveOUT: Label and Inventory Management Application
+# MoveOUT: Label and Inventory Management Application
 
 ## Introduction
 MoveOUT is an intuitive label and inventory management application built to help individuals and organizations organize, track, and share their belongings with ease. Whether you’re moving, managing assets, or simply staying organized, MoveOUT offers a robust system for labeling, categorizing, and securely storing item details, making inventory management effortless.
