@@ -167,11 +167,14 @@ exports.addLabel = (req, res) => {
 
     // Determine the content type
     const contentType = req.headers['content-type'];
+    console.log('Content-Type:', contentType);
 
     if (contentType && contentType.includes('application/json')) {
+        console.log('Received JSON data:', req.body);
         // Handle text memo upload
         handleTextMemoUpload(req, res);
     } else if (contentType && contentType.includes('multipart/form-data')) {
+        console.log('Received form data:', req.headers);
         // Use Busboy to handle file uploads
         const busboyInstance = busboy({ headers: req.headers });
         let fileType = null;
@@ -277,6 +280,7 @@ exports.addLabel = (req, res) => {
 
         req.pipe(busboyInstance);
     } else {
+        console.error('Unsupported content type:', contentType);
         res.status(400).json({ success: false, message: 'Unsupported content type.' });
     }
 };
@@ -284,11 +288,12 @@ exports.addLabel = (req, res) => {
 // Main function to delete label
 exports.deleteLabel = (req, res) => {
     const labelId = req.body.labelId;
-    const user_Id = req.session.userId; // Consistent with the rest of the code
+    const user_Id = req.session.userId;
 
     if (!labelId || !user_Id) {
         console.error('Label ID or User ID is missing.');
-        return res.status(400).json({ success: false, message: 'Label ID and user authentication are required.' });
+        if (res && !res.headersSent) return res.status(400).json({ success: false, message: 'Label ID and user authentication are required.' });
+        return; // Skip response if `res` is not active (background task)
     }
 
     // Fetch the label details from the database using the label ID
@@ -307,25 +312,44 @@ exports.deleteLabel = (req, res) => {
         deleteResources(cloudinaryFolder, isPublic)
             .then(() => deleteQRCode(cloudinaryFolder))
             .then(() => archiveFolder(cloudinaryFolder, user_Id, labelId, isPublic))
-            .then(() => {
-                console.log('Folder archived successfully.');
-
-                // Step 3: Delete the label from the database
+            .catch(error => {
+                // Log error if archive step fails, but don't stop the process
+                if (error.http_code === 400 && error.message.includes('already exists')) {
+                    console.warn('Archiving error: Resource already exists. Skipping archiving for these resources.');
+                } else {
+                    console.error('Error during archiving process:', error);
+                    // You could decide here whether to return an error response or just continue.
+                }
+            })
+            .finally(() => {
+                // Step 3: Delete the label from the database regardless of Cloudinary errors
                 db.query('CALL delete_label(?)', [labelId], (dbErr) => {
                     if (dbErr) {
                         console.error('Error deleting label from database:', dbErr);
-                        return res.status(500).json({ success: false, message: 'Error deleting label from database.' });
+                        if (res && !res.headersSent) return res.status(500).json({ success: false, message: 'Error deleting label from database.' });
+                        return; // Skip response if already sent
                     }
-
+                
                     console.log('Label deleted from the database successfully.');
-                    return res.status(200).json({ success: true, message: 'Label and associated resources deleted successfully!' });
+                    if (res && !res.headersSent) return res.status(200).json({ success: true, message: 'Label and associated resources deleted successfully!' });
                 });
-            })
-            .catch(error => {
-                console.error('Error during label deletion and archiving:', error);
-                return res.status(500).json({ success: false, message: 'Error during label deletion and archiving.' });
             });
     });
+};
+
+// Main function to fetch label by ID
+exports.getLabelById = async function (labelId) {
+    try {
+        // Use the promise-based query method
+        const [label] = await db.promise().query('SELECT * FROM labels WHERE id = ?', [labelId]);
+        if (!label || label.length === 0) {
+            throw new Error('Label not found');
+        }
+        return label[0]; // Return the first result
+    } catch (error) {
+        console.error('Error fetching label:', error);
+        throw error;
+    }
 };
 
 // Handle logout logic

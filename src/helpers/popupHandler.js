@@ -168,15 +168,18 @@ document.getElementById("stopRecord").onclick = stopRecording;
 document.addEventListener('DOMContentLoaded', function() {
   // Handle form submission when the check button is clicked
   document.getElementById('editLabelForm').onsubmit = function(event) {
+
       console.log('Form submitted');
-      
+
       // Get form values
+      const labelId = document.querySelector('input[name="labelId"]').value;
       const title = document.getElementById('titel12').value;
       const textMemo = document.getElementById('textMemo').value;
       const publicStatus = document.getElementById('publicStatus').value;
       const voiceFile = document.getElementById('voiceUploadData').value;
       const imageFile = document.getElementById('imageUpload').files[0];
 
+      console.log('Label ID:', labelId);  // Log labelId for debugging
       console.log('Title:', title);
       console.log('Text Memo:', textMemo);
       console.log('Public Status:', publicStatus);
@@ -205,4 +208,3 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   };
 });
-

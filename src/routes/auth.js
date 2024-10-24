@@ -9,6 +9,7 @@ const path = require('path');
 const busboy = require('busboy');
 const { createCanvas, loadImage } = require('canvas');
 const { sendPinEmail } = require('../helpers/emailHelpers');
+
 const { regenerateQRCode } = require('../helpers/editLabel');
 const { updateTextMemo } = require('../helpers/updateTextMemo');
 const { updateImageMemo, finishWithError } = require('../helpers/uploadImage'); // Import the new image upload function
@@ -251,7 +252,7 @@ router.get('/logout', authController.logout);
 
 // Route for the dashboard (after login)
 router.get('/home', ensureAuthenticated, (req, res) => {
-    const userId = req.session.userId; // Assume the user ID is stored in the session after login
+    const userId = req.session.userId; 
 
     if (!userId) {
         return res.redirect('/login'); // Redirect to login if the user is not authenticated
@@ -264,7 +265,6 @@ router.get('/home', ensureAuthenticated, (req, res) => {
             return res.status(500).send('Server error');
         }
 
-        // Assuming the user exists, extract the name
         const userName = userResult[0].name;
 
         // Call the stored procedure to get all labels for the logged-in user
@@ -277,16 +277,210 @@ router.get('/home', ensureAuthenticated, (req, res) => {
             // The results from a stored procedure call are in the first element of the array
             const userBoxes = results[0];
             console.log('Fetched labels:', userBoxes); // Debug: Check if QR data is present
+            // Fetch the user's notifications using the stored procedure
+            db.query('CALL get_notifications_for_user(?)', [userId], (err, notificationResults) => {
+                if (err) {
+                    console.error('Error fetching notifications:', err);
+                    return res.status(500).send('Server error');
+                }
 
+                const notifications = notificationResults[0];
             // Render the home page with the user's name and labels
-            res.render('home', { labels: userBoxes, userName });
+            res.render('home', { labels: userBoxes, userName, notifications });
+            });
         });
+    });
+});
+// Route to mark notification as read
+router.post('/notifications/mark-as-read/:id', (req, res) => {
+    const notificationId = req.params.id;
+
+    // Update the notification status to 'read'
+    db.query('UPDATE notifications SET status = "read" WHERE id = ?', [notificationId], (err, result) => {
+        if (err) {
+            console.error('Error updating notification status:', err);
+            return res.status(500).send('Server error');
+        }
+
+        // Return success response
+        res.status(200).send('Notification marked as read');
+    });
+});
+// Route to handle sharing the label by email
+router.post('/share-label', (req, res) => {
+    const { email, labelId } = req.body;
+
+    // Debug to check incoming request
+    console.log('Received request to share label:', { email, labelId });
+
+    // Check if the email exists in the users table
+    db.query('SELECT id FROM users WHERE email = ?', [email], (err, results) => {
+        if (err) {
+            console.error('Error checking email:', err);
+            return res.status(500).json({ success: false, message: 'Server error' });
+        }
+
+        // Debug to check if the user was found
+        console.log('User search results:', results);
+
+        if (results.length === 0) {
+            // User is not registered
+            console.log('User not found:', email);
+            return res.json({ success: false, message: 'User is not a registered user in MoveOUT app' });
+        }
+
+        const recipientId = results[0].id;
+        const senderId = req.session.userId;
+
+        // Debug to check IDs for sender and recipient
+        console.log('Sharing label from sender:', senderId, ' to recipient:', recipientId);
+
+        // Call the stored procedure to share the label with the recipient
+        db.query('CALL share_label_with_user(?, ?, ?)', [senderId, recipientId, labelId], (err, result) => {
+            if (err) {
+                console.error('Error sharing label:', err);
+                return res.status(500).json({ success: false, message: 'Failed to share label' });
+            }
+
+            // Debug to confirm successful sharing
+            console.log('Label shared successfully with labelId:', labelId);
+            
+            // Success
+            return res.json({ success: true, message: 'Label shared successfully!' });
+        });
+    });
+});
+// Route to handle accepting a shared label
+router.post('/notifications/accept-label/:sharedLabelId', (req, res) => {
+    const sharedLabelId = req.params.sharedLabelId;
+    const userId = req.session.userId; // The user accepting the label
+
+    // Fetch the shared label information
+    const fetchLabelQuery = `
+        SELECT l.*, sl.label_id AS original_label_id, sl.id AS shared_label_id
+        FROM shared_labels sl
+        JOIN labels l ON sl.label_id = l.id
+        WHERE sl.id = ? AND sl.recipient_id = ? AND sl.status = 'pending'
+    `;
+
+    db.query(fetchLabelQuery, [sharedLabelId, userId], (err, labelResult) => {
+        if (err) {
+            console.error('Error fetching shared label:', err);
+            return res.status(500).json({ success: false, message: 'Error fetching shared label' });
+        }
+
+        if (labelResult.length === 0) {
+            return res.status(404).json({ success: false, message: 'Label not found or already processed' });
+        }
+
+        const label = labelResult[0];
+
+        // Copy the label to the new user
+        db.query(
+            'CALL add_label(?, ?, ?, ?, ?, ?)',
+            [label.label_name, userId, label.category_id, label.memo, label.public, label.pin],
+            (err, addLabelResult) => {
+                if (err) {
+                    console.error('Error adding label for new user:', err);
+                    return res.status(500).json({ success: false, message: 'Error adding label' });
+                }
+
+                const newLabelId = addLabelResult[0][0].label_id;
+
+                // Fetch the QR code data for the original label
+                db.query('SELECT qr_code_data FROM qr_codes WHERE label_id = ?', [label.original_label_id], (err, qrResult) => {
+                    if (err) {
+                        console.error('Error fetching QR code:', err);
+                        return res.status(500).json({ success: false, message: 'Error fetching QR code' });
+                    }
+
+                    const qrCodeData = qrResult[0].qr_code_data;
+
+                    // Generate a new QR code for the new label
+                    db.query('CALL generate_qr_code(?, ?)', [newLabelId, qrCodeData], (err, qrInsertResult) => {
+                        if (err) {
+                            console.error('Error generating QR code:', err);
+                            return res.status(500).json({ success: false, message: 'Error generating QR code' });
+                        }
+
+                        // Update the status of the shared label to 'accepted'
+                        db.query('UPDATE shared_labels SET status = "accepted" WHERE id = ?', [sharedLabelId], (err, updateResult) => {
+                            if (err) {
+                                console.error('Error updating shared label status:', err);
+                                return res.status(500).json({ success: false, message: 'Error updating shared label status' });
+                            }
+
+                            // Mark the notification as "read"
+                            db.query('UPDATE notifications SET status = "read" WHERE user_id = ? AND type = "label_share" AND message LIKE ?', [userId, `%shared with you by user%`], (err, notificationResult) => {
+                                if (err) {
+                                    console.error('Error marking notification as read:', err);
+                                    return res.status(500).json({ success: false, message: 'Error marking notification as read' });
+                                }
+
+                                return res.status(200).json({ success: true, message: 'Label accepted successfully!' });
+                            });
+                        });
+                    });
+                });
+            }
+        );
+    });
+});
+// Route to handle declining a shared label
+router.post('/notifications/decline-label/:sharedLabelId', (req, res) => {
+    const sharedLabelId = req.params.sharedLabelId;
+    const userId = req.session.userId; // The user declining the label
+
+    // Update the shared label status to 'declined'
+    const updateQuery = 'UPDATE shared_labels SET status = ? WHERE id = ? AND recipient_id = ? AND status = "pending"';
+    db.query(updateQuery, ['declined', sharedLabelId, userId], (err, result) => {
+        if (err) {
+            console.error('Error updating shared label status to declined:', err);
+            return res.status(500).json({ success: false, message: 'Error declining label' });
+        }
+
+        // Check if the label was actually updated
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Label not found or already processed' });
+        }
+
+        // Mark the notification as "read"
+        db.query('UPDATE notifications SET status = "read" WHERE user_id = ? AND type = "label_share" AND message LIKE ?', [userId, `%shared with you by user%`], (err, notificationResult) => {
+            if (err) {
+                console.error('Error marking notification as read:', err);
+                return res.status(500).json({ success: false, message: 'Error marking notification as read' });
+            }
+
+            return res.status(200).json({ success: true, message: 'Label declined successfully' });
+        });
+    });
+});
+
+// Route to handle declining a shared label
+router.post('/notifications/decline-label/:sharedLabelId', (req, res) => {
+    const sharedLabelId = req.params.sharedLabelId;
+    const userId = req.session.userId; // The user declining the label
+
+    // Update the shared label status to 'declined'
+    const updateQuery = 'UPDATE shared_labels SET status = ? WHERE id = ? AND recipient_id = ? AND status = "pending"';
+    db.query(updateQuery, ['declined', sharedLabelId, userId], (err, result) => {
+        if (err) {
+            console.error('Error updating shared label status to declined:', err);
+            return res.status(500).json({ success: false, message: 'Error declining label' });
+        }
+
+        // Check if the label was actually updated
+        if (result.affectedRows === 0) {
+            return res.status(404).json({ success: false, message: 'Label not found or already processed' });
+        }
+
+        return res.status(200).json({ success: true, message: 'Label declined successfully' });
     });
 });
 
 // Route for the 'Add Label' page
 router.get('/new-lable', ensureAuthenticated, (req, res) => {
-    const userId = req.session.userId; // Assume the user ID is stored in the session after login
+    const userId = req.session.userId; 
 
     if (!userId) {
         return res.redirect('/login'); // Redirect to login if the user is not authenticated
@@ -398,8 +592,9 @@ router.get('/hazard-image', ensureAuthenticated, (req, res) => {
 // Route for creating a new image label hazard
 router.post('/hazard-image', ensureAuthenticated, authController.addLabel);
 
-// Route for edit General label
+// GET Route for displaying the label data for editing (General label)
 router.get('/edit-lable-general', ensureAuthenticated, (req, res) => {
+    console.log('--- [/edit-lable-general] Start of Function ---');
     const labelId = req.query.labelId;
 
     if (!labelId) {
@@ -415,188 +610,148 @@ router.get('/edit-lable-general', ensureAuthenticated, (req, res) => {
         const label = results[0];
         console.log('Label fetched:', label);  // Debugging to check if the label is fetched
 
-        // Pass the label data to the EJS template
+        // Pass the label data to the EJS template for rendering
         res.render('edit-lable-general', { label });
     });
 });
+// Post Route for editing the general label
 router.post('/edit-lable-general', ensureAuthenticated, (req, res) => {
-    console.log('--- [/edit-lable-general] Start of Function ---');
+    console.log('--- [/edit-lable-general POST] Start of Function ---');
 
-    const bb = busboy({ headers: req.headers });
-    let fields = {}; // Store form fields
-    let didUpdateTitle = false; // Flag for title update
-    let didUpdatePublic = false; // Flag for public status change
-    let memoChanged = false; // Flag for memo change
-    let imageChanged = false; // Flag for image change
-    let operationsPending = 0; // Counter for pending asynchronous operations
-    let responseSent = false; // Flag to ensure only one response is sent
-    let regenerateQRNeeded = false; // Flag to track if QR regeneration is needed
-    let currentMemo = ''; // Define currentMemo in the outer scope
+    const busboyInstance = busboy({ headers: req.headers });
+    const formData = {};  // Store form fields
+    let fileBuffer = null;
+    let fileType = null;
+    let fileField = null;
+    let filename = null;
+    const userId = req.session.userId;  // Fetch userId from session
 
-    // Handle form fields
-    bb.on('field', (name, value) => {
-        fields[name] = value;
-        console.log(`${name}: ${value}`); // Log form data for debugging
+    console.log('User ID:', userId);
+    console.log('Form Data:', req.body);
+
+    // Busboy: Handling form fields
+    busboyInstance.on('field', (fieldname, val) => {
+        console.log(`Field [${fieldname}]: value: ${val}`);
+        formData[fieldname] = val;
     });
 
-    // Handle file uploads
-    bb.on('file', (name, file, info) => {
-        console.log(`File [${name}] detected.`);
-        const { filename, encoding, mimeType } = info;
-        console.log(`File [${name}]: filename: ${filename}, encoding: ${encoding}, mimeType: ${mimeType}`);
+    // Busboy: Handling file uploads (only for voice or image uploads)
+    busboyInstance.on('file', (fieldname, file, origFilename, encoding, mimetype) => {
+        console.log(`File [${fieldname}] received, Filename: ${origFilename}, Mimetype: ${mimetype}`);
+        const chunks = [];
+        filename = origFilename ? origFilename : null;
+        fileField = fieldname;
+        fileType = mimetype;
 
-        // Proceed with image upload only if a file is actually selected (filename is not undefined)
-        if (name === 'imageUpload' && filename) {
-            console.log('Image upload detected.');
-            
-            imageChanged = true;
-            regenerateQRNeeded = true; // Mark that QR regeneration is needed
-            operationsPending++; // Increment pending operations
-
-            console.log('Calling updateImageMemo function with labelId:', fields.labelId);
-
-            // Call the updateImageMemo function to upload the image
-            updateImageMemo(fields.labelId, file, req.session.userId, fields.public === 'true')
-                .then(() => {
-                    console.log('Image memo updated successfully for labelId:', fields.labelId);
-                    checkIfAllDone(); // Check if all operations are completed
-                })
-                .catch((err) => {
-                    console.error('Error updating image memo for labelId:', fields.labelId, err);
-                    return finishWithError(res, 'Error updating image memo');
-                });
-
-            console.log('Operations pending after image upload:', operationsPending);
-        } else {
-            // If no file was selected, log and skip image upload
-            console.log('No image file uploaded or filename is undefined.');
-        }
-    });
-
-    // When the form parsing is complete
-    bb.on('close', () => {
-        console.log('Busboy parsing finished');
-        const labelId = fields.labelId;
-        const titel12 = fields.titel12;
-        const publicToggle = fields.public === 'true'; // Convert the string 'true'/'false' to boolean
-        const textMemo = fields.textMemo; // New memo content
-
-        // Log to confirm data has been received
-        console.log('Received Label ID:', labelId);
-        console.log('Received Title:', titel12);
-        console.log('Received Text Memo:', textMemo);
-        console.log('Received Public Status:', publicToggle);
-
-        // Query the current label to compare title, public status, and memo
-        db.query('SELECT label_name, public, memo FROM labels WHERE id = ?', [labelId], (err, results) => {
-            console.log('--- Inside Query Callback ---');
-            if (err) {
-                console.error('Error querying label:', err);
-                return res.status(500).send('Database error');
-            }
-            if (results.length === 0) {
-                return res.status(404).send('Label not found');
-            }
-
-            const currentTitle = results[0].label_name;
-            const currentPublic = Boolean(results[0].public); // Convert DB value (1/0) to boolean
-            currentMemo = results[0].memo; // Set currentMemo in the outer scope
-            console.log('Current title in database:', currentTitle);
-            console.log('Current public status in database (boolean):', currentPublic);
-            console.log('Current memo in database:', currentMemo);
-
-            // Step 1: Title Update
-            if (titel12 !== currentTitle) {
-                console.log(`Title has changed from "${currentTitle}" to "${titel12}"`);
-                didUpdateTitle = true;
-                operationsPending++; // Increment pending operations
-
-                // Update the title in the database
-                db.query('UPDATE labels SET label_name = ? WHERE id = ?', [titel12, labelId], (err, updateResults) => {
-                    if (err) {
-                        console.error('Error updating title:', err);
-                        return finishWithError(res, 'Error updating label title');
-                    }
-                    console.log('Title updated successfully');
-                    checkIfAllDone(); // Check if all operations are completed
-                });
-                console.log('operationsPending:', operationsPending);
-            }
-
-            // Step 2: Public Status Change
-            if (publicToggle !== currentPublic) {
-                console.log(`Public status has changed from "${currentPublic}" to "${publicToggle}"`);
-                didUpdatePublic = true;
-                regenerateQRNeeded = true; // Mark that QR regeneration is needed
-                operationsPending++; // Increment pending operations
-                checkIfAllDone();
-                console.log('operationsPending:', operationsPending);
-            }
-
-            // Step 3: Memo Update
-            if (textMemo && textMemo !== currentMemo) {
-                console.log('Text memo has changed, updating memo');
-                memoChanged = true;
-                regenerateQRNeeded = true; // Mark that QR regeneration is needed
-                operationsPending++; // Increment pending operations
-
-                // Call updateTextMemo function
-                updateTextMemo(labelId, textMemo, req.session.userId, publicToggle)
-                    .then(() => {
-                        console.log('Text memo updated successfully');
-                        checkIfAllDone(); // Check if all operations are completed
-                    })
-                    .catch((err) => {
-                        console.error('Error updating text memo:', err);
-                        return finishWithError(res, 'Error updating text memo');
-                    });
-
-                console.log('operationsPending:', operationsPending);
-            }
-
-            // If no changes were detected and no files uploaded, redirect immediately
-            if (!didUpdateTitle && !didUpdatePublic && !memoChanged && !imageChanged) {
-                console.log('No changes detected, redirecting to home');
-                return res.redirect('/home');
-            }
+        // Buffer the file data
+        file.on('data', (data) => {
+            chunks.push(data);
         });
 
-        // Function to check if all asynchronous operations are done
-        function checkIfAllDone() {
-            operationsPending--; // Decrement the number of pending operations
-            if (operationsPending === 0 && !responseSent) {
-                // Only regenerate QR if needed
-                if (regenerateQRNeeded) {
-                    console.log('Changes detected in public status, memo, or image, regenerating QR code');
-                    regenerateQRCode(labelId, publicToggle, currentMemo, req.session.userId)
-                        .then(() => {
-                            console.log('QR code regenerated successfully');
-                            res.redirect('/home');
-                            responseSent = true; // Ensure no further responses are sent
-                        })
-                        .catch((err) => {
-                            console.error('Error regenerating QR code:', err);
-                            return finishWithError(res, 'Error regenerating QR code');
-                        });
-                } else {
-                    // If no QR regeneration is needed, just redirect
-                    res.redirect('/home');
-                    responseSent = true; // Ensure no further responses are sent
-                }
+        file.on('end', () => {
+            if (chunks.length > 0) {
+                fileBuffer = Buffer.concat(chunks);
+                console.log(`File upload complete. Total size: ${fileBuffer.length}`);
+            } else {
+                console.log('No file uploaded.');
             }
+        });
+    });
+
+    busboyInstance.on('finish', async () => {
+        console.log('Busboy finished parsing the form.');
+
+        const oldLabelId = formData.labelId;
+        const labelName = formData.titel12;
+        const isPublic = formData.public === 'false' ? false : true;
+        const textMemo = formData.textMemo;
+        const voiceFile = formData.voiceUploadData;
+        const imageFile = fileBuffer && filename ? { fileBuffer, filename, fileType } : null;
+
+        console.log('Parsed Form Data:', { oldLabelId, labelName, isPublic, textMemo, voiceFile, imageFile });
+
+        if (!oldLabelId || !userId) {
+            console.error('Label ID or User ID is missing.');
+            return res.redirect('/home');
         }
 
-        // Function to handle errors and ensure only one error response is sent
-        function finishWithError(res, errorMessage) {
-            if (!responseSent) {
-                console.error(errorMessage);
-                res.status(500).send(errorMessage);
-                responseSent = true; // Ensure no further responses are sent
-            }
+        // Step 1: Pass the new memo (text, voice, or image) and create the new label
+        let memoToUse;
+
+        if (textMemo) {
+            // Text memo - handle as JSON
+            memoToUse = {
+                label_name: labelName,
+                memo: textMemo,
+                category_id: 3,
+                user_id: userId,
+                public: isPublic
+            };
+            console.log('Using new text memo:', memoToUse);
+        
+            // Step 1: Send as JSON to addLabel
+            req.body = memoToUse;
+            req.headers['content-type'] = 'application/json'; // Ensure content-type is JSON
+        
+            // Step 2: Delete the old label in the background
+            setTimeout(() => {
+                console.log(`Background deletion: Deleting old label with ID: ${oldLabelId}`);
+                authController.deleteLabel({ ...req, body: { labelId: oldLabelId } }, null, (deleteErr) => {
+                    console.log(`Deleting old label with ID: ${oldLabelId}`);
+                    if (deleteErr) {
+                        console.error(`Error deleting old label with ID ${oldLabelId}:`, deleteErr);
+                    } else {
+                        console.log(`Old label with ID: ${oldLabelId} deleted successfully`);
+                    }
+                });
+            }, 0); // Perform deletion task without blocking
+        
+            // Step 3: Add new label after the old label is marked for deletion
+            authController.addLabel(req, res, (createErr, newLabelId) => {
+                if (createErr) {
+                    console.error('Error creating new label:', createErr);
+                    return res.redirect('/home'); // Redirect on error
+                }
+        
+                console.log(`New label created successfully with ID: ${newLabelId}. Redirecting to home...`);
+            });
+        }
+         else if (voiceFile || imageFile) {
+            // Handle voice and image uploads separately
+            // Pass them as multipart form data
+            req.body.label_name = labelName;
+            req.body.public = isPublic;
+            req.body.fileBuffer = fileBuffer;
+            req.body.filename = filename;
+
+            console.log('Creating label with voice or image memo.');
+
+            authController.addLabel(req, res, (createErr, newLabelId) => {
+                if (createErr) {
+                    console.error('Error creating new label:', createErr);
+                    return res.redirect('/home');
+                }
+
+                console.log(`New label created successfully with ID: ${newLabelId}. Now deleting the old label...`);
+
+                // Step 2: Delete the old label
+                req.body.labelId = oldLabelId;
+
+                authController.deleteLabel(req, res, (deleteErr) => {
+                    if (deleteErr) {
+                        console.error('Error deleting old label:', deleteErr);
+                        return res.redirect('/home');
+                    }
+
+                    console.log('Old label deleted successfully');
+                    return res.redirect('/home');
+                });
+            });
         }
     });
 
-    req.pipe(bb); // Pipe the request to Busboy for processing
+    // Pipe the request stream into Busboy
+    req.pipe(busboyInstance);
 });
 
 // Route for edit Fragile label

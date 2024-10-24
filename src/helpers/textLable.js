@@ -78,7 +78,12 @@ document.addEventListener('DOMContentLoaded', () => {
             // Debugging: Log the response status
             console.log('Response Status:', response.status);
 
-            // Check if the response is JSON
+            if (response.redirected) {
+                // Handle the redirect manually
+                window.location.href = response.url;
+                return;
+            }
+            // If no redirect, check for JSON response
             const contentType = response.headers.get('content-type');
             let result;
             if (contentType && contentType.includes('application/json')) {

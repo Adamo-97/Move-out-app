@@ -8,15 +8,18 @@ function handleTextMemoUpload(req, res) {
     
     const label_name = req.body['titel19']  // General
                     || req.body['titel16']  // Fragile
-                    || req.body['titel13']; // Hazard
+                    || req.body['titel13'] // Hazard
+                    || req.body['label_name']; // Edit General
     const memo = req.body['start-typing-here-12']  // General
             || req.body['start-typing-here-11']  // Fragile
-            || req.body['start-typing-here-1']; // Hazard
+            || req.body['start-typing-here-1'] // Hazard
+            || req.body['memo']; // Edit textarea
     const category_id = req.body.category_id;
     const user_id = req.session.userId;  
     const isPublic = (req.body.public === true || req.body.public === 'true');
     const pin = isPublic ? null : req.body.pin; // Add pin conditionally
-    
+    console.log('Final Parsed Request Body:', req.body);
+
     console.log('Received values:', { label_name, memo, category_id, user_id, isPublic, pin });
 
     if (!user_id) {
@@ -57,7 +60,7 @@ function handleTextMemoUpload(req, res) {
         })
         .then(({ labelId }) => {
             console.log('Label and QR code added successfully!');
-            res.status(200).json({ success: true, labelId: labelId, redirectUrl: `/home?labelId=${labelId}&category_id=${category_id}` });
+            return res.redirect(`/home?labelId=${labelId}&category_id=${category_id}`);
         })
         .catch(error => {
             console.error(error.message);

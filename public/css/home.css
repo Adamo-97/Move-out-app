@@ -679,93 +679,277 @@
   transform: scale(1.4);
 }
 
-/* Notification bell */
-/*making bell shape with one div */
-.bell {
-  border: 2.17px solid rgb(0, 0, 0);
-  border-radius: 10px 10px 0 0;
-  width: 15px;
-  height: 17px;
-  background: transparent;
-  display: block;
-  position: relative;
-  top: -3px;
-}
-.bell::before,
-.bell::after {
-  content: "";
-  background: rgb(0, 0, 0);
-  display: block;
+/* Notification Bell Container */
+#notification-bell-container {
   position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 2.17px;
+  top: 8.7vw; /* Adjust the top position to move it down */
+  left: 45vw; /* Shift it to the left */
+  z-index: 150;
 }
-.bell::before {
-  top: 100%;
-  width: 20px;
-}
-.bell::after {
-  top: calc(100% + 4px);
-  width: 7px;
-}
-/*container main styling*/
-.notification {
-  background: transparent;
-  border: none;
-  padding: 15px 15px;
-  border-radius: 50px;
-  cursor: pointer;
-  transition: 300ms;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-/*notifications number with before*/
-.notification::before {
-  content: "1";
-  color: white;
-  font-size: 10px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background-color: red;
-  position: absolute;
-  right: 8px;
-  top: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-/*container background hover effect*/
-.notification:hover {
-  background: rgba(170, 170, 170, 0.062);
-}
-/*container animations*/
-.notification:hover > .bell-container {
-  animation: bell-animation 650ms ease-out 0s 1 normal both;
-}
-/*bell ring and scale animation*/
-@keyframes bell-animation {
-  20% {
-    transform: rotate(15deg);
-  }
 
-  40% {
-    transform: rotate(-15deg);
-    scale: 1.1;
-  }
-  60% {
-    transform: rotate(10deg);
-    scale: 1.1;
-  }
-  80% {
-    transform: rotate(-10deg);
-  }
+/* Button Styling*/
+.button {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--green);
+  border-radius: 20%;
+  cursor: pointer;
+  transition-duration: 0.3s;
+  border: none;
+}
+
+.bell {
+  width: 40px;
+}
+
+.bell path {
+  fill: white;
+}
+
+.button:hover {
+  transform: scale(1.2);
+}
+
+.button:hover .bell {
+  animation: bellRing 0.9s both;
+}
+
+/* bell ringing animation keyframes */
+@keyframes bellRing {
   0%,
   100% {
-    transform: rotate(0deg);
+    transform-origin: top;
   }
+  15% {
+    transform: rotateZ(10deg);
+  }
+  30% {
+    transform: rotateZ(-10deg);
+  }
+  45% {
+    transform: rotateZ(5deg);
+  }
+  60% {
+    transform: rotateZ(-5deg);
+  }
+  75% {
+    transform: rotateZ(2deg);
+  }
+}
+
+.button:active {
+  transform: scale(0.8);
+}
+
+/* Notification Popup */
+#notification-popup {
+  display: none;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  width: 350px;
+  border-radius: 8px;
+  z-index: 9999;
+  padding: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+/* General card styling */
+.card {
+  width: 330px;
+  height: 80px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 10px 15px;
+  background-color: #ffffff; /* Default background color */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px; /* Increased gap for more space between elements */
+  margin-bottom: 10px; /* Adds space between cards */
+}
+
+/* Icon container styling */
+.icon-container {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-left: 8px;
+}
+
+.icon {
+  font-size: 70px;
+  color: white;
+}
+
+/* Wave styling */
+.wave {
+  position: absolute;
+  transform: rotate(90deg);
+  left: -31px;
+  top: 32px;
+  width: 80px;
+}
+
+/* Message text container */
+.message-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  flex-grow: 1;
+}
+
+.message-text,
+.sub-text {
+  margin: 0;
+  cursor: default;
+}
+
+.message-text {
+  font-size: 20px; 
+  font-weight: 700;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 8px;
+  color: #000; 
+}
+
+.sub-text {
+  font-size: 18px;
+  font-family: 'Roboto', sans-serif; /* Modern font for subtitle */
+  color: #555;
+  margin-top: 0;
+}
+
+.cross-icon {
+  width: 18px;
+  height: 18px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* Dynamic styling for system notifications */
+.system-notification {
+  background-color: rgba(255, 255, 255); /* Light orange background */
+}
+
+.system-notification .icon-container {
+  background-color: rgb(255, 60, 0); /* Orange for system notifications */
+}
+
+.system-notification .wave {
+  fill: rgba(255, 60, 0); /* Light orange wave */
+}
+
+.system-notification .message-text {
+  color: rgb(255, 60, 0); /* Orange text */
+}
+
+/* Dynamic styling for marketing notifications */
+.marketing-notification {
+  background-color: rgb(255, 255, 255); /* Light blue background */
+}
+
+.marketing-notification .icon-container {
+  background-color: rgb(0, 115, 255); /* Blue for marketing notifications */
+}
+
+.marketing-notification .wave {
+  fill: rgba(0, 115, 255); /* Light blue wave */
+}
+
+.marketing-notification .message-text {
+  color: rgb(0, 115, 255); /* Blue text */
+}
+
+/* Dynamic styling for reminder notifications */
+.reminder-notification {
+  background-color: rgb(255, 255, 255); /* Light yellow background */
+}
+
+.reminder-notification .icon-container {
+  background-color: rgb(255, 217, 0); /* Yellow for reminder notifications */
+}
+
+.reminder-notification .wave {
+  fill: rgba(255, 217, 0); /* Light yellow wave */
+}
+
+.reminder-notification .message-text {
+  color: rgb(255, 217, 0); /* Yellow text */
+}
+
+.no-notifications-message {
+  font-size: 16px; 
+  font-family: 'Roboto', sans-serif; 
+  font-weight: 700; 
+  text-align: center;
+  color: #ffffff; 
+  background-color: var(--green); 
+  padding: 6px 12px; 
+  border-radius: 8px; 
+  width: auto; 
+  display: inline-block; 
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); 
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Dynamic styling for shared label notifications */
+.label_share-notification {
+  background-color: white; /* Light green background */
+}
+
+.label_share-notification .icon-container {
+  background-color: rgb(0, 220, 103); /* Green for shared label notifications */
+}
+
+.label_share-notification .wave {
+  fill: rgb(0, 220, 103); /* Light green wave */
+}
+
+.label_share-notification .message-text {
+  color: rgb(0, 220, 103); /* Green text */
+}
+
+/* Action buttons for shared label notifications */
+.action-buttons {
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.accept-btn, .decline-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+}
+
+.accept-btn {
+  background-color: rgb(0, 170, 200); /* Green for accept */
+  color: white;
+}
+
+.decline-btn {
+  background-color: rgb(255, 0, 0); /* Red for decline */
+  color: white;
+}
+
+.accept-btn:hover {
+  background-color: rgb(0, 140, 165); /* Darker green on hover */
+}
+
+.decline-btn:hover {
+  background-color: rgb(200, 0, 0); /* Darker red on hover */
 }

@@ -245,12 +245,11 @@ CREATE PROCEDURE get_notifications_for_user(
     IN userId INT
 )
 BEGIN
-    -- Select notifications for the given user
+    -- Select unread notifications for the given user
     SELECT 
         n.id, 
         n.message, 
         n.type, 
-        n.is_read, 
         n.created_at,
         CASE 
             WHEN n.type = 'label_share' THEN (
@@ -259,12 +258,14 @@ BEGIN
                 JOIN labels l ON sl.label_id = l.id
                 JOIN users u ON sl.sender_id = u.id
                 WHERE sl.recipient_id = n.user_id
+                    AND sl.status = 'pending'
                 LIMIT 1
             )
             ELSE NULL
-        END AS additional_info  -- Add shared label details for label_share notifications
+        END AS additional_info 
     FROM notifications n
     WHERE n.user_id = userId
+      AND n.status = 'unread'  -- Only fetch unread notifications
     ORDER BY n.created_at DESC;
 END$$
 DELIMITER ;
@@ -284,33 +285,8 @@ BEGIN
 END$$
 DELIMITER ;
 
--- Function: Mark notification as read
-DELIMITER $$
-CREATE PROCEDURE mark_notification_as_read(
-    IN notificationId INT
-)
-BEGIN
-    -- Mark the specified notification as read
-    UPDATE notifications
-    SET is_read = TRUE
-    WHERE id = notificationId;
-END$$
-DELIMITER ;
-
--- Function: Delete notification
-DELIMITER $$
-CREATE PROCEDURE delete_notification(
-    IN notificationId INT
-)
-BEGIN
-    -- Delete the specified notification
-    DELETE FROM notifications
-    WHERE id = notificationId;
-END$$
-DELIMITER ;
-
 -- share label with another user
-DELIMITER $$
+DELIMITER $$ 
 CREATE PROCEDURE share_label_with_user(
     IN senderId INT,
     IN recipientId INT,
@@ -321,10 +297,15 @@ BEGIN
     INSERT INTO shared_labels (sender_id, recipient_id, label_id, status)
     VALUES (senderId, recipientId, labelId, 'pending');
 
-    -- Send a notification to the recipient
-    INSERT INTO notifications (user_id, message, type)
-    VALUES (recipientId, CONCAT('A label has been shared with you by user ', senderId), 'system');
-END$$
+    -- Send a notification to the recipient with correct type, sender ID, and label ID
+    INSERT INTO notifications (user_id, sender_id, message, type)
+    VALUES (
+        recipientId, 
+        senderId, 
+        CONCAT('A label has been shared with you by user ', senderId), 
+        'label_share'
+    );
+END$$ 
 DELIMITER ;
 
 -- accept shared label
@@ -360,30 +341,6 @@ BEGIN
     -- Send a notification to the sender
     INSERT INTO notifications (user_id, message, type)
     VALUES ((SELECT sender_id FROM shared_labels WHERE id = sharedLabelId), CONCAT('User ', recipientId, ' has declined your shared label'), 'system');
-END$$
-DELIMITER ;
-
--- Function: Get shared labels for a user
-DELIMITER $$
-CREATE PROCEDURE get_shared_labels_for_user(
-    IN userId INT
-)
-BEGIN
-    -- Select all shared labels for the given user
-    SELECT 
-        shared_labels.id, 
-        shared_labels.sender_id, 
-        shared_labels.recipient_id, 
-        shared_labels.label_id, 
-        shared_labels.status, 
-        shared_labels.created_at,
-        labels.label_name
-    FROM 
-        shared_labels
-    JOIN 
-        labels ON shared_labels.label_id = labels.id
-    WHERE 
-        shared_labels.recipient_id = userId;
 END$$
 DELIMITER ;
 

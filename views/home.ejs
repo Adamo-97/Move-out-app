@@ -12,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="css/fragile-comple.css" />
     <link rel="stylesheet" type="text/css" href="css/hazard-comple.css" />
     <link rel="stylesheet" type="text/css" href="css/general-complete.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Home</title>
     <link rel="icon" href="img/favicon.png" sizes="64x64" type="image/png">
 </head>
@@ -70,23 +71,79 @@
                     </div>
                 </div>
             </a>
-    
-            <!-- Search Bar -->
-            <a href="/search">
-                <div class="search-bar-xl4bh6 smart-layers-pointers">
-                    <a href="/search" onclick="window.event.stopPropagation()">
-                        <div class="search-box-LvIzbA"></div>
-                    </a>
-                    <img class="search-icon-LvIzbA smart-layers-pointers" src="img/search-icon-11-1x-png-1x-png@1x.png" alt="search icon" />
-                    <input
-                        class="seach-for-a-specific-lable-LvIzbA lato-black-white-30px"
-                        name="seach-for-a-specific-lable-223"
-                        placeholder="Search for a category, label, or sort by date ..."
-                        type="text"
-                        required
-                    />
+
+            <!-- Notification Bell Icon -->
+            <div id="notification-bell-container">
+                <button id="notification-bell" class="button">
+                <svg viewBox="0 0 448 512" class="bell">
+                    <path d="M224 0c-17.7 0-32 14.3-32 32V49.9C119.5 61.4 64 124.2 64 200v33.4c0 45.4-15.5 89.5-43.8 124.9L5.3 377c-5.8 7.2-6.9 17.1-2.9 25.4S14.8 416 24 416H424c9.2 0 17.6-5.3 21.6-13.6s2.9-18.2-2.9-25.4l-14.9-18.6C399.5 322.9 384 278.8 384 233.4V200c0-75.8-55.5-138.6-128-150.1V32c0-17.7-14.3-32-32-32zm0 96h8c57.4 0 104 46.6 104 104v33.4c0 47.9 13.9 94.6 39.7 134.6H72.3C98.1 328 112 281.3 112 233.4V200c0-57.4 46.6-104 104-104h8zm64 352H224 160c0 17 6.7 33.3 18.7 45.3s28.3 18.7 45.3 18.7s33.3-6.7 45.3-18.7s18.7-28.3 18.7-45.3z"></path>
+                </svg>
+                </button>
+                
+            <!-- Notification Popup -->
+            <div id="notification-popup" style="display:none;">
+                <% if (notifications && notifications.length > 0) { %>
+                <% notifications.forEach(notification => { %>
+                    <div class="card <%= notification.type %>-notification" id="notification-<%= notification.id %>">
+                        <svg class="wave" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0,256L11.4,240C22.9,224,46,192,69,192C91.4,192,114,224,137,234.7C160,245,183,235,206,213.3C228.6,192,251,160,274,149.3C297.1,139,320,149,343,181.3C365.7,213,389,267,411,282.7C434.3,299,457,277,480,250.7C502.9,224,526,192,549,181.3C571.4,171,594,181,617,208C640,235,663,277,686,256C708.6,235,731,149,754,122.7C777.1,96,800,128,823,165.3C845.7,203,869,245,891,224C914.3,203,937,117,960,112C982.9,107,1006,181,1029,197.3C1051.4,213,1074,171,1097,144C1120,117,1143,107,1166,133.3C1188.6,160,1211,224,1234,218.7C1257.1,213,1280,139,1303,133.3C1325.7,128,1349,192,1371,192C1394.3,192,1417,128,1429,96L1440,64L1440,320L1428.6,320C1417.1,320,1394,320,1371,320C1348.6,320,1326,320,1303,320C1280,320,1257,320,1234,320C1211.4,320,1189,320,1166,320C1142.9,320,1120,320,1097,320C1074.3,320,1051,320,1029,320C1005.7,320,983,320,960,320C937.1,320,914,320,891,320C868.6,320,846,320,823,320C800,320,777,320,754,320C731.4,320,709,320,686,320C662.9,320,640,320,617,320C594.3,320,571,320,549,320C525.7,320,503,320,480,320C457.1,320,434,320,411,320C388.6,320,366,320,343,320C320,320,297,320,274,320C251.4,320,229,320,206,320C182.9,320,160,320,137,320C114.3,320,91,320,69,320C45.7,320,23,320,11,320L0,320Z"></path>
+                        </svg>
+                    
+                        <div class="icon-container">
+                        <span class="material-icons icon">
+                            <% if (notification.type === 'system') { %>
+                            build
+                            <% } else if (notification.type === 'marketing') { %>
+                            campaign
+                            <% } else if (notification.type === 'reminder') { %>
+                            notifications
+                            <% } else if (notification.type === 'label_share') { %>
+                                inventory_2
+                            <% } %>
+                        </span>
+                        </div>
+                    
+                        <!-- Message Section -->
+                        <div class="message-text-container">
+                            <% if (notification.type === 'label_share') { %>
+                                <p class="message-text">New shared label!</p>
+                                <div class="action-buttons">
+                                    <button class="accept-btn" data-shared-label-id="<%= notification.id %>">Accept</button>
+                                    <button class="decline-btn" data-shared-label-id="<%= notification.id %>">Decline</button>
+                                </div>
+                            <% } else { %>
+                                <p class="message-text"><%= notification.type %></p>
+                                <p class="sub-text"><%= notification.message %></p>
+                                <!-- Close Button -->
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15" stroke-width="0" fill="none" stroke="currentColor" class="cross-icon" data-id="<%= notification.id %>">
+                                    <path fill="currentColor" d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"></path>
+                                </svg>
+                            <% } %>
+
+                        </div>
+                    </div>          
+                <% }) %>
+                <% } else { %>
+                    <p class="no-notifications-message">All caught up</p>
+                    <% } %>
                 </div>
-            </a>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="search-bar-xl4bh6 smart-layers-pointers">
+                <div class="search-box-LvIzbA"></div>
+
+                <img class="search-icon-LvIzbA smart-layers-pointers" src="img/search-icon-11-1x-png-1x-png@1x.png" alt="search icon" />
+                
+                <input
+                    class="seach-for-a-specific-lable-LvIzbA lato-black-white-30px"
+                    id="searchInput"
+                    name="seach-for-a-specific-lable-223"
+                    placeholder="Search for a category, label, or sort by date ..."
+                    type="text"
+                    required
+                />
+            </div>
 
         </div>
     </div>
@@ -172,15 +229,6 @@
         </div>
 
 
-        
-        <!--Notification Bell -->
-        <div class="notification">
-            <div class="bell-container">
-                <div class="bell"></div>
-            </div>
-        </div>
-    
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <script src="../src/helpers/printLable.js"></script>
     <script>
@@ -221,5 +269,61 @@
         });
     });
     </script>
+    <script src="../src/helpers/notificationsUser.js"></script>
+    <script>
+        // Add event listeners to accept buttons
+        document.querySelectorAll('.accept-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const sharedLabelId = this.getAttribute('data-shared-label-id');
+
+                // Send an AJAX request to accept the label
+                fetch(`/notifications/accept-label/${sharedLabelId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // reload to update the UI
+                    } else {
+                        alert(data.message); // Display any error messages
+                    }
+                })
+                .catch(error => {
+                    console.error('Error accepting label:', error);
+                });
+            });
+        });
+
+        // Add event listeners to decline buttons
+        document.querySelectorAll('.decline-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const sharedLabelId = this.getAttribute('data-shared-label-id');
+
+                // Send an AJAX request to decline the label
+                fetch(`/notifications/decline-label/${sharedLabelId}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        location.reload(); // reload to update the UI
+                    } else {
+                        alert(data.message); // Display any error messages
+                    }
+                })
+                .catch(error => {
+                    console.error('Error declining label:', error);
+                });
+            });
+        });
+
+    </script>
+
 </body>
 </html>
