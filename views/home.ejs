@@ -276,6 +276,7 @@
             button.addEventListener('click', function() {
                 const sharedLabelId = this.getAttribute('data-shared-label-id');
 
+                console.log('Accepting label with sharedLabelId:', sharedLabelId);
                 // Send an AJAX request to accept the label
                 fetch(`/notifications/accept-label/${sharedLabelId}`, {
                     method: 'POST',

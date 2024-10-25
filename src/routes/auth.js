@@ -355,6 +355,9 @@ router.post('/notifications/accept-label/:sharedLabelId', (req, res) => {
     const sharedLabelId = req.params.sharedLabelId;
     const userId = req.session.userId; // The user accepting the label
 
+    console.log('Accepting shared label:', sharedLabelId);
+    console.log('User ID:', userId);
+    
     // Fetch the shared label information
     const fetchLabelQuery = `
         SELECT l.*, sl.label_id AS original_label_id, sl.id AS shared_label_id
