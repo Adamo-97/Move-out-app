@@ -1,8 +1,8 @@
 {
   "database": {
     "host": "localhost",
-    "user": "dbadm",
-    "password": "P@ssw0rd",
+    "user": "FOR YOU TO FILL",
+    "password": "FOR YOU TO FILL",
     "database": "moveout_app",
     "port": 3306
   },

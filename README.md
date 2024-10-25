@@ -128,10 +128,6 @@ To run and build the **MoveOUT** project, follow these steps carefully to ensure
 
 ### Build
 
-To build and run the **MoveOUT** project, follow the steps below. These instructions are specifically for users working in **WSL (Windows Subsystem for Linux) with Ubuntu**, or any Linux-based environment.
-
----
-
 #### 1. **Clone the Repository**
 - Start by cloning the project from the repository into your local development environment:
   ```bash
@@ -177,15 +173,36 @@ To build and run the **MoveOUT** project, follow the steps below. These instruct
   ```
 - This will start the application, and it will be accessible at `http://localhost:3000` by default.
 
+#### 6. **Install Required Linux Dependencies (for Print Label Function)**
+ - To ensure that the print label function works correctly, you must install the necessary Linux dependencies. Run the following command:
+    ```bash
+    sudo apt-get install -y \
+      libnss3 \
+      libxss1 \
+      libatk1.0-0 \
+      libatk-bridge2.0-0 \
+      libcups2 \
+      libdrm2 \
+      libgbm1 \
+      libasound2 \
+      libpangocairo-1.0-0 \
+      libxcomposite1 \
+      libxrandr2 \
+      libxcursor1 \
+      libxdamage1 \
+      libxinerama1 \
+      libnspr4 \
+      fonts-liberation \
+      libappindicator3-1 \
+      xdg-utils
+    ```
 ---
-
-#### 6. **Optional: Run in Development Mode**
+#### 7. **Optional: Run in Development Mode**
 - For development purposes, if you prefer hot-reloading (where the server automatically restarts after file changes), use **nodemon**:
   ```bash
   npm install -g nodemon
   nodemon main.js
   ```
-
 ---
 
 ### Test

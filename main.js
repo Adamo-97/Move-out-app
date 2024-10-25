@@ -1,11 +1,11 @@
 const express = require('express');
-const passport = require('passport'); // Add passport import
+const passport = require('passport');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const path = require('path');
 const config = require('./config/config.json');
 require('./src/helpers/passport');
-const os = require('os'); // Require 'os' module to get network interfaces
+const os = require('os');
 
 // Create an Express app
 const app = express();
@@ -65,6 +65,7 @@ function getLocalNetworkIP() {
     for (const iface in interfaces) {
       for (const details of interfaces[iface]) {
         // Check if the IP address is IPv4 and not internal (i.e., not localhost)
+        //helps to get the local network IP address if youre planning to use port forwarding
         if (details.family === 'IPv4' && !details.internal) {
           return details.address;
         }

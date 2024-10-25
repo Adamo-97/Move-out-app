@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Extract query parameters from the URL
     const urlParams = new URLSearchParams(window.location.search);
-    const categoryId = parseInt(urlParams.get('category_id')); // Default to 1 (fragile) if not present
+    const categoryId = parseInt(urlParams.get('category_id')); 
     const publicStatus = urlParams.get('public'); // Get the public status as a boolean
     
     // Use the category ID to get the appropriate field names

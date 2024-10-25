@@ -318,7 +318,7 @@ function addLabelToDatabase(label_name, user_id, category_id, memoUrl, isPublic,
                     console.log('[addLabelToDatabase] New Label ID:', labelId);
 
                     // Generate the verification URL for private labels
-                    const verificationUrl = isPublic ? null : `http://192.168.0.172:3000/verify-pin?labelId=${labelId}`;
+                    const verificationUrl = isPublic ? null : `http://localhost:3000/verify-pin?labelId=${labelId}`;
 
                     // Now, update the label with the verification URL for private labels
                     if (!isPublic) {
@@ -371,7 +371,7 @@ function generateQRCode(memoUrl, labelId) {
         console.log('[generateQRCode] Label is Private, generating QR for verification URL.');
         
         // Private label: Generate QR code pointing to the verification URL
-        const verificationUrl = `http://192.168.0.172:3000/verify-pin?labelId=${labelId}`;
+        const verificationUrl = `http://localhost:3000/verify-pin?labelId=${labelId}`;
         console.log('[generateQRCode] Verification URL:', verificationUrl);
 
         return new Promise((resolve, reject) => {

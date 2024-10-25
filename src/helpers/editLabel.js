@@ -25,7 +25,7 @@ function regenerateQRCode(labelId, isPublic, memoUrl, user_id) {
                 console.log('Old QR code deleted successfully:', result);
 
                 // Step 3: Generate a new QR code based on the public/private status
-                const qrUrl = isPublic ? memoUrl : `http://192.168.0.172:3000/verify-pin?labelId=${labelId}`;
+                const qrUrl = isPublic ? memoUrl : `http://localhost:3000/verify-pin?labelId=${labelId}`;
                 generateQRCode(qrUrl, labelId)
                     .then(qrDataUrl => {
                         // Step 4: Upload the new QR code to Cloudinary
@@ -94,7 +94,7 @@ function uploadQRCodeToCloudinary(qrDataUrl, cloudinaryFolder, labelId) {
 // Helper function to store or update the QR code URL in the database and update verification URL for private labels
 function storeQRCodeInDatabase(labelId, qrUrl, isPublic) {
     return new Promise((resolve, reject) => {
-        const verificationUrl = isPublic ? null : `http://192.168.0.172:3000/verify-pin?labelId=${labelId}`;
+        const verificationUrl = isPublic ? null : `http://localhost:3000/verify-pin?labelId=${labelId}`;
         
         // Step 1: Check if the QR code already exists for the label
         db.query('SELECT id FROM qr_codes WHERE label_id = ?', [labelId], (err, results) => {
