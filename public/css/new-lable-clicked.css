@@ -1418,3 +1418,24 @@ transform: translate(0,0);
   z-index: 100; 
   transform: scale(1.4);
 }
+
+/* Ensure the buttons are above the grid */
+.new-lable-button-RMVKx3,
+.general-box-RMVKx3,
+.fragile-box-RMVKx3,
+.hazard-box-RMVKx3,
+.seach-for-a-specific-lable-mLEEJP,
+.search-bar-RMVKx3,
+.search-icon-mLEEJP{
+    position: relative;
+    z-index: 10; /* Make sure buttons are above other elements */
+}
+
+/* If needed, adjust the positioning of the buttons */
+.new-lable-button-RMVKx3,
+.general-box-RMVKx3,
+.fragile-box-RMVKx3,
+.hazard-box-RMVKx3 {
+    position: absolute; /* If you need the buttons to be fixed at a specific spot */
+    z-index: 10; /* Ensure buttons are above the grid */
+}
